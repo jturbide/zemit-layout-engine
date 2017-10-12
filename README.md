@@ -1,6 +1,6 @@
 # Zemit
 
-Zemit \(pronounced /zamitː/\) is free & open-source layout engine that aims to facilitates the integration of your interface and help with the communication of its widgets with your server logic.
+Zemit \(pronounced /zemitː/\) is free & open-source layout engine that aims to facilitates the integration of your interface and help with the communication of its widgets with your server logic.
 
 ##### Browser Compatibility
 
