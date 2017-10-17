@@ -1,0 +1,145 @@
+.zm-clickable {
+	cursor: pointer;
+}
+.zm-clickable:hover {
+	color: #75a9f9 !important;
+	border-color: #75a9f9 !important;
+	outline-color: #75a9f9 !important;
+}
+.zm-zoomable {
+	transition-duration: .15s;
+	transition-property: transform, opacity;
+	transition-timing-function: ease-in;
+	transform: perspective(1000px) translateZ(-150px);
+}
+.zm-zoomable:hover {
+	transform: perspective(1000px) translateZ(0px);
+}
+
+/**
+ * Buttons
+ */
+.zm-btn {
+	background: #fafafa;
+  background-image: -webkit-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: -moz-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: -ms-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: -o-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: linear-gradient(to bottom, #fafafa, #f2f2f2);
+  border-radius: 3px;
+  color: inherit;
+  padding: 0.125em 0.5em 0.25em 0.5em;
+  border: solid #ccc 1px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: default;
+}
+.zm-btn:focus,
+.zm-btn:hover {
+	border-color: #999;
+}
+.zm-btn.active {
+	color: #75a9f9;
+}
+.zm-btn:active {
+	background: #f2f2f2;
+  background-image: -webkit-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: -moz-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: -ms-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: -o-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: linear-gradient(to bottom, #f2f2f2, #fafafa);
+}
+.zm-btn[disabled] {
+  opacity: 0.666;
+  pointer-events: none;
+}
+
+/**
+ * HB-Visible
+ */
+.zm-visible,
+.zm-invisible {
+  transition-duration: .15s;
+  transition-property: opacity;
+  transition-timing-function: ease-out;
+}
+.zm-visible {
+  opacity: 1;
+}
+.zm-invisible {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/**
+ * Tabs
+ */
+.zm-tabs {
+  margin: 0;
+  padding: 0;
+  border-bottom: #ddd solid 1px;
+}
+.zm-tabs:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.zm-tabs > .zm-tab-item {
+  background-color: #f6f6f6;
+  border: #ddd solid 1px;
+  float: left;
+  border-radius: 0.25em 0.25em 0 0;
+  padding: 0.25em 0.75em;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  list-style-type: none;
+}
+.zm-tabs > .zm-tab-item:hover {
+  background-color: white
+}
+.zm-tabs > .zm-tab-item.active {
+  background-color: white;
+  border-bottom-color: white;
+  z-index: 2;
+  position: relative;
+  cursor: default;
+}
+.zm-tabs > .zm-tab-item + .zm-tab-item {
+  margin-left: 0.5em;
+}
+
+/**
+ * Tooltips
+ */
+.zm-tooltip {
+  position: fixed;
+  opacity: 0;
+  z-index: 11000;
+}
+.zm-tooltip.zm-visible {
+  opacity: 1;
+}
+.zm-tooltip-inner {
+  position: relative;
+  top: 0.5em;
+  background-color: black;
+  color: white;
+  padding: 0.25em 0.75em;
+  border-radius: 0.2em;
+  line-height: 1.5em;
+  font-size: 0.8em;
+}
+.zm-tooltip-pointer {
+  width: 0;
+  height: 0;
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-bottom: 0.5em solid black;
+  z-index: 2;
+  position: relative;
+  top: -1.5em;
+  left: 50%;
+  margin-left: -0.5em;
+}

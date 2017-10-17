@@ -1,0 +1,17 @@
+<div class="zm-container zm-row-flex-default" tabindex="1">
+	<div class="zm-container-inner zm-row-flex-item" zm-accept-widget-inside>
+		
+		<!-- LIST OF CHILD WIDGETS -->
+		<zm-widget-childs type="'row'" childs="container.childs"></zm-widget-childs>
+		
+		<!-- ADD ROW -->
+		<div class="zm-container-add-row" ng-if="container.childs.length === 0">
+			<i class="fa fa-plus-circle" zm-clickable zm-zoomable ng-click="container.addNewChild('row')"></i>
+		</div>
+	</div>
+	
+	<!-- SETTINGS -->
+	<div ng-if="settings.visible" ng-click="$event.stopPropagation()" class="zm-container-settings zm-row-flex-item">
+		<zm-settings></zm-settings>
+	</div>
+</div>

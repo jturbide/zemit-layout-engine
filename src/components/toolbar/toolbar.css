@@ -1,0 +1,50 @@
+.zm-logo {
+  font-family: 'Rock Salt';
+  float: left;
+  margin-right: 1em;
+  line-height: 1.625em;
+}
+.zm-logo a {
+  text-decoration: none;
+  color: inherit;
+}
+.zm-toolbar-inner {
+  padding: 0.25em calc(1em - 1px);
+	border: 1px solid #ddd;
+	border-top: 0;
+}
+.zm-toolbar-inner .zm-btn {
+  float: left;
+}
+.zm-toolbar-inner .zm-btn + .zm-btn {
+  margin-left: 0.25em;
+}
+.zm-toolbar .zm-tabs > .zm-tab-item {
+  top: 0;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0.25em;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0.2em 0.75em 0.3em 0.75em;
+}
+.zm-toolbar .zm-tabs > .zm-tab-item:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+.zm-toolbar .zm-tabs > .zm-tab-item.active {
+  background-color: #75a9f9;
+  color: white;
+}
+.zm-toolbar-actions .zm-btn-sep {
+  border-left: rgba(0, 0, 0, 0.1) solid 1px;
+  margin: 0 1em;
+  float: left;
+  height: 1.65em;
+}
+.zm-toolbar .zm-tabs {
+  border-bottom: 0;
+  float: left;
+  margin-right: 1em;
+}
+.zm-toolbar .zm-btn:not([disabled]) .fa-trash-o {
+  color: #ffa66a;
+}

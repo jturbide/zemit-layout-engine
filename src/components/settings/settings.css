@@ -1,0 +1,8 @@
+.zm-settings-group + .zm-settings-group > .zm-settings-title {
+  border-top: #ddd solid 1px;
+}
+.zm-settings-title {
+  padding: 0.5em 1em;
+  background-color: white;
+  border-bottom: #ddd solid 1px;
+}

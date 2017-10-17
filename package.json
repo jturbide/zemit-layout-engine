@@ -1,0 +1,48 @@
+{
+	"name": "zemit",
+	"description": "A Layout Engine for Web Apps",
+	"version": "0.0.1",
+	"maintainers": [
+		{
+			"name": "Danny Coulombe",
+			"email": "contact@dannycoulombe.com",
+			"web": "https://dannycoulombe.com"
+		}
+	],
+	"license": "MIT",
+	"licenses": [
+		{
+			"name": "MIT",
+			"url": "https://github.com/dannycoulombe/zemit/blob/master/LICENSE"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:dannycoulombe/zemit.git"
+	},
+	"homepage": "https://zemit.com",
+	"dependencies": {
+		"jquery": "^3.2.1",
+		"angular": "^1.6.4",
+		"angular-sanitize": "^1.6.4",
+		"jsondiffpatch": "^0.2.4",
+		"medium-editor": "^5.23.2",
+		"interactjs": "^1.2.9",
+		"font-awesome-base64": "^1.0.4",
+		"typeface-rock-salt": "^0.0.35"
+	},
+	"devDependencies": {
+		"grunt": "^1.0.1",
+		"grunt-angular-templates": "^1.1.0",
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-contrib-cssmin": "^2.2.1",
+		"grunt-contrib-jshint": "^1.1.0",
+		"grunt-contrib-nodeunit": "^1.0.0",
+		"grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+		"grunt-css-url-replace": "^0.2.7",
+		"grunt-embed": "^0.2.1",
+		"grunt-embed-fonts": "^0.5.0",
+		"grunt-usemin": "^3.1.0"
+	}
+}

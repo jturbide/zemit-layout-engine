@@ -1,0 +1,25 @@
+.zm-widget-image {
+	text-align: center;
+}
+.zm-widget-image img {
+	max-width: 100%;
+	min-width: 1em;
+}
+.zm-widget-image-empty {
+  background-color: #ccc;
+  color: white;
+  font-size: 3em;
+}
+
+/* Checkboard*/
+.zm-widget-image-container img {
+
+    background-image:
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #eee), color-stop(.25, transparent)), 
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #eee), color-stop(.25, transparent)),
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #eee)),
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #eee));
+
+    background-size: 2em 2em;
+    background-position:0 0, 1em 0, 1em -1em, 0px 1em;
+}

@@ -1,0 +1,30 @@
+<div class="zm-modal zoom-container" ng-class="{visible: modal.visible}">
+	<div class="zm-modal-inner zoom-item">
+		<div class="zm-modal-header zm-gradient-primary zm-clearfix">
+			
+			<!-- HEADER -->
+			<div class="zm-modal-header-inner" ng-transclude="header"></div>
+			
+			<!-- CLOSE BUTTON -->
+			<div class="zm-modal-close-btn" zm-clickable zm-zoomable ng-click="modal.close()">
+				<i class="fa fa-remove"></i>
+			</div>
+		</div>
+		<div class="zm-modal-body">
+			
+			<!-- BODY -->
+			<div class="zm-modal-body-inner" ng-transclude="body"></div>
+		</div>
+		<div class="zm-modal-footer">
+			
+			<!-- FOOTER -->
+			<div class="zm-modal-footer-inner zm-clearfix" ng-transclude="footer">
+				
+				<!-- DEFAULT CLOSE BUTTON -->
+				<zm-btn class="zm-pull-right" type="button" click="modal.close()">
+					Close
+				</zm-btn>
+			</div>
+		</div>
+	</div>
+</div>

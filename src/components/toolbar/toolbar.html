@@ -1,0 +1,67 @@
+<div class="zm-toolbar">
+	<div class="zm-toolbar-inner zm-clearfix">
+		
+		<div class="zm-logo" zm-clickable>
+			<a href="http://zemit.com" target="_blank">Zemit</a>
+		</div>
+		
+		<!-- TABS -->
+		<ul class="zm-tabs">
+			
+			<!-- STRUCTURE -->
+			<li class="zm-tab-item" ng-class="{active: settings.tab === 'structure'}" ng-click="setTab('structure')">
+				Structure
+			</li>
+			
+			<!-- STYLE -->
+			<li class="zm-tab-item" ng-class="{active: settings.tab === 'style'}" ng-click="setTab('style')">
+				Style
+			</li>
+		</ul>
+		
+		<div class="zm-toolbar-actions">
+			
+			<!-- UNDO -->
+			<zm-btn ng-disabled="!history.canUndo" zm-tooltip="Undo" ng-click="history.undo()">
+				<i class="fa fa-undo"></i>
+			</zm-btn>
+			
+			<!-- REDO -->
+			<zm-btn ng-disabled="!history.canRedo" zm-tooltip="Redo" ng-click="history.redo()">
+				<i class="fa fa-repeat"></i>
+			</zm-btn>
+			
+			<div class="zm-btn-sep"></div>
+			
+			<!-- DUPLICATE -->
+			<zm-btn ng-disabled="zm.widget.totalSelected === 0" zm-tooltip="Duplicate" ng-click="zm.action(zm.widget.duplicate)">
+				<i class="fa fa-copy"></i>
+			</zm-btn>
+			
+			<!-- REMOVE SELECTED -->
+			<zm-btn class="zm-pull-right" zm-tooltip="Remove" ng-disabled="zm.widget.totalSelected === 0" ng-click="zm.action(zm.widget.removeAllSelected)">
+				<i class="fa fa-trash-o"></i>
+			</zm-btn>
+			
+			<!-- DOC -->
+			<zm-btn class="zm-pull-right" zm-tooltip="Documentation" ng-click="$modal.open('zm_doc')">
+				<i class="fa fa-book"></i>
+			</zm-btn>
+			
+			<!-- WIDGETS -->
+			<zm-btn class="zm-pull-right" zm-tooltip="Widgets" ng-click="$modal.open('zm_doc')">
+				<i class="fa fa-cubes"></i>
+			</zm-btn>
+			
+			<!-- SETTINGS -->
+			<zm-btn class="zm-pull-right" zm-tooltip="Settings" ng-click="settings.visible = !settings.visible" ng-class="{active: settings.visible}">
+				<i class="fa fa-gear"></i>
+			</zm-btn>
+			
+			<!-- DEBUG -->
+			<zm-btn class="zm-pull-right" zm-tooltip="Debug" ng-class="{active: settings.debug}" ng-click="toggleDebug()" tabindex="-1">
+				<i class="fa fa-bug"></i>
+			</zm-btn>
+		</div>
+	</div>
+</div>
