@@ -4,6 +4,14 @@
   width: 100%;
   left: 0;
   top: 0;
+  
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important; 
+  -khtml-user-select: none !important; 
+  -moz-user-select: none !important; 
+  -ms-user-select: none !important; 
+  user-select: none !important;
 }
 .zm-modal > .zm-modal-inner {
   float: left;
@@ -13,6 +21,7 @@
 }
 .zm-modal:not(.visible) {
   pointer-events: none;
+  z-index: -1;
 }
 .zm-modal > .zm-modal-inner > .zm-modal-header > .zm-modal-header-inner {
   float: left;
@@ -40,4 +49,14 @@
   background-color: #eee;
   border-radius: 0 0 3px 3px;
   border: #ccc solid 1px;
+}
+
+
+/**
+ * Default modals
+ */
+#zm_modal_warning .zm-modal-inner,
+#zm_modal_errpr .zm-modal-inner,
+#zm_modal_success .zm-modal-inner {
+  max-width: 50vw;
 }

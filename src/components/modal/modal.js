@@ -6,21 +6,61 @@
  */
 (function() {
 	
-	Zemit.app.factory('$modal', ['$compile', '$rootScope', function($compile, $rs) {
+	Zemit.app.factory('$modal', ['$compile', '$rootScope', '$timeout', function($compile, $rs, $timeout) {
 		
 		var factory = {
 			
 			instances: {},
 			
+			dialog: function(params = {}) {
+				
+				var id = 'dialog';
+				this.create(id, params, function(modal) {
+					modal.open({
+						onClose: function() {
+							setTimeout(function() {
+								modal.remove();
+							}, 250);
+						}
+					});
+				});
+			},
+			
+			warning: function(params = {}) {
+				
+				var id = 'warning';
+				this.create(id, params, function(modal) {
+					modal.open({
+						onClose: function() {
+							setTimeout(function() {
+								modal.remove();
+							}, 250);
+						}
+					});
+				});
+			},
+			
+			error: function(params = {}) {
+				
+				var id = 'error';
+				this.create(id, params, function(modal) {
+					modal.open({
+						onClose: function() {
+							setTimeout(function() {
+								modal.remove();
+							}, 250);
+						}
+					});
+				});
+			},
+			
 			/**
 			 * Create a new modal instance
 			 */
-			create: function(id, params) {
-				
-				params = params || {};
+			create: function(id, params = {}, callback) {
 				
 				var $modal = angular.element('<zm-modal></zm-modal>');
-				$modal.attr('id', id || $s.$root.zm.s4());
+				$modal.attr('id', 'zm_modal_' + id || $s.$root.zm.s4());
 				
 				if(params.title) {
 					var $modalHeader = angular.element('<modal-header></modal-header>');
@@ -50,15 +90,19 @@
 					
 					// Move modal element to body
 					angular.element('body').append(clonedElement);
+					
+					if(callback instanceof Function) {
+						$timeout(function() {
+							callback(scope.$$childHead.modal);
+						});
+					}
 				});
 			},
 			
 			/**
 			 * Open an existing modal instance
 			 */
-			open: function(id, params) {
-				
-				params = params || {};
+			open: function(id, params = {}) {
 				
 				var modal = factory.instances[id].get();
 				modal.open(params);
@@ -71,7 +115,7 @@
 	/**
 	 * Modal directive
 	 */
-	Zemit.app.directive('zmModal', [function() {
+	Zemit.app.directive('zmModal', ['$hook', function($hook) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -83,6 +127,8 @@
 			},
 			templateUrl: 'components/modal/modal.html',
 			link: function($s, $e, attrs) {
+				
+				var hook = new $hook.$new();
 				
 				/**
 				 * Modal functionalities
@@ -104,7 +150,7 @@
 					/**
 					 * Open the modal
 					 */
-					open: function(params) {
+					open: function(params = {}) {
 						
 						$s.modal.visible = true;
 						
@@ -168,45 +214,58 @@
 						$inner[0].setAttribute('data-y', pos.y);
 						
 						// Make modal draggable
-						interact($inner[0]).allowFrom($dragHandler[0]).draggable({
-							autoScroll: true,
-							onstart: function(event) {
-								
-								angular.element('html:eq(0)').addClass('zm-cursor-drag-all');
-							},
-							onmove: function(event) {
-								
-								var target = event.target,
-									// keep the dragged position in the data-x/data-y attributes
-									x = (parseFloat($inner[0].getAttribute('data-x')) || 0) + event.dx,
-									y = (parseFloat($inner[0].getAttribute('data-y')) || 0) + event.dy;
+						if(!window.matchMedia('(pointer: coarse)').matches) {
 							
-								// update the posiion attributes
-								$inner.css('top', y + 'px');
-								$inner.css('left', x + 'px');
-								$inner[0].setAttribute('data-x', x);
-								$inner[0].setAttribute('data-y', y);
-							},
-							onend: function(event) {
+							interact($inner[0]).allowFrom($dragHandler[0]).draggable({
+								autoScroll: true,
+								onstart: function(event) {
+									
+									angular.element('html:eq(0)').addClass('zm-cursor-drag-all');
+								},
+								onmove: function(event) {
+									
+									var target = event.target,
+										// keep the dragged position in the data-x/data-y attributes
+										x = (parseFloat($inner[0].getAttribute('data-x')) || 0) + event.dx,
+										y = (parseFloat($inner[0].getAttribute('data-y')) || 0) + event.dy;
 								
-								var pos = {
-									y: parseFloat($inner.css('top')),
-									x: parseFloat($inner.css('left'))
-								};
-								
-								angular.element('html:eq(0)').removeClass('zm-cursor-drag-all');
-								
-								// Make sure the modal is within the restricted area
-								restraintPosition(pos, {
-									height: $inner.outerHeight(),
-									width: $inner.outerWidth()
-								});
-								$inner.css('top', pos.y + 'px');
-								$inner.css('left', pos.x + 'px');
-								$inner[0].setAttribute('data-x', pos.x);
-								$inner[0].setAttribute('data-y', pos.y);
-							}
-						}).styleCursor(false);
+									// update the posiion attributes
+									$inner.css('top', y + 'px');
+									$inner.css('left', x + 'px');
+									$inner[0].setAttribute('data-x', x);
+									$inner[0].setAttribute('data-y', y);
+								},
+								onend: function(event) {
+									
+									var pos = {
+										y: parseFloat($inner.css('top')),
+										x: parseFloat($inner.css('left'))
+									};
+									
+									angular.element('html:eq(0)').removeClass('zm-cursor-drag-all');
+									
+									// Make sure the modal is within the restricted area
+									restraintPosition(pos, {
+										height: $inner.outerHeight(),
+										width: $inner.outerWidth()
+									});
+									$inner.css('top', pos.y + 'px');
+									$inner.css('left', pos.x + 'px');
+									$inner[0].setAttribute('data-x', pos.x);
+									$inner[0].setAttribute('data-y', pos.y);
+								}
+							}).styleCursor(false);
+						}
+						
+						if(params.onClose instanceof Function) {
+							hook.add('onClose', params.onClose);
+						}
+						
+						if(params.onClose instanceof Function) {
+							hook.add('onRemove', params.onRemove);
+						}
+						
+						hook.run('onOpen');
 					},
 					
 					/**
@@ -215,6 +274,14 @@
 					close: function() {
 						
 						$s.modal.visible = false;
+						
+						hook.run('onClose');
+					},
+					
+					remove: function() {
+						
+						$e.remove();
+						hook.run('onRemove');
 					}
 				};
 			}

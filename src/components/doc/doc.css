@@ -1,10 +1,10 @@
-#zm_doc > .zm-modal-inner {
+#zm_modal_doc > .zm-modal-inner {
   min-width: 75vw;
 }
-#zm_doc .zm-modal-body {
+#zm_modal_doc .zm-modal-body {
 	padding: 0;
 }
-.zm-doc iframe {
+#zm_modal_doc iframe {
   width: 100%;
   height: 75vh;
   border: 0;

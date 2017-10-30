@@ -1,0 +1,10 @@
+.zm-dismissable {
+  padding: 1em;
+  background-color: #ffa66a;
+  color: white;
+  border: rgba(255, 255, 255, 0.25) dashed 0.25em;
+}
+.zm-dismissable-icon {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5em;
+}

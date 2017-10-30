@@ -1,0 +1,62 @@
+<div class="zm-sidebar" ng-class="{'zm-open': tabs.showContent, 'zm-hide-all-tabs': tabs.hidden}">
+	<div class="zm-sidebar-inner zm-clearfix zm-row-flex-default">
+		<div ng-if="tabs.showContent" class="zm-sidebar-tab zm-row-flex-item">
+			
+			<!-- DEBUG -->
+		    <div class="zm-sidebar-group" ng-if="config.debug">
+		        <div class="zm-sidebar-title" ng-click="settings.debugVisible = !settings.debugVisible" zm-clickable>
+		            Debug
+		            
+		            <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': settings.debugVisible, 'fa-chevron-right': !settings.debugVisible}"></i>
+		        </div>
+		        <div class="zm-sidebar-inner" ng-show="settings.debugVisible">
+		            <zm-field>
+		                <table>
+		                    <tbody>
+		                        <tr>
+		                            <th>Selected</th>
+		                            <td>{{ zm.widget.totalSelected }}</td>
+		                        </tr>
+		                        <tr>
+		                            <th>History</th>
+		                            <td>{{ history.position }} / {{ history.changes.length }}</td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                
+		                <zm-btn ng-click="zm.session.flushHistory()">Flush history</zm-btn>
+		                <zm-btn ng-click="zm.session.flushAll()">Flush all</zm-btn>
+		            </zm-field>
+		        </div>
+		    </div>
+			
+			<!-- WORKSPACE -->
+			<div ng-if="config.sidebar.tabs.workspace.visible">
+				<zm-sidebar-workspace></zm-sidebar-workspace>
+			</div>
+				
+			<!-- ADVANCED -->
+			<div ng-if="config.sidebar.tabs.advanced.visible">
+				<zm-sidebar-advanced></zm-sidebar-advanced>
+			</div>
+			
+			<!-- WIDGETS -->
+			<div ng-if="config.sidebar.tabs.widgets.visible">
+				<zm-sidebar-widgets></zm-sidebar-widgets>
+			</div>
+		</div>
+		<div class="zm-sidebar-tabs zm-row-flex-item">
+			<ul class="zm-tabs zm-tabs-vertical-right">
+				<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.workspace.visible}" ng-click="tabs.toggle('workspace')" class="zm-tab-item">
+					Workspace
+				</li>
+				<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.advanced.visible}" ng-click="tabs.toggle('advanced')" class="zm-tab-item">
+					Advanced
+				</li>
+				<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
+					Widgets
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

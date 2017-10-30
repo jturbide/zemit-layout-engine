@@ -8,7 +8,7 @@
 	 */
 	Zemit.app.run(['$modal', function($modal) {
 		
-		$modal.create('zm_doc', {
+		$modal.create('doc', {
 			title: 'Documentation',
 			content: '<zm-doc-modal />'
 		});
@@ -23,7 +23,6 @@
 			replace: true,
 			templateUrl: 'components/doc/doc.html',
 			link: function ($s, $e, attrs) {
-				
 				
 			}
 		}

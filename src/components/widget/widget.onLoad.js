@@ -5,7 +5,7 @@
  */
 (function() {
 	
-	Zemit.app.directive('zmWidget', ['$compile', '$history', '$hook', '$zm', function($compile, $history, $hook, $zm) {
+	Zemit.app.directive('zmWidget', ['$compile', '$history', '$zm', '$device', function($compile, $history, $zm, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -53,35 +53,74 @@
 					bindEvents: function() {
 						
 						var _this = this;
-					
-						$element.on('click.' + namespace, function(event) {
+						var configs = this.getScope().configs;
+						
+						$element.on('dragHoverTouch', function(event, pos) {
 							
-							var selectAll = event.shiftKey;
-							var incremental = event.ctrlKey || event.metaKey;
-							
-							_this.select(selectAll, incremental);
 							event.stopPropagation();
-							$s.$apply();
-						});
-						// $element.on('dblclick.' + namespace, function(event) {
-						// 	_this.select(event, true);
-						// 	$s.$apply();
-						// 	return false;
-						// });
-						$element.on('mouseout.' + namespace, function() {
-							$zm.widget.hovered.unset(_this);
-							_this.removeHighlight();
+							event.clientX = pos.x;
+							event.clientY = pos.y;
+							
+							$zm.widget.hovered.data.forEach(function(widget) {
+								widget.getScope().isDropHover = false;
+								widget.getScope().$digest();
+							});
+							
+							$zm.widget.hovered.set(_this, true);
+							$zm.widget.hovered.data[0].getScope().isDropHover = true;
+							$zm.widget.hovered.data[0].getScope().$digest();
+							
+							$zm.widget.hovered.data.forEach(function(widget) {
+								widget.getScope().position.set(event);
+							});
+							
 							$s.$digest();
 						});
-						$element.on('mouseover.' + namespace, function(event) {
-							$zm.widget.hovered.set(_this);
-							_this.highlight(event);
-							$s.$digest();
-						});
-						$element.on('mousemove.' + namespace, function(event) {
-							$s.position.set(event);
-							$s.$digest();
-						});
+						
+						if(configs.selectable !== false) {
+							
+							$element.on('click.' + namespace, function(event) {
+								
+								var selectAll = event.shiftKey;
+								var incremental = event.ctrlKey || event.metaKey;
+								
+								_this.select(selectAll, incremental);
+								event.stopPropagation();
+								$s.$apply();
+							});
+							$element.on('touchstart.' + namespace, function(event) {
+								
+								_this.select();
+								event.stopPropagation();
+								$s.$apply();
+							});
+							$element.on('touchmove.' + namespace, function(event) {
+								
+								var element = document.elementFromPoint(
+									event.touches[0].clientX,
+									event.touches[0].clientY
+								);
+								angular.element(element).trigger('dragHoverTouch', {
+									x: event.touches[0].clientX,
+									y: event.touches[0].clientY
+								});
+							});
+							$element.on('mouseout.' + namespace, function() {
+								$zm.widget.hovered.unset(_this);
+								_this.removeHighlight();
+								$s.$digest();
+							});
+							$element.on('mouseover.' + namespace, function(event) {
+								$zm.widget.hovered.set(_this);
+								_this.highlight(event);
+								$s.$digest();
+							});
+							$element.on('mousemove.' + namespace, function(event) {
+								$s.position.set(event);
+								$s.$digest();
+							});
+						}
+						
 						$s.$watch('isDraggable', function(nv, ov) {
 							if(nv !== ov) {
 								$element.toggleClass('zm-draggable', nv);
@@ -127,7 +166,7 @@
 								interact($draggable[0]).draggable({
 									restrict: {
 										endOnly: true,
-										restriction: ".zm-widget-container",
+										restriction: "zemit",
 										elementRect: {
 											top: 0,
 											left: 0,
@@ -137,6 +176,13 @@
 									},
 									autoScroll: true,
 									onstart: function(event) {
+										
+										if(!event.interaction.manual && !event.interaction.mouse) {
+											event.interaction.stop();
+											return false;
+										}
+										
+										event.interaction.manual = false;
 										
 										// Set dragged widget
 										$zm.widget.drag.set(_this);
@@ -170,6 +216,20 @@
 										
 										// Unset dragged widget
 										$zm.widget.drag.set(null);
+									}
+								}).on('hold', function(event) {
+									
+									var interaction = event.interaction;
+									interaction.manual = true;
+									
+									if(!interaction.interacting()) {
+										
+										$device.vibrate();
+										
+										interaction.start({name: 'drag'},
+											event.interactable,
+											event.currentTarget
+										);
 									}
 								}).styleCursor(false);
 							}
@@ -497,7 +557,7 @@
 												
 												// If CTRL or Command key are enabled, do not erase dragged element
 												// (duplicate)
-												if(!event.dragEvent.ctrlKey && !event.dragEvent.metaKey) {
+												if(!event.dragEvent.ctrlKey && !event.dragEvent.metaKey && !event.interaction.dontRemove) {
 													drag.remove();
 												}
 											}

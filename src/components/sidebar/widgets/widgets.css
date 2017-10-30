@@ -1,0 +1,32 @@
+/**
+ * Add new widget modal
+ */
+.zm-sidebar-widgets-item {
+  border: #ddd solid 1px;
+  padding: 1em;
+  text-align: center;
+  border-radius: 0.25em;
+  background-color: rgba(255, 255, 255, 0.5);
+  
+  -webkit-touch-action: none;
+     -moz-touch-action: none;
+      -ms-touch-action: none;
+          touch-action: none;
+}
+.zm-sidebar-widgets-item:hover {
+  color: #75a9f9;
+  border-color: #75a9f9;
+}
+.zm-sidebar-widgets-item-icon {
+  font-size: 2em;
+}
+.zm-sidebar-widgets-item-title {
+  margin: 0;
+}
+.zm-sidebar-widgets-item-desc {
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+.zm-sidebar-widgets-item.zm-widget-drag {
+  position: absolute;
+}

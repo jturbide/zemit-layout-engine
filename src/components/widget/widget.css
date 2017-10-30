@@ -4,7 +4,7 @@
   outline-offset: -1px;
   cursor: default;
 }
-.zm-widget-child {
+.zm-widget-child + .zm-widget-child {
   margin-top: -1px;
 }
 .zm-widget.zm-highlighted {
@@ -51,6 +51,15 @@
   font-size: 1em;
   padding: 0 1em;
   z-index: 3;
+}
+@media all and (pointer: coarse) {
+  .zm-widget-add-before .fa, .zm-widget-add-after .fa {
+    font-size: 1.5em;
+    top: -0.4em
+  }
+  .zm-widget-child-add {
+    display: none !important;
+  }
 }
 .zm-widget-add-before .fa:hover,
 .zm-widget-add-after .fa:hover {

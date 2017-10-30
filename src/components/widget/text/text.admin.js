@@ -38,70 +38,69 @@
 			// its content and update the widget's scope without resetting
 			// itself every time.
 			$s.text = $s.widget.text;
-return;			
-			// Initialize MediumEditor in the editor element
-			var editor = new MediumEditor($editorElement, {
-				targetBlank: true,
-				placeholder: false,
-				autoLink: true,
-				//toolbar: false
-				toolbar: {
-					buttons: ['bold', 'italic', 'underline']
+			
+			var editor = new Quill($editorElement[0], {
+				theme: 'snow',
+				placeholder: 'Type your content here...',
+				modules: {
+					toolbar: false
 				}
 			});
-			editor.subscribe('editableInput', function (event, editable) {
-				//$s.$apply(function() {
-					$s.widget.content.value = editor.getContent();
-				//});
-			});
-			editor.subscribe('blur', function (event, editable) {
+
+
+			// editor.subscribe('editableInput', function (event, editable) {
+			// 	//$s.$apply(function() {
+			// 		$s.widget.content.value = editor.getContent();
+			// 	//});
+			// });
+			// editor.subscribe('blur', function (event, editable) {
 				
-				if(event.target.id.startsWith('medium-editor')) {
-					return;
-				}
+			// 	if(event.target.id.startsWith('medium-editor')) {
+			// 		return;
+			// 	}
 				
-				unbindEvents();
-				bindEvents();
-				$s.widget.bindEvents();
+			// 	unbindEvents();
+			// 	bindEvents();
+			// 	$s.widget.bindEvents();
 				
-				$s.$element.removeClass('zm-widget-focus');
+			// 	$s.$element.removeClass('zm-widget-focus');
 				
-				// Unselect all text
-				if (document.selection) {
-					document.selection.empty();
-				}
-				else if (window.getSelection) {
-					window.getSelection().removeAllRanges();
-				}
-			});
+			// 	// Unselect all text
+			// 	if (document.selection) {
+			// 		document.selection.empty();
+			// 	}
+			// 	else if (window.getSelection) {
+			// 		window.getSelection().removeAllRanges();
+			// 	}
+			// });
 			
 			var bindEvents = function() {
 				
 				// Double-clicking in this widget should select the text only
 				// in this context. We thus stop the propagation of the
 				// event so the widget doesn't get selected.
-				$s.$element.on('dblclick.' + namespace, function(event) {
+				$e.on('dblclick.' + namespace, function(event) {
 					
 					event.stopPropagation();
 					
 					$s.widget.unbindEvents(['click', 'draggable']);
 					unbindEvents();
 					
-					$s.$element.on('click.' + namespace, function(event) {
+					$e.on('click.' + namespace, function(event) {
 						event.stopPropagation();
 					});
-					$s.$element.on('keydown.' + namespace, function(event) {
+					$e.on('keydown.' + namespace, function(event) {
 						event.stopPropagation();
 					});
-					$s.$element.on('mousedown.' + namespace, function(event) {
+					$e.on('mousedown.' + namespace, function(event) {
 						event.stopPropagation();
 					});
 					
-					$s.$element.addClass('zm-widget-focus');
+					//$s.$element.addClass('zm-widget-focus');
 					
 					// Select all automatically
-					$editorElement.focus().click();
-					editor.selectAllContents();
+					editor.enable();
+					editor.focus();
 					$s.widget.select(false, false, true);
 					$s.$apply();
 				});
@@ -111,18 +110,6 @@ return;
 			var unbindEvents = function() {
 				$s.$element.off('.' + namespace);
 			};
-			
-			// $s.state = {
-			// 	heading: 'p'
-			// };
-			
-			/**
-			 * Execute an action in the text
-			 */
-			// $s.action = function(command, opts) {
-				
-			// 	editor.execAction(command, opts);
-			// };
 			
 			$s.editor = editor;
 		}

@@ -11,6 +11,36 @@
 		
 		var factory = {
 			
+			downloadAs: function(mimeType, fileName, content) {
+				
+				var data = 'data:' + mimeType + 'charset=utf-8,' + content;
+				data = encodeURI(data);
+		
+				var link = document.createElement('a');
+				link.setAttribute('href', data);
+				link.setAttribute('download', fileName);
+				link.click();
+				link.remove();
+			},
+			
+			promptFileDialog: function(callback) {
+				
+				var input = document.createElement('input');
+				input.type = 'file';
+				input.click();
+				input.onchange = function(event) {
+						
+					var files = event.target.files;
+					var file = files[0];           
+					var reader = new FileReader();
+					reader.onload = function(event) {
+						callback(event.target.result);
+					}
+					reader.readAsText(file);
+					input.remove();
+				};
+			},
+			
 			drop: {
 				init: function(element, scope, settings) {
 				

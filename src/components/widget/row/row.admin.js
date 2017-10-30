@@ -47,6 +47,7 @@
 			}
 			
 			$s.addColumns = function(amount) {
+				
 				$zm.action(function() {
 					for(var i = 0; i < amount; i++) {
 						$s.row.addNewChild('column', undefined, {

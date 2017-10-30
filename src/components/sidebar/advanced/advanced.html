@@ -1,0 +1,14 @@
+<div class="zm-sidebar-advanced">
+    
+    <!-- SELECTED SETTINGS -->
+    <div class="zm-sidebar-group" ng-repeat="(key, setting) in getSettings()">
+        <div class="zm-sidebar-title" ng-click="setting.visible = !setting.visible" zm-clickable>
+            {{ ::setting.title }}
+            
+            <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': setting.visible, 'fa-chevron-right': !setting.visible}"></i>
+        </div>
+        <div class="zm-sidebar-inner" ng-show="setting.visible">
+            <zm-directive name="::key"></zm-directive>
+        </div>
+    </div>
+</div>

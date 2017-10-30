@@ -1,0 +1,13 @@
+<div class="zm-dismissable" ng-click="close()" ng-tap="close()" ng-if="config.visible">
+	<div class="zm-flex-container zm-flex-nowrap">
+		<div class="zm-flex-item">
+			<div class="zm-dismissable-icon">
+				<i class="fa fa-info-circle" ng-if="type === 'info'"></i>
+				<i class="fa fa-exclamation-triangle" ng-if="type === 'warning'"></i>
+			</div>
+		</div>
+		<div class="zm-flex-item">
+			<span ng-transclude></span>
+		</div>
+	</div>
+</div>

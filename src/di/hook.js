@@ -7,27 +7,33 @@
 (function() {
 	Zemit.app.factory('$hook', [function() {
 	    
-		return function() {
-			return {
+	    var structure = {
+	    	
+	    	list: {},
+	    	
+	    	$new: function() {
+				return angular.copy(defaultStructure);
+			},
 				
-				list: {},
-				
-				add: function(name, callback) {
-					if(!this.list[name]) {
-						this.list[name] = [];
-					}
-					this.list[name].push(callback);
-				},
-				
-				run: function(name, params) {
-					var hooks = this.list[name];
-					if(hooks) {
-						angular.forEach(hooks, function(hook) {
-							hook(params);
-						});
-					}
+			add: function(name, callback) {
+				if(!this.list[name]) {
+					this.list[name] = [];
 				}
-			};
-		};
+				this.list[name].push(callback);
+			},
+			
+			run: function(name, params) {
+				var hooks = this.list[name];
+				if(hooks) {
+					angular.forEach(hooks, function(hook) {
+						hook(params);
+					});
+				}
+			}
+	    };
+	    
+	    var defaultStructure = angular.copy(structure);
+	    
+		return structure;
 	}]);
 })();

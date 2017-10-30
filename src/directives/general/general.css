@@ -12,9 +12,14 @@
 	transition-timing-function: ease-in;
 	transform: perspective(1000px) translateZ(-150px);
 }
+.zm-zoomable.zm-zoomed,
 .zm-zoomable:hover {
 	transform: perspective(1000px) translateZ(0px);
 }
+.zm-zoomable.zm-zoomed-out {
+	transform: perspective(1000px) translateZ(-150px) !important;
+}
+
 
 /**
  * Buttons
@@ -33,6 +38,8 @@
   text-decoration: none;
   display: inline-block;
   cursor: default;
+  display: inline-flex;
+  align-items: center;
 }
 .zm-btn:focus,
 .zm-btn:hover {
@@ -52,6 +59,11 @@
 .zm-btn[disabled] {
   opacity: 0.666;
   pointer-events: none;
+}
+@media all and (max-width: 767px) {
+  .zm-btn {
+    padding: 0.5em 0.75em;
+  }
 }
 
 /**
@@ -95,6 +107,8 @@
   position: relative;
   top: 1px;
   list-style-type: none;
+  display: inline-flex;
+  align-items: center;
 }
 .zm-tabs > .zm-tab-item:hover {
   background-color: white
@@ -109,6 +123,11 @@
 .zm-tabs > .zm-tab-item + .zm-tab-item {
   margin-left: 0.5em;
 }
+.zm-tabs.zm-tabs-vertical-right > .zm-tab-item {
+  margin-left: 0;
+  writing-mode: vertical-rl;
+}
+
 
 /**
  * Tooltips

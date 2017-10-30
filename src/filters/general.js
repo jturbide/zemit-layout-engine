@@ -7,17 +7,17 @@
 	 * General directives
 	 */
 	Zemit.app.filter('decodeURI', function() {
-	    return function(uri) {
-	        return decodeURI(uri);
-	    }
+		return function(uri) {
+			return decodeURI(uri);
+		}
 	});
 
 	/**
 	 * Group array items into rows/columns
 	 */
 	Zemit.app.filter('columnize', function() {
-	    return function(items, amount) {
-	    	
+		return function(items, amount) {
+			
 			var arr = [];
 			var idx = 0;
 			for (var i = 0; i < (items || []).length; i++) {
@@ -30,6 +30,6 @@
 				arr[idx].push(items[i]);
 			}
 			return arr;
-	    }
+		}
 	});
 })();

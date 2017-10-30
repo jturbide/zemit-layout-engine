@@ -9,14 +9,6 @@
 	    
 		var factory = {
 			
-			constants: {
-				PRIMITIVE: 0,
-				CHANGED: 1,
-				ADDED: 2,
-				REMOVED: 3,
-				EQUAL: 4
-			},
-			
 			/**
 			 * Apply deep object differences
 			 */

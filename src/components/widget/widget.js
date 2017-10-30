@@ -146,7 +146,7 @@
 				var type = attrs.type;
 				
 				// Prepare new hooks
-				$s.hooks = new $hook();
+				$s.hooks = new $hook.$new();
 				
 				// Prepare variables
 				$s.configs = {};
@@ -189,8 +189,12 @@
 					 */
 					set: function(event, target) {
 						
-						var $target = target || event.currentTarget;
+						var $target = target || event.currentTarget || event.target;
 						var bounds = $target.getBoundingClientRect();
+						
+						if(event.touches) {
+							event = event.touches[0];
+						}
 						
 						this.x = (event.clientX - bounds.left) * 100 / bounds.width;
 						this.y = (event.clientY - bounds.top) * 100 / bounds.height;

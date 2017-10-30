@@ -19,6 +19,11 @@
 .zm-widget-column.zm-highlighted > .zm-widget-inner > .zm-widget-add {
   opacity: 1;
 }
+@media all and (pointer: coarse) {
+  .zm-widget-column > .zm-widget-inner > .zm-widget-add {
+    display: none !important;
+  }
+}
 .zm-widget-column.zm-highlighted > .zm-widget-inner > .zm-widget-add.hide {
   opacity: 0 !important;
 }
@@ -32,6 +37,14 @@
 }
 .zm-widget-column > .zm-widget-inner {
   padding: 1em;
+}
+@media (pointer: coarse) {
+  .zm-widget-column > .zm-widget-inner {
+    padding: 1.5em;
+  }
+  .zm-widget-column .zm-widget-inner .zm-widget-inner {
+    padding: 0.25em;
+  }
 }
 .zm-widget-column zm-widget + zm-widget > .zm-widget {
   margin-top: -1px;
@@ -107,6 +120,11 @@
   cursor: col-resize;
   font-size: 1em;
   text-align: center;
+}
+@media all and (pointer: coarse) {
+  .zm-widget-column .zm-widget-column-resize-handler {
+    display: none;
+  }
 }
 .zm-widget-column .zm-widget-column-resize-handler .fa {
   background-color: #ccc;

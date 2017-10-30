@@ -8,6 +8,7 @@
 	 */
 	Zemit.widgets.init('container', {
 		injectable: false,
+		selectable: false,
 		defaultTemplate: false,
 		draggable: false,
 		drop: {

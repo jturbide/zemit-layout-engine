@@ -8,6 +8,14 @@
   background-color: #f6f6f6;
   padding: 0.5em;
 }
+
+@media (pointer: coarse) {
+  .zm-widget-row > .zm-widget-inner > .row > .zm-widget-inner,
+  .zm-widget-row:not(.zm-widget-default) > .zm-widget-inner {
+    background-color: #f6f6f6;
+    padding: 1em;
+  }
+}
 zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
   margin-top: -1px;
 }
@@ -23,8 +31,6 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
  * ADD COLUMNS
  */
 .zm-widget-row-add-column-item {
-  float: left;
-  width: 20%;
   display: block;
   text-align: center;
   padding: calc(1.65em - 4px) 0;
@@ -46,6 +52,20 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
 .zm-widget-empty.zm-widget-row > .zm-widget-inner {
   padding: 2.125em;
   background-color: white;
+}
+@media all and (pointer: coarse) {
+  .zm-widget-empty.zm-widget-row > .zm-widget-inner {
+    padding: 1em 0.5em;
+  }
+  .zm-widget-row-add-column-item {
+    outline: #ddd solid 2px;
+    margin: 0 0.5em;
+    outline-offset: -2px;
+  }
+  .zm-widget-row-add-column-item-4,
+  .zm-widget-row-add-column-item-6 {
+    display: none;
+  }
 }
 
 /**

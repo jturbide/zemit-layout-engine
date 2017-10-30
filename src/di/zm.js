@@ -5,7 +5,7 @@
  * Store object in the cache
  */
 (function() {
-	Zemit.app.factory('$zm', ['$history', function($history) {
+	Zemit.app.factory('$zm', ['$history', '$file', '$config', '$modal', function($history, $file, $config, $modal) {
 	    
 		var factory = {
 		    
@@ -29,6 +29,21 @@
 			getBaseScope: function() {
 				return this.baseScope;
 			},
+			
+			/**
+			 * Find scope by it's scope ID (scope.$id)
+			 */
+			// getScopeById: function(id) {
+				
+			// 	var found;
+			// 	this.baseScope.widget.forEachChilds(function(child) {
+			// 		if(child.getScope().$id === id) {
+			// 			found = child;
+			// 		}
+			// 	});
+				
+			// 	return found;
+			// },
 			
 			/**
 			 * GUID generator
@@ -59,6 +74,20 @@
 				return str.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
 			},
 			
+			session: {
+				
+				flushHistory: function() {
+					
+					$history.flush();
+				},
+				
+				flushAll: function() {
+					
+					$history.flush();
+					$config.flush();
+					factory.getBaseScope().widget.childs = [];
+				}
+			},
 			
 			content: {
 				
@@ -98,6 +127,55 @@
 					
 					this.data = (parser && this.parse(data)) || data;
 				},
+				
+				/**
+				 * Export Zemit session to JSON and download it automatically
+				 */
+				export: function(filename = 'zemit') {
+					
+					var changes = $history.dump();
+					var content = factory.content.get();
+					var data = angular.toJson({
+						changes: changes,
+						content: content,
+						version: Zemit.version
+					});
+					
+					$file.downloadAs('text/json', filename + '.json', data);
+				},
+				
+				/**
+				 * Import Zemit session from computer (prompt a file dialog)
+				 */
+				import: function() {
+					
+					$file.promptFileDialog(function(json) {
+						
+						try {
+							var data = angular.fromJson(json);
+							
+							if(data.version !== Zemit.version) {
+								
+								$modal.warning({
+									title: 'Version mismatch',
+									content: 'The version you are using (' + Zemit.version + ') does not match the imported one (' + data.version + ')'
+								});
+							}
+							else {
+								factory.session.flushAll();
+								$history.load(data.changes);
+								factory.getBaseScope().widget.childs = data.content.childs;
+							}
+						}
+						catch(e) {
+							
+							$modal.error({
+								title: 'Wrong file format',
+								content: 'The file you are trying to import doesn\'t seem to be in a valid Zemit file format.'
+							});
+						}
+					});
+				}
 			},
 			
 			/**
@@ -131,7 +209,9 @@
 			
 			action: function(callback, params, widget) {
 				
-				return $history.transaction(widget || this.baseScope.widget.childs, function() {
+				widget = this.baseScope.widget;
+				
+				return $history.transaction(widget || this.baseScope.widget, function() {
 					return callback.apply(null, params);
 				});
 			},
@@ -177,9 +257,9 @@
 					/**
 					 * Set the hovered widget in memory
 					 */
-					set: function(widget) {
+					set: function(widget, clearAndTraverse = false) {
 						
-						if(!this.isset(widget)) {
+						if(!this.isset(widget) && !clearAndTraverse) {
 							
 							// If widget was in hovered list, it needs to be unset
 							// when the widget is removed otherwise it ends-up
@@ -190,6 +270,27 @@
 							
 							this.data.push(widget);
 						}
+						else if(clearAndTraverse) {
+							
+							angular.forEach(this.data, function(widget) {
+								factory.widget.hovered.unset(widget);
+							});
+							
+							var data = [widget];
+							widget.forEachParents(function(parent) {
+								data.unshift(parent);
+							});
+							
+							data.reverse();
+							this.data = data;
+						}
+						
+						// Output all hovered tokens to the console
+						// var tokens = [];
+						// angular.forEach(data, function(d) {
+						// 	tokens.push(d.token);
+						// });
+						// console.log(tokens);
 					},
 					
 					/**
@@ -221,7 +322,7 @@
 					/**
 					 * Set the hovered widget in memory
 					 */
-					set: function(widget) {
+					set: function(widget, isAlone = false) {
 						this.data = widget;
 						this.enabled = widget !== null;
 												
@@ -229,9 +330,12 @@
 							this.setCursor();
 							
 							widget.getScope().$element.addClass('zm-widget-drag');
-							widget.forEachParents(function(parent) {
-								parent.getScope().$element.addClass('zm-widget-drag-parent');
-							});
+							
+							if(!isAlone) {
+								widget.forEachParents(function(parent) {
+									parent.getScope().$element.addClass('zm-widget-drag-parent');
+								});
+							}
 							
 							this.originalWidget = widget;
 						}
@@ -239,9 +343,12 @@
 							this.resetCursor();
 							
 							this.originalWidget.getScope().$element.removeClass('zm-widget-drag');
-							this.originalWidget.forEachParents(function(parent) {
-								parent.getScope().$element.removeClass('zm-widget-drag-parent');
-							});
+							console.log(this.originalWidget.getScope().$element);
+							if(!isAlone) {
+								this.originalWidget.forEachParents(function(parent) {
+									parent.getScope().$element.removeClass('zm-widget-drag-parent');
+								});
+							}
 							
 							this.originalWidget = null;
 						}

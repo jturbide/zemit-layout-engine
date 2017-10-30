@@ -5,9 +5,13 @@
  * 
  * This is where all the zemitness begins.
  */
-var Zemit = {};
+var Zemit = {
+	version: '0.0.1.beta'
+};
 (function() {
-	Zemit.app = angular.module('zemit', ['ngSanitize']);
+	Zemit.app = angular.module('zemit', [
+		'ngSanitize'
+	]);
 	
 	Zemit.app.run(['$rootScope', '$zm', '$history', function($rs, $zm, $history) {
 		
@@ -88,28 +92,46 @@ var Zemit = {};
 	 */
 	Zemit.app.config(function ($compileProvider) {
 		$compileProvider.debugInfoEnabled(false);
-	    Zemit.app.compileProvider = $compileProvider;
+		Zemit.app.compileProvider = $compileProvider;
 	});
 	
-	Zemit.app.directive('zemit', ['$zm', '$compile', function($zm, $compile) {
+	Zemit.app.directive('zemit', ['$zm', '$compile', '$config', '$window', '$hook', function($zm, $compile, $config, $window, $hook) {
 		return {
 			restrict: 'E',
 			link: function ($s, $e, attrs) {
 				
-				$s.data = angular.fromJson('{"id":"zm_container_3712","token":"container_6162","type":"container","childs":[{"styles":[],"type":"row","id":"zm_row_eaa8","token":"row_20ee","childs":[{"styles":[],"size":12,"type":"column","id":"zm_column_7dfa","token":"column_6668","childs":[{"styles":[],"defaultTemplate":true,"type":"text","id":"zm_text_3540","token":"text_9154","childs":[],"text":"<p>Lorem ipsum dolor amet</p>"}]}],"fullWidth":false},{"styles":[],"type":"row","id":"zm_row_bd31","token":"row_1b3a","childs":[{"styles":[],"size":4,"type":"column","id":"zm_column_3d5b","token":"column_9ecc","childs":[{"styles":[],"type":"image","id":"zm_image_99b6","token":"image_f16e","childs":[],"src":null}]},{"styles":[],"size":4,"type":"column","id":"zm_column_6e6e","token":"column_90e9","childs":[]},{"styles":[],"size":4,"type":"column","id":"zm_column_f371","token":"column_7493","childs":[{"styles":[],"defaultTemplate":true,"type":"image","id":"zm_image_36e8","token":"image_8320","childs":[],"src":null}]}],"fullWidth":false},{"styles":[],"type":"row","id":"zm_row_4b3a","token":"row_7f48","childs":[{"styles":[],"size":3,"type":"column","id":"zm_column_023b","token":"column_b74c","childs":[{"styles":[],"type":"image","id":"zm_image_d560","token":"image_a69a","childs":[],"src":null}]},{"styles":[],"size":3,"type":"column","id":"zm_column_c353","token":"column_ac0f","childs":[{"styles":[],"type":"image","id":"zm_image_ff72","token":"image_b87e","childs":[],"src":null}]},{"styles":[],"size":3,"type":"column","id":"zm_column_ae19","token":"column_5aba","childs":[{"styles":[],"type":"image","id":"zm_image_e620","token":"image_463b","childs":[],"src":null}]},{"styles":[],"size":3,"type":"column","id":"zm_column_42ca","token":"column_1ed4","childs":[{"styles":[],"type":"image","id":"zm_image_384d","token":"image_aaed","childs":[],"src":null}]}],"fullWidth":false},{"styles":[],"type":"row","id":"zm_row_fb1e","token":"row_0ea5","childs":[{"styles":[],"size":6,"type":"column","id":"zm_column_e98d","token":"column_67ae","childs":[{"styles":[],"type":"text","id":"zm_text_1a86","token":"text_1353","childs":[],"text":"<p>Lorem ipsum dolor amet</p>"}]},{"styles":[],"size":6,"type":"column","id":"zm_column_d541","token":"column_2d30","childs":[{"styles":[],"type":"text","id":"zm_text_0761","token":"text_060d","childs":[],"text":"<p>Lorem ipsum dolor amet</p>"}]}],"fullWidth":false}]}');
+				$config.load();
+				$config.prepare({
+					content: {}
+				});
 				
-				$s.settings = {};
 				$zm.setBaseScope($s);
-				$zm.content.set($s.data || {});
+				$zm.content.set($config.data.content);
+				
 				$s.zemit = $zm.content.get();
 				$s.widget = $s.zemit;
+				$s.config = $config.get();
 				
 				var template = `<zm-toolbar></zm-toolbar>
 					<zm-widget type="container"></zm-widget>`;
 				
+				// Save all configurations before leaving
+				$window.onbeforeunload = function() {
+					$hook.run('onbeforeunload');
+					$config.save();
+				};
+				
 				var $template = angular.element(template);
 				$e.append($template);
 				$compile($template)($s);
+				
+				$e.on('contextmenu', function(event) {
+					 event.preventDefault();
+					 event.stopPropagation();
+					 return false;
+				});
+				
+				$hook.run('onload');
 			}
 		};
 	}]);

@@ -1,7 +1,7 @@
 <div class="zm-widget-child zm-widget-child-type-{{ ::widget.type }}" ng-class="{'zm-widget-childs-empty': widget.childs.length === 0}" ng-repeat="widget in widget.childs">
 	
 	<!-- ADD WIDGET BEFORE -->
-	<div ng-show="position.y < 50" class="zm-widget-child-add zm-widget-add-before">
+	<div ng-if="position.y < 50" class="zm-widget-child-add zm-widget-add-before">
 		<div class="zm-widget-add-sep" ng-click="add($index); $event.stopPropagation()" zm-clickable zm-zoomable>
 			<i class="fa fa-plus-circle"></i>
 		</div>
@@ -12,7 +12,7 @@
 	<zm-widget type="{{ ::widget.type }}" default-template="{{ ::defaultTemplate }}"></zm-widget>
 	
 	<!-- ADD WIDGET AFTER -->
-	<div ng-show="position.y >= 50" class="zm-widget-child-add zm-widget-add-after">
+	<div ng-if="position.y >= 50" class="zm-widget-child-add zm-widget-add-after">
 		<div class="zm-widget-add-sep" ng-click="add($index + 1); $event.stopPropagation()" zm-clickable zm-zoomable>
 			<i class="fa fa-plus-circle"></i>
 		</div>

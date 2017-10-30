@@ -5,7 +5,17 @@
  * Keeps track of every changes. Undo/redo capabilities
  */
 (function() {
-	Zemit.app.factory('$history', ['$diff', function($diff) {
+	Zemit.app.factory('$history', ['$diff', '$config', '$hook', '$injector', function($diff, $config, $hook, $injector) {
+	    
+	    $hook.add('onload', function() {
+			var changes = $config.get('history');
+			factory.load(changes);
+	    });
+	    
+	    $hook.add('onbeforeunload', function() {
+	    	var changes = factory.dump();
+			$config.set('history', changes);
+	    });
 	    
 		var factory = {
 			
@@ -113,6 +123,59 @@
 				}
 				
 				factory.canRedo = false;
+			},
+			
+			/**
+			 * Get all changes in memory changes
+			 */
+			dump: function() {
+				
+				var changes = [];
+				angular.forEach(factory.changes, function(change) {
+					
+					changes.push({
+						diff: change.diff,
+						timestamp: change.timestamp
+					});
+				});
+				
+				return {
+					changes: changes,
+					position: this.position,
+					canUndo: this.canUndo,
+					canRedo: this.canRedo
+				};
+			},
+			
+			/**
+			 * Load all changes from memory
+			 */
+			load: function(data) {
+				
+				var $zm = $injector.get('$zm');
+				var scope = $zm.getBaseScope().widget;
+				var changes = [];
+				angular.forEach(data.changes, function(change) {
+					
+					changes.push({
+						diff: change.diff,
+						scope: scope,
+						timestamp: change.timestamp
+					});
+				});
+				
+				this.changes = changes;
+				this.position = data.position || 0;
+				this.canUndo = data.canUndo === undefined ? false : data.canUndo;
+				this.canRedo = data.canRedo === undefined ? false : data.canRedo;
+			},
+			
+			flush: function() {
+				
+				this.changes = [];
+				this.position = 0;
+				this.canUndo = false;
+				this.canRedo = false;
 			}
 		};
 		

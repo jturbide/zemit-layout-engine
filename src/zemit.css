@@ -1,3 +1,32 @@
+zemit {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-areas: "toolbar" "content";
+  grid-template-rows: max-content auto;
+  height: 100%;
+}
+zemit {
+  -webkit-touch-action: none;
+     -moz-touch-action: none;
+      -ms-touch-action: none;
+          touch-action: none;
+            
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important; 
+  -khtml-user-select: none !important; 
+  -moz-user-select: none !important; 
+  -ms-user-select: none !important; 
+  user-select: none !important;
+}
+.zm-toolbar {
+  grid-area: toolbar;
+}
+zm-widget[type="container"] {
+  grid-area: content;
+}
+
 .zm-clearfix:after {
   content: "";
   display: table;
@@ -60,6 +89,45 @@
 .zm-row-flex-default > .zm-row-flex-item {
   flex-grow: 1;
 }
+.zm-flex-column-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.zm-flex-row-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+}
+.zm-flex-row-container > .zm-flex-item,
+.zm-flex-column-container > .zm-flex-item {
+  flex-grow: 1;
+  margin: 0.5em;
+}
+
+
+.zm-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap; 
+  margin: -0.5em;
+}
+.zm-flex-nowrap {
+  flex-wrap: nowrap;
+}
+.zm-flex-container > .zm-flex-item {
+  flex-grow: 1;
+  margin: 0.5em;
+}
+.zm-flex-container.zm-flex-equal-size > .zm-flex-item {
+  flex-basis: 0;
+}
+
 
 /**
  * Zoom-in
@@ -101,4 +169,36 @@
 }
 .zm-file-drop-activate .zm-widget-inner * {
   opacity: 0.5;
+}
+
+/**
+ * Pointers
+ */
+.zm-pointer:before {
+  content: "";
+  width: 0; 
+  height: 0;
+  position: absolute;
+  border: 0.5em solid transparent;
+}
+.zm-pointer.zm-pointer-left:before {
+  top: calc(50% - 0.5em);
+  left: -0.5em; 
+  border-right-color: #75a9f9;
+  border-left: 0;
+}
+.zm-pointer.zm-pointer-right:before {
+  top: calc(50% - 0.5em);
+  right: -0.5em; 
+  border-left-color: #75a9f9;
+  border-right: 0;
+}
+
+/**
+ * Mobile
+ */
+@media all and (max-width: 767px) {
+  .zm-hide-mobile {
+    display: none !important;
+  }
 }

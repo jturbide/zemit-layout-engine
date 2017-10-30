@@ -4,19 +4,21 @@
 (function() {
 	
 	/**
-	 * Text toolbar directive
+	 * Parameters directive
 	 */
-	Zemit.app.directive('zmSettings', ['$zm', '$history', function($zm, $history) {
+	Zemit.app.directive('zmSidebarAdvanced', ['$zm', '$history', '$config', function($zm, $history, $config) {
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'components/settings/settings.html',
+			scope: true,
+			templateUrl: 'components/sidebar/advanced/advanced.html',
 			link: function ($s, $e, attrs) {
 				
 				$s.zm = $zm;
 				$s.history = $history;
 				
 				$s.getSettings = function() {
+					
 				    var settings = {};
 				    var selected = $zm.getBaseScope().widget.forEachSelected(function(widget) {
 				    	var zWidget = Zemit.widgets.get(widget.type);
