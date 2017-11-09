@@ -1,19 +1,26 @@
 .zm-widget {
   position: relative;
   outline: #ccc solid 1px;
-  outline-offset: -1px;
+  /*outline-offset: -1px;*/
   cursor: default;
+  background-color: white;
 }
-.zm-widget-child + .zm-widget-child {
-  margin-top: -1px;
+@media all and (pointer: fine) {
+  .zm-widget.zm-highlighted {
+    outline-color: #999;
+    z-index: 2;
+  }
 }
-.zm-widget.zm-highlighted {
-  outline-color: #999;
-  z-index: 2;
+@media all and (pointer: coarse) {
+  .zm-widget.zm-selected {
+    outline-color: #999;
+    z-index: 2;
+  }
 }
 .zm-widget-inner {
   padding: 1em;
   box-sizing: border-box;
+  background-color: white;
 }
 .zm-widget-inner:after {
   content: "";
@@ -21,8 +28,12 @@
   clear: both;
 }
 .zm-widget-container:not(.zm-widget-drag-parent) .zm-widget.zm-selected {
-  outline-color: #75a9f9;
+  /*outline-color: #75a9f9;*/
   z-index: 1;
+}
+.zm-widget-container:not(.zm-widget-drag-parent) .zm-widget.zm-selected > .zm-widget-inner {
+  /*background-color: rgba(117,169,249, 0.25);*/
+  background-color: #DBEDC7;
 }
 .zm-widget.zm-widget-focus {
   box-shadow: 0 1.5em 1em -0.5em rgba(0, 0, 0, 0.25);
@@ -79,8 +90,8 @@
 .zm-widget-add-after:hover .zm-widget-add-sep {
   cursor: pointer;
 }
-.zm-widget-add-before:hover .zm-widget-add-sep-highlight,
-.zm-widget-add-after:hover .zm-widget-add-sep-highlight {
+.zm-widget-add-before .zm-widget-add-sep-highlight,
+.zm-widget-add-after .zm-widget-add-sep-highlight {
   margin-top: -1px;
   height: 3px;
   position: absolute;
@@ -88,6 +99,13 @@
   left: 0;
   z-index: 1;
   background-color: #75a9f9;
+  opacity: 0;
+  pointer-events: none;
+}
+.zm-widget-add-before:hover .zm-widget-add-sep-highlight,
+.zm-widget-add-after:hover .zm-widget-add-sep-highlight {
+  opacity: 1;
+  pointer-events: all;
 }
 .zm-widget:not(.zm-widget-drag-parent) .zm-widget-child:hover > .zm-widget-add-before,
 .zm-widget:not(.zm-widget-drag-parent) .zm-widget-child:hover > .zm-widget-add-after {
@@ -112,7 +130,7 @@
   pointer-events: none !important;
 }
 .zm-widget .zm-drop-inside-activate {
-  background-color: #75a9f9;
+  background-color: #75a9f9 !important;
 }
 .zm-widget .zm-drop-inside-activate.zm-drop-inside-activate-invalid {
   background-color: red;
@@ -130,9 +148,9 @@
   border-top: 0.75em solid transparent;
   border-bottom: 0.75em solid transparent;
 }
-.zm-drop-placeholder-horizontal {
-  margin-top: -2px;
-}
+/*.zm-drop-placeholder-horizontal {*/
+/*  margin-top: -2px;*/
+/*}*/
 .zm-drop-placeholder-after.zm-drop-placeholder-horizontal {
   margin-top: -3px;
 }

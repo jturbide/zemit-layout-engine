@@ -18,10 +18,12 @@
   margin: 0 auto;
   position: absolute;
   box-shadow: 0 0 2em rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
-.zm-modal:not(.visible) {
+.zm-modal.zm-modal-hidden {
   pointer-events: none;
   z-index: -1;
+  
 }
 .zm-modal > .zm-modal-inner > .zm-modal-header > .zm-modal-header-inner {
   float: left;

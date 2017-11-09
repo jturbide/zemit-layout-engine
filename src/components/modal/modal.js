@@ -115,7 +115,7 @@
 	/**
 	 * Modal directive
 	 */
-	Zemit.app.directive('zmModal', ['$hook', function($hook) {
+	Zemit.app.directive('zmModal', ['$hook', '$timeout', '$device', function($hook, $timeout, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -138,6 +138,7 @@
 					// Set default values
 					id: attrs.id,
 					visible: false,
+					hidden: true,
 					
 					/**
 					 * Toggle modal visibility
@@ -153,6 +154,7 @@
 					open: function(params = {}) {
 						
 						$s.modal.visible = true;
+						$s.modal.hidden = false;
 						
 						var $inner = $e.children('.zm-modal-inner');
 						var $dragHandler = $inner.children('.zm-modal-header');
@@ -214,10 +216,10 @@
 						$inner[0].setAttribute('data-y', pos.y);
 						
 						// Make modal draggable
-						if(!window.matchMedia('(pointer: coarse)').matches) {
+						if(!$device.isTouch()) {
 							
 							interact($inner[0]).allowFrom($dragHandler[0]).draggable({
-								autoScroll: true,
+								autoScroll: false,
 								onstart: function(event) {
 									
 									angular.element('html:eq(0)').addClass('zm-cursor-drag-all');
@@ -274,6 +276,10 @@
 					close: function() {
 						
 						$s.modal.visible = false;
+						
+						$timeout(function() {
+							$s.modal.hidden = true;
+						}, 250);
 						
 						hook.run('onClose');
 					},

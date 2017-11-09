@@ -9,7 +9,7 @@
 		</div>
 		
 		<!-- TABS -->
-		<ul class="zm-tabs">
+		<ul class="zm-tabs zm-toolbar-sections">
 			
 			<!-- STRUCTURE -->
 			<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'structure'}" ng-click="setTab('structure')">
@@ -42,7 +42,7 @@
 			<div class="zm-btn-sep"></div>
 			
 			<!-- DUPLICATE -->
-			<zm-btn ng-disabled="zm.widget.totalSelected === 0" zm-tooltip="Duplicate" ng-click="zm.action(zm.widget.duplicate)">
+			<zm-btn ng-disabled="zm.widget.totalSelected === 0" class="zm-btn-info" zm-tooltip="Duplicate" ng-click="zm.action(zm.widget.duplicate)">
 				<i class="fa fa-copy"></i>
 			</zm-btn>
 		</div>
@@ -72,7 +72,7 @@
 			</zm-btn>
 		
 			<!-- REMOVE SELECTED -->
-			<zm-btn zm-tooltip="Remove" ng-disabled="zm.widget.totalSelected === 0" ng-click="zm.action(zm.widget.removeAllSelected)">
+			<zm-btn zm-tooltip="Remove" ng-disabled="zm.widget.totalSelected === 0" class="zm-btn-warning" ng-click="zm.action(zm.widget.removeAllSelected)">
 				<i class="fa fa-trash-o"></i>
 			</zm-btn>
 		</div>

@@ -9,7 +9,7 @@
 		            
 		            <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': settings.debugVisible, 'fa-chevron-right': !settings.debugVisible}"></i>
 		        </div>
-		        <div class="zm-sidebar-inner" ng-show="settings.debugVisible">
+		        <div class="zm-sidebar-content" ng-show="settings.debugVisible">
 		            <zm-field>
 		                <table>
 		                    <tbody>
@@ -47,15 +47,24 @@
 		</div>
 		<div class="zm-sidebar-tabs zm-row-flex-item">
 			<ul class="zm-tabs zm-tabs-vertical-right">
-				<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.workspace.visible}" ng-click="tabs.toggle('workspace')" class="zm-tab-item">
+				<li ng-class="{'active': config.sidebar.tabs.workspace.visible}" ng-click="tabs.toggle('workspace')" class="zm-tab-item">
 					Workspace
 				</li>
-				<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.advanced.visible}" ng-click="tabs.toggle('advanced')" class="zm-tab-item">
+				<li ng-class="{'active': config.sidebar.tabs.advanced.visible}" ng-click="tabs.toggle('advanced')" class="zm-tab-item">
 					Advanced
 				</li>
-				<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
+				<li ng-class="{'active': config.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
 					Widgets
 				</li>
+				<!--<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.workspace.visible}" ng-click="tabs.toggle('workspace')" class="zm-tab-item">-->
+				<!--	Workspace-->
+				<!--</li>-->
+				<!--<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.advanced.visible}" ng-click="tabs.toggle('advanced')" class="zm-tab-item">-->
+				<!--	Advanced-->
+				<!--</li>-->
+				<!--<li ng-class="{'active zm-pointer zm-pointer-left': config.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">-->
+				<!--	Widgets-->
+				<!--</li>-->
 			</ul>
 		</div>
 	</div>

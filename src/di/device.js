@@ -14,6 +14,10 @@
 				if(navigator.vibrate) {
 					navigator.vibrate(delay);
 				}
+			},
+			
+			isTouch: function() {
+				return window.matchMedia('(pointer: coarse)').matches;
 			}
 		};
 		

@@ -26,6 +26,21 @@
 			
 			var $zm = $di.get('$zm');
 			var $file = $di.get('$file');
+			
+			$s.promptFileDialog = function() {
+return;
+				$file.promptFileDialog(function(file, data) {
+					var reader = new FileReader();
+					reader.onload = function(event) {
+						$zm.action(function() {
+							$s.widget.src = reader.result;
+							$s.$digest();
+						}, $s.widget);
+					}
+					reader.readAsDataURL(file);
+				}, 'image/jpeg,image/gif,image/png');
+			}
+			
 			$file.drop.init($s.$element, $s, {
 				supportedTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
 				onComplete: function(event, files) {

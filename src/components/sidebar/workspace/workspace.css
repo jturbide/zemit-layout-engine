@@ -1,0 +1,14 @@
+.zm-sidebar-workspace .zm-sidebar-content {
+  padding: 0;
+}
+.zm-sidebar-workspace .zm-treeview-btn-folder {
+  background-color: #f4de95;
+}
+.zm-sidebar-workspace .zm-treeview-btn-file {
+  background-color: white;
+  padding-right: 0;
+}
+.zm-sidebar-workspace .zm-pull-right a {
+  float: left;
+  border-left: #ccc solid 1px;
+}

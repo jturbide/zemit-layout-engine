@@ -23,21 +23,19 @@
 				link.remove();
 			},
 			
-			promptFileDialog: function(callback) {
+			promptFileDialog: function(callback, accept) {
 				
 				var input = document.createElement('input');
 				input.type = 'file';
+				input.accept = accept;
 				input.click();
 				input.onchange = function(event) {
 						
 					var files = event.target.files;
-					var file = files[0];           
-					var reader = new FileReader();
-					reader.onload = function(event) {
-						callback(event.target.result);
-					}
-					reader.readAsText(file);
+					var file = files[0];
 					input.remove();
+					
+					callback(file);
 				};
 			},
 			

@@ -1,0 +1,29 @@
+.zm-treeview-container,
+.zm-treeview-container ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.zm-treeview-container {
+  background: repeating-linear-gradient( 45deg, #f3f3f3, #f3f3f3 0.75em, #fff 0.75em, #fff 1.5em );
+  border-bottom: #ccc solid 1px;
+}
+.zm-treeview-container ol {
+  margin-left: 1.5em;
+}
+.zm-treeview-content {
+  background-color: white;
+  border: #ccc solid 1px;
+  border-right: 0;
+  margin-top: -1px;
+}
+.zm-treeview-label,
+.zm-treeview-btn {
+  padding: 0.5em 0.75em;
+  display: inline-block;
+}
+.zm-treeview-btn {
+  background-color: #f6f6f6;
+  min-width: 1.25em;
+  text-align: center;
+}

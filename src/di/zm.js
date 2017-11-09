@@ -149,23 +149,29 @@
 				 */
 				import: function() {
 					
-					$file.promptFileDialog(function(json) {
+					$file.promptFileDialog(function(file) {
 						
 						try {
-							var data = angular.fromJson(json);
 							
-							if(data.version !== Zemit.version) {
+							var reader = new FileReader();
+							reader.onload = function(event) {
+								var json = event.target.result;
+								var data = angular.fromJson(json);
 								
-								$modal.warning({
-									title: 'Version mismatch',
-									content: 'The version you are using (' + Zemit.version + ') does not match the imported one (' + data.version + ')'
-								});
+								if(data.version !== Zemit.version) {
+									
+									$modal.warning({
+										title: 'Version mismatch',
+										content: 'The version you are using (' + Zemit.version + ') does not match the imported one (' + data.version + ')'
+									});
+								}
+								else {
+									factory.session.flushAll();
+									$history.load(data.changes);
+									factory.getBaseScope().widget.childs = data.content.childs;
+								}
 							}
-							else {
-								factory.session.flushAll();
-								$history.load(data.changes);
-								factory.getBaseScope().widget.childs = data.content.childs;
-							}
+							reader.readAsText(file);
 						}
 						catch(e) {
 							
@@ -220,6 +226,13 @@
 					
 				totalSelected: 0,
 				hoveredWidget: null,
+				
+				unselectAll: function() {
+					
+					factory.baseScope.widget.forEachChilds(function(_widget) {
+						_widget.setSelected(false);
+					});
+				},
 				
 				hovered: {
 					data: [],
@@ -343,7 +356,7 @@
 							this.resetCursor();
 							
 							this.originalWidget.getScope().$element.removeClass('zm-widget-drag');
-							console.log(this.originalWidget.getScope().$element);
+							
 							if(!isAlone) {
 								this.originalWidget.forEachParents(function(parent) {
 									parent.getScope().$element.removeClass('zm-widget-drag-parent');

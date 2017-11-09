@@ -135,7 +135,7 @@
 		});
 	}]);
 	
-	Zemit.app.directive('zmWidget', ['$compile', '$hook', '$zm', '$modal', function($compile, $hook, $zm, $modal) {
+	Zemit.app.directive('zmWidget', ['$compile', '$hook', '$zm', '$modal', '$device', function($compile, $hook, $zm, $modal, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -265,7 +265,7 @@
 					 */
 					getParent: function() {
 					
-						if(!$s.parentToken) {
+						if(!this.hasParent()) {
 							return false;
 						}
 						var s = $s.$parent;
@@ -274,6 +274,11 @@
 						}
 						
 						return s && s.widget;
+					},
+					
+					hasParent: function() {
+						
+						return $s.parentToken;
 					},
 					
 					/**
@@ -286,6 +291,44 @@
 						
 						var widget = this;
 						var wasSelected = this.isSelected();
+						
+						if($device.isTouch()) {
+
+							var newToken = false;							
+							if(wasSelected) {
+								newToken = this.getParent().token;
+								this.getParent().setSelected(true);
+							}
+							else {
+
+								widget.forEachParents(function(parent) {
+									if(!newToken && parent.isSelected()) {
+										var _parent = parent.getParent();
+										if(_parent && _parent.getScope().parentToken) {
+											newToken = _parent.token;
+											_parent.setSelected(true);
+										}
+									}
+								});
+								
+								if(!newToken) {
+									newToken = widget.token;
+									widget.setSelected(true);
+								}
+							}
+							
+							// Unselect all *other* widgets
+							widget.getScope().container.forEachChilds(function(_widget) {
+								
+								if(_widget.token === newToken) {
+									return;
+								}
+								
+								_widget.setSelected(false);
+							});
+							
+							return;
+						}
 						
 						// If SHIFT, CTRL or COMMAND key are not active, unselect all widgets
 						if(!selectAll && !incremental) {

@@ -19,11 +19,6 @@
 .zm-widget-column.zm-highlighted > .zm-widget-inner > .zm-widget-add {
   opacity: 1;
 }
-@media all and (pointer: coarse) {
-  .zm-widget-column > .zm-widget-inner > .zm-widget-add {
-    display: none !important;
-  }
-}
 .zm-widget-column.zm-highlighted > .zm-widget-inner > .zm-widget-add.hide {
   opacity: 0 !important;
 }
@@ -39,11 +34,20 @@
   padding: 1em;
 }
 @media (pointer: coarse) {
-  .zm-widget-column > .zm-widget-inner {
-    padding: 1.5em;
+  .zm-widget-column .zm-widget-inner .zm-widget-inner:not(.zmAcceptWidgetInside) {
+    padding: 0.5em;
   }
-  .zm-widget-column .zm-widget-inner .zm-widget-inner {
-    padding: 0.25em;
+  .zm-widget-column > .zm-widget-inner > .zm-widget-add {
+    display: none !important;
+  }
+  .zm-widget-column {
+    margin: 0;
+  }
+  .zm-widget-column > .zm-widget-inner {
+    padding: 0.75em;
+  }
+  .zm-widget-column.zm-widget-empty > .zm-widget-inner {
+    min-height: 4em;
   }
 }
 .zm-widget-column zm-widget + zm-widget > .zm-widget {

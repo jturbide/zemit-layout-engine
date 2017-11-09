@@ -6,24 +6,6 @@
 	/**
 	 * General directives
 	 */
-	Zemit.app.directive('ngClick', [function() {
-		return {
-			restrict: 'A',
-			link: function ($s, $e, attrs) {
-				
-				$e.bind("touchstart", function (e) {
-					e.preventDefault();
-					e.stopPropagation();
-					
-					$s.$apply(attrs["ngClick"]);
-				});
-			}
-		};
-	}]);
-	
-	/**
-	 * General directives
-	 */
 	Zemit.app.directive('zmClickable', [function() {
 		return {
 			restrict: 'A',
@@ -33,6 +15,45 @@
 			}
 		};
 	}]);
+	
+	/**
+	 * This directive solves the Angular other ng-dblclick directive
+	 * for touch-based device only.
+	 */
+	if(window.matchMedia('(pointer: coarse)').matches) {
+		Zemit.app.directive('ngDblclick', [function() {
+	
+			var firstClickTime;
+			var dblTapInterval = 300;
+			var waitingSecondClick = false;
+	
+			return {
+				restrict: 'A',
+				link: function ($s, $e, attrs) {
+					
+					$e.bind('click', function (e) {
+	
+						if (!waitingSecondClick) {
+							firstClickTime = (new Date()).getTime();
+							waitingSecondClick = true;
+							
+							setTimeout(function () {
+								waitingSecondClick = false;
+							}, dblTapInterval);
+						}
+						else {
+							waitingSecondClick = false;
+	
+							var time = (new Date()).getTime();
+							if (time - firstClickTime < dblTapInterval) {
+								$s.$apply(attrs.ngDblclick);
+							}
+						}
+					});
+				}
+			};
+		}]);
+	}
 	
 	/**
 	 * General directives

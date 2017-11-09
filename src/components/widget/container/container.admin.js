@@ -39,7 +39,7 @@
 			// Add a placeholder element in the DOM next to the container
 			var placeholder = document.createElement('div');
 			placeholder.classList.add('zm-drop-placeholder');
-			$e.parent().append(placeholder);
+			$e.find('.zm-container-scrollable').append(placeholder);
 			$s.$placeholder = angular.element(placeholder);
 			
 			// Add a row if no widget available

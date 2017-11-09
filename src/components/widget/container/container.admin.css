@@ -3,16 +3,17 @@
   flex-basis: calc(66.666vw);
 }
 .zm-container-scrollable {
-  /*position: absolute;*/
-  /*width: 100%;*/
-  /*max-height:100%;*/
-  /*overflow: auto;*/
+  margin-top: -1px;
+  /*height: calc(100% + 1px);*/
+  height: 100%;
+  overflow: auto;
+  position: relative;
 }
 zm-widget[type="container"] {
   position: relative;
   display: block;
   z-index: 2;
-  height: 100%;
+  overflow: hidden;
 }
 .zm-container-add-row,
 .zm-container,

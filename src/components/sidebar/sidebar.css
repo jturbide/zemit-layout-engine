@@ -1,18 +1,17 @@
 .zm-sidebar {
-  border-top: #ccc solid 1px;
   background-color: #eee;
   position: relative;
 }
 .zm-sidebar:not(.zm-open) {
-  max-width: calc(2.75em + 1px);
+  max-width: 2.65em;
 }
 .zm-sidebar .zm-sidebar-inner {
   height: 100%;
   flex-wrap: nowrap;
-  box-shadow: inset 0 1em 1em -0.5em rgba(0, 0, 0, 0.05);
+  border-left: #ccc solid 1px;
 }
 .zm-sidebar.zm-open {
-  flex-basis: calc(33.333vw);
+  flex-basis: 33.333vw;
 }
 .zm-sidebar.zm-hide-all-tabs .zm-sidebar-tab {
   opacity: 0;
@@ -20,24 +19,21 @@
   pointer-events: none;
 }
 .zm-sidebar .zm-sidebar-tabs {
-  max-width: 2.75em;
-  border-left: #ccc solid 1px;
+  max-width: 2.65em;
   box-shadow: inset 1em 0 1em -0.5em rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.5);
-  z-index: 50;
+  border-bottom: 0;
 }
-/*.zm-sidebar:not(.zm-open) .zm-sidebar-tabs {*/
-/*  max-width: 2.75em;*/
-/*}*/
+.zm-sidebar .zm-sidebar-tab {
+  border-right: #ccc solid 1px;
+}
 .zm-sidebar .zm-sidebar-tabs .zm-tab-item {
-  border-radius: 0;
-  border-top: 0;
+  border: 0;
+  border-bottom: #ccc solid 1px;
   padding: 1em 0.75em;
-  border-left: 0;
-  float: none;
-}
-.zm-sidebar .zm-sidebar-tabs .zm-tab-item:last-child {
-  margin-bottom: -1px;
+  float: left;
+  top: 0;
+  border-radius: 0;
 }
 .zm-sidebar .zm-sidebar-tabs .zm-tab-item.active {
   color: black;
@@ -46,6 +42,9 @@
 }
 .zm-sidebar-group + .zm-sidebar-group > .zm-sidebar-title {
   border-top: #ccc solid 1px;
+}
+.zm-sidebar-group + .zm-sidebar-group {
+  margin-top: -1px;
 }
 .zm-sidebar-title {
   padding: 0.5em 1em;
@@ -69,26 +68,24 @@
 .zm-sidebar-tabs .zm-tabs {
   box-shadow: 0 0.5em 1em -0.5em rgba(0, 0, 0, 0.15);
 }
-/*.zm-sidebar-tab {*/
-/*  top: -1px;*/
-/*  position: relative;*/
-/*}*/
 
 @media all and (max-width: 767px) {
+  .zm-sidebar-title {
+    border-left: 0;
+  }
   .zm-sidebar-tab {
     position: fixed;
     left: 0;
     top: 0;
-    width: calc(100% - 2.75em - 1px);
+    width: calc(100% - 2.65em);
     z-index: 1;
     background-color: #eee;
-    border-right: #ccc solid 1px;
-    height: calc(100% - 1px);
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
   }
   .zm-sidebar.zm-open {
-    max-width: calc(2.75em + 1px);
-    min-width: calc(2.75em + 1px)
+    max-width: 2.65em;
+    min-width: 2.65em;
   }
 }

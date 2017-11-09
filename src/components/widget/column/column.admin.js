@@ -24,6 +24,7 @@
 	
 			var colMaxSize = 12;
 			var $history = $di.get('$history');
+			var $device = $di.get('$device');
 			
 			$e.parent().after($e);
 			
@@ -162,7 +163,7 @@
 			// Configure current column
 			configure($s.column);
 			
-			if(!window.matchMedia('(pointer: coarse)').matches) {
+			if(!$device.isTouch()) {
 				
 				/**
 				 * Resizer sub-class. Contains all necessary functions to

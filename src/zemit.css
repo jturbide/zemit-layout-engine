@@ -4,8 +4,7 @@ zemit {
   grid-template-areas: "toolbar" "content";
   grid-template-rows: max-content auto;
   height: 100%;
-}
-zemit {
+  
   -webkit-touch-action: none;
      -moz-touch-action: none;
       -ms-touch-action: none;
@@ -31,6 +30,10 @@ zm-widget[type="container"] {
   content: "";
   display: table;
   clear: both;
+}
+
+.zm-hidden {
+  display: none;
 }
 
 .zm-pull-right {
@@ -73,6 +76,15 @@ zm-widget[type="container"] {
 
 .zm-draggable {
   position: relative;
+}
+
+/**
+ * Vertical align
+ */
+.zm-vertical-align-middle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /**
@@ -152,7 +164,7 @@ zm-widget[type="container"] {
   transform: scale(0.85);
   opacity: 0;
 }
-.zoom-container.visible > .zoom-item {
+.zoom-container.zm-visible > .zoom-item {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -msie-transform: scale(1);
