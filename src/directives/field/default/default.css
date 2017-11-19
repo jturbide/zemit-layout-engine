@@ -1,0 +1,12 @@
+.zm-field {
+	position: relative;
+	display: block;
+}
+.zm-field.zm-field-has-icon input:not([type="submit"]) {
+  padding-left: 3rem;
+}
+.zm-field.zm-field-has-icon .zm-field-icon {
+  position: absolute;
+  top: 0.55rem;
+  left: 1rem;
+}

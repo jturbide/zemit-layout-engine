@@ -1,45 +1,35 @@
 <div class="zm-sidebar-workspace">
+    
+    <!-- NOTICE -->
+	<zm-dismissable type="info" key="zm-sidebar-workspace-first-time">
+		Each workspace contains blocks of contents. A node can instanciate other nodes, that's how you create layouts and page subsets.
+	</zm-dismissable>
 	
-	<!-- Treeview template -->
-	<script type="text/ng-template" id="zm_sidebar_workspace_treeview">
-		<div class="zm-treeview-content zm-clearfix" ui-tree-handle>
-			<a class="zm-treeview-btn zm-treeview-btn-folder" ng-if="node.nodes && node.nodes.length > 0" data-nodrag ng-click="this.toggle()">
-				<span class="fa" ng-class="{'fa-folder-o': collapsed, 'fa-folder-open-o': !collapsed}"></span>
-			</a>
-			<a class="zm-treeview-btn zm-treeview-btn-file" ng-if="!node.nodes || node.nodes.length === 0" data-nodrag>
-				<span class="fa fa-file-o"></span>
-			</a>
-			
-			<span class="zm-treeview-label">
-				/{{node.title}}
-			</span>
-			
-			<div class="zm-pull-right">
-				<a class="zm-treeview-btn zm-treeview-btn-remove" data-nodrag ng-click="this.remove()">
-					<span class="fa fa-remove"></span>
-				</a>
-				<a class="zm-treeview-btn zm-treeview-btn-add" data-nodrag ng-click="this.newSubItem()">
-					<span class="fa fa-plus-circle"></span>
-				</a>
-			</div>
-		</div>
-		<ol class="zm-treeview-list" ui-tree-nodes ng-model="node.nodes" ng-class="{'zm-hidden': collapsed}">
-			<li class="zm-treeview-list-item" ng-repeat="node in node.nodes" ui-tree-node ng-include="'zm_sidebar_workspace_treeview'"></li>
-		</ol>
-	</script>
-	
+	<!-- FILTER -->
+    <div class="zm-content-small">
+        <zm-field-text icon="search" placeholder="Filter nodes..." ng-model="filters.query" autofocus="on" />
+    </div>
+    
 	<div class="zm-sidebar-group" ng-repeat="organization in workspace.organizations" ng-if="workspace.organizations.length > 0">
-        <div class="zm-sidebar-title" ng-click="config.tabs[organization.key].visible = !config.tabs[organization.key].visible" zm-clickable>
-            {{ ::organization.title }}
+        <div class="zm-sidebar-title zm-flex-container" ng-click="$root.config.sidebar.workspace.tabs[organization.key].visible = !$root.config.sidebar.workspace.tabs[organization.key].visible" zm-clickable>
             
-            <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': config.tabs[organization.key].visible, 'fa-chevron-right': !config.tabs[organization.key].visible}"></i>
+            <span class="zm-sidebar-title-text">
+                {{ ::organization.title }}
+            </span>
+            
+            <!-- TOTAL NODES -->
+            <div class="zm-badge zm-flex-minimal">
+            	{{ stats.countNodes(organization.data) }}
+            </div>
+            
+            <i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': $root.config.sidebar.workspace.tabs[organization.key].visible, 'fa-chevron-right': !$root.config.sidebar.workspace.tabs[organization.key].visible}"></i>
         </div>
-        <zm-field class="zm-sidebar-content" ng-show="config.tabs[organization.key].visible">
-			<div ui-tree id="tree-root">
-				<ol class="zm-treeview-container" ui-tree-nodes ng-model="organization.data">
-					<li ng-repeat="node in organization.data" ui-tree-node ng-include="'zm_sidebar_workspace_treeview'"></li>
-				</ol>
-			</div>
-		</zm-field>
+        <div class="zm-sidebar-content" ng-show="$root.config.sidebar.workspace.tabs[organization.key].visible">
+        	
+        	<!-- TREEVIEW -->
+        	<zm-field-treeview ng-model="organization.data" options="{
+            	canAdd: true
+        	}" />
+		</div>
     </div>
 </div>

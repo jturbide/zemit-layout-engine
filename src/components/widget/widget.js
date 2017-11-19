@@ -211,6 +211,10 @@
 					type: $s.widget.type || type,
 					childs: $s.widget.childs || [],
 					
+					updateToken: function() {
+						this.token = type + '_' + $zm.s4();
+					},
+					
 					/**
 					 * Highlight widget and remove highlighting of all parent and child widgets
 					 */
@@ -371,14 +375,6 @@
 						}
 						else {
 							
-							// Update amount of selected element
-							if(this.isSelected()) {
-								this.setSelected(false);
-								this.forEachSelected(function(child) {
-									child.setSelected(false);
-								}, true, true);
-							}
-							
 							// We can't use a setTimeout and $digest or $apply the
 							// scope because it it'll break other scope listeners
 							// such as the history manager.
@@ -391,6 +387,8 @@
 								angular.forEach($parent.childs, function(widget, key) {
 									widget.getScope().$index = key;
 								});
+								
+								$zm.widget.updateWidgetStates();
 							//});
 						}
 					},

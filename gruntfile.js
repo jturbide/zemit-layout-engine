@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 			},
 			some_target: {
 				files: {
-					'dist/index.compiled.html': 'dist/index.html'
+					'dist/index.base64.html': 'dist/index.html'
 				}
 			}
 		},
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         ngtemplates: {
         	zemit: {
         		cwd: 'src',
-        		src: 'components/**/*.html',
+        		src: ['components/**/*.html', 'directives/**/*.html'],
         		dest: 'src/cache/templates.js'
         	}
         },

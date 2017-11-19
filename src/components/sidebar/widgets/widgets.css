@@ -3,9 +3,9 @@
  */
 .zm-sidebar-widgets-item {
   border: #ddd solid 1px;
-  padding: 1em;
+  padding: 1rem;
   text-align: center;
-  border-radius: 0.25em;
+  border-radius: 0.25rem;
   background-color: rgba(255, 255, 255, 0.5);
   
   -webkit-touch-action: none;
@@ -18,13 +18,13 @@
   border-color: #75a9f9;
 }
 .zm-sidebar-widgets-item-icon {
-  font-size: 2em;
+  font-size: 2rem;
 }
 .zm-sidebar-widgets-item-title {
   margin: 0;
 }
 .zm-sidebar-widgets-item-desc {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   margin-bottom: 0;
 }
 .zm-sidebar-widgets-item.zm-widget-drag {

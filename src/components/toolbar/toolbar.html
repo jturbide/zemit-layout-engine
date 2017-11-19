@@ -9,23 +9,48 @@
 		</div>
 		
 		<!-- TABS -->
-		<ul class="zm-tabs zm-toolbar-sections">
-			
-			<!-- STRUCTURE -->
-			<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'structure'}" ng-click="setTab('structure')">
-				Structure
-			</li>
-			
-			<!-- STYLE -->
-			<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'style'}" ng-click="setTab('style')">
-				Style
-			</li>
-			
-			<!-- PREVIEW -->
-			<li class="zm-tab-item zm-hide-mobile" ng-class="{active: config.toolbar.tab === 'preview'}" ng-click="setTab('preview')">
-				Preview
-			</li>
-		</ul>
+		<zm-tabs anchor="top-right" class="zm-toolbar-sections">
+			<toggle>
+				
+				<i class="fa" ng-class="{
+					'fa-cubes': config.toolbar.tab === 'structure',
+					'fa-paint-brush': config.toolbar.tab === 'style',
+					'fa-eye': config.toolbar.tab === 'preview'
+				}"></i>
+				
+				<span ng-if="config.toolbar.tab === 'structure'">
+					Structure
+				</span>
+				<span ng-if="config.toolbar.tab === 'style'">
+					Style
+				</span>
+				<span ng-if="config.toolbar.tab === 'preview'">
+					Preview
+				</span>
+				<!--<i class="fa" ng-class="{-->
+				<!--	'fa-cubes': config.toolbar.tab === 'structure',-->
+				<!--	'fa-paint-brush': config.toolbar.tab === 'style',-->
+				<!--	'fa-eye': config.toolbar.tab === 'preview'-->
+				<!--}"></i>-->
+				<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
+			</toggle>
+			<items>
+				<!-- STRUCTURE -->
+				<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'structure'}" ng-click="setTab('structure')">
+					Structure
+				</li>
+				
+				<!-- STYLE -->
+				<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'style'}" ng-click="setTab('style')">
+					Style
+				</li>
+				
+				<!-- PREVIEW -->
+				<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'preview'}" ng-click="setTab('preview')">
+					Preview
+				</li>
+			</items>
+		</zm-tabs>
 		
 		<div class="zm-toolbar-actions zm-toolbar-actions-context">
 			
@@ -39,10 +64,10 @@
 				<i class="fa fa-repeat"></i>
 			</zm-btn>
 			
-			<div class="zm-btn-sep"></div>
+			<div class="zm-btn-sep zm-hide-mobile"></div>
 			
 			<!-- DUPLICATE -->
-			<zm-btn ng-disabled="zm.widget.totalSelected === 0" class="zm-btn-info" zm-tooltip="Duplicate" ng-click="zm.action(zm.widget.duplicate)">
+			<zm-btn ng-disabled="zm.widget.totalSelected === 0" class="zm-hide-mobile zm-btn-info" zm-tooltip="Duplicate" ng-click="zm.action(zm.widget.duplicate)">
 				<i class="fa fa-copy"></i>
 			</zm-btn>
 		</div>
@@ -66,13 +91,18 @@
 				<i class="fa fa-bug"></i>
 			</zm-btn>
 			
+			<!-- HELP -->
+			<!--<zm-btn ng-class="{active: true}" zm-tooltip="Help">-->
+			<!--	<i class="fa fa-question-circle"></i>-->
+			<!--</zm-btn>-->
+			
 			<!-- DOC -->
-			<zm-btn zm-tooltip="Documentation" ng-click="$modal.open('doc')">
+			<zm-btn zm-tooltip="Documentation" class="zm-hide-mobile" ng-click="$modal.open('doc')">
 				<i class="fa fa-book"></i>
 			</zm-btn>
 		
 			<!-- REMOVE SELECTED -->
-			<zm-btn zm-tooltip="Remove" ng-disabled="zm.widget.totalSelected === 0" class="zm-btn-warning" ng-click="zm.action(zm.widget.removeAllSelected)">
+			<zm-btn zm-tooltip="Remove" ng-disabled="zm.widget.totalSelected === 0" class="zm-hide-mobile zm-btn-warning" ng-click="zm.action(zm.widget.removeAllSelected)">
 				<i class="fa fa-trash-o"></i>
 			</zm-btn>
 		</div>

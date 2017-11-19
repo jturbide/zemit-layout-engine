@@ -1,0 +1,68 @@
+.zm-btn {
+	background: #fafafa;
+  background-image: -webkit-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: -moz-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: -ms-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: -o-linear-gradient(top, #fafafa, #f2f2f2);
+  background-image: linear-gradient(to bottom, #fafafa, #f2f2f2);
+  border-radius: 3px;
+  color: inherit;
+  padding: 0.125rem 0.5rem 0.25rem 0.5rem;
+  border: solid #ccc 1px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: default;
+  align-items: center;
+  line-height: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+.zm-btn:focus,
+.zm-btn:hover {
+	border-color: #999;
+}
+.zm-btn.active {
+	color: #75a9f9;
+}
+.zm-btn:active {
+	background: #f2f2f2;
+  background-image: -webkit-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: -moz-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: -ms-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: -o-linear-gradient(top, #f2f2f2, #fafafa);
+  background-image: linear-gradient(to bottom, #f2f2f2, #fafafa);
+}
+.zm-btn[disabled] {
+  opacity: 0.333;
+  pointer-events: none;
+}
+.zm-btn.zm-btn-warning:not([disabled]) {
+  background: #ffa66a; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffa66a 0%, #ff9047 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffa66a 0%,#ff9047 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffa66a 0%,#ff9047 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa66a', endColorstr='#ff9047',GradientType=0 ); /* IE6-9 */
+  color: white;
+  border-color: #DD833E;
+}
+.zm-btn.zm-btn-warning:hover:not([disabled]) {
+  border-color: #962D00;
+}
+.zm-btn.zm-btn-info:not([disabled]) {
+  background: #00e5ff; /* Old browsers */
+  background: -moz-linear-gradient(top, #00e5ff 0%, #00b7ef 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #00e5ff 0%,#00b7ef 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #00e5ff 0%,#00b7ef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00e5ff', endColorstr='#00b7ef',GradientType=0 ); /* IE6-9 */
+  border-color: #0096E8;
+  color: white;
+}
+.zm-btn.zm-btn-info:hover:not([disabled]) {
+  border-color: #0047AA;
+}
+
+@media all and (max-width: 767px) {
+  .zm-btn {
+    padding: 0.5rem 0.75rem;
+  }
+}

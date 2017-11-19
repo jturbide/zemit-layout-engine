@@ -6,14 +6,17 @@
 	/**
 	 * Switch field
 	 */
-	Zemit.app.directive('zmField', [function() {
+	Zemit.app.directive('zmFieldEmail', [function() {
 		return {
 			restrict: 'E',
 			replace: true,
-			//templateUrl: 'components/fields/switch/switch.html',
+			scope: {
+				ngModel: '='
+			},
+			templateUrl: 'directives/field/email/email.html',
 			link: function ($s, $e, attrs) {
 				
-				$e.addClass('zm-field');
+				$s.attrs = attrs;
 			}
 		}
 	}]);

@@ -39,13 +39,13 @@
 			// itself every time.
 			$s.text = $s.widget.text;
 			
-			var editor = new Quill($editorElement[0], {
-				theme: 'snow',
-				placeholder: 'Type your content here...',
-				modules: {
-					toolbar: false
-				}
-			});
+			// var editor = new Quill($editorElement[0], {
+			// 	theme: 'snow',
+			// 	placeholder: 'Type your content here...',
+			// 	modules: {
+			// 		toolbar: false
+			// 	}
+			// });
 
 
 			// editor.subscribe('editableInput', function (event, editable) {
@@ -74,44 +74,44 @@
 			// 	}
 			// });
 			
-			var bindEvents = function() {
+			// var bindEvents = function() {
 				
-				// Double-clicking in this widget should select the text only
-				// in this context. We thus stop the propagation of the
-				// event so the widget doesn't get selected.
-				$e.on('dblclick.' + namespace, function(event) {
+			// 	// Double-clicking in this widget should select the text only
+			// 	// in this context. We thus stop the propagation of the
+			// 	// event so the widget doesn't get selected.
+			// 	$e.on('dblclick.' + namespace, function(event) {
 					
-					event.stopPropagation();
+			// 		event.stopPropagation();
 					
-					$s.widget.unbindEvents(['click', 'draggable']);
-					unbindEvents();
+			// 		$s.widget.unbindEvents(['click', 'draggable']);
+			// 		unbindEvents();
 					
-					$e.on('click.' + namespace, function(event) {
-						event.stopPropagation();
-					});
-					$e.on('keydown.' + namespace, function(event) {
-						event.stopPropagation();
-					});
-					$e.on('mousedown.' + namespace, function(event) {
-						event.stopPropagation();
-					});
+			// 		$e.on('click.' + namespace, function(event) {
+			// 			event.stopPropagation();
+			// 		});
+			// 		$e.on('keydown.' + namespace, function(event) {
+			// 			event.stopPropagation();
+			// 		});
+			// 		$e.on('mousedown.' + namespace, function(event) {
+			// 			event.stopPropagation();
+			// 		});
 					
-					//$s.$element.addClass('zm-widget-focus');
+			// 		//$s.$element.addClass('zm-widget-focus');
 					
-					// Select all automatically
-					editor.enable();
-					editor.focus();
-					$s.widget.select(false, false, true);
-					$s.$apply();
-				});
-			};
-			bindEvents();
+			// 		// Select all automatically
+			// 		editor.enable();
+			// 		editor.focus();
+			// 		$s.widget.select(false, false, true);
+			// 		$s.$apply();
+			// 	});
+			// };
+			// bindEvents();
 			
-			var unbindEvents = function() {
-				$s.$element.off('.' + namespace);
-			};
+			// var unbindEvents = function() {
+			// 	$s.$element.off('.' + namespace);
+			// };
 			
-			$s.editor = editor;
+			// $s.editor = editor;
 		}
 	});
 })();

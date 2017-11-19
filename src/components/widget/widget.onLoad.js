@@ -81,21 +81,21 @@
 						if(configs.selectable !== false) {
 							
 							var dragging = false;
-							$element.on('touchstart.' + namespace, function(event) {
-								dragging = false;
-								$s.isTouched = true;
-								$s.$digest();
-								event.stopPropagation();
-							});
-							$element.on('touchend.' + namespace, function(event) {
+							// $element.on('touchstart.' + namespace, function(event) {
+							// 	dragging = false;
+							// 	$s.isTouched = true;
+							// 	$s.$digest();
+							// 	event.stopPropagation();
+							// });
+							// $element.on('touchend.' + namespace, function(event) {
 								
-								$s.isTouched = false;
-								$s.$digest();
+							// 	$s.isTouched = false;
+							// 	$s.$digest();
 								
-								if (dragging) {
-									return;
-								}
-							});
+							// 	if (dragging) {
+							// 		return;
+							// 	}
+							// });
 							$element.on('touchmove.' + namespace, function(event) {
 								dragging = true;
 								

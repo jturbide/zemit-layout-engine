@@ -13,7 +13,7 @@
 			scope: {
 				value: '='
 			},
-			templateUrl: 'components/fields/switch/switch.html',
+			templateUrl: 'directives/field/switch/switch.html',
 			link: function ($s, $e, attrs) {
 				
 				$s.title = attrs.title;

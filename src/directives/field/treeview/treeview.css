@@ -5,11 +5,11 @@
   list-style-type: none;
 }
 .zm-treeview-container {
-  background: repeating-linear-gradient( 45deg, #f3f3f3, #f3f3f3 0.75em, #fff 0.75em, #fff 1.5em );
+  background: repeating-linear-gradient( 45deg, #f3f3f3, #f3f3f3 0.75rem, #fff 0.75rem, #fff 1.5rem );
   border-bottom: #ccc solid 1px;
 }
 .zm-treeview-container ol {
-  margin-left: 1.5em;
+  margin-left: 1.5rem;
 }
 .zm-treeview-content {
   background-color: white;
@@ -19,11 +19,11 @@
 }
 .zm-treeview-label,
 .zm-treeview-btn {
-  padding: 0.5em 0.75em;
+  padding: 0.5rem 0.75rem;
   display: inline-block;
 }
 .zm-treeview-btn {
   background-color: #f6f6f6;
-  min-width: 1.25em;
+  min-width: 1.25rem;
   text-align: center;
 }

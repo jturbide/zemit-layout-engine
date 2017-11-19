@@ -9,13 +9,13 @@
 	<div class="zm-widget-row-empty" ng-if="row.childs.length === 0">
 		
 		<!-- COLUMNS SELECTOR -->
-		<div class="zm-widget-row-add-columns zm-row-flex-default">
-			<div class="zm-row-flex-item zm-widget-row-add-column-item zm-widget-row-add-column-item-{{ ::amount }}" ng-repeat="amount in [1,2,3,4,6]" ng-click="addColumns(amount)" zm-clickable zm-zm-zoomable>
+		<div class="zm-widget-row-add-columns zm-flex-container zm-flex-container-gap">
+			<div class="zm-widget-row-add-column-item zm-widget-row-add-column-item-{{ ::amount }}" ng-repeat="amount in [1,2,3,4,6]" ng-click="addColumns(amount)" zm-clickable zm-zm-zoomable>
 				<span class="zm-widget-row-add-column-item-amount">{{ ::amount }}</span>
 			</div>
 		</div>
 	</div>
-	<div ng-show="row.childs.length > 0" class="zm-widget-inner zm-widget-draggable zm-draggable zm-row-flex-default" zm-accept-widget-inside>
+	<div ng-show="row.childs.length > 0" class="zm-widget-inner zm-widget-draggable zm-draggable" zm-accept-widget-inside>
 		
 		<!-- LIST OF CHILD WIDGETS -->
 		<zm-widget type="column" ng-repeat="widget in row.childs"></zm-widget>
@@ -24,7 +24,7 @@
 		
 		<!-- COLUMNS PREVIEWER -->
 		<!--<div ng-if="row.childs.length === 0" class="zm-widget-row-add-column-preview zm-row-flex-default" ng-class="{'zm-widget-row-preview-visible': previewer.hoveredAmount > 0}">-->
-		<!--	<div class="zm-widget-row-add-column-preview-item zm-row-flex-item" ng-class="{'zm-widget-row-preview-item-visible': amount <= previewer.hoveredAmount}" ng-repeat="amount in previewer.columns track by $index"></div>-->
+		<!--	<div class="zm-widget-row-add-column-preview-item" ng-class="{'zm-widget-row-preview-item-visible': amount <= previewer.hoveredAmount}" ng-repeat="amount in previewer.columns track by $index"></div>-->
 		<!--</div>-->
 	</div>
 </div>

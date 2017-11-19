@@ -9,8 +9,8 @@
   display: inline-block;
 }
 .zm-field-switch-toggle {
-  padding-right: 1em;
-  font-size: 1.25em;
+  padding-right: 1rem;
+  font-size: 1.25rem;
   position: relative;
-  top: 0.1em;
+  top: 0.1rem;
 }

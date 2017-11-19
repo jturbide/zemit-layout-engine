@@ -83,7 +83,6 @@
 				};
 				
 				$s.tabs.init();
-				
 				$s.sidebar.tabs = $s.tabs;
 			}
 		};

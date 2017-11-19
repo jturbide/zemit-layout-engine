@@ -1,0 +1,7 @@
+<div class="zm-field zm-field-treeview">
+	<div ui-tree ng-if="ngModel.length > 0">
+		<ol class="zm-treeview-container" ui-tree-nodes ng-model="ngModel">
+			<li ng-repeat="node in ngModel" ui-tree-node ng-include="template"></li>
+		</ol>
+	</div>
+</div>

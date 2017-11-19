@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebarWidgets', ['$config', function($config) {
+	Zemit.app.directive('zmSidebarWidgets', ['$config', '$filter', function($config, $filter) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -26,11 +26,43 @@
 					}
 				};
 				
+				var filters = {
+					query: ''
+				};
+				
 				var tabsConfigs = {};
 				angular.forEach(sections, function(section, key) {
 					tabsConfigs[key] = {
-						visible: false
+						visible: true
 					};
+				});
+				
+				var updateWidgets = function() {
+					
+					var noWidgetsFound = true;
+					angular.forEach(sections, function(section, key) {
+						section.widgets = [];
+					});
+					angular.forEach(widgets, function(widget, key) {
+						var inject = widget.injectable;
+						if(inject && sections[inject.section] && $filter('search')([inject], ['title','desc'], filters.query, true).length > 0) {
+							sections[widget.injectable.section].widgets.push({
+								type: key,
+								title: inject.title,
+								desc: inject.desc,
+								icon: inject.icon
+							});
+							
+							noWidgetsFound = false;
+						}
+					});
+					
+					$s.noWidgetsFound = noWidgetsFound;
+				};
+				updateWidgets();
+				
+				$s.$watch('filters.query', function(nv, ov) {
+					updateWidgets();
 				});
 				
 				$config.prepare({
@@ -41,20 +73,8 @@
 					}
 				});
 				
-				angular.forEach(widgets, function(widget, key) {
-					var inject = widget.injectable;
-					if(inject && sections[inject.section]) {
-						sections[widget.injectable.section].widgets.push({
-							type: key,
-							title: inject.title,
-							desc: inject.desc,
-							icon: inject.icon
-						});
-					}
-				});
-				
 				$s.sections = sections;
-				$s.config = config.sidebar.widgets;
+				$s.filters = filters;
 			}
 		};
 	}]);
@@ -62,7 +82,7 @@
 	/**
 	 * Default widget
 	 */
-	Zemit.app.directive('zmSidebarWidgetsItem', ['$zm', '$config', '$compile', '$timeout', '$device', function($zm, $config, $compile, $timeout, $device) {
+	Zemit.app.directive('zmSidebarWidgetsItem', ['$zm', '$compile', '$timeout', '$device', function($zm, $compile, $timeout, $device) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -174,6 +194,7 @@
 								$s.sidebar.tabs.hideAll();
 							}
 							
+							scope.widget.updateToken();
 							$zm.widget.drag.set(scope.widget, true);
 						});
 					});

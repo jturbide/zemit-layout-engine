@@ -125,7 +125,7 @@
 				body: '?modalBody',
 				footer: '?modalFooter'
 			},
-			templateUrl: 'components/modal/modal.html',
+			templateUrl: 'directives/modal/modal.html',
 			link: function($s, $e, attrs) {
 				
 				var hook = new $hook.$new();

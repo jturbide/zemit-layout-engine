@@ -226,11 +226,59 @@
 					
 				totalSelected: 0,
 				hoveredWidget: null,
+				allSelectedSameType: true,
+				
+				updateWidgetStates: function() {
+					this.allSelectedSameType = this.areAllSelectedSameType();
+					this.totalSelected = this.countSelected();
+				},
+				
+				countSelected: function() {
+					var total = 0;
+					this.forEachSelected(function(widget) {
+						if(widget.getScope().isSelected) {
+							total++;
+						}
+					});
+					return total;
+				},
+				
+				areAllSelectedSameType: function() {
+					
+					var lastType = null;
+					var allSameType = true;
+					this.forEachSelected(function(widget) {
+						if(allSameType !== false) {
+							allSameType = lastType === null || widget.type === lastType;
+							lastType = widget.type;
+						}
+					});
+					
+					return allSameType;
+				},
+				
+				edit: function() {
+					
+					if(this.areAllSelectedSameType()) {
+						this.forEachSelected(function(widget) {
+							widget.getScope().configs.defaultAction(widget.getScope(), widget);
+						});
+					}
+				},
 				
 				unselectAll: function() {
 					
-					factory.baseScope.widget.forEachChilds(function(_widget) {
-						_widget.setSelected(false);
+					this.forEachSelected(function(widget) {
+						widget.setSelected(false);
+					});
+				},
+					
+				forEachSelected: function(callback) {
+					
+					factory.baseScope.widget.forEachChilds(function(widget, parent) {
+						if(widget.getScope().isSelected) {
+							callback(widget);
+						}
 					});
 				},
 				
@@ -386,15 +434,13 @@
 				 */
 				duplicate: function() {
 					
-					factory.baseScope.widget.forEachChilds(function(widget, parent) {
-						if(widget.getScope().isSelected) {
-							var duplicate = widget.clone();
-							var index = widget.getScope().$index;
-							
-							console.log('DUPLICATE', duplicate);
-							
-							widget.getParent().childs.splice(index + 1, 0, duplicate);
-						}
+					factory.widget.forEachSelected(function(widget) {
+						var duplicate = widget.clone();
+						var index = widget.getScope().$index;
+						
+						console.log('DUPLICATE', duplicate);
+						
+						widget.getParent().childs.splice(index + 1, 0, duplicate);
 					});
 				},
 				
@@ -403,10 +449,8 @@
 				 */
 				removeAllSelected: function() {
 					
-					factory.baseScope.widget.forEachChilds(function(widget, parent) {
-						if(widget.getScope().isSelected) {
-							widget.remove();
-						}
+					factory.widget.forEachSelected(function(widget) {
+						widget.remove();
 					});
 				}
 			}

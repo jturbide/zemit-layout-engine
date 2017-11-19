@@ -20,12 +20,12 @@
 				$s.getSettings = function() {
 					
 				    var settings = {};
-				    var selected = $zm.getBaseScope().widget.forEachSelected(function(widget) {
-				    	var zWidget = Zemit.widgets.get(widget.type);
-				    	if(zWidget.settings && !settings[widget.type]) {
-				            settings[widget.type] = zWidget.settings;
-				        }
-				    });
+				    // var selected = $zm.getBaseScope().widget.forEachSelected(function(widget) {
+				    // 	var zWidget = Zemit.widgets.get(widget.type);
+				    // 	if(zWidget.settings && !settings[widget.type]) {
+				    //         settings[widget.type] = zWidget.settings;
+				    //     }
+				    // });
 				    return settings;
 				};
 			}

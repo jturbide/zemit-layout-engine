@@ -1,6 +1,6 @@
-<div class="zm-container zm-row-flex-default">
-	<div class="zm-container-inner zm-row-flex-item" ng-click="zm.widget.unselectAll()">
-		<div class="zm-container-scrollable" zm-accept-widget-inside>
+<div class="zm-container zm-flex-container">
+	<div class="zm-container-inner zm-flex-container-column">
+		<div class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
 			
 			<!-- LIST OF CHILD WIDGETS -->
 			<zm-widget-childs type="'row'" childs="container.childs"></zm-widget-childs>
@@ -10,8 +10,51 @@
 			<!--	<i class="fa fa-plus-circle" zm-clickable zm-zoomable ng-click="container.addNewChild('row')"></i>-->
 			<!--</div>-->
 		</div>
+		
+		<!-- NOTICE -->
+		<zm-dismissable ng-if="container.childs.length === 1 && container.childs[0].childs.length === 0" type="info" key="zm-widget-container-first-row" class="zm-flex-minimal">
+			Choose the number of column(s) you desire.
+		</zm-dismissable>
+		
+		<!-- NOTICE -->
+		<zm-dismissable ng-if="container.childs.length === 0" type="info" key="zm-widget-container-first-time" class="zm-flex-minimal">
+			Open the widgets drawer and start by adding a new row.
+		</zm-dismissable>
+		
+		<!-- NOTICE -->
+		<zm-dismissable ng-if="zm.widget.totalSelected > 0" type="info" key="zm-widget-container-first-drop" class="zm-flex-minimal">
+			Tap multiple time the same widget to loop through its parents. Now tap and hold the selection to drag it around.
+		</zm-dismissable>
+		
+		<div ng-if="zm.widget.totalSelected > 0" class="zm-container-quick-actions zm-flex-minimal">
+			<div class="zm-flex-container zm-flex-container-gap">
+				
+				<zm-tabs anchor="bottom-left">
+					<items>
+						<!-- REMOVE -->
+						<!--<li class="zm-bg-warning" ng-click="zm.action(zm.widget.removeAllSelected)">-->
+						<li ng-click="zm.action(zm.widget.removeAllSelected)">
+							<i class="fa fa-trash-o"></i>
+							Remove
+						</li>
+						<!-- DUPLICATE -->
+						<!--<li class="zm-bg-info" ng-click="zm.action(zm.widget.duplicate)">-->
+						<li ng-click="zm.action(zm.widget.duplicate)">
+							<i class="fa fa-copy"></i>
+							Duplicate
+						</li>
+					</items>
+				</zm-tabs>
+				
+				<!-- EDIT -->
+				<zm-btn style="flex: 3" ng-disabled="!zm.widget.allSelectedSameType" ng-click="zm.widget.edit()">
+					<i class="fa fa-pencil fa-margin-right"></i>
+					Edit
+				</zm-btn>
+			</div>
+		</div>
 	</div>
 	
 	<!-- SIDEBAR -->
-	<zm-sidebar class="zm-row-flex-item"></zm-sidebar>
+	<zm-sidebar class=""></zm-sidebar>
 </div>

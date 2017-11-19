@@ -3,16 +3,17 @@
 }
 .zm-widget-image img {
 	max-width: 100%;
-	min-width: 1em;
+	min-width: 1rem;
+  float: left;
 }
 .zm-widget-image-empty {
   background-color: rgba(0, 0, 0, 0.1);
   color: white;
-  font-size: 3em;
+  font-size: 3rem;
 }
 @media (pointer: coarse) {
   .zm-widget-image-empty {
-    font-size: 2em;
+    font-size: 2rem;
   }
 }
 
@@ -25,6 +26,6 @@
       -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #eee)),
       -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #eee));
 
-    background-size: 2em 2em;
-    background-position:0 0, 1em 0, 1em -1em, 0px 1em;
+    background-size: 2rem 2rem;
+    background-position:0 0, 1rem 0, 1rem -1rem, 0px 1rem;
 }

@@ -1,0 +1,13 @@
+.zm-field-text > input:not([type="submit"]) {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  border-radius: 0;
+  margin: 0;
+  line-height: 1rem;
+  border: #ccc solid 1px;
+}
+.zm-field-text > input:not([type="submit"]):focus {
+  outline: 0;
+  border-color: black;
+}

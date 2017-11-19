@@ -27,7 +27,7 @@ var Zemit = {
 		/**
 		 * Listen to key events
 		 */
-		angular.element(document).keydown(function(event) {
+		angular.element(document).on('keydown', function(event) {
 			
 			if(angular.element(event.target).is('input')
 			|| angular.element(event.target).is('textarea')
@@ -118,6 +118,11 @@ var Zemit = {
 				
 				// Save all configurations before leaving
 				$window.onbeforeunload = function() {
+					$hook.run('onbeforeunload');
+					$config.save();
+				};
+				
+				$window.onpagehide = function() {
 					$hook.run('onbeforeunload');
 					$config.save();
 				};

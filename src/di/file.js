@@ -28,9 +28,11 @@
 				var input = document.createElement('input');
 				input.type = 'file';
 				input.accept = accept;
+				angular.element('body').append(input);
 				input.click();
+				
 				input.onchange = function(event) {
-						
+					
 					var files = event.target.files;
 					var file = files[0];
 					input.remove();

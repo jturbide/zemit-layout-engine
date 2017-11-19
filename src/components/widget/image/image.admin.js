@@ -13,6 +13,10 @@
 			desc: 'Basic image',
 			icon: 'image',
 		},
+		defaultAction: function($s, widget) {
+			
+			$s.promptFileDialog();
+		},
 		defaultValues: {
 			src: null
 		},
@@ -28,7 +32,7 @@
 			var $file = $di.get('$file');
 			
 			$s.promptFileDialog = function() {
-return;
+				
 				$file.promptFileDialog(function(file, data) {
 					var reader = new FileReader();
 					reader.onload = function(event) {
