@@ -5,7 +5,7 @@
 		<li class="zm-tab-item" ng-click="tab.current = key" ng-class="{active: tab.current === key}" ng-repeat="(key, item) in items">{{ ::item.title }}</li>
 	</ul>
 	
-	<div class="zm-row-flex-default" ng-repeat="row in items[tab.current].rows">
+	<div class="zm-flex-container" ng-repeat="row in items[tab.current].rows">
 		
 		<!-- LIST OF ITEMS (REPEAT) -->
 		<div class="zm-widget-add-item" ng-click="addWidget(item)" ng-repeat="item in row" zm-clickable>

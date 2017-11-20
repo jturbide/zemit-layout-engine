@@ -65,12 +65,14 @@
 							$zm.widget.hovered.data.forEach(function(widget) {
 								if(widget.getScope().isDropHover) {
 									widget.getScope().isDropHover = false;
+									widget.getScope().$digest();
 								}
 							});
 							
 							$zm.widget.hovered.set(_this, true);
 							if(!$zm.widget.hovered.data[0].getScope().isDropHover) {
 								$zm.widget.hovered.data[0].getScope().isDropHover = true;
+								$zm.widget.hovered.data[0].getScope().$digest();
 							}
 							
 							$zm.widget.hovered.data.forEach(function(widget) {
@@ -539,18 +541,22 @@
 													top -= ($container.offset().top - $body.offset().top);
 													left -= ($container.offset().left - $body.offset().left);
 													
+													// Add the scrolling position
 													top += $container.scrollTop();
 													left += $container.scrollLeft();
 													
-													placeholderRect.y = top + 'px';
-													placeholderRect.x = left + 'px';
+													placeholderRect.y = top;
+													placeholderRect.x = left;
 													
-													dropMemory.$placeholder[0].style.transform = 'translate3d(' + placeholderRect.x + 'px, ' + placeholderRect.y + 'px, 0)';
+													dropMemory.$placeholder[0].classList.remove('zm-hidden');
 													dropMemory.$placeholder.css({
 														width: placeholderRect.width + 'px',
-														height: placeholderRect.height + 'px'
+														height: placeholderRect.height + 'px',
+														top: placeholderRect.y + 'px',
+														left: placeholderRect.x + 'px'
+														//transform: 'translate3d(' + placeholderRect.x + 'px, ' + placeholderRect.y + 'px, 0)'
 													});
-													
+													console.log('translate3d(' + placeholderRect.x + 'px, ' + placeholderRect.y + 'px, 0)');
 													dropMemory.last.widget = hoveredWidget;
 													dropMemory.last.position = position;
 													dropMemory.last.part = 'outside';
@@ -558,7 +564,6 @@
 													placeClassList.remove('zm-drop-placeholder-before', 'zm-drop-placeholder-after');
 													placeClassList.add('zm-drop-placeholder-' + position);
 													dropMemory.last.hoveredWidget = hoveredWidget;
-													dropMemory.$placeholder[0].classList.remove('zm-hidden');
 												}
 												
 												// Set default drop effect to copy if CTRL or Command key enabled

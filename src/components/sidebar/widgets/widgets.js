@@ -115,9 +115,15 @@
 						var $element = event.interaction.$element;
 						
 						// translate the element
-						$element[0].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
+						$element.css({
+							top: y + 'px',
+							left: x + 'px',
+							// width: '',
+							// height: ''
+						});
+						// $element[0].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
 					
-						// update the posiion attributes
+						// Update the position attributes
 						target.setAttribute('data-x', x);
 						target.setAttribute('data-y', y);
 						

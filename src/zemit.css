@@ -105,36 +105,6 @@ zm-widget[type="container"] {
 /**
  * Flex containers
  */
-.zm-row-flex-default {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-flow: row wrap;
-}
-.zm-row-flex-default > * {
-  flex-grow: 1;
-}
-.zm-flex-column-container {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-}
-.zm-flex-row-container {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-flow: row wrap;
-}
-.zm-flex-row-container > .zm-flex-item,
-.zm-flex-column-container > * {
-  flex-grow: 1;
-  margin: 0.5rem;
-}
-
 .zm-flex-container {
   display: flex;
   flex-direction: row;
