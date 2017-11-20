@@ -10,8 +10,7 @@ var Zemit = {
 };
 (function() {
 	Zemit.app = angular.module('zemit', [
-		'ngSanitize',
-		'ui.tree'
+		'ngSanitize'
 	]);
 	
 	Zemit.app.run(['$rootScope', '$zm', '$history', function($rs, $zm, $history) {
@@ -99,11 +98,13 @@ var Zemit = {
 	Zemit.app.directive('zemit', ['$zm', '$compile', '$config', '$window', '$hook', function($zm, $compile, $config, $window, $hook) {
 		return {
 			restrict: 'E',
+			// templateUrl: 'zemit.html',
 			link: function ($s, $e, attrs) {
 				
 				$config.load();
 				$config.prepare({
-					content: {}
+					content: {},
+					context: 'structure'
 				});
 				
 				$zm.setBaseScope($s);

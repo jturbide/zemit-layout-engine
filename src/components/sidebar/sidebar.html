@@ -1,5 +1,5 @@
 <div class="zm-sidebar" ng-class="{'zm-open': tabs.showContent, 'zm-hide-all-tabs': tabs.hidden}">
-	<div class="zm-sidebar-inner zm-clearfix zm-row-flex-default">
+	<div class="zm-sidebar-inner zm-clearfix zm-flex-container">
 		<div ng-show="tabs.showContent" class="zm-sidebar-tab">
 			
 			<!-- DEBUG -->
@@ -33,7 +33,7 @@
 			<!--</div>-->
 			
 			<!-- WIDGETS -->
-			<div ng-show="config.sidebar.tabs.widgets.visible">
+			<div ng-show="config.sidebar.tabs.widgets.visible && config.context === 'structure'">
 				<zm-sidebar-widgets></zm-sidebar-widgets>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 				<!--<li ng-class="{'active': config.sidebar.tabs.advanced.visible}" ng-click="tabs.toggle('advanced')" class="zm-tab-item">-->
 				<!--	Advanced-->
 				<!--</li>-->
-				<li ng-class="{'active': config.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
+				<li ng-show="config.context === 'structure'" ng-class="{'active': config.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
 					Widgets
 				</li>
 			</ul>

@@ -30,11 +30,11 @@
 .zm-widget-row > .zm-widget-inner > .zm-widget > .zm-widget-inner {
   height: 100%;
 }
-.zm-widget-column > .zm-widget-inner {
+.zm-widget-container:not(.zm-context-preview) .zm-widget-column > .zm-widget-inner {
   padding: 1rem;
 }
 @media (pointer: coarse) {
-  .zm-widget-column .zm-widget-inner .zm-widget-inner:not(.zmAcceptWidgetInside) {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget-column .zm-widget-inner .zm-widget-inner:not(.zmAcceptWidgetInside) {
     padding: 0.5rem;
   }
   .zm-widget-column > .zm-widget-inner > .zm-widget-add {
@@ -43,10 +43,10 @@
   .zm-widget-column {
     margin: 0;
   }
-  .zm-widget-column > .zm-widget-inner {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget-column > .zm-widget-inner {
     padding: 0.75rem;
   }
-  .zm-widget-column.zm-widget-empty > .zm-widget-inner {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget-column.zm-widget-empty > .zm-widget-inner {
     min-height: 4rem;
   }
 }

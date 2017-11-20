@@ -7,21 +7,15 @@
 			templateUrl: 'components/toolbar/toolbar.html',
 			link: function ($s, $e, attrs) {
 				
-				$config.prepare({
-					toolbar: {
-						tab: 'structure'
-					}
-				});
-				
 				// Set container scopes
 				var config = $config.get();
 				$s.container = $zm.content.get();
 				$s.history = $history;
 				$s.$modal = $modal;
 				
-				$s.setTab = function(tab) {
+				$s.setTab = function(context) {
 					$zm.action(function() {
-						config.toolbar.tab = tab;
+						config.context = context;
 					}, undefined, config);
 				};
 				

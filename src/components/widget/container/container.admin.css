@@ -46,7 +46,7 @@ zm-widget[type="container"] {
    -ms-user-select: none;
    user-select: none;
 }
-.zm-container-inner {
+ .zm-widget-container:not(.zm-context-preview) .zm-container-inner {
   background: repeating-linear-gradient(
     45deg,
     #f3f3f3,

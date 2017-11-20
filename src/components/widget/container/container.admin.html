@@ -1,4 +1,4 @@
-<div class="zm-container zm-flex-container">
+<div class="zm-container zm-flex-container zm-context-{{ config.context }}">
 	<div class="zm-container-inner zm-flex-container-column">
 		<div class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
 			
@@ -26,7 +26,8 @@
 			Tap multiple time the same widget to loop through its parents. Now tap and hold the selection to drag it around.
 		</zm-dismissable>
 		
-		<div ng-if="zm.widget.totalSelected > 0" class="zm-container-quick-actions zm-flex-minimal">
+		<!-- QUICK ACTIONS -->
+		<div ng-if="zm.widget.totalSelected > 0 && config.context !== 'preview'" class="zm-container-quick-actions zm-flex-minimal">
 			<div class="zm-flex-container zm-flex-container-gap">
 				
 				<zm-tabs anchor="bottom-left">
@@ -56,5 +57,5 @@
 	</div>
 	
 	<!-- SIDEBAR -->
-	<zm-sidebar class=""></zm-sidebar>
+	<zm-sidebar ng-if="config.context !== 'preview'"></zm-sidebar>
 </div>

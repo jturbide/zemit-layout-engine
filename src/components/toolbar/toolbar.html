@@ -13,40 +13,39 @@
 			<toggle>
 				
 				<i class="fa" ng-class="{
-					'fa-cubes': config.toolbar.tab === 'structure',
-					'fa-paint-brush': config.toolbar.tab === 'style',
-					'fa-eye': config.toolbar.tab === 'preview'
+					'fa-cubes': config.context === 'structure',
+					'fa-paint-brush': config.context === 'style',
+					'fa-eye': config.context === 'preview'
 				}"></i>
 				
-				<span ng-if="config.toolbar.tab === 'structure'">
+				<span ng-if="config.context === 'structure'">
 					Structure
 				</span>
-				<span ng-if="config.toolbar.tab === 'style'">
+				<span ng-if="config.context === 'style'">
 					Style
 				</span>
-				<span ng-if="config.toolbar.tab === 'preview'">
+				<span ng-if="config.context === 'preview'">
 					Preview
 				</span>
-				<!--<i class="fa" ng-class="{-->
-				<!--	'fa-cubes': config.toolbar.tab === 'structure',-->
-				<!--	'fa-paint-brush': config.toolbar.tab === 'style',-->
-				<!--	'fa-eye': config.toolbar.tab === 'preview'-->
-				<!--}"></i>-->
+				
 				<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
 			</toggle>
 			<items>
 				<!-- STRUCTURE -->
-				<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'structure'}" ng-click="setTab('structure')">
+				<li class="zm-tab-item" ng-class="{active: config.context === 'structure'}" ng-click="setTab('structure')">
+					<i class="fa fa-cubes"></i>
 					Structure
 				</li>
 				
 				<!-- STYLE -->
-				<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'style'}" ng-click="setTab('style')">
+				<li class="zm-tab-item" ng-class="{active: config.context === 'style'}" ng-click="setTab('style')">
+					<i class="fa fa-paint-brush"></i>
 					Style
 				</li>
 				
 				<!-- PREVIEW -->
-				<li class="zm-tab-item" ng-class="{active: config.toolbar.tab === 'preview'}" ng-click="setTab('preview')">
+				<li class="zm-tab-item" ng-class="{active: config.context === 'preview'}" ng-click="setTab('preview')">
+					<i class="fa fa-eye"></i>
 					Preview
 				</li>
 			</items>
