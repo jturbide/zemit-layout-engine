@@ -96,6 +96,7 @@
 					return {
 						restrict: 'E',
 						replace: true,
+						scope: true,
 						templateUrl: Zemit.widgets.get(widget.name).uri + '/' + dashed + '.admin.settings.html',
 						link: function($s, $e, attrs) {
 							
@@ -140,6 +141,7 @@
 			restrict: 'E',
 			replace: true,
 			priority: 1,
+			scope: true,
 			link: function($s, $e, attrs) {
 				
 				// Widget type (mandatory)
@@ -189,8 +191,26 @@
 					 */
 					set: function(event, target) {
 						
-						var $target = target || event.currentTarget || event.target;
-						var bounds = $target.getBoundingClientRect();
+						var element = target || event.currentTarget || event.target;
+						
+						/////////////////////////////////
+						// TODO: POTENTIALY BETTER PERFORMANCE BUT NOT ACCURATE YET:
+						// var bounds = {
+						// 	left: element.offsetLeft,
+						// 	top: element.offsetTop,
+						// 	width: element.offsetWidth,
+						// 	height: element.offsetHeight,
+						// }
+						
+						// if(event.touches) {
+						// 	event = event.touches[0];
+						// }
+						
+						// this.x = (event.clientX - bounds.left) * 100 / bounds.width;
+						// this.y = (event.clientY - bounds.top) * 100 / bounds.height;
+						////////////////////////////////
+						
+						var bounds = element.getBoundingClientRect();
 						
 						if(event.touches) {
 							event = event.touches[0];
@@ -272,12 +292,8 @@
 						if(!this.hasParent()) {
 							return false;
 						}
-						var s = $s.$parent;
-						while(s && s.widget.token !== $s.parentToken) {
-							s = s.$parent;
-						}
 						
-						return s && s.widget;
+						return $s.$parent.$parent.widget;
 					},
 					
 					hasParent: function() {
@@ -596,7 +612,7 @@
 					/**
 					 * Get widget's scope
 					 */
-					getScope: function() {
+					getScope: function(type) {
 						
 						return $s;
 					},
@@ -642,8 +658,8 @@
 					: angular.element('<zm-widget-default />');
 				
 				// Set widget's parent
-				if($s.$parent && $s.$parent.widget) {
-					$s.parentToken = $s.$parent.widget.token;
+				if($s.$parent.$parent && $s.$parent.$parent.widget) {
+					$s.parentToken = $s.$parent.$parent.widget.token;
 				}
 				
 				$zmWidget.attr('id', '{{ widget.id }}');
