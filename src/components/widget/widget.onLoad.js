@@ -63,13 +63,15 @@
 							event.clientY = pos.y;
 							
 							$zm.widget.hovered.data.forEach(function(widget) {
-								widget.getScope().isDropHover = false;
-								widget.getScope().$digest();
+								if(widget.getScope().isDropHover) {
+									widget.getScope().isDropHover = false;
+								}
 							});
 							
 							$zm.widget.hovered.set(_this, true);
-							$zm.widget.hovered.data[0].getScope().isDropHover = true;
-							$zm.widget.hovered.data[0].getScope().$digest();
+							if(!$zm.widget.hovered.data[0].getScope().isDropHover) {
+								$zm.widget.hovered.data[0].getScope().isDropHover = true;
+							}
 							
 							$zm.widget.hovered.data.forEach(function(widget) {
 								widget.getScope().position.set(event);
@@ -203,8 +205,7 @@
 											y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 										
 										// Translate the element
-										$draggable.css('top', y + 'px');
-										$draggable.css('left', x + 'px');
+										$draggable[0].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
 									
 										// Update the position attributes
 										target.setAttribute('data-x', x);
@@ -217,8 +218,7 @@
 										var target = event.target;
 										
 										// Reset widget position
-										$draggable.css('top', '');
-										$draggable.css('left', '');
+										$draggable[0].style.transform = '';
 										target.removeAttribute('data-x');
 										target.removeAttribute('data-y');
 										
@@ -448,7 +448,7 @@
 											if(isSame) {
 
 												if(dropMemory.$placeholder) {
-													dropMemory.$placeholder.hide();
+													dropMemory.$placeholder[0].classList.add('zm-hidden');
 												}
 												
 												dropMemory.last.widget = null;
@@ -467,7 +467,7 @@
 												var align = configs.drop.inside.align;
 												
 												if(dropMemory.$placeholder) {
-													dropMemory.$placeholder.hide();
+													dropMemory.$placeholder[0].classList.add('zm-hidden');
 												}
 												
 												dropMemory.last.widget = hoveredWidget;
@@ -512,18 +512,23 @@
 														
 													var $body = angular.element('body');
 													var $hovEle = hoveredScope.$element;
-													var hovStyle = dropMemory.$placeholder[0].style;
+													var placeholderRect = {
+														width: '',
+														height: '',
+														x: '',
+														y: ''
+													};
 													var placeClassList = dropMemory.$placeholder[0].classList;
 													placeClassList.remove('zm-drop-placeholder-vertical', 'zm-drop-placeholder-horizontal');
 													switch(align) {
 														case 'vertical':
-															hovStyle.width = '3px';
-															hovStyle.height = $hovEle.height() + 'px';
+															placeholderRect.width = 3;
+															placeholderRect.height = $hovEle.height();
 															placeClassList.add('zm-drop-placeholder-vertical');
 															break;
 														case 'horizontal':
-															hovStyle.width = $hovEle.outerWidth() + 'px';
-															hovStyle.height = '3px';
+															placeholderRect.width = $hovEle.outerWidth();
+															placeholderRect.height = 3;
 															placeClassList.add('zm-drop-placeholder-horizontal');
 															break;
 													}
@@ -537,8 +542,14 @@
 													top += $container.scrollTop();
 													left += $container.scrollLeft();
 													
-													hovStyle.top = top + 'px';
-													hovStyle.left = left + 'px';
+													placeholderRect.y = top + 'px';
+													placeholderRect.x = left + 'px';
+													
+													dropMemory.$placeholder[0].style.transform = 'translate3d(' + placeholderRect.x + 'px, ' + placeholderRect.y + 'px, 0)';
+													dropMemory.$placeholder.css({
+														width: placeholderRect.width + 'px',
+														height: placeholderRect.height + 'px'
+													});
 													
 													dropMemory.last.widget = hoveredWidget;
 													dropMemory.last.position = position;
@@ -547,7 +558,7 @@
 													placeClassList.remove('zm-drop-placeholder-before', 'zm-drop-placeholder-after');
 													placeClassList.add('zm-drop-placeholder-' + position);
 													dropMemory.last.hoveredWidget = hoveredWidget;
-													dropMemory.$placeholder.show();
+													dropMemory.$placeholder[0].classList.remove('zm-hidden');
 												}
 												
 												// Set default drop effect to copy if CTRL or Command key enabled
@@ -570,7 +581,7 @@
 											// Remove original element and
 											// placeholder from document
 											dropMemory.last.hoveredWidget.setDropInsideActivate(false);
-											dropMemory.$placeholder.hide();
+											dropMemory.$placeholder[0].classList.add('zm-hidden');
 											dropMemory.last.widget = null;
 										}
 									},
@@ -580,7 +591,7 @@
 										var finalize = function(newWidget) {
 											
 											// Hide placeholder
-											dropMemory.$placeholder.hide();
+											dropMemory.$placeholder[0].classList.add('zm-hidden');
 											
 											var drag = $zm.widget.drag.get();
 											var draggedElement = drag.getScope().$element;

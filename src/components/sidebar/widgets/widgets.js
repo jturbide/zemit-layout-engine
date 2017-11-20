@@ -115,8 +115,7 @@
 						var $element = event.interaction.$element;
 						
 						// translate the element
-						$element.css('top', y + 'px');
-						$element.css('left', x + 'px');
+						$element[0].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
 					
 						// update the posiion attributes
 						target.setAttribute('data-x', x);
@@ -142,10 +141,7 @@
 						var $element = event.interaction.$element;
 						
 						// Reset widget position
-						$element.css('top', '');
-						$element.css('left', '');
-						$element.css('width', '');
-						$element.css('height', '');
+						$element.css({top: '', left: '', width: '', height: ''});
 						target.removeAttribute('data-x');
 						target.removeAttribute('data-y');
 						
@@ -182,12 +178,14 @@
 						$timeout(function() {
 							
 							scope.$element = $clone;
-							$clone.css('top', $e.offset().top + 'px');
-							$clone.css('left', $e.offset().left + 'px');
 							$clone[0].setAttribute('data-x', $e.offset().left);
 							$clone[0].setAttribute('data-y', $e.offset().top);
-							$clone.css('width', $e.width());
-							$clone.css('height', $e.height());
+							$clone.css({
+								'top': $e.offset().top + 'px',
+								'left': $e.offset().left + 'px',
+								'width': $e.width(),
+								'height': $e.height()
+							});
 							
 							// If in portrait mode, close all sidebar tabs
 							if(window.innerWidth < 767) {
