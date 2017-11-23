@@ -117,9 +117,7 @@
 						// translate the element
 						$element.css({
 							top: y + 'px',
-							left: x + 'px',
-							// width: '',
-							// height: ''
+							left: x + 'px'
 						});
 						// $element[0].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
 					
@@ -147,7 +145,12 @@
 						var $element = event.interaction.$element;
 						
 						// Reset widget position
-						$element.css({top: '', left: '', width: '', height: ''});
+						$element.css({
+							top: '',
+							left: '',
+							width: '',
+							height: ''
+						});
 						target.removeAttribute('data-x');
 						target.removeAttribute('data-y');
 						
@@ -169,6 +172,11 @@
 				var onStart = function(event) {
 					
 					event.interaction.dontRemove = true;
+					event.interaction.dropState = {
+						position: null,
+						part: null,
+						widget: null
+					};
 					
 					var $clone = angular.element($e[0].cloneNode(true));
 					$clone.addClass('zm-widget-draggable');
@@ -184,8 +192,8 @@
 						$timeout(function() {
 							
 							scope.$element = $clone;
-							$clone[0].setAttribute('data-x', $e.offset().left);
 							$clone[0].setAttribute('data-y', $e.offset().top);
+							$clone[0].setAttribute('data-x', $e.offset().left);
 							$clone.css({
 								'top': $e.offset().top + 'px',
 								'left': $e.offset().left + 'px',

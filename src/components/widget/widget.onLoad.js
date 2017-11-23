@@ -65,21 +65,19 @@
 							$zm.widget.hovered.data.forEach(function(widget) {
 								if(widget.getScope().isDropHover) {
 									widget.getScope().isDropHover = false;
-									widget.getScope().$digest();
 								}
 							});
 							
 							$zm.widget.hovered.set(_this, true);
 							if(!$zm.widget.hovered.data[0].getScope().isDropHover) {
 								$zm.widget.hovered.data[0].getScope().isDropHover = true;
-								$zm.widget.hovered.data[0].getScope().$digest();
 							}
 							
 							$zm.widget.hovered.data.forEach(function(widget) {
 								widget.getScope().position.set(event);
 							});
 							
-							$s.$digest();
+							$s.$apply();
 						});
 						
 						if(configs.selectable !== false) {
@@ -164,22 +162,6 @@
 						});
 							
 						(function() {
-							var dropMemory = {
-								$zone: $element,
-							};
-							var initialDropValues = {
-								last: {
-									widget: null,
-									position: null,
-									part: null,
-									hoveredWidget: null
-								}
-							};
-							angular.extend(dropMemory, angular.copy(initialDropValues));
-							
-							if(dropMemory.$zone.length === 0) {
-								return;
-							}
 							
 							if($s.configs.draggable !== false) {
 								
@@ -188,7 +170,7 @@
 								var draggableOptions = {
 									restrict: {
 										endOnly: true,
-										restriction: $element.parents('.zm-container-scrollable:eq(0)')[0],
+										//restriction: $element.parents('.zm-container-scrollable:eq(0)')[0],
 										elementRect: {
 											top: 0,
 											left: 0,
@@ -235,7 +217,11 @@
 										// Set dragged widget
 										$zm.widget.drag.set(_this);
 										
-										event.interaction.initiated = true;
+										event.interaction.dropState = {
+											position: null,
+											part: null,
+											widget: null
+										};
 									};
 								}
 								else {
@@ -271,6 +257,12 @@
 												$zm.widget.drag.set(nearestSelected);
 												$draggable = nearestSelected.getScope().$element.find('.zm-widget-inner:eq(0)');
 												
+												event.interaction.dropState = {
+													position: null,
+													part: null,
+													widget: null
+												};
+										
 												interaction.start({name: 'drag'},
 													event.interactable,
 													$draggable[0]
@@ -284,6 +276,10 @@
 								}
 							}
 							
+							if($element.length === 0) {
+								return;
+							}
+								
 							/**
 							 * Accept widgets to be dropped inside
 							 */
@@ -292,7 +288,7 @@
 								
 								// Retrieve the container and its placeholder
 								var $container = $s.container.getScope().$element.find('.zm-container-scrollable');
-								dropMemory.$placeholder = $s.container.getScope().$placeholder;
+								$placeholder = $s.container.getScope().$placeholder;
 								
 								var acceptWidgetOutside = function(configs, widget) {
 									return configs.drop.outside.enabled
@@ -303,8 +299,18 @@
 								/**
 								 * Accept widgets to be dropped outside
 								 */
-								interact(dropMemory.$zone[0]).dropzone({
+								interact($element[0]).dropzone({
 									accept: '.zm-widget-draggable',
+									overlap: 'pointer',
+									ondropactivate: function(event) {
+										
+									},
+									ondropdeactivate: function(event) {
+										
+									},
+									ondragenter: function(event) {
+										
+									},
 									ondropmove: function(event) {
 										
 										var cursor = event.dragEvent.ctrlKey || event.dragEvent.metaKey ? 'copy' : 'move';
@@ -312,15 +318,7 @@
 										// Set default drop effect to nothing
 										$zm.widget.drag.resetCursor();
 										
-										// When releasing the button to drop the widget,
-										// InteractJS run through ondropmove event once again
-										// but we don't need to. Also, it corrupts the position
-										// of the event.clientY and event.clientX which results
-										// in a invalid calculation of the widget.position.set()
-										// if(event.dragmove.buttons === 0) {
-										// 	return true;
-										// }
-										
+										var dropState = event.interaction.dropState;
 										var hoveredWidgets = $zm.widget.hovered.getAll();
 										var draggedWidget = $zm.widget.drag.get();
 										var draggedElement = draggedWidget.getScope().$element;
@@ -331,7 +329,7 @@
 										// Loop through all widgets found and
 										// if once match any of the conditions,
 										// break the loop and end the process.
-										for(var hwk = 0; hwk < hoveredWidgets.length; hwk++) {
+										widgetLoop: for(var hwk = 0; hwk < hoveredWidgets.length; hwk++) {
 											
 											var hoveredWidget = hoveredWidgets[hwk];
 											var hoveredScope = hoveredWidget.getScope();
@@ -346,8 +344,8 @@
 												return;
 											}
 											
-											if(dropMemory.last.hoveredWidget) {
-												dropMemory.last.hoveredWidget.setDropInsideActivate(false);
+											if(dropState.widget) {
+												dropState.widget.setDropInsideActivate(false);
 											}
 											
 											var isSame = false;
@@ -449,14 +447,14 @@
 											
 											if(isSame) {
 
-												if(dropMemory.$placeholder) {
-													dropMemory.$placeholder[0].classList.add('zm-hidden');
+												if($placeholder) {
+													$placeholder[0].classList.add('zm-hidden');
 												}
 												
-												dropMemory.last.widget = null;
+												dropState.widget = null;
 												draggedElement.addClass('zm-drop-inside-activate');
 												
-												return;
+												break widgetLoop;
 											}
 											
 											if(draggedElement.hasClass('zm-drop-inside-activate')) {
@@ -468,14 +466,13 @@
 
 												var align = configs.drop.inside.align;
 												
-												if(dropMemory.$placeholder) {
-													dropMemory.$placeholder[0].classList.add('zm-hidden');
+												if($placeholder) {
+													$placeholder[0].classList.add('zm-hidden');
 												}
 												
-												dropMemory.last.widget = hoveredWidget;
-												dropMemory.last.position = null;
-												dropMemory.last.part = 'inside';
-												dropMemory.last.hoveredWidget = hoveredWidget;
+												dropState.widget = hoveredWidget;
+												dropState.position = null;
+												dropState.part = 'inside';
 												
 												// If a hook on the "can drop" verification has been
 												// declared, try to run it.
@@ -488,7 +485,7 @@
 												// Set default drop effect to copy if CTRL or Command key enabled
 												$zm.widget.drag.setCursor(cursor);
 												
-												return;
+												break widgetLoop;
 											}
 											// Outside dropping
 											else if(acceptWidgetOutside(configs, draggedWidget)) {
@@ -504,14 +501,14 @@
 														position = pos.y >= 50 ? 'after' : 'before';
 														break;
 												}
-		
-												if((!dropMemory.last.widget || (hoveredWidget.token !== dropMemory.last.widget.token))
-												|| (!dropMemory.last.position || (position !== dropMemory.last.position))) {
+												
+												if((!dropState.widget || (hoveredWidget.token !== dropState.widget.token))
+												|| (!dropState.position || (position !== dropState.position))) {
 
-													if(dropMemory.last.hoveredWidget) {
-														dropMemory.last.hoveredWidget.setDropInsideActivate(false);
+													if(dropState.widget) {
+														dropState.widget.setDropInsideActivate(false);
 													}
-														
+													
 													var $body = angular.element('body');
 													var $hovEle = hoveredScope.$element;
 													var placeholderRect = {
@@ -520,7 +517,7 @@
 														x: '',
 														y: ''
 													};
-													var placeClassList = dropMemory.$placeholder[0].classList;
+													var placeClassList = $placeholder[0].classList;
 													placeClassList.remove('zm-drop-placeholder-vertical', 'zm-drop-placeholder-horizontal');
 													switch(align) {
 														case 'vertical':
@@ -548,34 +545,36 @@
 													placeholderRect.y = top;
 													placeholderRect.x = left;
 													
-													dropMemory.$placeholder[0].classList.remove('zm-hidden');
-													dropMemory.$placeholder.css({
+													//dropState.hovered = hoveredWidget;
+													dropState.widget = hoveredWidget;
+													dropState.position = position;
+													dropState.part = 'outside';
+													
+													$placeholder[0].classList.remove('zm-hidden');
+													$placeholder.css({
 														width: placeholderRect.width + 'px',
 														height: placeholderRect.height + 'px',
 														top: placeholderRect.y + 'px',
 														left: placeholderRect.x + 'px'
 														//transform: 'translate3d(' + placeholderRect.x + 'px, ' + placeholderRect.y + 'px, 0)'
 													});
-													console.log('translate3d(' + placeholderRect.x + 'px, ' + placeholderRect.y + 'px, 0)');
-													dropMemory.last.widget = hoveredWidget;
-													dropMemory.last.position = position;
-													dropMemory.last.part = 'outside';
 													
 													placeClassList.remove('zm-drop-placeholder-before', 'zm-drop-placeholder-after');
 													placeClassList.add('zm-drop-placeholder-' + position);
-													dropMemory.last.hoveredWidget = hoveredWidget;
 												}
 												
 												// Set default drop effect to copy if CTRL or Command key enabled
 												$zm.widget.drag.setCursor(cursor);
 												
-												return;
+												break widgetLoop;
 											}
 										}
 									},
 									ondragleave: function(event) {
+console.log('LEAVE', $s.widget.token);
+										var dropState = event.interaction.dropState;
 										
-										if(dropMemory.last.widget) {
+										if(dropState.widget) {
 											
 											var drag = $zm.widget.drag.get();
 											var draggedElement = drag.getScope().$element;
@@ -585,18 +584,20 @@
 											
 											// Remove original element and
 											// placeholder from document
-											dropMemory.last.hoveredWidget.setDropInsideActivate(false);
-											dropMemory.$placeholder[0].classList.add('zm-hidden');
-											dropMemory.last.widget = null;
+											dropState.widget.setDropInsideActivate(false);
+											$placeholder[0].classList.add('zm-hidden');
+											dropState.widget = null;
 										}
 									},
 									ondrop: function(event) {
-									
+console.log('DROP', $s.widget.token);
+										var dropState = event.interaction.dropState;
+										
 										// Finalize callback
 										var finalize = function(newWidget) {
-											
+																						
 											// Hide placeholder
-											dropMemory.$placeholder[0].classList.add('zm-hidden');
+											$placeholder[0].classList.add('zm-hidden');
 											
 											var drag = $zm.widget.drag.get();
 											var draggedElement = drag.getScope().$element;
@@ -606,26 +607,22 @@
 											
 											if(newWidget) {
 												
-												switch(dropMemory.last.part) {
+												switch(dropState.part) {
 													case 'inside':
 														// Insert dragged element at given position
 														scope.widget.addNewChild(newWidget);
 														
 														// Unset hovered widget
-														dropMemory.last.hoveredWidget.setDropInsideActivate(false);
+														dropState.widget.setDropInsideActivate(false);
 														break;
 														
 													case 'outside':
 														// Insert dragged element at given position
-														parent.addNewChild(newWidget, dropMemory.last.position === 'before'
+														parent.addNewChild(newWidget, dropState.position === 'before'
 																? index
 																: index + 1);
 														break;
 												}
-												
-												// Digest scope so new indexes
-												// are generated
-												$s.$apply();
 												
 												// Unset the dragged widget
 												// before removing it from the
@@ -639,24 +636,21 @@
 												}
 											}
 											
-											// Reset all values
-											angular.extend(dropMemory, angular.copy(initialDropValues));
-											
 											// Digest scope
 											$s.$apply();
 										};
 										
 										// If no widget hovered, skip this
 										// process and reset
-										if(!dropMemory.last.widget) {
+										if(!dropState.widget) {
 											return finalize(false);
 										}
 										
 										// Clone dragged element
 										var dragged = $zm.widget.drag.get();
 										var clone = dragged.clone(event.dragEvent.ctrlKey || event.dragEvent.metaKey);
-										var parent = dropMemory.last.widget.getParent();
-										var scope = dropMemory.last.widget.getScope();
+										var parent = dropState.widget.getParent();
+										var scope = dropState.widget.getScope();
 										var configs = scope.configs;
 										var index = scope.$index;
 										
@@ -664,7 +658,7 @@
 										// declared, try to run it.
 										$zm.action(function() {
 											(configs.drop.onDrop instanceof Function)
-												? configs.drop.onDrop(clone, parent, index, dropMemory.last.part, finalize)
+												? configs.drop.onDrop(clone, parent, index, dropState.part, finalize)
 												: finalize(clone);
 										});
 									}

@@ -98,7 +98,6 @@ var Zemit = {
 	Zemit.app.directive('zemit', ['$zm', '$compile', '$config', '$window', '$hook', function($zm, $compile, $config, $window, $hook) {
 		return {
 			restrict: 'E',
-			// templateUrl: 'zemit.html',
 			link: function ($s, $e, attrs) {
 				
 				$config.load();

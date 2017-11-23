@@ -1,9 +1,13 @@
 .zm-widget {
   position: relative;
-  outline: #ccc solid 1px;
+  /*outline: #ccc solid 1px;*/
   /*outline-offset: -1px;*/
   cursor: default;
   background-color: white;
+}
+.zm-context-structure .zm-widget,
+.zm-context-style .zm-widget {
+  outline: #ccc solid 1px;
 }
 @media all and (pointer: fine) {
   .zm-widget.zm-highlighted {
@@ -12,12 +16,12 @@
   }
 }
 @media all and (pointer: coarse) {
-  .zm-widget.zm-selected {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget.zm-selected {
     outline-color: #999;
     z-index: 2;
   }
 }
-.zm-widget-inner {
+.zm-widget-container:not(.zm-context-preview) .zm-widget-inner {
   padding: 1rem;
   box-sizing: border-box;
   background-color: white;
@@ -27,13 +31,13 @@
   display: table;
   clear: both;
 }
-.zm-widget-container:not(.zm-widget-drag-parent) .zm-widget.zm-selected {
+.zm-widget-container:not(.zm-widget-drag-parent):not(.zm-context-preview) .zm-widget.zm-selected {
   /*outline-color: #75a9f9;*/
   z-index: 1;
 }
-.zm-widget-container:not(.zm-widget-drag-parent) .zm-widget.zm-selected > .zm-widget-inner {
+.zm-widget-container:not(.zm-widget-drag-parent):not(.zm-context-preview) .zm-widget.zm-selected > .zm-widget-inner {
   /*background-color: rgba(117,169,249, 0.25);*/
-  background-color: #DBEDC7;
+  background-color: #DBEDC7 !important;
 }
 .zm-widget.zm-widget-focus {
   box-shadow: 0 1.5rem 1rem -0.5rem rgba(0, 0, 0, 0.25);

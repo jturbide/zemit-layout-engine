@@ -391,22 +391,26 @@
 						}
 						else {
 							
-							// We can't use a setTimeout and $digest or $apply the
-							// scope because it it'll break other scope listeners
-							// such as the history manager.
-							//setTimeout(function() {
-								
-								$s.hooks.run('onBeforeRemove');
-								$parent.childs.splice($s.$index, 1);
-								
-								// Update other widget's indexes (same level)
-								angular.forEach($parent.childs, function(widget, key) {
-									widget.getScope().$index = key;
-								});
-								
-								$zm.widget.updateWidgetStates();
-							//});
+							var index = this.getIndex();
+							$s.hooks.run('onBeforeRemove');
+							$parent.childs.splice(index, 1);
+							
+							$zm.widget.updateWidgetStates();
 						}
+					},
+					
+					getIndex: function() {
+						
+						var $parent = this.getParent();
+						if($parent) {
+							for(var i = 0; i < $parent.childs.length; i++) {
+								if($parent.childs[i].token === this.token) {
+									return i;
+								}
+							}
+						}
+						
+						return 0;
 					},
 					
 					/**
@@ -456,13 +460,16 @@
 						if(regenerate || regenerate === undefined) {
 							
 							delete clone.id;
-							delete clone.token;
 							
 							clone.forEachChilds(function(child, parent) {
 								delete child.id;
-								delete child.token;
 							});
 						}
+						
+						this.updateToken();
+						clone.forEachChilds(function(child, parent) {
+							child.updateToken();
+						});
 						
 						return clone;
 					},
@@ -622,8 +629,9 @@
 					 */
 					getPrevious: function() {
 						
-						if($s.$index !== 0) {
-							return $s.row.childs[$s.$index - 1];
+						var index = this.getIndex();
+						if(index !== 0) {
+							return $s.row.childs[index - 1];
 						}
 						
 						return null;
@@ -634,8 +642,9 @@
 					 */
 					getNext: function() {
 						
-						if($s.row.childs.length !== $s.$index + 1) {
-							return $s.row.childs[$s.$index + 1];
+						var index = this.getIndex();
+						if($s.row.childs.length !== index + 1) {
+							return $s.row.childs[index + 1];
 						}
 						
 						return null;

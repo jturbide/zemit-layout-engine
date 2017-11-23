@@ -5,7 +5,7 @@
  * Keeps track of every changes. Undo/redo capabilities
  */
 (function() {
-	Zemit.app.factory('$history', ['$diff', '$config', '$hook', '$injector', function($diff, $config, $hook, $injector) {
+	Zemit.app.factory('$history', ['$diff', '$config', '$hook', '$injector', '$timeout', function($diff, $config, $hook, $injector, $timeout) {
 	    
 	    $hook.add('onload', function() {
 			var changes = $config.get('history');
@@ -86,6 +86,11 @@
 				}
 				
 				this.canRedo = true;
+				
+				$timeout(function() {
+					var $zm = $injector.get('$zm');
+					$zm.widget.updateWidgetStates();
+				});
 			},
 			
 			/**
@@ -107,6 +112,11 @@
 				}
 				
 				this.canUndo = true;
+				
+				$timeout(function() {
+					var $zm = $injector.get('$zm');
+					$zm.widget.updateWidgetStates();
+				});
 			},
 			
 			/**

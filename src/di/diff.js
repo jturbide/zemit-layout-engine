@@ -5,7 +5,7 @@
  * Get and apply deep object differences
  */
 (function() {
-	Zemit.app.factory('$diff', ['$injector', '$timeout', function($injector, $timeout) {
+	Zemit.app.factory('$diff', [function() {
 	    
 		var factory = {
 			
@@ -19,11 +19,6 @@
 				}
 				
 				jsondiffpatch.patch(scope, diff);
-				
-				$timeout(function() {
-					var $zm = $injector.get('$zm');
-					$zm.widget.updateWidgetStates();
-				});
 			},
 			
 			/**
