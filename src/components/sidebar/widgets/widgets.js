@@ -89,6 +89,7 @@
 			link: function($s, $e, attrs) {
 				
 				var draggableOptions = {
+					hold: 200,
 					restrict: {
 						endOnly: true,
 						restriction: "zemit",

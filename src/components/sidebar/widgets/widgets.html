@@ -17,7 +17,7 @@
     
 	<!-- TABS -->
 	<div class="zm-sidebar-group" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">
-        <div class="zm-sidebar-title zm-flex-container" ng-click="$root.config.sidebar.widgets.tabs[key].visible = !$root.config.sidebar.widgets.tabs[key].visible" zm-clickable>
+        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.config.sidebar.widgets.tabs[key].visible = !$root.config.sidebar.widgets.tabs[key].visible" zm-clickable>
             
             <span class="zm-sidebar-title-text">
             	{{ ::section.title }}

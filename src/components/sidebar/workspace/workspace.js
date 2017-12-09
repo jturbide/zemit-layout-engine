@@ -18,8 +18,8 @@
 				var config = $config.get();
 				var workspace = {
 					organizations: [{
-						key: 'dcoulombe',
-						title: 'Danny Coulombe',
+						key: 'general',
+						title: 'General',
 						data: data
 					}]
 				};

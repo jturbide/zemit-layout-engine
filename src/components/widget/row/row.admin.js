@@ -18,7 +18,10 @@
 		},
 		drop: {
 			outside: {
-				accept: ['row'],
+				accept: function(draggedWidget, currentWidget) {
+					return draggedWidget.type === 'row'
+						|| currentWidget.getParent().type === 'column';
+				},
 				decline: false
 			}
 		},
@@ -48,6 +51,8 @@
 			
 			$s.addColumns = function(amount) {
 				
+				$s.row.getParent().isSelectable = true;
+				
 				$zm.action(function() {
 					for(var i = 0; i < amount; i++) {
 						$s.row.addNewChild('column', undefined, {
@@ -56,6 +61,8 @@
 					}
 				}, $s.row.childs);
 			};
+			
+			$s.row.getParent().isSelectable = false;
 			
 			// Add default column if no columns available
 			// if($s.row.childs.length === 0) {

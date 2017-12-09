@@ -20,6 +20,9 @@
 		defaultValues: {
 			text: '<p>Lorem ipsum dolor amet</p>'
 		},
+		defaultAction: function($s, widget) {
+			$s.state.edit();
+		},
 		settings: {
 			title: 'Text',
 			controller: function($widgets, $di, attrs) {
@@ -31,6 +34,9 @@
 		},
 		controller: function($s, $e, $di, attrs) {
 			
+			var $zm = $di.get('$zm');
+			var $timeout = $di.get('$timeout');
+			var $overlay = $di.get('$overlay');
 			var $editorElement = $e.children('.zm-text-content');
 			var namespace = 'zmWidgetText';
 			
@@ -38,80 +44,69 @@
 			// its content and update the widget's scope without resetting
 			// itself every time.
 			$s.text = $s.widget.text;
+			$s.$watch('widget.text', function(nv, ov) {
+				if(nv !== ov) {
+					$s.text = $s.widget.text;
+				}
+			});
 			
-			// var editor = new Quill($editorElement[0], {
-			// 	theme: 'snow',
-			// 	placeholder: 'Type your content here...',
-			// 	modules: {
-			// 		toolbar: false
-			// 	}
-			// });
-
-
-			// editor.subscribe('editableInput', function (event, editable) {
-			// 	//$s.$apply(function() {
-			// 		$s.widget.content.value = editor.getContent();
-			// 	//});
-			// });
-			// editor.subscribe('blur', function (event, editable) {
-				
-			// 	if(event.target.id.startsWith('medium-editor')) {
-			// 		return;
-			// 	}
-				
-			// 	unbindEvents();
-			// 	bindEvents();
-			// 	$s.widget.bindEvents();
-				
-			// 	$s.$element.removeClass('zm-widget-focus');
-				
-			// 	// Unselect all text
-			// 	if (document.selection) {
-			// 		document.selection.empty();
-			// 	}
-			// 	else if (window.getSelection) {
-			// 		window.getSelection().removeAllRanges();
-			// 	}
-			// });
+			var overlay = new $overlay($s, {
+				title: 'Edit text content',
+				templateUrl: 'components/widget/text/text.overlay.html',
+				onShow: function($overlayElement) {
+					
+					$timeout(function() {
+						var contentEditable = $overlayElement.find('.zm-text-content-editor-text')[0];
+						contentEditable.innerHTML = $s.widget.text;
+						contentEditable.focus();
+						
+						var sel, range;
+						if (window.getSelection && document.createRange) {
+							range = document.createRange();
+							range.selectNodeContents(contentEditable);
+							sel = window.getSelection();
+							sel.removeAllRanges();
+							sel.addRange(range);
+						}
+						else if (document.body.createTextRange) {
+							range = document.body.createTextRange();
+							range.moveToElementText(contentEditable);
+							range.select();
+						}
+					}, 250);
+				},
+				onApply: function() {
+					
+					var text = overlay.$element.find('.zm-text-content-editor-text').html();
+					$s.text = text;
+					$s.widget.text = text;
+				}
+			});
 			
-			// var bindEvents = function() {
-				
-			// 	// Double-clicking in this widget should select the text only
-			// 	// in this context. We thus stop the propagation of the
-			// 	// event so the widget doesn't get selected.
-			// 	$e.on('dblclick.' + namespace, function(event) {
+			$s.state = {
+				editing: false,
+				edit: function() {
 					
-			// 		event.stopPropagation();
+					this.editing = true;
+					overlay.show();
+				},
+				apply: function() {
 					
-			// 		$s.widget.unbindEvents(['click', 'draggable']);
-			// 		unbindEvents();
+					var html = overlay.$e.find('.zm-text-content-editor-text').html();
+					$s.text = html;
+					$zm.action(function() {
+						$s.widget.text = html;
+					}, undefined, $s.widget);
 					
-			// 		$e.on('click.' + namespace, function(event) {
-			// 			event.stopPropagation();
-			// 		});
-			// 		$e.on('keydown.' + namespace, function(event) {
-			// 			event.stopPropagation();
-			// 		});
-			// 		$e.on('mousedown.' + namespace, function(event) {
-			// 			event.stopPropagation();
-			// 		});
+					this.editing = false;
+					overlay.close();
+				},
+				close: function() {
 					
-			// 		//$s.$element.addClass('zm-widget-focus');
-					
-			// 		// Select all automatically
-			// 		editor.enable();
-			// 		editor.focus();
-			// 		$s.widget.select(false, false, true);
-			// 		$s.$apply();
-			// 	});
-			// };
-			// bindEvents();
-			
-			// var unbindEvents = function() {
-			// 	$s.$element.off('.' + namespace);
-			// };
-			
-			// $s.editor = editor;
+					this.editing = false;
+					overlay.close();
+				}
+			};
 		}
 	});
 })();

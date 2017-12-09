@@ -6,6 +6,7 @@
   margin: 0;
   line-height: 1rem;
   border: #ccc solid 1px;
+  box-shadow: none;
 }
 .zm-field-text > input:not([type="submit"]):focus {
   outline: 0;

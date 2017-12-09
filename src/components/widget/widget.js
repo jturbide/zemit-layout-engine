@@ -394,9 +394,36 @@
 							var index = this.getIndex();
 							$s.hooks.run('onBeforeRemove');
 							$parent.childs.splice(index, 1);
+							$s.hooks.run('onAfterRemove');
 							
 							$zm.widget.updateWidgetStates();
 						}
+					},
+					
+					/**
+					 * Remove widget
+					 */
+					duplicate: function() {
+						
+						var $parent = this.getParent();
+						if(!$parent) {
+							return false;
+						}
+						else {
+							
+							var duplicate = this.clone();
+							var index = this.getIndex();
+							
+							console.log('DUPLICATE', duplicate);
+							
+							$s.hooks.run('onBeforeDuplicate', duplicate);
+							
+							this.getParent().childs.splice(index + 1, 0, duplicate);
+							
+							$s.hooks.run('onAfterDuplicate', duplicate);
+						}
+						
+						$zm.widget.updateWidgetStates();
 					},
 					
 					getIndex: function() {
@@ -411,6 +438,18 @@
 						}
 						
 						return 0;
+					},
+					
+					getChild: function(token) {
+						
+						var found;
+						this.forEachChilds(function(widget) {
+							if(!found && widget.token === token) {
+								found = widget;
+							}
+						});
+						
+						return found;
 					},
 					
 					/**

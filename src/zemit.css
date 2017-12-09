@@ -25,6 +25,12 @@ zemit {
   -ms-user-select: none !important; 
   user-select: none !important;
 }
+zemit input,
+zemit textarea,
+zemit [contenteditable] {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
 .zm-toolbar {
   grid-area: toolbar;
 }
@@ -37,9 +43,11 @@ zm-widget[type="container"] {
   display: table;
   clear: both;
 }
-
+.zm-nowrap {
+  white-space: nowrap;
+}
 .zm-hidden {
-  display: none;
+  display: none !important;
 }
 .zm-shadow-down {
   box-shadow: 0 0.5rem 1rem -0.5rem rgba(0, 0, 0, 0.15);
@@ -170,6 +178,10 @@ zm-widget[type="container"] {
   transform: scale(1);
   opacity: 1;
 }
+.zoom-container.zm-visible.zm-transform-completed > .zoom-item {
+  transform: none;
+  opacity: 1;
+}
 
 /**
  * DI: File
@@ -179,6 +191,20 @@ zm-widget[type="container"] {
 }
 .zm-file-drop-activate .zm-widget-inner * {
   opacity: 0.5;
+}
+
+/**
+ * Quick actions
+ */
+.zm-quick-actions {
+  text-align: center;
+  padding: 0.5rem;
+  border-top: #ccc solid 1px;
+  background-color: white;
+  box-shadow: 0 -0.5rem 1rem -0.5rem rgba(0, 0, 0, 0.15);
+}
+.zm-quick-actions .zm-btn {
+  text-align: center;
 }
 
 /**

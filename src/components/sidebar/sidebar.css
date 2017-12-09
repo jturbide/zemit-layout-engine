@@ -1,16 +1,15 @@
 .zm-sidebar {
   background-color: #eee;
   position: relative;
+  flex-basis: 33.333vw;
 }
 .zm-sidebar .zm-sidebar-inner {
   height: 100%;
   flex-wrap: nowrap;
   border-left: #ccc solid 1px;
 }
-.zm-sidebar.zm-open {
-  flex-basis: 33.333vw;
-}
 .zm-sidebar.zm-hide-all-tabs .zm-sidebar-tab {
+  position: absolute;
   opacity: 0;
   z-index: -1;
   pointer-events: none;
@@ -19,9 +18,12 @@
   box-shadow: inset 1rem 0 1rem -0.5rem rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.5);
   border-bottom: 0;
+  position: relative;
 }
 .zm-sidebar .zm-sidebar-tab {
   border-right: #ccc solid 1px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .zm-sidebar .zm-sidebar-tabs .zm-tabs {
   border-bottom: #ccc solid 1px;
@@ -31,6 +33,7 @@
   padding: 1rem 0.75rem;
   float: left;
   border-radius: 0;
+  width: 1.1rem;
 }
 .zm-sidebar .zm-sidebar-tabs .zm-tab-item + .zm-tab-item {
   border-top: #ccc solid 1px;
@@ -73,11 +76,14 @@
   display: block;
   padding: 0.5rem;
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.25rem;
   width: 100%;
   opacity: 0.25;
   box-sizing: border-box;
   line-height: 0;
+}
+.zm-sidebar-logo:hover {
+  opacity: 0.5;
 }
 .zm-sidebar-logo img {
   max-width: 100%;
@@ -86,19 +92,13 @@
   .zm-sidebar-title {
     border-left: 0;
   }
-  .zm-sidebar-tab {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: calc(100% - 2.65rem);
-    z-index: 1;
-    background-color: #eee;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+  .zm-sidebar-show-content .zm-container-inner {
+    display: none;
   }
-  .zm-sidebar.zm-open {
-    max-width: 2.65rem;
-    min-width: 2.65rem;
+  .zm-sidebar-show-content .zm-sidebar .zm-sidebar-inner {
+    border-left: 0;
+  }
+  .zm-sidebar-show-content .zm-sidebar {
+    flex: 100%;
   }
 }

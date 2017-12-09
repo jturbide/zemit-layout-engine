@@ -24,7 +24,7 @@
 				
 				$s.close = function() {
 					
-					$s.config.visible = false;
+					//$s.config.visible = false;
 					$e.remove();
 				};
 			}

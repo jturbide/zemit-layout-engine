@@ -23,7 +23,7 @@
   line-height: 1rem;
 }
 .zm-tabs > .zm-tab-item:hover {
-  background-color: white
+  background-color: white;
 }
 .zm-tabs > .zm-tab-item.active {
   background-color: white;
@@ -50,6 +50,7 @@
   background-color: white;
   z-index: 15;
   border-radius: 0.25rem;
+  min-width: calc(100% - 2px);
 }
 .zm-tabs-list li:first-child {
   border-radius: 0.2rem 0.2rem 0 0;
@@ -61,6 +62,9 @@
   padding: 1rem 1.5rem;
   white-space: nowrap;
 }
+.zm-tabs-list li:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .zm-tabs-list li.active {
   background-color: #000;
   color: white;
@@ -69,23 +73,23 @@
   border-top: #ccc solid 1px;
 }
 .zm-tabs-anchor-top-left .zm-tabs-list {
-  top: 0;
+  top: calc(2.75em + 1px);
   right: auto;
   left: 0;
 }
 .zm-tabs-anchor-top-right .zm-tabs-list {
-  top: 0;
+  top: calc(2.75em + 1px);
   right: 0;
 }
 .zm-tabs-anchor-bottom-left .zm-tabs-list {
   top: auto;
-  bottom: 0;
+  bottom: calc(2.75em + 1px);
   right: auto;
   left: 0;
 }
 .zm-tabs-anchor-bottom-right .zm-tabs-list {
   top: auto;
-  bottom: 0;
+  bottom: calc(2.75em + 1px);
   right: 0;
   left: auto;
 }

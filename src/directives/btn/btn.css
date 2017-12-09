@@ -7,7 +7,8 @@
   background-image: linear-gradient(to bottom, #fafafa, #f2f2f2);
   border-radius: 3px;
   color: inherit;
-  padding: 0.125rem 0.5rem 0.25rem 0.5rem;
+  padding: 0.5rem 0.75rem;
+  /*padding: 0.125rem 0.5rem 0.25rem 0.5rem;*/
   border: solid #ccc 1px;
   text-decoration: none;
   display: inline-block;
@@ -60,9 +61,8 @@
 .zm-btn.zm-btn-info:hover:not([disabled]) {
   border-color: #0047AA;
 }
-
-@media all and (max-width: 767px) {
-  .zm-btn {
-    padding: 0.5rem 0.75rem;
-  }
-}
+/*@media all and (pointer: coarse) {*/
+/*  .zm-btn {*/
+/*    padding: 0.5rem 0.75rem;*/
+/*  }*/
+/*}*/

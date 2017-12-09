@@ -119,12 +119,13 @@
 	/**
 	 * Run expression of the user clicks outside the element
 	 */
-	Zemit.app.directive('zmClickOutside', ['$device', '$document', '$parse', '$zm', function($device, $document, $parse, $zm) {
+	Zemit.app.directive('zmActionOutside', ['$device', '$document', '$parse', '$zm', function($device, $document, $parse, $zm) {
 		return {
 			restrict: "A",
 			link: function($s, $e, attrs) {
 				
 				var namespace = this.name + $zm.s4();
+				var eventName = attrs.zmActionOutsideEvent || 'mousedown';
 				var eventHandler = function(event) {
 					
 					if(!event || !event.target
@@ -138,7 +139,7 @@
                     }
 					
                     // OK, the user clicked outside. Run the expression
-                    $parse(attrs['zmClickOutside'])($s, {
+                    $parse(attrs['zmActionOutside'])($s, {
                     	event: event
                     });
                     $s.$digest();
@@ -148,28 +149,30 @@
 					enable: function() {
 						
 						this.disable();
-						$document.on('mousedown.' + namespace, eventHandler);
+						$document.on(eventName + '.' + namespace, eventHandler);
 					},
 					disable: function() {
-						$document.off('mousedown.' + namespace);
+						$document.off(eventName + '.' + namespace);
 					}
 				};
 				
-				$s.$watch(attrs['zmClickOutsideIf'], function(nv, ov) {
-					
-					if(nv === ov) {
-						return;
-					}
-					
-					setTimeout(function() {
-						if(nv) {
-							events.enable();
+				if(attrs['zmActionOutsideIf']) {
+					$s.$watch(attrs['zmActionOutsideIf'], function(nv, ov) {
+						
+						if(nv === ov) {
+							return;
 						}
-						else {
-							events.disable();
-						}	
+						
+						setTimeout(function() {
+							if(nv) {
+								events.enable();
+							}
+							else {
+								events.disable();
+							}	
+						});
 					});
-				});
+				}
 				
 				$s.$on('$destroy', events.disable);
 			}

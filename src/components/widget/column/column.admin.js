@@ -36,6 +36,22 @@
 			 */
 			var configure = function(column) {
 				
+				column.getScope().hooks.add('onBeforeDuplicate', function(newColumn) {
+					
+					var index = column.getIndex();
+					var parent = column.getParent();
+					var previous = parent.childs[index - 1];
+					var next = parent.childs[index + 1];
+					
+					if(newColumn.size === 1) {
+						
+					}
+					else {
+						newColumn.size = Math.ceil(newColumn.size / 2);
+						column.size = Math.floor(column.size / 2);
+					}
+				});
+				
 				/**
 				 * Whenever a column is removed, reapply to size to
 				 * the nearest column starting from the right. If no
@@ -43,9 +59,10 @@
 				 */
 				column.getScope().hooks.add('onBeforeRemove', function() {
 					
+					var index = column.getIndex();
 					var parent = column.getParent();
-					var previous = parent.childs[$s.$index - 1];
-					var next = parent.childs[$s.$index + 1];
+					var previous = parent.childs[index - 1];
+					var next = parent.childs[index + 1];
 					
 					// Make sure the column removal doesn't come from
 					// an insert/remove automatism which could result in
@@ -74,7 +91,7 @@
 					}
 					
 					// If no other columns found, remove the row
-				   if(!next && !previous) {
+					if(!next && !previous) {
 						parent.remove();
 					}
 				});

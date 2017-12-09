@@ -257,6 +257,19 @@
 					return allSameType;
 				},
 				
+				canEdit: function() {
+					
+					var hasDefaultAction = true;
+					this.forEachSelected(function(widget) {
+						if(!(widget.getScope().configs.defaultAction instanceof Function)) {
+							hasDefaultAction = false;
+						}
+					});
+					
+					return this.areAllSelectedSameType()
+						&& hasDefaultAction;
+				},
+				
 				edit: function() {
 					
 					if(this.areAllSelectedSameType()) {
@@ -435,13 +448,10 @@
 				duplicate: function() {
 					
 					factory.widget.forEachSelected(function(widget) {
-						var duplicate = widget.clone();
-						var index = widget.getScope().$index;
-						
-						console.log('DUPLICATE', duplicate);
-						
-						widget.getParent().childs.splice(index + 1, 0, duplicate);
+						widget.duplicate();
 					});
+					
+					factory.widget.updateWidgetStates();
 				},
 				
 				/**
@@ -449,9 +459,28 @@
 				 */
 				removeAllSelected: function() {
 					
+					var lastParent = false;
+					var lastIndex = 0;
 					factory.widget.forEachSelected(function(widget) {
+						lastParent = widget.getParent();
+						lastIndex = widget.getIndex();
 						widget.remove();
 					});
+					
+					if(lastParent && lastParent.childs.length > 0) {
+						
+						if(lastIndex > (lastParent.childs.length - 1)) {
+							lastParent.childs[lastParent.childs.length - 1].setSelected(true);
+						}
+						else {
+							lastParent.childs[lastIndex].setSelected(true);
+						}
+					}
+					else if(lastParent) {
+						lastParent.setSelected(true);
+					}
+					
+					factory.widget.updateWidgetStates();
 				}
 			}
 		};

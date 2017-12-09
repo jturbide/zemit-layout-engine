@@ -6,7 +6,7 @@
 	/**
 	 * Creates tabs
 	 */
-	Zemit.app.directive('zmTabs', [function() {
+	Zemit.app.directive('zmTabs', ['$timeout', function($timeout) {
 		return {
 			restrict: "E",
 			transclude: {
@@ -28,6 +28,13 @@
 					},
 					close: function() {
 						this.visible = false;
+					},
+					clickInside: function() {
+						$timeout(function() {
+							if(attrs.zmTabsKeepOpen === undefined) {
+								tabs.close();
+							}
+						}, 250);
 					}
 				};
 				

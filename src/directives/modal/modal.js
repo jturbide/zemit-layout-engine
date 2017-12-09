@@ -6,16 +6,15 @@
  */
 (function() {
 	
-	Zemit.app.factory('$modal', ['$compile', '$rootScope', '$timeout', function($compile, $rs, $timeout) {
+	Zemit.app.factory('$modal', ['$compile', '$rootScope', '$timeout', '$templateRequest', function($compile, $rs, $timeout, $templateRequest) {
 		
 		var factory = {
 			
 			instances: {},
 			
-			dialog: function(params = {}) {
+			dialog: function(id, params = {}) {
 				
-				var id = 'dialog';
-				this.create(id, params, function(modal) {
+				return this.create(id, params, function(modal) {
 					modal.open({
 						onClose: function() {
 							setTimeout(function() {
@@ -29,7 +28,7 @@
 			warning: function(params = {}) {
 				
 				var id = 'warning';
-				this.create(id, params, function(modal) {
+				return this.create(id, params, function(modal) {
 					modal.open({
 						onClose: function() {
 							setTimeout(function() {
@@ -43,7 +42,7 @@
 			error: function(params = {}) {
 				
 				var id = 'error';
-				this.create(id, params, function(modal) {
+				return this.create(id, params, function(modal) {
 					modal.open({
 						onClose: function() {
 							setTimeout(function() {
@@ -61,6 +60,13 @@
 				
 				var $modal = angular.element('<zm-modal></zm-modal>');
 				$modal.attr('id', 'zm_modal_' + id || $s.$root.zm.s4());
+				factory.instances[id] = {
+					ready: false
+				};
+				
+				if(params.fullScreen) {
+					$modal.addClass('zm-fullscreen');
+				}
 				
 				if(params.title) {
 					var $modalHeader = angular.element('<modal-header></modal-header>');
@@ -74,29 +80,52 @@
 					$modal.append($modalBody);
 				}
 				
-				if(params.buttons) {
-					var $modalFooter = angular.element('<modal-footer></modal-footer>');
-					$modal.append($modalFooter);
-				}
-				
 				var $s = $rs.$new();
 				var transcludeFn = $compile($modal)($s, function(clonedElement, scope) {
 					
-					factory.instances[id] = {
+					angular.extend(factory.instances[id], {
+						ready: true,
 						get: function() {
 							return scope.$$childHead.modal;
+						},
+						close: function() {
+							this.get().close();
+						},
+						open: function() {
+							this.get().open();
 						}
-					};
+					});
 					
 					// Move modal element to body
 					angular.element('body').append(clonedElement);
 					
-					if(callback instanceof Function) {
-						$timeout(function() {
+					$timeout(function() {
+						if(params.buttons) {
+							var $modalFooter = clonedElement.find('.zm-modal-footer');
+							$modalFooter.html('');
+							angular.forEach(params.buttons, function(button) {
+								var $btn = angular.element('<div class="zm-btn" />');
+								$btn.click(function(event) {
+									button.callback(event);
+									$s.$apply();
+								});
+								$btn.text(button.label);
+								
+								if(button.icon) {
+									var $icon = angular.element('<i />');
+									$icon.addClass('fa fa-' + button.icon);
+									$btn.prepend($icon);
+								}
+								$modalFooter.append($btn);
+							});
+						}
+						if(callback instanceof Function) {
 							callback(scope.$$childHead.modal);
-						});
-					}
+						}
+					});
 				});
+				
+				return $s.modal;
 			},
 			
 			/**
@@ -104,8 +133,12 @@
 			 */
 			open: function(id, params = {}) {
 				
-				var modal = factory.instances[id].get();
+				var modal = this.get(id);
 				modal.open(params);
+			},
+			
+			get: function(id) {
+				return factory.instances[id].get();
 			}
 		};
 		
@@ -139,6 +172,7 @@
 					id: attrs.id,
 					visible: false,
 					hidden: true,
+					$element: $e,
 					
 					/**
 					 * Toggle modal visibility

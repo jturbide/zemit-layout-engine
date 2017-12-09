@@ -28,7 +28,6 @@ zm-widget[type="container"] {
 	position: relative;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
-  flex-grow: 2 !important;
   padding: 0;
   outline: 0;
   border: 0;
@@ -73,18 +72,4 @@ zm-widget[type="container"] {
 }
 .zm-widget-container:not(.zm-widget-empty) > .zm-container-inner > .zm-widget-child > .zm-widget-add-sep {
   background-color: #f6f6f6;
-}
-
-/**
- * Quick actions
- */
-.zm-container-quick-actions {
-  text-align: center;
-  padding: 0.5rem;
-  border-top: #ccc solid 1px;
-  background-color: white;
-  box-shadow: 0 -0.5rem 1rem -0.5rem rgba(0, 0, 0, 0.15);
-}
-.zm-container-quick-actions .zm-btn {
-  text-align: center;
 }

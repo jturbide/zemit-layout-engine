@@ -19,6 +19,7 @@
 }
 .zm-toolbar {
   border-bottom: #ccc solid 1px;
+  z-index: 3;
 }
 .zm-toolbar .zm-tabs {
   border-bottom: 0;
@@ -30,9 +31,9 @@
   grid-auto-flow: column;
 }
 .zm-toolbar-inner {
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
   display: grid;
-  ggrid-column-gap: 1rem;
+  grid-column-gap: 1rem;
   grid-template-columns: max-content max-content auto max-content;
   grid-template-areas: "logo tabs context general";
   align-items: center;
@@ -69,6 +70,9 @@
 
 
 @media all and (max-width: 767px) {
+  .zm-toolbar-inner {
+    padding: 0.5rem;
+  }
   .zm-logo span {
     display: none;
   }

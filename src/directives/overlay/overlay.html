@@ -1,0 +1,28 @@
+<div class="zm-overlay zoom-container" ng-class="{'zm-visible': overlay.visible}">
+	<div class="zm-overlay-inner zoom-item zm-flex-container-column">
+		
+		<!-- HEADING -->
+		<div class="zm-overlay-heading zm-flex-minimal" ng-if="overlay.params.title">
+			{{ overlay.params.title }}
+		</div>
+		
+		<div ng-include="templateUrl" class="zm-overlay-template"></div>
+		
+		<!-- QUICK ACTIONS -->
+		<div class="zm-overlay-actions zm-flex-minimal">
+			<div class="zm-flex-container zm-flex-container-gap">
+				
+				<!-- CANCEL -->
+				<zm-btn style="flex: 1" ng-click="overlay.cancel()">
+					Cancel
+				</zm-btn>
+				
+				<!-- APPLY -->
+				<zm-btn style="flex: 3" ng-click="overlay.apply()">
+					<i class="fa fa-check fa-margin-right"></i>
+					Apply
+				</zm-btn>
+			</div>
+		</div>
+	</div>
+</div>

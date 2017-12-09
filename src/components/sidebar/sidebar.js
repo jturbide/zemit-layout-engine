@@ -36,10 +36,19 @@
 					
 					hideAll: function() {
 						
+						if(this.showContent) {
+							$e.parents('zemit:eq(0)').removeClass('zm-sidebar-show-content');
+						}
+						
 						this.hidden = true;
 					},
 					
 					unhideAll: function() {
+						
+						if(this.showContent) {
+							$e.parents('zemit:eq(0)').addClass('zm-sidebar-show-content');
+						}
+						
 						this.hidden = false;
 					},
 					
@@ -62,11 +71,21 @@
 							}
 						});
 						
-						this.showContent = show;
+						show ? this.show() : this.hide();
 						
 						if(show) {
 							this.unhideAll();
 						}
+					},
+					
+					show: function() {
+						this.showContent = true;
+						$e.parents('zemit:eq(0)').addClass('zm-sidebar-show-content');
+					},
+					
+					hide: function() {
+						this.showContent = false;
+						$e.parents('zemit:eq(0)').removeClass('zm-sidebar-show-content');
 					},
 					
 					toggle: function(name) {

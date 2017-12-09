@@ -1,6 +1,6 @@
 <div class="zm-modal zoom-container" ng-class="{'zm-visible': modal.visible, 'zm-modal-hidden': modal.hidden}">
-	<div class="zm-modal-inner zoom-item">
-		<div class="zm-modal-header zm-gradient-primary zm-clearfix">
+	<div class="zm-modal-inner zoom-item zm-flex-container-column">
+		<div class="zm-modal-header zm-gradient-primary zm-clearfix zm-flex-minimal">
 			
 			<!-- HEADER -->
 			<div class="zm-modal-header-inner" ng-transclude="header"></div>
@@ -15,7 +15,7 @@
 			<!-- BODY -->
 			<div class="zm-modal-body-inner" ng-transclude="body"></div>
 		</div>
-		<div class="zm-modal-footer">
+		<div class="zm-modal-footer zm-flex-minimal">
 			
 			<!-- FOOTER -->
 			<div class="zm-modal-footer-inner zm-clearfix" ng-transclude="footer">
