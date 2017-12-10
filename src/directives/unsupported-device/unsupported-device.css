@@ -1,0 +1,50 @@
+.zm-unsupported-device {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.zm-unsupported-device a {
+    color: yellow;
+    text-decoration: none;
+}
+.zm-unsupported-device p:last-child {
+  margin-bottom: 0;
+}
+.zm-unsupported-device a:hover {
+    text-decoration: underline;
+}
+.zm-unsupported-device h1 {
+  margin-top: 0;
+}
+.zm-unsupported-device-icon {
+    padding-right: 2rem;
+    padding-top: 0.25rem;
+}
+.zm-unsupported-device-icon img {
+  width: 100px;
+}
+.zm-unsupported-device-inner {
+    background-color: black;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 1rem 0.5rem -0.5rem rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 0.5rem;
+}
+@media all and (orientation: portrait) {
+  .zm-unsupported-device {
+    position: relative;
+    top: 0;
+    transform: none;
+  }
+  .zm-unsupported-device-inner {
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .zm-unsupported-device-icon img {
+    width: 15vw;
+  }
+}
