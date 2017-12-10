@@ -4,30 +4,62 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		
-		copy: {
-			html: {
-				src: 'src/index.html',
-				dest: 'dist/index.html'
-			},
-			// fa: {
-			// 	expand: true,
-			// 	cwd: 'node_modules/font-awesome/fonts',
-			// 	src: '*',
-			// 	dest: 'dist/fonts/'
-			// },
-			// widgets: {
-			// 	expand: true,
-			// 	cwd: 'src/components/widget/',
-			// 	src: '*/**',
-			// 	dest: 'dist/components/widget/'
-			// }
+		app: {
+			scripts: [
+				'src/.grunt-tmp/templates.js',
+			]
 		},
 		
-		embedFonts: {
-			all: {
-				files: {
-					'src/cache/typeface-rock-salt.css': ['node_modules/typeface-rock-salt/index.css']
-				}
+		includeSource: {
+		    options: {
+		        basePath: 'src',
+		        baseUrl: '',
+		        ordering: 'top-down'
+		    },
+		    app: {
+		        files: {
+		            'src/.index.grunt-tmp.html': 'src/index.html'
+		        }
+		    }
+		},
+		
+        ngtemplates: {
+        	zemit: {
+        		cwd: 'src',
+        		src: ['components/**/*.html', 'directives/**/*.html'],
+        		dest: 'src/.grunt-tmp/templates.js'
+        	}
+        },
+		
+		useminPrepare: {
+            html: 'src/.index.grunt-tmp.html'
+        },
+ 
+        usemin: {
+            html: ['src/.index.grunt-tmp.html']
+        },
+ 
+        uglify: {
+            options: {
+                report: 'min',
+                mangle: false
+            }
+        },
+		
+		copy: {
+			html: {
+				src: 'src/.index.grunt-tmp.html',
+				dest: 'dist/index.html'
+			},
+			favicon: {
+				src: 'src/favicon.png',
+				dest: 'dist/favicon.png'
+			},
+			assets: {
+				expand: true,
+				cwd: 'src/assets',
+				src: '**',
+				dest: 'dist/assets/'
 			}
 		},
 		
@@ -42,36 +74,21 @@ module.exports = function(grunt) {
 			}
 		},
 		
-		useminPrepare: {
-            html: 'src/index.html'
-        },
- 
-        usemin: {
-            html: ['dist/index.html']
-        },
- 
-        uglify: {
-            options: {
-                report: 'min',
-                mangle: false
-            }
-        },
-        
-        ngtemplates: {
-        	zemit: {
-        		cwd: 'src',
-        		src: ['components/**/*.html', 'directives/**/*.html'],
-        		dest: 'src/cache/templates.js'
-        	}
-        },
-        
-        css_url_replace: {
-			replace: {
+		assets_inline: {
+			options: {
+        		inlineImg: true
+			},
+			all: {
 				files: {
-					'dest/build.css': ['css/application.css', 'css/users/default.css']
+					'dist/index.base64.html': 'dist/index.base64.html'
 				}
 			}
-        }
+		},
+        
+        clean: [
+        	'src/.grunt-tmp',
+        	'src/.index.grunt-tmp.html'
+    	]
 	});
 
 	// Load the plugins
@@ -81,12 +98,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-usemin');
-    grunt.loadNpmTasks('grunt-css-url-replace');
-    grunt.loadNpmTasks('grunt-embed-fonts');
+    grunt.loadNpmTasks('grunt-include-source');
     grunt.loadNpmTasks('grunt-embed');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-assets-inline');
 
 	// Default task(s).
 	grunt.registerTask('default', [
-        'copy', 'embedFonts', 'ngtemplates', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'embed'//, 'rev'
+    	'ngtemplates', 'includeSource', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'copy', 'embed', 'assets_inline', 'clean'
     ]);
 };

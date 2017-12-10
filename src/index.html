@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Zemit</title>
+		<title>Zemit Layout Engine</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -11,13 +11,11 @@
 		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon.png" />
 		<link rel="icon" type="image/png" href="favicon.png" />
 		
-		<!-- build:css vendors.min.css -->
+		<!-- build:css assets/css/vendors.min.css -->
 		<link rel="stylesheet" href="../node_modules/font-awesome-base64/index.css" />
 		<!-- endbuild -->
-		
-		<!-- build:css zemit.min.css -->
+		<!-- build:css assets/css/zemit.min.css -->
 		<link rel="stylesheet" href="./zemit.css" />
-		
 		<link rel="stylesheet" href="./directives/general/general.css" />
 		<link rel="stylesheet" href="./directives/badge/badge.css" />
 		<link rel="stylesheet" href="./directives/btn/btn.css" />
@@ -64,18 +62,20 @@
 				background-color: white;
 			}
 		</style>
+	</head>
+	<body ng-cloak ng-app="zemit">
+		<zemit></zemit>
 		
-		<!-- build:js vendors.min.js -->
+		<!-- build:js assets/js/vendors.min.js -->
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="../node_modules/angular/angular.min.js"></script>
 		<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
 		<!-- endbuild -->
-		
-		<!-- build:js zemit.min.js -->
+		<!-- build:js assets/js/zemit.min.js -->
 		<script src="./zemit.js"></script>
-		<!--<script src="./cache/templates.js"></script>-->
+		<!-- include: "type": "js", "files": ".grunt-tmp/templates.js" -->
 		<script src="./di/zm.js"></script>
 		<script src="./di/config.js"></script>
 		<script src="./di/device.js"></script>
@@ -83,9 +83,7 @@
 		<script src="./di/file.js"></script>
 		<script src="./di/history.js"></script>
 		<script src="./di/hook.js"></script>
-		
 		<script src="./filters/general.js"></script>
-		
 		<script src="./directives/general/general.js"></script>
 		<script src="./directives/badge/badge.js"></script>
 		<script src="./directives/btn/btn.js"></script>
@@ -119,8 +117,5 @@
 		<script src="./components/widget/image/image.admin.js"></script>
 		<script src="./components/widget/text/text.admin.js"></script>
 		<!-- endbuild -->
-	</head>
-	<body ng-cloak ng-app="zemit">
-		<zemit></zemit>
 	</body>
 </html>
