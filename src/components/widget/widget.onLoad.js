@@ -144,7 +144,16 @@
 							_this.getScope().position.set(event);
 							$s.$apply();
 						});
-						
+						$s.$watch('config.context', function(nv, ov) {
+							if(nv !== ov && nv === 'structure') {
+								var $draggable = $element.find('.zm-widget-inner:eq(0)');
+								interact($draggable[0]).draggable(true);
+							}
+							else if(nv !== ov) {
+								var $draggable = $element.find('.zm-widget-inner:eq(0)');
+								interact($draggable[0]).draggable(false);
+							}
+						});
 						$s.$watch('isTouched', function(nv, ov) {
 							if(nv !== ov) {
 								$element.toggleClass('zm-touched', nv);

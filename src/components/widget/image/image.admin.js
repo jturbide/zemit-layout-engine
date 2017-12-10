@@ -14,7 +14,6 @@
 			icon: 'image',
 		},
 		defaultAction: function($s, widget) {
-			
 			$s.promptFileDialog();
 		},
 		defaultValues: {
