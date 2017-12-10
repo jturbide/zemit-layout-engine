@@ -6,6 +6,9 @@
   flex-grow: 1;
   margin: 0.5rem;
 }
+.zm-widget-container.zm-context-preview .zm-widget-column {
+  margin: 0;
+}
 .zm-widget-add {
   text-align: center;
   font-size: 1.5rem;

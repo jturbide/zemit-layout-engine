@@ -7,7 +7,7 @@
 		</div>
 		
 		<!-- RESIZE HANDLER -->
-		<div ng-if="config.context === 'structure'" ng-click="$event.stopPropagation()" ng-mouseenter="$event.stopPropagation()" ng-show="$index !== row.childs.length - 1" class="zm-widget-column-resize-handler" ng-class="{active: resize.handlerActive}">
+		<div ng-click="$event.stopPropagation()" ng-mouseenter="$event.stopPropagation()" ng-show="config.context === 'structure' && !dropActivated && $index !== row.childs.length - 1" class="zm-widget-column-resize-handler" ng-class="{active: resize.handlerActive}">
 			<div class="zm-widget-column-resize-handler-bar">
 				<div class="zm-bar"></div>
 				<div class="zm-bar"></div>

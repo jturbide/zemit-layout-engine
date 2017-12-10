@@ -343,9 +343,11 @@
 									accept: '.zm-widget-draggable',
 									overlap: 'pointer',
 									ondropactivate: function(event) {
+										$s.dropActivated = true;
 										$element.addClass('zm-drop-activated');
 									},
 									ondropdeactivate: function(event) {
+										$s.dropActivated = false;
 										$element.removeClass('zm-drop-activated');
 									},
 									ondragenter: function(event) {

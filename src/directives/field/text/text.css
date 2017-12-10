@@ -13,9 +13,14 @@
   border: #ccc solid 1px;
   box-shadow: none;
   font-size: 1rem;
+  border-radius: 0.25rem;
+}
+.zm-field-text > textarea:hover,
+.zm-field-text > input:not([type="submit"]):hover {
+  border: #aaa solid 1px;
 }
 .zm-field-text > textarea:focus,
 .zm-field-text > input:not([type="submit"]):focus {
   outline: 0;
-  border-color: black;
+  border-color: #75a9f9;
 }

@@ -267,6 +267,7 @@
 					});
 					
 					return this.areAllSelectedSameType()
+						&& this.countSelected() > 0
 						&& hasDefaultAction;
 				},
 				

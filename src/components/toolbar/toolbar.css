@@ -61,6 +61,9 @@
 .zm-toolbar-actions .zm-btn {
   text-align: center;
 }
+.zm-toolbar-sections .zm-tabs-handler {
+    min-width: 10rem;
+}
 
 @media all and (pointer: coarse) {
   .zm-logo {
