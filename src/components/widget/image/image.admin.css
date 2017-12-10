@@ -18,14 +18,14 @@
 }
 
 /* Checkboard*/
-.zm-widget-image-container img {
+.zm-context-structure .zm-widget-image-container img {
 
     background-image:
-      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #eee), color-stop(.25, transparent)), 
-      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #eee), color-stop(.25, transparent)),
-      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #eee)),
-      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #eee));
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(0, 0, 0, 0.1)), color-stop(.25, transparent)), 
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(0, 0, 0, 0.1)), color-stop(.25, transparent)),
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, rgba(0, 0, 0, 0.1))),
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, rgba(0, 0, 0, 0.1)));
 
     background-size: 2rem 2rem;
-    background-position:0 0, 1rem 0, 1rem -1rem, 0px 1rem;
+    background-position: 0 0, 1rem 0, 1rem -1rem, 0px 1rem;
 }

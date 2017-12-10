@@ -32,7 +32,7 @@
 			<div ng-if="(zm.widget.totalSelected > 0 || device._isPrecise) && config.context !== 'preview'" class="zm-quick-actions zm-flex-minimal">
 				<div class="zm-flex-container zm-flex-container-gap">
 					
-					<zm-tabs anchor="bottom-left" ng-disabled="zm.widget.totalSelected > 0" zm-tabs-keep-open>
+					<zm-tabs anchor="bottom-left" ng-disabled="zm.widget.totalSelected === 0" zm-tabs-keep-open>
 						<items>
 							<!-- REMOVE -->
 							<!--<li class="zm-bg-warning" ng-click="zm.action(zm.widget.removeAllSelected)">-->

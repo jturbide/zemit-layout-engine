@@ -41,11 +41,14 @@
 				if(/*@cc_on!@*/false || !!document.documentMode) {
 					return 'ie';
 				}
-				else if(!isIE && !!window.StyleMedia) {
+				else if(!!window.StyleMedia) {
 					return 'edge';
 				}
 				if(!!window.chrome && !!window.chrome.webstore) {
 					return 'chrome';
+				}
+				if('WebkitAppearance' in document.documentElement.style) {
+					return 'webkit';
 				}
 				
 				return 'unknown';
@@ -54,10 +57,11 @@
 			isSupportedDevice: function() {
 				
 				switch(this.getBrowser()) {
-					case 'chrome':
-					case 'firefox':
-					case 'opera':
-					case 'safari':
+					case 'chrome':		// Version 57+
+					case 'firefox': 	// Version 52+
+					case 'opera':		// Version 44+
+					case 'safari':		// Version 11+
+					case 'webkit':
 						return true;
 				}
 				

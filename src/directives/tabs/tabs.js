@@ -14,7 +14,9 @@
 				items: 'items'
 			},
 			replace: true,
-			scope: true,
+			scope: {
+				ngDisabled: '='
+			},
 			templateUrl: 'directives/tabs/tabs.html',
 			link: function($s, $e, attrs, ctrl, transclude) {
 				

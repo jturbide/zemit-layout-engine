@@ -34,7 +34,7 @@
 		
 		<!-- ADD WIDGET (EMPTY) -->
 		<div ng-if="config.context === 'structure' && column.childs.length === 0" ng-class="{hide: divide.isHover}" class="zm-widget-add">
-			<i ng-click="panel.open(column)" class="fa fa-plus" zm-clickable zm-zoomable></i>
+			<i ng-click="panel.open(column); $event.stopPropagation()" class="fa fa-plus" zm-clickable zm-zoomable></i>
 		</div>
 	</div>
 </div>

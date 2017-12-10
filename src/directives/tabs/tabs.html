@@ -1,5 +1,5 @@
 <div class="zm-tabs" ng-click="tabs.clickInside()" ng-action-outside="tabs.close()">
-	<zm-btn class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-click="tabs.toggle(); $event.stopPropagation()" ng-transclude="toggle">
+	<zm-btn class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle(); $event.stopPropagation()" ng-transclude="toggle">
 		<i class="fa fa-bars"></i>
 	</zm-btn>
 	<ul class="zm-tabs-list zm-shadow-down" ng-if="tabs.visible" ng-transclude="items">

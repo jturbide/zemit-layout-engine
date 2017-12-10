@@ -128,6 +128,14 @@
 					this.data = (parser && this.parse(data)) || data;
 				},
 				
+				clear: function() {
+					
+					var containerWidget = factory.getBaseScope().widget;
+					factory.action(function() {
+						containerWidget.childs = [];
+					}, undefined, containerWidget);
+				},
+				
 				/**
 				 * Export Zemit session to JSON and download it automatically
 				 */
