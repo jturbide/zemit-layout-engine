@@ -54,8 +54,6 @@
   position: relative;
   z-index: 25;
   opacity: 0;
-}
-.zm-widget-add-after {
   top: -1px;
 }
 .zm-widget-add-before .fa,

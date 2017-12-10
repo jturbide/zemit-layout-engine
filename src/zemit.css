@@ -179,7 +179,7 @@ zm-widget[type="container"] {
   opacity: 1;
 }
 .zoom-container.zm-visible.zm-transform-completed > .zoom-item {
-  transform: none;
+  /*transform: none;*/
   opacity: 1;
 }
 

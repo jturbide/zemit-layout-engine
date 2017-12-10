@@ -10,6 +10,7 @@
 				// Set container scopes
 				var config = $config.get();
 				$s.container = $zm.content.get();
+				$s.zm = $zm;
 				$s.history = $history;
 				$s.$modal = $modal;
 				

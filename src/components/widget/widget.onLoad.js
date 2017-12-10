@@ -99,6 +99,7 @@
 							// 	}
 							// });
 							$element.on('touchmove.' + namespace, function(event) {
+								
 								dragging = true;
 								
 								var element = document.elementFromPoint(
@@ -124,21 +125,25 @@
 								event.stopPropagation();
 								$s.$apply();
 							});
-							$element.on('mouseout.' + namespace, function() {
-								$zm.widget.hovered.unset(_this);
-								_this.removeHighlight();
-								$s.$digest();
-							});
-							$element.on('mouseover.' + namespace, function(event) {
-								$zm.widget.hovered.set(_this);
-								_this.highlight(event);
-								$s.$digest();
-							});
-							$element.on('mousemove.' + namespace, function(event) {
-								$s.position.set(event);
-								$s.$digest();
-							});
 						}
+						
+						$element.on('mouseout.' + namespace, function() {
+							
+							$zm.widget.hovered.unset(_this);
+							_this.removeHighlight();
+							$s.$digest();
+						});
+						$element.on('mouseover.' + namespace, function(event) {
+							
+							$zm.widget.hovered.set(_this);
+							_this.highlight(event);
+							$s.$digest();
+						});
+						$element.on('mousemove.' + namespace, function(event) {
+							
+							_this.getScope().position.set(event);
+							$s.$apply();
+						});
 						
 						$s.$watch('isTouched', function(nv, ov) {
 							if(nv !== ov) {
@@ -612,7 +617,11 @@ console.log('LEAVE', $s.widget.token);
 											// placeholder from document
 											dropState.widget.setDropInsideActivate(false);
 											$placeholder[0].classList.add('zm-hidden');
+											
+											//dropState.widget.getScope().$element[0].classList.remove('zm-drop-inside-activate');
 											dropState.widget = null;
+											
+											$s.$digest();
 										}
 									},
 									ondrop: function(event) {

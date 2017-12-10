@@ -2,12 +2,12 @@
     
     <!-- NOTICE -->
 	<zm-dismissable type="info" key="zm-sidebar-workspace-first-time">
-		Each workspace contains blocks of contents. A node can instanciate other nodes, that's how you create layouts and page subsets.
+		Each workspace contains blocks of contents. A block can instanciate other blocks, that's how you create layouts and page subsets.
 	</zm-dismissable>
 	
 	<!-- FILTER -->
     <div class="zm-content-small">
-        <zm-field-text icon="search" placeholder="Filter nodes..." ng-model="filters.query" autofocus="on" />
+        <zm-field-text icon="search" placeholder="Filter blocks..." ng-model="filters.query" autofocus="on" />
     </div>
     
 	<div class="zm-sidebar-group" ng-repeat="organization in workspace.organizations" ng-if="workspace.organizations.length > 0">

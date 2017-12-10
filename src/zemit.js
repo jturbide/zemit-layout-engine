@@ -95,7 +95,7 @@ var Zemit = {
 		Zemit.app.compileProvider = $compileProvider;
 	});
 	
-	Zemit.app.directive('zemit', ['$zm', '$compile', '$config', '$window', '$hook', function($zm, $compile, $config, $window, $hook) {
+	Zemit.app.directive('zemit', ['$zm', '$compile', '$config', '$window', '$hook', '$device', function($zm, $compile, $config, $window, $hook, $device) {
 		return {
 			restrict: 'E',
 			link: function ($s, $e, attrs) {
@@ -112,6 +112,7 @@ var Zemit = {
 				$s.zemit = $zm.content.get();
 				$s.widget = $s.zemit;
 				$s.config = $config.get();
+				$s.device = $device;
 				
 				var template = `<zm-toolbar></zm-toolbar>
 					<zm-widget type="container"></zm-widget>`;

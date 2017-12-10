@@ -1,7 +1,6 @@
 .zm-sidebar {
   background-color: #eee;
   position: relative;
-  flex-basis: 33.333vw;
 }
 .zm-sidebar .zm-sidebar-inner {
   height: 100%;
@@ -53,6 +52,7 @@
   padding: 0.5rem 1rem;
   background-color: white;
   border: #ccc solid 1px;
+  border-left: 0;
   position: relative;
   z-index: 2;
   margin-right: -1px;
@@ -87,6 +87,11 @@
 }
 .zm-sidebar-logo img {
   max-width: 100%;
+}
+@media all and (min-width: 768px) {
+  .zm-sidebar.zm-open {
+    flex-basis: 33.333vw;
+  }
 }
 @media all and (max-width: 767px) {
   .zm-sidebar-title {

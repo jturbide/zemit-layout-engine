@@ -178,16 +178,16 @@
 .zm-widget-column > .zm-widget-inner > .zm-widget-column-size {
   font-size: 2rem;
   position: absolute;
-  top: calc(50% - 1.25rem);
-  left: calc(50% - 1rem);
+  top: calc(50% - 1.75rem);
+  left: calc(50% - 1.5rem);
   z-index: 10;
 }
 .zm-widget-column-size .zm-widget-column-size-number {
-  width: 2rem;
+  min-width: 3rem;
   display: block;
   text-align: center;
   padding: 0.65rem 0;
-  background-color: #75a9f9;
+  background-color: #B1A2FC;
   color: white;
   border-radius: 10%;
 }

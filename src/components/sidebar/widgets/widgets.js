@@ -90,6 +90,7 @@
 				
 				var draggableOptions = {
 					hold: 200,
+					manualStart: true,
 					restrict: {
 						endOnly: true,
 						restriction: "zemit",
@@ -126,12 +127,13 @@
 						target.setAttribute('data-x', x);
 						target.setAttribute('data-y', y);
 						
-						if(!event.interaction.manual && !event.interaction.mouse) {
+						var element = document.elementFromPoint(
+							event.clientX,
+							event.clientY
+						);
+						
+						if(!event.interaction.mouse) {
 							
-							var element = document.elementFromPoint(
-								event.clientX,
-								event.clientY
-							);
 							angular.element(element).trigger('dragHoverTouch', {
 								x: event.clientX,
 								y: event.clientY
@@ -215,35 +217,26 @@
 					return $clone;
 				}
 				
-				if(!$device.isTouch()) {
-					draggableOptions.onstart = onStart;
-				}
-				else {
-					draggableOptions.manualStart = true;
-				}
-				
 				/**
 				 * Move the element around
 				 */
 				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).styleCursor(false);
+				var manualStartStart = function(event) {
+					var interaction = event.interaction;
+						
+					if (interaction.pointerIsDown && !interaction.interacting()) {
+						
+						$device.isTouch() && $device.vibrate();
+						var $clone = onStart(event);
+						
+						interaction.start({
+							name: 'drag'
+						}, event.interactable, $clone[0]);
+					}
+				};
 				
-				if($device.isTouch()) {
-					interactObj.on('hold', function(event) {
-						
-						var interaction = event.interaction;
-						interaction.dontRemove = true;
-						
-						if (!interaction.interacting()) {
-							
-							$device.vibrate();
-							var $clone = onStart(event);
-							
-							interaction.start({
-								name: 'drag'
-							}, event.interactable, $clone[0]);
-						}
-					});
-				}
+				!$device.isTouch() && interactObj.on('move', manualStartStart);
+				$device.isTouch() && interactObj.on('hold', manualStartStart);
 			}
 		};
 	}]);

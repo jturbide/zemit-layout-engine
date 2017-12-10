@@ -24,7 +24,8 @@
 			
 			<!-- NOTICE -->
 			<zm-dismissable ng-if="zm.widget.totalSelected > 0" type="info" key="zm-widget-container-first-drop" class="zm-flex-minimal">
-				Tap multiple time the same widget to loop through its parents. Now tap and hold the selection to drag it around.
+				<span ng-if="device._isTouch && !device._isPrecise">Tap multiple time the same widget to loop through its parents. Now tap and hold the selection to drag it around.</span>
+				<span ng-if="device._isPrecise">Click and hold the selection to drag it around.</span>
 			</zm-dismissable>
 			
 			<!-- QUICK ACTIONS -->

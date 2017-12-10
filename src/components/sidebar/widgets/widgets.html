@@ -2,7 +2,8 @@
 	
 	<!-- NOTICE -->
 	<zm-dismissable type="info" key="zm-sidebar-widgets-hold">
-		Tap and hold a widget to drag it into your content.
+		<span ng-if="device._isTouch && !device._isPrecise">Tap and hold a widget to drag it into your content.</span>
+		<span ng-if="device._isPrecise">Add widgets by dragging them into your container.</span>
 	</zm-dismissable>
 	
 	<!-- FILTER -->

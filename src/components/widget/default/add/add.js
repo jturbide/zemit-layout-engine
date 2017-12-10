@@ -21,7 +21,7 @@
 	 * 
 	 * This modal offers a list of widget that you can add inside the column.
 	 */
-	Zemit.app.directive('zmWidgetModalAdd', ['$history', '$filter', function($history, $filter) {
+	Zemit.app.directive('zmWidgetModalAdd', ['$history', '$filter', '$zm', function($history, $filter, $zm) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -46,10 +46,10 @@
 						title: 'Content',
 						widgets: []
 					},
-					custom: {
-						title: 'Custom',
-						widgets: []
-					}
+					// custom: {
+					// 	title: 'Custom',
+					// 	widgets: []
+					// }
 				};
 				
 				angular.forEach(widgets, function(widget, key) {
@@ -73,7 +73,7 @@
 				 */
 				$s.addWidget = function(item) {
 					
-					$s.$root.zm.action($s.modal.data.widget.addNewChild, [
+					$zm.action($s.modal.data.widget.addNewChild, [
 						item.type,
 						$s.modal.data.index, {
 							defaultTemplate: item.defaultTemplate === false ? false : true
