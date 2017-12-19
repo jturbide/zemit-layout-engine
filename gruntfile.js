@@ -153,7 +153,7 @@ module.exports = function(grunt) {
 					]
 				},
 				network: '*',
-				fallback: '/ /index.min.html'
+				fallback: '/ /index.min.html?standalone=1'
 			}
 		},
 		

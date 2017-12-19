@@ -1,7 +1,7 @@
 {
 	"name": "zemit-layout-engine",
 	"description": "A Touch-Based Layout Engine",
-	"version": "0.0.3",
+	"version": "0.0.6",
 	"maintainers": [
 		{
 			"name": "Danny Coulombe",

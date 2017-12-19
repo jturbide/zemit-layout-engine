@@ -32,7 +32,9 @@
 			},
 			
 			isStandalone: function() {
-				return ("standalone" in window.navigator) && !window.navigator.standalone;
+				return window.matchMedia('(display-mode: standalone)').matches
+					|| window.navigator.standalone
+					|| window.location.search.indexOf('standalone=1') !== -1;
 			},
 			
 			getBrowser: function() {
