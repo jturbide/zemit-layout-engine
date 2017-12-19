@@ -19,12 +19,20 @@
 				}
 			},
 			
+			isLargeEnough: function() {
+				return window.innerWidth > 991;
+			},
+			
 			isTouch: function() {
 				return window.matchMedia('(pointer: coarse)').matches;
 			},
 			
 			isPrecise: function() {
 				return window.matchMedia('(pointer: fine)').matches;
+			},
+			
+			isStandalone: function() {
+				return ("standalone" in window.navigator) && !window.navigator.standalone;
 			},
 			
 			getBrowser: function() {

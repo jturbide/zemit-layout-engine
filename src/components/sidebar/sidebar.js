@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebar', ['$config', function($config) {
+	Zemit.app.directive('zmSidebar', ['$config', '$device', function($config, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -20,7 +20,7 @@
 								visible: false
 							},
 							widgets: {
-								visible: false
+								visible: $device.isLargeEnough()
 							}
 						}
 					}

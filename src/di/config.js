@@ -5,7 +5,7 @@
  * Get and set configurations
  */
 (function() {
-	Zemit.app.factory('$config', [function() {
+	Zemit.app.factory('$config', ['$storage', function($storage) {
 	    
 		var factory = {
 			
@@ -27,21 +27,24 @@
 				angular.merge(this.data, data, copy);
 			},
 			
-			load: function() {
+			load: function(callback) {
 				
-				var json = localStorage.getItem('config');
-				var data = angular.fromJson(json);
-				
-				this.data = data || {};
+				$storage.get('config', 'config', function(value) {
+					var data = angular.fromJson(value);
+					factory.data = data || {};
+					callback && callback(factory.data);
+				});
 			},
 			
 			save: function() {
 				
 				var json = angular.toJson(this.data);
-				localStorage.setItem('config', json);
+				$storage.set('config', 'config', json);
 			},
 			
 			flush: function() {
+				
+				$storage.set('config', 'config', null);
 				localStorage.setItem('config', null);
 				this.data = {};
 			}

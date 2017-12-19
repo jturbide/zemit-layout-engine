@@ -1,7 +1,7 @@
 {
 	"name": "zemit-layout-engine",
 	"description": "A Touch-Based Layout Engine",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"maintainers": [
 		{
 			"name": "Danny Coulombe",
@@ -33,9 +33,11 @@
 	"devDependencies": {
 		"grunt": "^1.0.1",
 		"grunt-angular-templates": "^1.1.0",
+		"grunt-appcache": "^0.2.0",
 		"grunt-assets-inline": "^0.1.19",
 		"grunt-contrib-clean": "^1.1.0",
 		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-connect": "^1.0.2",
 		"grunt-contrib-copy": "^1.0.0",
 		"grunt-contrib-cssmin": "^2.2.1",
 		"grunt-contrib-jshint": "^1.1.0",
@@ -44,6 +46,10 @@
 		"grunt-css-url-replace": "^0.2.7",
 		"grunt-embed": "^0.2.1",
 		"grunt-include-source": "^1.1.0",
-		"grunt-usemin": "^3.1.0"
+		"grunt-service-worker": "^0.1.2",
+		"grunt-sw-precache": "^1.0.3",
+		"grunt-template-render": "0.0.1",
+		"grunt-usemin": "^3.1.0",
+		"grunt-version": "^1.2.1"
 	}
 }

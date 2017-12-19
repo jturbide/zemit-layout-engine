@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-
+	
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -8,6 +8,29 @@ module.exports = function(grunt) {
 			scripts: [
 				'src/.grunt-tmp/templates.js',
 			]
+		},
+		
+		assets_inline: {
+			all: {
+				options: {
+					inlineImg: true,
+					inlineLinkTags: true,
+					inlineSvg: true,
+					inlineSvgBase64: true,
+					assetsUrlPrefix: 'assets/img/'
+				},
+				files: {
+					'src/.grunt-tmp/components/sidebar/sidebar.html': 'src/.grunt-tmp/components/sidebar/sidebar.html',
+				}
+			}
+		},
+		
+		ngtemplates: {
+			zemit: {
+				cwd: 'src/.grunt-tmp',
+				src: ['components/**/*.html', 'directives/**/*.html'],
+				dest: 'src/.grunt-tmp/templates.js'
+			}
 		},
 		
 		includeSource: {
@@ -20,14 +43,6 @@ module.exports = function(grunt) {
 				files: {
 					'src/.index.grunt-tmp.html': 'src/index.html'
 				}
-			}
-		},
-		
-		ngtemplates: {
-			zemit: {
-				cwd: 'src',
-				src: ['components/**/*.html', 'directives/**/*.html'],
-				dest: 'src/.grunt-tmp/templates.js'
 			}
 		},
 		
@@ -51,6 +66,14 @@ module.exports = function(grunt) {
 				src: 'src/.index.grunt-tmp.html',
 				dest: 'dist/index.html'
 			},
+			manifest: {
+				src: 'src/manifest.json',
+				dest: 'dist/manifest.json'
+			},
+			sw: {
+				src: 'src/service-worker.js',
+				dest: 'dist/service-worker.js'
+			},
 			favicon: {
 				src: 'src/favicon.png',
 				dest: 'dist/favicon.png'
@@ -60,6 +83,37 @@ module.exports = function(grunt) {
 				cwd: 'src/assets',
 				src: '**',
 				dest: 'dist/assets/'
+			},
+			ngassets: {
+				expand: true,
+				cwd: 'src/assets',
+				src: '**',
+				dest: 'src/.grunt-tmp/assets/'
+			},
+			ngcomponents: {
+				expand: true,
+				cwd: 'src/components',
+				src: '**',
+				dest: 'src/.grunt-tmp/components/'
+			},
+			ngdirectives: {
+				expand: true,
+				cwd: 'src/directives',
+				src: '**',
+				dest: 'src/.grunt-tmp/directives/'
+			}
+		},
+		
+		template: {
+			build: {
+				options: {
+					data: {
+						version: '<%= pkg.version %>'
+					}
+				},
+				files: {
+					'dist/index.html': ['dist/index.html']
+				}
 			}
 		},
 		
@@ -69,22 +123,7 @@ module.exports = function(grunt) {
 			},
 			some_target: {
 				files: {
-					'dist/index.base64.html': 'dist/index.html'
-				}
-			}
-		},
-		
-		assets_inline: {
-			all: {
-				options: {
-					inlineImg: true,
-					inlineLinkTags: true,
-					inlineSvg: true,
-					inlineSvgBase64: true,
-					assetsUrlPrefix: 'dist/assets/'
-				},
-				files: {
-					'dist/index.base64.html': 'dist/index.base64.html'
+					'dist/index.min.html': 'dist/index.html'
 				}
 			}
 		},
@@ -92,7 +131,45 @@ module.exports = function(grunt) {
 		clean: [
 			'src/.grunt-tmp',
 			'src/.index.grunt-tmp.html'
-		]
+		],
+		
+		'sw-precache': {
+			options: {
+				cacheId: 'zemit-layout-engine',
+				workerFileName: 'service-worker.js',
+				verbose: true,
+			},
+			default: {
+				staticFileGlobs: [
+					'**/*',
+				],
+			}
+		},
+		
+		appcache: {
+			options: {
+				basePath: 'dist'
+			},
+			all: {
+				dest: 'dist/manifest.appcache',
+				cache: {
+					patterns: [
+						'dist/**/*',
+						'!dist/index.html'
+					]
+				},
+				network: '*',
+				fallback: '/ /index.min.html'
+			}
+		},
+		
+		version: {
+			somejs: {
+				src: [
+					'dist/assets/js/zemit.min.js'
+				]
+			},
+		}
 	});
 
 	// Load the plugins
@@ -106,9 +183,16 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-embed');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-assets-inline');
+	grunt.loadNpmTasks('grunt-sw-precache');
+	grunt.loadNpmTasks('grunt-appcache');
+	grunt.loadNpmTasks('grunt-version');
+	grunt.loadNpmTasks('grunt-template-render');
 
 	// Default task(s).
 	grunt.registerTask('default', [
-		'ngtemplates', 'includeSource', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'copy', 'embed', 'assets_inline', 'clean'
+		'copy:ngassets', 'copy:ngcomponents', 'copy:ngdirectives', 'assets_inline',
+		'ngtemplates', 'includeSource', 'useminPrepare', 'concat',
+		'uglify', 'cssmin', 'usemin', 'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon',
+		'copy:assets', 'version', 'template:build', 'embed', 'clean', 'sw-precache', 'appcache'
 	]);
 };

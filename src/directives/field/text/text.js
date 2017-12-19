@@ -6,7 +6,7 @@
 	/**
 	 * Switch field
 	 */
-	Zemit.app.directive('zmFieldText', [function() {
+	Zemit.app.directive('zmFieldText', ['$device', function($device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -18,6 +18,10 @@
 			link: function ($s, $e, attrs) {
 				
 				$s.attrs = attrs;
+				
+				if($device.isTouch()) {
+					$s.attrs.autofocus = undefined;
+				}
 			}
 		}
 	}]);

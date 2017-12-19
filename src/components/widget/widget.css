@@ -26,11 +26,11 @@
   box-sizing: border-box;
   background-color: white;
 }
-.zm-widget-inner:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+/*.zm-widget-inner:after {*/
+/*  content: "";*/
+/*  display: table;*/
+/*  clear: both;*/
+/*}*/
 .zm-widget-container:not(.zm-widget-drag-parent):not(.zm-context-preview) .zm-widget.zm-selected:not(.zm-drop-activated) {
   /*outline-color: #75a9f9;*/
   z-index: 1;

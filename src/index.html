@@ -1,15 +1,20 @@
 <!doctype html>
-<html>
+<html manifest="manifest.appcache?v=<%= version %>">
 	<head>
 		<title>Zemit Layout Engine</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="icon" type="image/png" href="favicon.png?v=<%= version %>" />
+		
+		<!-- PWA Settings -->
 		<meta name="apple-mobile-web-app-title" content="Zemit" />
-		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon.png" />
-		<link rel="icon" type="image/png" href="favicon.png" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="256x256" href="assets/img/logo-mobile-icon.png?v=<%= version %>" />
+		<link rel="apple-touch-icon-precomposed" sizes="256x256" href="assets/img/logo-mobile-icon.png?v=<%= version %>" />
+		<!--<link rel="apple-touch-startup-image" href="/assets/img/splash-screen.png">-->
+		<link rel="manifest" href="./manifest.json?v=<%= version %>">
 		
 		<!-- build:css assets/css/vendors.min.css -->
 		<link rel="stylesheet" href="../node_modules/font-awesome-base64/index.css" />
@@ -73,16 +78,24 @@
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
 		<!-- endbuild -->
+		<script>
+			if ('serviceWorker' in navigator) {
+			    navigator.serviceWorker.register('./service-worker.js').then(function() {
+					console.log('Service Worker Registered');
+				});
+			}
+		</script>
 		<!-- build:js assets/js/zemit.min.js -->
 		<script src="./zemit.js"></script>
 		<!-- include: "type": "js", "files": ".grunt-tmp/templates.js" -->
-		<script src="./di/zm.js"></script>
 		<script src="./di/config.js"></script>
 		<script src="./di/device.js"></script>
 		<script src="./di/diff.js"></script>
 		<script src="./di/file.js"></script>
 		<script src="./di/history.js"></script>
 		<script src="./di/hook.js"></script>
+		<script src="./di/storage.js"></script>
+		<script src="./di/zm.js"></script>
 		<script src="./filters/general.js"></script>
 		<script src="./directives/general/general.js"></script>
 		<script src="./directives/badge/badge.js"></script>

@@ -4,7 +4,7 @@
 .zm-widget-image img {
 	max-width: 100%;
 	min-width: 1rem;
-  float: left;
+  vertical-align: middle;
 }
 .zm-widget-image-empty {
   background-color: rgba(0, 0, 0, 0.1);
@@ -19,7 +19,7 @@
 
 /* Checkboard*/
 .zm-context-structure .zm-widget-image-container img {
-
+    pointer-events: none !important; /* Prevent iOS from opening contextual options */
     background-image:
       -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(0, 0, 0, 0.1)), color-stop(.25, transparent)), 
       -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(0, 0, 0, 0.1)), color-stop(.25, transparent)),

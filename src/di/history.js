@@ -55,6 +55,8 @@
 					factory.position++;
 					factory.canUndo = true;
 					
+					$hook.run('onNewHistory');
+					
 					console.log('HISTORY', diff);
 				};
 				
@@ -91,6 +93,8 @@
 					var $zm = $injector.get('$zm');
 					$zm.widget.updateWidgetStates();
 				});
+				
+				$hook.run('onUndoHistory');
 			},
 			
 			/**
@@ -117,6 +121,8 @@
 					var $zm = $injector.get('$zm');
 					$zm.widget.updateWidgetStates();
 				});
+				
+				$hook.run('onRedoHistory');
 			},
 			
 			/**

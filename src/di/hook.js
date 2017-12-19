@@ -16,10 +16,17 @@
 			},
 				
 			add: function(name, callback) {
-				if(!this.list[name]) {
-					this.list[name] = [];
+				
+				if(typeof name === 'string') {
+					name = [name];
 				}
-				this.list[name].push(callback);
+				
+				name.forEach(function(n) {
+					if(!structure.list[n]) {
+						structure.list[n] = [];
+					}
+					structure.list[n].push(callback);
+				});
 			},
 			
 			run: function(name, params) {
