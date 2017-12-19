@@ -566,7 +566,10 @@
 						var found = [];
 						var getChilds = function(widget) {
 							angular.forEach(widget.childs, function(child, ckey) {
-								found.push(child);
+								
+								if(child.getScope instanceof Function) {
+									found.push(child);
+								}
 								
 								if(recursive) {
 									getChilds(child);

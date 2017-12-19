@@ -4,12 +4,6 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		
-		app: {
-			scripts: [
-				'src/.grunt-tmp/templates.js',
-			]
-		},
-		
 		assets_inline: {
 			all: {
 				options: {

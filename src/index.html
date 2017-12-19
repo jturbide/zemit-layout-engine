@@ -78,16 +78,10 @@
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
 		<!-- endbuild -->
-		<script>
-			if ('serviceWorker' in navigator) {
-			    navigator.serviceWorker.register('./service-worker.js').then(function() {
-					console.log('Service Worker Registered');
-				});
-			}
-		</script>
 		<!-- build:js assets/js/zemit.min.js -->
 		<script src="./zemit.js"></script>
 		<!-- include: "type": "js", "files": ".grunt-tmp/templates.js" -->
+		<!-- include: "type": "js", "files": "service-worker.js" -->
 		<script src="./di/config.js"></script>
 		<script src="./di/device.js"></script>
 		<script src="./di/diff.js"></script>
