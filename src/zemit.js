@@ -119,7 +119,7 @@ var Zemit = {
 						var template = '<zm-toolbar></zm-toolbar>'
 							+ '<zm-widget type="container"></zm-widget>';
 							
-						if(!$device.isSupportedDevice()) {
+						if(!$device.isSupported()) {
 							template = '<zm-unsupported-device></zm-unsupported-device>';
 						}
 						

@@ -529,7 +529,7 @@
 											}
 											// Outside dropping
 											else if(acceptWidgetOutside(configs, draggedWidget, hoveredWidget)) {
-console.log("OUTSIDE");
+//console.log("OUTSIDE");
 												var align = configs.drop.outside.align;
 												
 												var position;
@@ -611,7 +611,7 @@ console.log("OUTSIDE");
 										}
 									},
 									ondragleave: function(event) {
-console.log('LEAVE', $s.widget.token);
+//console.log('LEAVE', $s.widget.token);
 										var dropState = event.interaction.dropState;
 										
 										if(dropState.widget) {
@@ -634,7 +634,7 @@ console.log('LEAVE', $s.widget.token);
 										}
 									},
 									ondrop: function(event) {
-console.log('DROP', $s.widget.token);
+//console.log('DROP', $s.widget.token);
 										var dropState = event.interaction.dropState;
 										
 										// Finalize callback

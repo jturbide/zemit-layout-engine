@@ -9,6 +9,18 @@
 			
 			_isTouch: null,
 			_isPrecise: null,
+			_isSupported: null,
+			_browser: null,
+			_supportsGrid: null,
+			_supportsFlexbox: null,
+			
+			supportedVersion: {
+				edge: 16,
+				chrome: 57,
+				firefox: 52,
+				opera: 44,
+				safari: 11
+			},
 			
 			vibrate: function(delay = 100) {
 				
@@ -37,53 +49,68 @@
 					|| window.location.search.indexOf('standalone=1') !== -1;
 			},
 			
+			/**
+			 * https://stackoverflow.com/a/38080051/538323
+			 */
 			getBrowser: function() {
 				
-				if((!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) {
-					return 'opera';
+				var ua = navigator.userAgent,
+					tem,
+					M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+				if (/trident/i.test(M[1])) {
+					tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+					return { name: 'ie', version: (tem[1] || '') };
 				}
-				if(typeof InstallTrigger !== 'undefined') {
-					return 'firefox';
+				if (M[1] === 'Chrome') {
+					tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+					if (tem != null) return { name: tem[1].replace('OPR', 'opera').toLowerCase(), version: tem[2] };
 				}
-				if(/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))) {
-					return 'safari';
-				}
-				if(/*@cc_on!@*/false || !!document.documentMode) {
-					return 'ie';
-				}
-				else if(!!window.StyleMedia) {
-					return 'edge';
-				}
-				if(!!window.chrome && !!window.chrome.webstore) {
-					return 'chrome';
-				}
-				if('WebkitAppearance' in document.documentElement.style) {
-					return 'webkit';
-				}
+				M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+				if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+				return {
+					name: M[0].toLowerCase(),
+					version: M[1].toLowerCase()
+				};
 				
-				return 'unknown';
+				return {
+					name: 'unknown',
+					version: 0
+				};
 			},
 			
-			isSupportedDevice: function() {
+			isSupported: function() {
 				
-				switch(this.getBrowser()) {
-					case 'edge':		// Version 16+
-					case 'chrome':		// Version 57+
-					case 'firefox': 	// Version 52+
-					case 'opera':		// Version 44+
-					case 'safari':		// Version 11+
-					case 'webkit':
-						return true;
+				var browser = this.getBrowser();
+				
+				switch(browser.name) {
+					case 'edge': return browser.version >= this.supportedVersion.edge;
+					case 'chrome': return browser.version >= this.supportedVersion.chrome;
+					case 'firefox': return browser.version >= this.supportedVersion.firefox;
+					case 'opera': return browser.version >= this.supportedVersion.opera;
+					case 'safari': return browser.version >= this.supportedVersion.safari;
 				}
 				
 				return false;
+			},
+			
+			supportsGrid: () => {
+				var el = document.createElement('div');
+				return typeof el.style.grid === 'string';
+			},
+			
+			supportsFlexbox: () => {
+				var el = document.createElement('div');
+				el.style.display = 'flex';
+				return typeof el.style.display === 'flex';
 			}
 		};
 		
 		factory._isTouch = factory.isTouch();
 		factory._isPrecise = factory.isPrecise();
-		factory._isSupportedDevice = factory.isSupportedDevice();
+		factory._isSupported = factory.isSupported();
 		factory._browser = factory.getBrowser();
+		factory._supportsGrid = factory.supportsGrid();
+		factory._supportsFlexbox = factory.supportsFlexbox();
 		
 		return factory;
 	}]);

@@ -106,6 +106,10 @@
 					},
 					onmove: function(event) {
 						
+						if(!event.interaction.isReady) {
+							return;
+						}
+						
 						if(event.interaction.interacting()) {
 					    	event.preventDefault();
 					    }
@@ -132,13 +136,13 @@
 							event.clientY
 						);
 						
-						if(!event.interaction.mouse) {
+						//if(!event.interaction.mouse) {
 							
 							angular.element(element).trigger('dragHoverTouch', {
 								x: event.clientX,
 								y: event.clientY
 							});
-						}
+						//}
 						
 						event.stopPropagation();
 					},
@@ -167,6 +171,7 @@
 							});
 						}
 						
+						event.interaction.isReady = false;
 						event.interaction.dontRemove = false;
 						event.interaction.$element.remove();
 					}
@@ -211,6 +216,8 @@
 							
 							scope.widget.updateToken();
 							$zm.widget.drag.set(scope.widget, true);
+							
+							event.interaction.isReady = true;
 						});
 					});
 					

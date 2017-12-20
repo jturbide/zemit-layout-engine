@@ -261,8 +261,7 @@
 						
 						var removeChildHighlighting = function(widget) {
 							
-							angular.forEach(widget.childs, function(child, wkey) {
-								
+							widget.forEachChilds(function(child) {
 								if(child.token !== _this.token) {
 									child.removeHighlight();
 								}

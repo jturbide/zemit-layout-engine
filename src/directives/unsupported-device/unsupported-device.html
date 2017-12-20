@@ -1,24 +1,27 @@
 <div class="zm-unsupported-device">
 	<div class="zm-unsupported-device-inner">
-		<div class="zm-flex-container zm-flex-nowrap">
-			<div class="zm-flex-item zm-flex-minimal zm-unsupported-device-icon">
-				<img src="assets/img/logo-empty-light.png" alt="Zemit logo" />
-			</div>
-			<div class="zm-flex-item">
-				<h1>Browser not supported</h1>
-				
-				<p>Unfortunately, the Zemit Layout Engine does not support your browser yet.
-				Please use any of the following instead:</p>
-				
-				<ul>
-					<li><a href="http://opera.com" target="_blank">Opera</a></li>
-					<li><a href="http://firefox.com" target="_blank">Firefox</a></li>
-					<li><a href="https://support.apple.com/downloads/safari" target="_blank">Safari</a></li>
-					<li><a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Google Chrome</a></li>
-				</ul>
-				
-				<p><em>* Be reassured, Internet Explorer 10+ and Edge support are definitely in our plannings!</em></p>
-			</div>
-		</div>
+		<table>
+			<tr>
+				<td>
+					<img src="assets/img/logo-empty-light.png" alt="Zemit logo" />
+				</td>
+				<td>
+					<h1>Browser not supported</h1>
+			
+					<p>Unfortunately, the Zemit Layout Engine does not support your browser <strong class="uppercase">({{ device._browser.name }}</strong><strong> v{{ device._browser.version }})</strong> yet.
+					Please use any of the following instead:</p>
+					
+					<ul>
+						<li><a href="http://opera.com" target="_blank">Opera</a> v{{ device.supportedVersion.opera }}+</li>
+						<li><a href="https://support.apple.com/downloads/safari" target="_blank">Safari</a> v{{ device.supportedVersion.safari }}+</li>
+						<li><a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Google Chrome</a> v{{ device.supportedVersion.chrome }}+</li>
+						<li><a href="http://firefox.com" target="_blank">Firefox</a> v{{ device.supportedVersion.firefox }}+</li>
+						<li><a href="https://www.microsoft.com/en-ca/windows/microsoft-edge" target="_blank">Edge</a> v{{ device.supportedVersion.edge }}+</li>
+					</ul>
+					
+					<p><em>* If you are using one of these browser, please <u>update it</u> to the latest version.</em></p>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

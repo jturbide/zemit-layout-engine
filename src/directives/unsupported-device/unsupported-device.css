@@ -5,7 +5,7 @@
     width: 100%;
 }
 .zm-unsupported-device a {
-    color: yellow;
+    color: #aa8fd8;
     text-decoration: none;
 }
 .zm-unsupported-device p:last-child {
@@ -24,6 +24,17 @@
 .zm-unsupported-device-icon img {
   width: 100px;
 }
+.zm-unsupported-device table {
+  width: 100%;
+  border: 0;
+}
+.zm-unsupported-device .uppercase {
+  text-transform: uppercase;
+}
+.zm-unsupported-device table tr td {
+  padding: 0;
+  vertical-align: top;
+}
 .zm-unsupported-device-inner {
     background-color: black;
     padding: 2rem;
@@ -33,11 +44,31 @@
     max-width: 600px;
     border-radius: 0.5rem;
 }
+.zm-unsupported-device table tr td:first-child {
+  padding-right: 2rem;
+}
+
 @media all and (orientation: portrait) {
+  zemit {
+    background-color: black;
+  }
   .zm-unsupported-device {
     position: relative;
     top: 0;
     transform: none;
+  }
+  .zm-unsupported-device table tr td:first-child {
+    padding-right: 0;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  .zm-unsupported-device h1 {
+    text-align: center;
+  }
+  .zm-unsupported-device table,
+  .zm-unsupported-device table tr,
+  .zm-unsupported-device table tr td {
+    display: block;
   }
   .zm-unsupported-device-inner {
     max-width: 100%;

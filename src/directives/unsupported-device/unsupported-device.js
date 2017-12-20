@@ -10,7 +10,7 @@
 			templateUrl: 'directives/unsupported-device/unsupported-device.html',
 			link: function ($s, $e, attrs) {
 				
-				
+				$s.device = $device;
 			}
 		};
 	}]);
