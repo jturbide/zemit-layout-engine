@@ -180,95 +180,92 @@
 			// Configure current column
 			configure($s.column);
 			
-			if(!$device.isTouch()) {
-				
-				/**
-				 * Resizer sub-class. Contains all necessary functions to
-				 * resize columns.
-				 */
-				$s.resize = {
-					originalSize: null,
-					isResizing: false,
-					handlerActive: false,
-					transaction: null,
-					init: function() {
+			/**
+			 * Resizer sub-class. Contains all necessary functions to
+			 * resize columns.
+			 */
+			$s.resize = {
+				originalSize: null,
+				isResizing: false,
+				handlerActive: false,
+				transaction: null,
+				init: function() {
+					
+					var $resizeHandler = $e.find('.zm-widget-column-resize-handler');
+					var breakpoint;
+					var resizer = interact($e[0]).resizable({
+						preserveAspectRatio: false,
+						edges: {
+							left: false,
+							right: $resizeHandler[0],
+							bottom: false,
+							top: false
+						}
+					}).on('resizestart', function(event) {
 						
-						var $resizeHandler = $e.find('.zm-widget-column-resize-handler');
-						var breakpoint;
-						var resizer = interact($e[0]).resizable({
-							preserveAspectRatio: false,
-							edges: {
-								left: false,
-								right: $resizeHandler[0],
-								bottom: false,
-								top: false
-							}
-						}).on('resizestart', function(event) {
-							
-							$s.widget.removeHighlight($s.widget);
-							
-							$s.resize.originalSize = $s.column.size;
-							$s.resize.transaction = $history.transaction($s.row.childs);
-							$s.resize.handlerActive = true;
-							
-							$s.row.forEachChilds(function(widget) {
-								widget.getScope().resize.isResizing = true;
-							}, false);
-							
-							breakpoint = event.rect.width / $s.column.size;
-							
-							angular.element('html:eq(0)').addClass('zm-cursor-resize-col-resize-all');
-							
-						}).on('resizemove', function(event) {
-							
-							var size = Math.round(event.rect.width / breakpoint);
-							if(size < 1) {
-								size = 1;
-							}
-							
-							if(size !== $s.column.size) {
-								$s.$apply(function() {
-									$s.resize.resize(size);
-								});
-							}
-							
-						}).on('resizeend', function(event) {
-							
-							$s.resize.handlerActive = false;
-							$s.row.forEachChilds(function(widget) {
-								widget.getScope().resize.isResizing = false;
-							}, false);
-							
-							if($s.resize.originalSize !== $s.column.size) {
-								$s.resize.transaction();
-							}
-							$s.resize.transaction = null;
-							
-							angular.element('html:eq(0)').removeClass('zm-cursor-resize-col-resize-all');
-							
-						}).styleCursor(false);
-					},
-					resize: function(size) {
+						$s.widget.removeHighlight($s.widget);
 						
-						var nextColumn;
-						var nextSize = size;
-						var diff = size - $s.column.size;
+						$s.resize.originalSize = $s.column.size;
+						$s.resize.transaction = $history.transaction($s.row.childs);
+						$s.resize.handlerActive = true;
 						
-						if($s.row.childs.length !== $s.$index + 1) {
-							nextColumn = $s.row.childs[$s.$index + 1];
-							nextSize = nextColumn.size - diff;
+						$s.row.forEachChilds(function(widget) {
+							widget.getScope().resize.isResizing = true;
+						}, false);
+						
+						breakpoint = event.rect.width / $s.column.size;
+						
+						angular.element('html:eq(0)').addClass('zm-cursor-resize-col-resize-all');
+						
+					}).on('resizemove', function(event) {
+						
+						var size = Math.round(event.rect.width / breakpoint);
+						if(size < 1) {
+							size = 1;
 						}
 						
-						if(nextColumn && nextSize > 0) {
-							nextColumn.size = nextSize;
-							$s.column.size = size;
+						if(size !== $s.column.size) {
+							$s.$apply(function() {
+								$s.resize.resize(size);
+							});
 						}
+						
+					}).on('resizeend', function(event) {
+						
+						$s.resize.handlerActive = false;
+						$s.row.forEachChilds(function(widget) {
+							widget.getScope().resize.isResizing = false;
+						}, false);
+						
+						if($s.resize.originalSize !== $s.column.size) {
+							$s.resize.transaction();
+						}
+						$s.resize.transaction = null;
+						
+						angular.element('html:eq(0)').removeClass('zm-cursor-resize-col-resize-all');
+						
+					}).styleCursor(false);
+				},
+				resize: function(size) {
+					
+					var nextColumn;
+					var nextSize = size;
+					var diff = size - $s.column.size;
+					
+					if($s.row.childs.length !== $s.$index + 1) {
+						nextColumn = $s.row.childs[$s.$index + 1];
+						nextSize = nextColumn.size - diff;
 					}
-				};
-			
-				// Initialize the resizer
-				$s.resize.init();
-			}
+					
+					if(nextColumn && nextSize > 0) {
+						nextColumn.size = nextSize;
+						$s.column.size = size;
+					}
+				}
+			};
+		
+			// Initialize the resizer
+			$s.resize.init();
 			
 			/**
 			 * Divider sub-class. Contains all necessary functions to
