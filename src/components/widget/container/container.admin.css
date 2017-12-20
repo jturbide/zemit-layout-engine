@@ -13,6 +13,16 @@
 .zm-context-structure .zm-container-scrollable {
   padding-bottom: 5rem;
 }
+.zm-container-notices-scrollable {
+  overflow: auto;
+  max-height: 25vh;
+}
+.zm-container-notices zm-dismissable {
+  display: block;
+}
+.zm-container-notices zm-dismissable + zm-dismissable {
+  margin-top: -0.25rem;
+}
 zm-widget[type="container"] {
   position: relative;
   display: block;

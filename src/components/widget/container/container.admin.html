@@ -12,21 +12,31 @@
 				<!--</div>-->
 			</div>
 			
-			<!-- NOTICE -->
-			<zm-dismissable ng-if="container.childs.length === 1 && container.childs[0].childs.length === 0" type="info" key="zm-widget-container-first-row" class="zm-flex-minimal">
-				Choose the number of column(s) you desire.
-			</zm-dismissable>
-			
-			<!-- NOTICE -->
-			<zm-dismissable ng-if="container.childs.length === 0" type="info" key="zm-widget-container-first-time" class="zm-flex-minimal">
-				Start by opening the widgets drawer and adding a new row.
-			</zm-dismissable>
-			
-			<!-- NOTICE -->
-			<zm-dismissable ng-if="zm.widget.totalSelected > 0" type="info" key="zm-widget-container-first-drop" class="zm-flex-minimal">
-				<span ng-if="device._isTouch && !device._isPrecise">Tap multiple time the same widget to loop through its parents. Now tap and hold the selection to drag it around.</span>
-				<span ng-if="device._isPrecise">Click and hold the selection to drag it around.</span>
-			</zm-dismissable>
+			<div class="zm-container-notices zm-flex-minimal">
+				<div class="zm-container-notices-scrollable">
+					
+					<!-- NOTICE -->
+					<zm-dismissable ng-if="container.childs.length === 1 && container.childs[0].childs.length === 0" type="info" key="zm-widget-container-first-row">
+						Choose the number of column(s) you desire.
+					</zm-dismissable>
+					
+					<!-- NOTICE -->
+					<zm-dismissable ng-if="container.childs.length === 0" type="info" key="zm-widget-container-first-time">
+						Start by opening the widgets drawer and adding a new row.
+					</zm-dismissable>
+					
+					<!-- NOTICE -->
+					<zm-dismissable ng-if="zm.widget.totalSelected > 0" type="info" key="zm-widget-container-first-drop">
+						<span ng-if="device._isTouch && !device._isPrecise">Tap multiple time the same widget to loop through its parents. Now tap and hold the selection to drag it around.</span>
+						<span ng-if="device._isPrecise">Click and hold the selection to drag it around.</span>
+					</zm-dismissable>
+					
+					<!-- NOTICE: STANDALONE -->
+					<zm-dismissable ng-if="!device.isStandalone()" type="info" key="zm-widget-container-first-row">
+						Enjoy a <strong>full screen</strong> experience by adding this app on your home screen. Check your browser options!
+					</zm-dismissable>
+				</div>
+			</div>
 			
 			<!-- QUICK ACTIONS -->
 			<div ng-if="(zm.widget.totalSelected > 0 || device._isPrecise) && config.context !== 'preview'" class="zm-quick-actions zm-flex-minimal">

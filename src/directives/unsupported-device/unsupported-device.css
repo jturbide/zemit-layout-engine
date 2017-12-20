@@ -49,7 +49,7 @@
 }
 
 @media all and (orientation: portrait) {
-  zemit {
+  zemit.zm-dark {
     background-color: black;
   }
   .zm-unsupported-device {
