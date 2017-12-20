@@ -1,6 +1,6 @@
 {
   "name": "Zemit Layout Engine",
-  "short_name": "Zemit",
+  "short_name": "ZLE",
   "icons": [{
     "src": "assets/img/logo-mobile-icon.png",
       "sizes": "256x256",
