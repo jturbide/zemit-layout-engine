@@ -63,6 +63,8 @@
 .zm-sidebar-title .fa {
   position: relative;
   top: 0.05rem;
+  min-width: 1rem;
+  text-align: center;
 }
 .zm-sidebar-tabs .zm-tabs .zm-tab-item.active {
   background-color: #000;
