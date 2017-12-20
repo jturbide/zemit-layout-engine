@@ -317,7 +317,7 @@
 							&& ($s.configs.drop.outside.enabled || $s.configs.drop.inside.enabled)) {
 								
 								// Retrieve the container and its placeholder
-								$placeholder = $s.container.getScope().$placeholder;
+								var $placeholder = $s.container.getScope().$placeholder;
 								
 								var acceptWidgetOutside = function(configs, widget, hoveredWidget) {
 									return configs.drop.outside.enabled
@@ -343,11 +343,9 @@
 									accept: '.zm-widget-draggable',
 									overlap: 'pointer',
 									ondropactivate: function(event) {
-										$s.dropActivated = true;
 										$element.addClass('zm-drop-activated');
 									},
 									ondropdeactivate: function(event) {
-										$s.dropActivated = false;
 										$element.removeClass('zm-drop-activated');
 									},
 									ondragenter: function(event) {

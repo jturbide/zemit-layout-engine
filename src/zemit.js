@@ -116,11 +116,11 @@ var Zemit = {
 						$s.config = $config.get();
 						$s.device = $device;
 						
-						var template = `<zm-toolbar></zm-toolbar>
-							<zm-widget type="container"></zm-widget>`;
+						var template = '<zm-toolbar></zm-toolbar>'
+							+ '<zm-widget type="container"></zm-widget>';
 							
 						if(!$device.isSupportedDevice()) {
-							template = `<zm-unsupported-device></zm-unsupported-device>`;
+							template = '<zm-unsupported-device></zm-unsupported-device>';
 						}
 						
 						var $template = angular.element(template);

@@ -67,6 +67,7 @@
 			isSupportedDevice: function() {
 				
 				switch(this.getBrowser()) {
+					case 'edge':		// Version 16+
 					case 'chrome':		// Version 57+
 					case 'firefox': 	// Version 52+
 					case 'opera':		// Version 44+

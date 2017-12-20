@@ -29,35 +29,43 @@ module.exports = function(grunt) {
 		
 		includeSource: {
 			options: {
-				basePath: 'src',
+				basePath: 'src/.grunt-tmp',
 				baseUrl: '',
 				ordering: 'top-down'
 			},
 			app: {
 				files: {
-					'src/.index.grunt-tmp.html': 'src/index.html'
+					'src/.grunt-tmp/index.html': 'src/.grunt-tmp/index.html'
 				}
 			}
 		},
 		
 		useminPrepare: {
-			html: 'src/.index.grunt-tmp.html'
+			html: 'src/.grunt-tmp/index.html'
 		},
  
 		usemin: {
-			html: ['src/.index.grunt-tmp.html']
+			html: ['src/.grunt-tmp/index.html']
 		},
  
 		uglify: {
 			options: {
 				report: 'min',
 				mangle: false
+			},
+			target: {
+				files: [{
+					expand: true,
+					cwd: 'src/.grunt-tmp',
+					src: '**/*.js',
+					dest: 'src/.grunt-tmp/'
+				}]
 			}
 		},
 		
 		copy: {
 			html: {
-				src: 'src/.index.grunt-tmp.html',
+				src: 'src/.grunt-tmp/index.html',
 				dest: 'dist/index.html'
 			},
 			manifest: {
@@ -78,23 +86,11 @@ module.exports = function(grunt) {
 				src: '**',
 				dest: 'dist/assets/'
 			},
-			ngassets: {
+			gruntPrepare: {
 				expand: true,
-				cwd: 'src/assets',
+				cwd: 'src/',
 				src: '**',
-				dest: 'src/.grunt-tmp/assets/'
-			},
-			ngcomponents: {
-				expand: true,
-				cwd: 'src/components',
-				src: '**',
-				dest: 'src/.grunt-tmp/components/'
-			},
-			ngdirectives: {
-				expand: true,
-				cwd: 'src/directives',
-				src: '**',
-				dest: 'src/.grunt-tmp/directives/'
+				dest: 'src/.grunt-tmp/'
 			}
 		},
 		
@@ -106,7 +102,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'dist/index.html': ['dist/index.html']
+					'src/.grunt-tmp/index.html': ['src/.grunt-tmp/index.html']
 				}
 			}
 		},
@@ -123,8 +119,7 @@ module.exports = function(grunt) {
 		},
 		
 		clean: [
-			'src/.grunt-tmp',
-			'src/.index.grunt-tmp.html'
+			'src/.grunt-tmp'
 		],
 		
 		'sw-precache': {
@@ -137,6 +132,41 @@ module.exports = function(grunt) {
 				staticFileGlobs: [
 					'**/*',
 				],
+			}
+		},
+		
+		babel: {
+			options: {
+				sourceMap: true,
+				presets: ['latest']
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: 'src/.grunt-tmp/',
+					src: ['**/*.js'],
+					dest: 'src/.grunt-tmp/',
+					ext:'.js'
+				}]
+			}
+		},
+		
+		replace: {
+			dist: {
+				options: {
+					patterns: [{
+						match: 'href="..',
+						replacement: 'href="../..'
+					}, {
+						match: 'src="..',
+						replacement: 'src="../..'
+					}],
+					prefix: ''
+				},
+				files: [{
+					src: ['src/.grunt-tmp/index.html'], 
+					dest: 'src/.grunt-tmp/index.html'
+				}]
 			}
 		},
 		
@@ -181,12 +211,15 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-appcache');
 	grunt.loadNpmTasks('grunt-version');
 	grunt.loadNpmTasks('grunt-template-render');
+	grunt.loadNpmTasks('grunt-babel');
+	grunt.loadNpmTasks('grunt-replace');
 
 	// Default task(s).
 	grunt.registerTask('default', [
-		'copy:ngassets', 'copy:ngcomponents', 'copy:ngdirectives', 'assets_inline',
-		'ngtemplates', 'includeSource', 'useminPrepare', 'concat',
-		'uglify', 'cssmin', 'usemin', 'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon',
-		'copy:assets', 'version', 'template:build', 'embed', 'clean', 'sw-precache', 'appcache'
+		'copy:gruntPrepare',
+		'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
+		'uglify', 'cssmin', 'usemin', 'template:build',
+		'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon', 'copy:assets',
+		'embed', 'version', 'clean', 'sw-precache', 'appcache'
 	]);
 };

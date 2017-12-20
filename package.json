@@ -31,10 +31,14 @@
 		"font-awesome-base64": "^1.0.4"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-preset-latest": "^6.24.1",
 		"grunt": "^1.0.1",
 		"grunt-angular-templates": "^1.1.0",
 		"grunt-appcache": "^0.2.0",
 		"grunt-assets-inline": "^0.1.19",
+		"grunt-babel": "^7.0.0",
 		"grunt-contrib-clean": "^1.1.0",
 		"grunt-contrib-concat": "^1.0.1",
 		"grunt-contrib-connect": "^1.0.2",
@@ -46,6 +50,7 @@
 		"grunt-css-url-replace": "^0.2.7",
 		"grunt-embed": "^0.2.1",
 		"grunt-include-source": "^1.1.0",
+		"grunt-replace": "^1.0.1",
 		"grunt-service-worker": "^0.1.2",
 		"grunt-sw-precache": "^1.0.3",
 		"grunt-template-render": "0.0.1",
