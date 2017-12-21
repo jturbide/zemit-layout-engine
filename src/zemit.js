@@ -24,6 +24,10 @@ var Zemit = {
 			'components/widget/text'
 		]);
 		
+		angular.element(document).on('click', function(event) {
+			$rs.$broadcast('documentClick', event);
+		});
+		
 		/**
 		 * Listen to key events
 		 */

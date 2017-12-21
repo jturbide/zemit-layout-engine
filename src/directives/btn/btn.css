@@ -25,6 +25,8 @@
 .zm-btn.active {
 	color: #75a9f9;
 }
+.zm-btn.active,
+.zm-btn:focus,
 .zm-btn:active {
 	background: #f2f2f2;
   background-image: -webkit-linear-gradient(top, #f2f2f2, #fafafa);

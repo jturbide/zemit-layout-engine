@@ -45,6 +45,19 @@
 				if(attrs.anchor) {
 					$e.addClass('zm-tabs-anchor-' + attrs.anchor);
 				}
+				
+				$s.$on('documentClick', (scope, event) => {
+					
+					if(!tabs.visible) {
+						return;
+					}
+					
+					var $target = angular.element(event.target);
+					if(!$target.is($e) && $target.closest($e).length === 0) {
+						tabs.close();
+						$s.$digest();
+					};
+				});
 			}
 		};
 	}]);
