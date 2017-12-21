@@ -14,7 +14,7 @@
 			section: 'structure',
 			title: 'Row',
 			desc: 'Row and columns',
-			icon: 'minus',
+			icon: 'columns',
 		},
 		drop: {
 			outside: {

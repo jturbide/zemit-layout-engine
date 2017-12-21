@@ -26,6 +26,7 @@
 .zm-sidebar-widgets-item-desc {
   font-size: 0.8rem;
   margin-bottom: 0;
+  margin-top: 0;
 }
 .zm-sidebar-widgets-item.zm-widget-drag {
   position: absolute;

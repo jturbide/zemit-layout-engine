@@ -63,11 +63,10 @@
   white-space: nowrap;
 }
 .zm-tabs-list li:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: lightyellow;
 }
 .zm-tabs-list li.active {
-  background-color: #000;
-  color: white;
+  font-weight: bold;
 }
 .zm-tabs-list li + li {
   border-top: #ccc solid 1px;
@@ -107,7 +106,8 @@
   width: 100%;
 }
 .zm-tabs-list .fa {
-  min-width: 1.25rem;
+  min-width: 1.5rem;
+  margin-right: 0.25rem;
   text-align: center;
 }
 .zm-tabs-list {
