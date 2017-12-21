@@ -24,6 +24,7 @@
 	"dependencies": {
 		"angular": "^1.6.4",
 		"angular-sanitize": "^1.6.4",
+		"angular-touch": "^1.6.7",
 		"angular-ui-tree": "^2.22.6",
 		"font-awesome-base64": "^1.0.4",
 		"interactjs": "1.2.9",

@@ -49,8 +49,10 @@
 					Widgets
 				</li>
 			</ul>
-			
-			<a class="zm-sidebar-logo" href="http://zemit.com" target="_blank">
+			<a class="zm-sidebar-icon zm-sidebar-help" ng-click="config.directives.dismissable.visible = !config.directives.dismissable.visible" ng-class="{ active: config.directives.dismissable.visible }">
+				<i class="fa fa-info-circle"></i>
+			</a>
+			<a class="zm-sidebar-icon zm-sidebar-logo" href="http://zemit.com" target="_blank">
 				<img src="/src/assets/img/logo-empty.png" />
 			</a>
 		</div>

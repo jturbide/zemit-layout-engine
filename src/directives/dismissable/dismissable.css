@@ -4,10 +4,17 @@
   color: white;
   border: rgba(255, 255, 255, 0.25) dashed 0.25rem;
 }
+.zm-dismissable-icon-remove,
 .zm-dismissable-icon {
   color: rgba(255, 255, 255, 0.5);
   font-size: 1.5rem;
+}
+.zm-dismissable-icon {
   margin-right: 1rem;
+}
+.zm-dismissable-icon-remove {
+  margin-left: 1rem;
+  align-self: flex-start;
 }
 .zm-widget-container.zm-context-preview .zm-dismissable {
   display: none;

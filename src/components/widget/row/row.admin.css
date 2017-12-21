@@ -45,6 +45,7 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
   display: block;
   text-align: center;
   padding: 1rem 0;
+  background-color: white;
 }
 .zm-widget-row-add-column-item-amount {
   font-size: 3rem;
@@ -65,6 +66,7 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
   background-color: white;
 }
 .zm-widget-row-empty {
+  background-color: #f6f6f6;
   padding: 0.5rem;
 }
 @media all and (pointer: coarse) {
@@ -72,8 +74,8 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
     padding: 1rem 0.5rem;
   }
   .zm-widget-row-add-column-item {
-    outline: #ddd solid 2px;
-    outline-offset: -2px;
+    outline: #ccc solid 1px;
+    outline-offset: -1px;
   }
   .zm-widget-row-add-column-item-4,
   .zm-widget-row-add-column-item-6 {

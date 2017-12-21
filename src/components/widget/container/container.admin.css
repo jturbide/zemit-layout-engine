@@ -17,6 +17,9 @@
   overflow: auto;
   max-height: 25vh;
 }
+.zm-container-notices zm-dismissable:first-child {
+  border-top: #ccc solid 1px;
+}
 .zm-container-notices zm-dismissable {
   display: block;
 }

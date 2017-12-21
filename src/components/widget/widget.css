@@ -3,7 +3,6 @@
   /*outline: #ccc solid 1px;*/
   /*outline-offset: -1px;*/
   cursor: default;
-  background-color: lightyellow;
 }
 .zm-context-structure .zm-widget,
 .zm-context-style .zm-widget {
@@ -24,6 +23,7 @@
 .zm-widget-container:not(.zm-context-preview) .zm-widget-inner {
   padding: 1rem;
   box-sizing: border-box;
+  background-color: whitesmoke;
 }
 /*.zm-widget-inner:after {*/
 /*  content: "";*/

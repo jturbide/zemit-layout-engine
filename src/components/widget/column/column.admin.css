@@ -2,9 +2,11 @@
  * Generic style
  */
 .zm-widget-column {
-  background-color: white;
   flex-grow: 1;
   margin: 0.5rem;
+}
+.zm-widget-container:not(.zm-context-preview) .zm-widget-column > .zm-widget-inner {
+  background-color: white;
 }
 .zm-widget-container.zm-context-preview .zm-widget-column {
   margin: 0;

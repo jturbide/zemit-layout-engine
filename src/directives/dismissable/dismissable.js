@@ -8,6 +8,7 @@
 			restrict: 'E',
 			templateUrl: 'directives/dismissable/dismissable.html',
 			transclude: true,
+			scope: true,
 			link: function ($s, $e, attrs) {
 				
 				var config = $config.get();
@@ -24,8 +25,7 @@
 				
 				$s.close = function() {
 					
-					//$s.config.visible = false;
-					$e.remove();
+					$s.config.visible = false;
 				};
 			}
 		};

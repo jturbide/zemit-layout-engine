@@ -103,6 +103,7 @@
 				
 				$s.tabs.init();
 				$s.sidebar.tabs = $s.tabs;
+				$s.config = config;
 			}
 		};
 	}]);

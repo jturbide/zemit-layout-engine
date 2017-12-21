@@ -6,7 +6,7 @@
 			TOKEN: {{ row.token }}
 		</div>
 	</div>
-	<div class="zm-widget-row-empty" ng-if="row.childs.length === 0">
+	<div class="zm-widget-row-empty" ng-if="row.childs.length === 0 && config.context === 'structure'">
 		
 		<!-- COLUMNS SELECTOR -->
 		<div class="zm-widget-row-add-columns zm-flex-container zm-flex-container-gap">
