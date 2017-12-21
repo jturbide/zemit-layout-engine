@@ -23,15 +23,6 @@
 		defaultAction: function($s, widget) {
 			$s.state.edit();
 		},
-		settings: {
-			title: 'Text',
-			controller: function($widgets, $di, attrs) {
-				
-				$widgets.forEach(function(widget) {
-					widget.getScope().editor.execAction(command, opts);
-				});
-			}
-		},
 		controller: function($s, $e, $di, attrs) {
 			
 			var $zm = $di.get('$zm');
@@ -60,19 +51,21 @@
 						contentEditable.innerHTML = $s.widget.text;
 						contentEditable.focus();
 						
-						var sel, range;
-						if (window.getSelection && document.createRange) {
-							range = document.createRange();
-							range.selectNodeContents(contentEditable);
-							sel = window.getSelection();
-							sel.removeAllRanges();
-							sel.addRange(range);
-						}
-						else if (document.body.createTextRange) {
-							range = document.body.createTextRange();
-							range.moveToElementText(contentEditable);
-							range.select();
-						}
+						document.execCommand('selectAll', false, null);
+						
+						// var sel, range;
+						// if (window.getSelection && document.createRange) {
+						// 	range = document.createRange();
+						// 	range.selectNodeContents(contentEditable);
+						// 	sel = window.getSelection();
+						// 	sel.removeAllRanges();
+						// 	sel.addRange(range);
+						// }
+						// else if (document.body.createTextRange) {
+						// 	range = document.body.createTextRange();
+						// 	range.moveToElementText(contentEditable);
+						// 	range.select();
+						// }
 					}, 250);
 				},
 				onApply: function() {
