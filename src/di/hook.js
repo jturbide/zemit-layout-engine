@@ -17,20 +17,24 @@
 				
 			add: function(name, callback) {
 				
+				var vm = this;
+				
 				if(typeof name === 'string') {
 					name = [name];
 				}
 				
 				name.forEach(function(n) {
-					if(!structure.list[n]) {
-						structure.list[n] = [];
+					if(!vm.list[n]) {
+						vm.list[n] = [];
 					}
-					structure.list[n].push(callback);
+					vm.list[n].push(callback);
 				});
 			},
 			
 			run: function(name, params) {
-				var hooks = this.list[name];
+				
+				var vm = this;
+				var hooks = vm.list[name];
 				if(hooks) {
 					angular.forEach(hooks, function(hook) {
 						hook(params);

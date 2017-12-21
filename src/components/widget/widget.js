@@ -391,9 +391,9 @@
 						else {
 							
 							var index = this.getIndex();
-							$s.hooks.run('onBeforeRemove');
+							$s.hooks.run('onBeforeRemove', this);
 							$parent.childs.splice(index, 1);
-							$s.hooks.run('onAfterRemove');
+							$s.hooks.run('onAfterRemove', this);
 							
 							$zm.widget.updateWidgetStates();
 						}
