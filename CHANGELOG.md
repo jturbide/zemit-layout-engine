@@ -23,3 +23,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Close tabs on click outside
 - Remove/duplicate columns (adjust column sizing)
 - Multiple edit text instances corrupted
+- Fix tooltip pointer
