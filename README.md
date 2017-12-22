@@ -14,11 +14,7 @@ Zemit \(pronounced /zemitː/\) is a free & open-source layout engine that aims t
 
 ##### Browser Compatibility
 
-<<<<<<< ef332690f7ff8b837a48d6b2b9c960fd373db73a
 Zemit supports all browsers that are ES5-compliant \(the application itself is not supported on IE11 and below but the output is supported by IE8 and above\).
-=======
-Zemit supports all browsers that are ES5-compliant \(the application itself is not supported on IE10 and below but the output is supported by IE8 and above\).
->>>>>>> Updates README.md
 
 ### Technology
 
@@ -27,19 +23,11 @@ Zemit is built over AngularJS and use other different libraries such as jQuery, 
 ### Installation
 
 Run the following commands to install the dependencies and build Zemit.
-<<<<<<< ef332690f7ff8b837a48d6b2b9c960fd373db73a
 
 1. `npm install`
 2. `grunt`
 
 Afterward, check /dist/index.html or /dist/index.min.html
-=======
-
-1. `npm install`
-2. `grunt`
-
-Afterward, check /dist/index.html 
->>>>>>> Updates README.md
 
 ### License
 
