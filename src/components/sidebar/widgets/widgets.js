@@ -197,23 +197,22 @@
 					var $compiledWidget = $compile($widget)($s, function($cloned, scope) {
 						
 						// Set dragged widget
-						$timeout(function() {
-							
-							scope.$element = $clone;
-							$clone[0].setAttribute('data-y', $e.offset().top);
-							$clone[0].setAttribute('data-x', $e.offset().left);
-							$clone.css({
-								'top': $e.offset().top + 'px',
-								'left': $e.offset().left + 'px',
-								'width': $e.width(),
-								'height': $e.height()
-							});
-							
-							// If in portrait mode, close all sidebar tabs
-							if(window.innerWidth < 767) {
-								$s.sidebar.tabs.hideAll();
-							}
-							
+						scope.$element = $clone;
+						$clone[0].setAttribute('data-y', $e.offset().top);
+						$clone[0].setAttribute('data-x', $e.offset().left);
+						$clone.css({
+							'top': $e.offset().top + 'px',
+							'left': $e.offset().left + 'px',
+							'width': $e.width(),
+							'height': $e.height()
+						});
+						
+						// If in portrait mode, close all sidebar tabs
+						if(window.innerWidth < 767) {
+							$s.sidebar.tabs.hideAll();
+						}
+						
+						$timeout(() => {
 							scope.widget.updateToken();
 							$zm.widget.drag.set(scope.widget, true);
 							

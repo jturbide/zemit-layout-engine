@@ -353,6 +353,10 @@
 									},
 									ondropmove: function(event) {
 										
+										if(!event.interaction.isReady) {
+											return;
+										}
+										
 										var cursor = event.dragEvent.ctrlKey || event.dragEvent.metaKey ? 'copy' : 'move';
 										
 										// Set default drop effect to nothing

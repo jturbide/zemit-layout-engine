@@ -59,8 +59,9 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
 .zm-widget-row-add-column-item:hover {
   outline: #75a9f9 solid 2px;
   color: #75a9f9;
-  outline-offset: -2px;
+  outline-offset: -1px;
   cursor: pointer;
+  z-index: 1;
 }
 .zm-widget-row-add-columns {
   width: 100%;
