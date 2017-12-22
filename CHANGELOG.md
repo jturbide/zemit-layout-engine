@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add pointer cursor on tab items
 
 ## [0.0.7]
-- 
+- Change opacity on mouseover on sidebar icons
 - Drag & drop of widgets on desktop (widgets does not always appear)
 - Show correct select color on empty rows
 - Desktop, adjust space between columns on empty rows

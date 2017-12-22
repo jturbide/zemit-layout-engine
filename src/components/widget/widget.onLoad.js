@@ -243,6 +243,7 @@
 											part: null,
 											widget: null
 										};
+										event.interaction.isReady = true;
 									};
 								}
 								else {
@@ -292,6 +293,7 @@
 													part: null,
 													widget: null
 												};
+												event.interaction.isReady = true;
 										
 												interaction.start({name: 'drag'},
 													event.interactable,
@@ -640,6 +642,7 @@
 									ondrop: function(event) {
 //console.log('DROP', $s.widget.token);
 										var dropState = event.interaction.dropState;
+										event.interaction.isReady = false;
 										
 										// Finalize callback
 										var finalize = function(newWidget) {
