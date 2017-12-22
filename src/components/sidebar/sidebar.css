@@ -40,7 +40,6 @@
 .zm-sidebar .zm-sidebar-tabs .zm-tab-item.active {
   color: black;
   border-bottom-color: #ccc;
-  cursor: pointer;
 }
 .zm-sidebar-group + .zm-sidebar-group > .zm-sidebar-title {
   border-top: #ccc solid 1px;
