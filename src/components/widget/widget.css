@@ -34,6 +34,7 @@
   /*outline-color: #75a9f9;*/
   z-index: 1;
 }
+.zm-widget-container:not(.zm-widget-drag-parent):not(.zm-context-preview) .zm-widget.zm-selected:not(.zm-drop-activated) > .zm-selected-bg,
 .zm-widget-container:not(.zm-widget-drag-parent):not(.zm-context-preview) .zm-widget.zm-selected:not(.zm-drop-activated) > .zm-widget-inner {
   /*background-color: rgba(117,169,249, 0.25);*/
   background-color: #DBEDC7 !important;
