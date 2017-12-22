@@ -6,6 +6,8 @@ Zemit \(pronounced /zemitː/\) is a free & open-source layout engine that aims t
 >
 > If you want to help with the development, feel free to communicate with me.
 
+[![Usage demonstration](https://j.gifs.com/RoMqv0.gif)](https://youtu.be/h5_QVSeduMM)
+
 ##### Browser Compatibility
 
 Zemit supports all browsers that are ES5-compliant \(the application itself is not supported on IE11 and below but the output is supported by IE8 and above\).
