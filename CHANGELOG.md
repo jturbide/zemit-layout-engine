@@ -5,10 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- 0.0.7:
-- Drag & drop of widgets on desktop (widgets does not always appear)
-- Remove cursor pointer on sidebar tabs
-- Change opacity on mouseover on sidebar icons
 - 0.0.8:
 - Complete workspace area
 - Confirm dialog on document clearing
@@ -19,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add pointer cursor on tab items
 
 ## [0.0.7]
+- 
+- Drag & drop of widgets on desktop (widgets does not always appear)
 - Show correct select color on empty rows
 - Desktop, adjust space between columns on empty rows
 - Select text when editing text widget on mobile

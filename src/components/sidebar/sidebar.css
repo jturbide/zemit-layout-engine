@@ -87,6 +87,7 @@
 .zm-sidebar-logo {
   bottom: 0.25rem;
 }
+.zm-sidebar-icon:hover,
 .zm-sidebar-logo:hover {
   opacity: 0.5;
 }
