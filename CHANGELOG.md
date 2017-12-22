@@ -6,9 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 - 0.0.7:
-- Auto-select text when editing text widget on mobile
 - Drag & drop of widgets on desktop (widgets does not always appear)
-- Desktop, adjust space between columns on empty rows
 - Show correct select color on empty rows
 - 0.0.8:
 - Complete workspace area
@@ -20,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add pointer cursor on tab items
 
 ## [0.0.7]
+- Desktop, adjust space between columns on empty rows
+- Select text when editing text widget on mobile
 - Close tabs on click outside
 - Remove/duplicate columns (adjust column sizing)
 - Multiple edit text instances corrupted

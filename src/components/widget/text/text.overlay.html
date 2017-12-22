@@ -1,3 +1,7 @@
 <div class="zm-text-content-editor">
-	<div class="zm-text-content-editor-text" contenteditable="true" ng-bind-html="text | trustHtml"></div>
+	<!--
+		Editable contents in the DOM are marked with tabindex in the background, so in order for your div to receive the onfocus event, you need to explicitly declare the div's tabindex property.
+		https://stackoverflow.com/a/35385295/538323
+	-->
+	<div class="zm-text-content-editor-text" ng-click="$event.preventDefault()" tabindex="1" contenteditable="true" ng-bind-html="text | trustHtml"></div>
 </div>

@@ -46,27 +46,15 @@
 				templateUrl: 'components/widget/text/text.overlay.html',
 				onShow: function($overlayElement) {
 					
-					$timeout(function() {
-						var contentEditable = $overlayElement.find('.zm-text-content-editor-text')[0];
-						contentEditable.innerHTML = $s.widget.text;
-						contentEditable.focus();
+					// $s.selectAll = () => {
+					// 	var contentEditable = $overlayElement.find('.zm-text-content-editor-text')[0];
+					// 	contentEditable.innerHTML = $s.widget.text;
+					// 	contentEditable.focus();
 						
-						document.execCommand('selectAll', false, null);
-						
-						// var sel, range;
-						// if (window.getSelection && document.createRange) {
-						// 	range = document.createRange();
-						// 	range.selectNodeContents(contentEditable);
-						// 	sel = window.getSelection();
-						// 	sel.removeAllRanges();
-						// 	sel.addRange(range);
-						// }
-						// else if (document.body.createTextRange) {
-						// 	range = document.body.createTextRange();
-						// 	range.moveToElementText(contentEditable);
-						// 	range.select();
-						// }
-					}, 250);
+					// 	document.execCommand('selectAll', false, null);
+					// };
+					
+					// $timeout($s.selectAll, 250);
 				},
 				onApply: function() {
 					
