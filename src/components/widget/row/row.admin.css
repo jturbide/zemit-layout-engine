@@ -52,6 +52,10 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
   line-height: 3rem;
   font-weight: bold;
 }
+.zm-widget-row-add-column-item {
+  outline: #ccc solid 1px;
+  /*outline-offset: -1px;*/
+}
 .zm-widget-row-add-column-item:hover {
   outline: #75a9f9 solid 2px;
   color: #75a9f9;
@@ -67,15 +71,14 @@ zm-widget[type=row] + zm-widget[type=row] .zm-widget-row {
 }
 .zm-widget-row-empty {
   background-color: #f6f6f6;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 @media all and (pointer: coarse) {
   .zm-widget-empty.zm-widget-row > .zm-widget-inner {
     padding: 1rem 0.5rem;
   }
-  .zm-widget-row-add-column-item {
-    outline: #ccc solid 1px;
-    outline-offset: -1px;
+  .zm-widget-row-empty {
+    padding: 0.75rem;
   }
   .zm-widget-row-add-column-item-4,
   .zm-widget-row-add-column-item-6 {
