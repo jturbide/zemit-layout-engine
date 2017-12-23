@@ -57,6 +57,7 @@
 		"grunt-embed": "^0.2.1",
 		"grunt-include-source": "^1.1.0",
 		"grunt-replace": "^1.0.1",
+		"grunt-replace-attribute": "^1.0.1",
 		"grunt-service-worker": "^0.1.2",
 		"grunt-sw-precache": "^1.0.3",
 		"grunt-template-render": "0.0.1",

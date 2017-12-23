@@ -730,7 +730,6 @@
 					onLoad: function(_$element) {
 						
 						$element = _$element;
-						this.bindEvents();
 						
 						$s.hooks.run('onLoad', $element);
 						
@@ -738,6 +737,7 @@
 							$e.addClass('zm-visible');
 							setTimeout(function() {
 								$e.addClass('zm-transform-completed');
+								$s.widget.bindEvents(); // Wait for widget to be fully loaded...
 							}, 250);
 						});
 					}

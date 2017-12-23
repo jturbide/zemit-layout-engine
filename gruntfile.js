@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 		
 		copy: {
 			html: {
-				src: 'src/.grunt-tmp/index.html',
+				src: 'src/.grunt-tmp/index.final.html',
 				dest: 'dist/index.html'
 			},
 			manifest: {
@@ -109,9 +109,9 @@ module.exports = function(grunt) {
 		
 		embed: {
 			options: {
-				threshold: '1024KB'
+				threshold: '2048KB'
 			},
-			some_target: {
+			target: {
 				files: {
 					'dist/index.min.html': 'dist/index.html'
 				}
@@ -170,6 +170,22 @@ module.exports = function(grunt) {
 			}
 		},
 		
+		replace_attribute: {
+			target: {
+				options: {
+					upsert: true,
+					replace: {
+						html: { 
+							manifest: 'manifest.appcache?v=<%= pkg.version %>'
+						}
+					}
+				},
+				files: {
+					'src/.grunt-tmp/index.final.html': 'src/.grunt-tmp/index.html'
+				}
+			},
+		},
+		
 		appcache: {
 			options: {
 				basePath: 'dist'
@@ -213,12 +229,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-template-render');
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-replace');
+	grunt.loadNpmTasks('grunt-replace-attribute');
 
 	// Default task(s).
 	grunt.registerTask('default', [
 		'copy:gruntPrepare',
 		'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
-		'uglify', 'cssmin', 'usemin', 'template:build',
+		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute',
 		'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon', 'copy:assets',
 		'embed', 'version', 'clean', 'sw-precache', 'appcache'
 	]);

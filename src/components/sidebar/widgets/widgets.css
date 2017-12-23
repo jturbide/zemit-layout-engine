@@ -17,6 +17,9 @@
   color: #75a9f9;
   border-color: #75a9f9;
 }
+.zm-sidebar-widgets .zm-sidebar-widgets-item:hover {
+  cursor: move;
+}
 .zm-sidebar-widgets-item-icon {
   font-size: 2rem;
 }
