@@ -10,8 +10,7 @@ var Zemit = {
 };
 (function() {
 	Zemit.app = angular.module('zemit', [
-		'ngSanitize',
-		'ngTouch'
+		'ngSanitize'
 	]);
 	
 	Zemit.app.run(['$rootScope', '$zm', '$history', function($rs, $zm, $history) {
