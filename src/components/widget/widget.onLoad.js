@@ -693,7 +693,7 @@
 											// Reselect widget
 											if(newWidget && newWidget.getParent().isSelectable !== false) {
 												newWidget.select();
-												$s.$apply();
+												newWidget.getScope().$apply();
 											}
 										};
 										
@@ -730,14 +730,13 @@
 					onLoad: function(_$element) {
 						
 						$element = _$element;
-						
+						this.bindEvents(); // Wait for widget to be fully loaded...
 						$s.hooks.run('onLoad', $element);
 						
 						setTimeout(function() {
 							$e.addClass('zm-visible');
 							setTimeout(function() {
 								$e.addClass('zm-transform-completed');
-								$s.widget.bindEvents(); // Wait for widget to be fully loaded...
 							}, 250);
 						});
 					}

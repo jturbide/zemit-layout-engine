@@ -2,9 +2,7 @@
 	<div class="zm-widget-heading">
 		
 		<!-- DEBUG -->
-		<div ng-if="config.debug">
-			TOKEN: {{ widget.token }}
-		</div>
+		<zm-widget-debug widget="widget" />
 	</div>
 	<div class="zm-widget-inner zm-widget-draggable zm-draggable zm-widget-drop-inside">
 		<!-- INNER CONTENT (INJECTED DYNAMICALLY) -->

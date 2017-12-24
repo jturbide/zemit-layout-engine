@@ -2,9 +2,7 @@
 	<div class="zm-widget-heading">
 		
 		<!-- DEBUG -->
-		<div ng-if="config.debug">
-			TOKEN: {{ row.token }}
-		</div>
+		<zm-widget-debug widget="widget" />
 	</div>
 	<div class="zm-widget-row-empty zm-selected-bg" ng-if="row.childs.length === 0 && config.context === 'structure'">
 		

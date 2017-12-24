@@ -549,7 +549,11 @@
 						var _scope = $s.$parent;
 						if(_scope) {
 							while(_scope && _scope.widget && _scope.widget.childs) {
-								angular.forEach(_scope.widget.childs, callback);
+								angular.forEach(_scope.widget.childs, (child) => {
+									if(child.getScope instanceof Function) {
+										callback(child);
+									}
+								});
 								_scope = _scope.$parent;
 							}
 						}
@@ -746,6 +750,21 @@
 				var $widget = angular.element('<zm-widget-' + zWidget.dashedType + ' />');
 				$e.children('.zm-widget-inner').append($widget);
 				$compile($widget)($s);
+			}
+		};
+	}]);
+	
+	/**
+	 * Widget debugging
+	 */
+	Zemit.app.directive('zmWidgetDebug', ['$compile', function($compile) {
+		return {
+			restrict: 'E',
+			replace: true,
+			templateUrl: 'components/widget/debug/debug.html',
+			scope: true,
+			link: function($s, $e, attrs) {
+				
 			}
 		};
 	}]);

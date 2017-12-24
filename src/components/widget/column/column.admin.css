@@ -58,11 +58,11 @@
 .zm-widget-column zm-widget + zm-widget > .zm-widget {
   margin-top: -1px;
 }
-.zm-widget-column.zm-widget-empty > .zm-widget-inner {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+/*.zm-widget-column.zm-widget-empty > .zm-widget-inner {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  flex-direction: column;*/
+/*}*/
 
 /**
  * Dividing
