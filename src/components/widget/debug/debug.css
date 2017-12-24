@@ -1,0 +1,14 @@
+.zm-widget-debug {
+    z-index: 1;
+    font-size: 0.5rem;
+    background-color: rgba(0, 0, 64, 0.75);
+    color: white;
+    text-align: center;
+}
+.zm-widget-debug-item {
+	display: inline-block;
+	margin-right: 0.5rem;
+}
+.zm-widget-debug-item label {
+	font-weight: bold;
+}
