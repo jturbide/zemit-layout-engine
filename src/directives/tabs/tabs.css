@@ -62,7 +62,7 @@
   white-space: nowrap;
 }
 .zm-tabs-list li:hover {
-  background-color: floralwhite;
+  background-color: #f1fcfd;
 }
 .zm-tabs-list li.active {
   font-weight: bold;

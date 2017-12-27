@@ -187,7 +187,7 @@
 									hold: 200,
 									restrict: {
 										endOnly: true,
-										//restriction: $element.parents('.zm-container-scrollable:eq(0)')[0],
+										restriction: $element.parents('.zm-container-scrollable:eq(0)')[0],
 										elementRect: {
 											top: 0,
 											left: 0,
@@ -341,7 +341,13 @@
 								/**
 								 * Accept widgets to be dropped outside
 								 */
-								interact($element[0]).dropzone({
+								var $dropZone = $element;
+								let $dropContainer = $dropZone.find('[zm-accept-widget-inside]');
+								if($dropContainer.length > 0) {
+									$dropZone = $dropContainer;
+								}
+								 
+								interact($dropContainer[0]).dropzone({
 									accept: '.zm-widget-draggable',
 									overlap: 'pointer',
 									ondropactivate: function(event) {

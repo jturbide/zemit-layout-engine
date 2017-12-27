@@ -23,7 +23,7 @@
 .zm-widget-container:not(.zm-context-preview) .zm-widget-inner {
   padding: 1rem;
   box-sizing: border-box;
-  background-color: floralwhite;
+  background-color: #f1fcfd;
 }
 /*.zm-widget-inner:after {*/
 /*  content: "";*/

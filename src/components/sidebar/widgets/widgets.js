@@ -93,7 +93,7 @@
 					manualStart: true,
 					restrict: {
 						endOnly: true,
-						restriction: "zemit",
+						restriction: $e.parents('zemit:eq(0)').find('.zm-container-scrollable:eq(0)')[0],
 						elementRect: {
 							top: 0,
 							left: 0,
