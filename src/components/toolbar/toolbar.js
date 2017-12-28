@@ -19,15 +19,6 @@
 						config.context = context;
 					}, undefined, config);
 				};
-				
-				$s.toggleDebug = function() {
-					
-					$config.data.debug = !$config.data.debug;
-					
-					console.log('CONTAINER', $s.container);
-					console.log('CONFIG', $config);
-					console.log('HISTORY', $s.history.changes);
-				};
 			}
 		};
 	}]);

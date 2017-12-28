@@ -10,9 +10,9 @@
   overflow: auto;
   position: relative;
 }
-.zm-context-structure .zm-container-scrollable {
-  padding-bottom: 5rem;
-}
+/*.zm-context-structure .zm-container-scrollable {*/
+/*  padding-bottom: 5rem;*/
+/*}*/
 .zm-container-notices-scrollable {
   overflow: auto;
   max-height: 25vh;

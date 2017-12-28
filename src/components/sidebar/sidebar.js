@@ -21,10 +21,25 @@
 							},
 							widgets: {
 								visible: $device.isLargeEnough()
+							},
+							debug: {
+								visible: false
 							}
 						}
 					}
 				});
+				
+				$s.toggleDebug = () => {
+					
+					if(config.debug && config.sidebar.tabs.debug.visible) {
+						$s.tabs.toggle('debug');
+					}
+					else if(!config.debug && !$s.tabs.showContent) {
+						$s.tabs.toggle('debug');
+					}
+					
+					config.debug = !config.debug;
+				};
 				
 				$s.tabs = {
 					

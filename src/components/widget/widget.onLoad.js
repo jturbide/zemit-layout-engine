@@ -187,7 +187,6 @@
 									hold: 200,
 									restrict: {
 										endOnly: true,
-										restriction: $element.parents('.zm-container-scrollable:eq(0)')[0],
 										elementRect: {
 											top: 0,
 											left: 0,
@@ -649,6 +648,11 @@
 //console.log('DROP', $s.widget.token);
 										var dropState = event.interaction.dropState;
 										event.interaction.isReady = false;
+										
+										// HACK: Remove all drop-activated classes
+										// When we drop a new widget, the previous one keeps the zm-drop-activated
+										// class and it shouldn't.
+										angular.element('.zm-drop-activated').removeClass('zm-drop-activated');
 										
 										// Finalize callback
 										var finalize = function(newWidget) {

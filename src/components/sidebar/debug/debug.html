@@ -1,0 +1,17 @@
+<div class="zm-sidebar-debug">
+    
+    <!-- NOTICE -->
+    <zm-dismissable type="info" key="zm-sidebar-debug-intro">
+    	<strong>Warning!</strong> Use these actions with caution.
+    </zm-dismissable>
+    
+    <div class="zm-content-small">
+    	<p>
+    		<strong>Selected widgets:</strong> {{ zm.widget.totalSelected }}
+    		<br /><strong>History:</strong> {{ history.position || 0 }} / {{ history.changes.length || 0 }}
+    	</p>
+    	
+    	<zm-btn ng-click="zm.session.flushHistory()">Flush history only</zm-btn>
+    	<zm-btn ng-click="zm.session.flushAll()">Flush all</zm-btn>
+    </div>
+</div>

@@ -77,7 +77,6 @@
   text-align: center;
   display: block;
   padding: 0.5rem;
-  position: absolute;
   width: 100%;
   opacity: 0.25;
   box-sizing: border-box;
@@ -85,6 +84,7 @@
   font-size: 1.5rem;
 }
 .zm-sidebar-logo {
+  position: absolute;
   bottom: 0.25rem;
 }
 .zm-sidebar-icon:hover,
