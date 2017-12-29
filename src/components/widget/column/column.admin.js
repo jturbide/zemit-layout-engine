@@ -10,7 +10,18 @@
 	 * other widgets.
 	 */
 	Zemit.widgets.init('column', {
-		injectable: false,
+		injectable: {
+			section: 'structure',
+			title: 'Column',
+			desc: 'Divide row in columns',
+			icon: 'columns',
+		},
+		drop: {
+			outside: {
+				accept: ['column'],
+				decline: false
+			}
+		},
 		defaultTemplate: false,
 		autoSetup: false,
 		settings: {

@@ -38,3 +38,12 @@
   opacity: 0 !important;
   pointer-events: none;
 }
+
+.zm-bg-info {
+	background-color: #B1A2FC;
+  color: white;
+}
+.zm-bg-warning {
+	background-color: #ffa66a;
+  color: white;
+}

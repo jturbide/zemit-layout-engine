@@ -13,6 +13,11 @@
       -ms-touch-action: none;
           touch-action: none;
 }
+.zm-sidebar-widgets-item.zm-widget-draggable {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+}
 .zm-sidebar-widgets-item:hover {
   color: #75a9f9;
   border-color: #75a9f9;

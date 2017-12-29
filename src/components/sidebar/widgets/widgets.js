@@ -89,7 +89,6 @@
 			link: function($s, $e, attrs) {
 				
 				var draggableOptions = {
-					hold: 200,
 					manualStart: true,
 					restrict: {
 						endOnly: true,
@@ -136,7 +135,6 @@
 						);
 						
 						//if(!event.interaction.mouse) {
-							
 							angular.element(element).trigger('dragHoverTouch', {
 								x: event.clientX,
 								y: event.clientY
@@ -161,7 +159,7 @@
 						target.removeAttribute('data-y');
 						
 						// Unset dragged widget
-						$zm.widget.drag.set(null);
+						//$zm.widget.drag.set(null);
 						
 						if(window.innerWidth < 767) {
 							$s.$apply(function() {
@@ -170,8 +168,6 @@
 							});
 						}
 						
-						event.interaction.isReady = false;
-						event.interaction.dontRemove = false;
 						event.interaction.$element.remove();
 					}
 				};
@@ -213,7 +209,9 @@
 						
 						$timeout(() => {
 							scope.widget.updateToken();
-							$zm.widget.drag.set(scope.widget, true);
+							scope.widget.updateId();
+							event.interaction.draggedWidget = scope.widget;
+							//$zm.widget.drag.set(scope.widget, true);
 							
 							event.interaction.isReady = true;
 						});
@@ -225,7 +223,6 @@
 				/**
 				 * Move the element around
 				 */
-				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).styleCursor(false);
 				var manualStartStart = function(event) {
 					var interaction = event.interaction;
 						
@@ -239,6 +236,10 @@
 						}, event.interactable, $clone[0]);
 					}
 				};
+				//interact.debug().defaultOptions._holdDuration = 200;
+				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).pointerEvents({
+					holdDuration: 200
+				}).styleCursor(false);
 				
 				!$device.isTouch() && interactObj.on('move', manualStartStart);
 				$device.isTouch() && interactObj.on('hold', manualStartStart);

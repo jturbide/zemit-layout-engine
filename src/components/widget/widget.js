@@ -231,6 +231,10 @@
 					type: $s.widget.type || type,
 					childs: $s.widget.childs || [],
 					
+					updateId: function() {
+						this.id = ('zm_' + type + '_' + $zm.s4());
+					},
+					
 					updateToken: function() {
 						this.token = type + '_' + $zm.s4();
 					},
@@ -288,7 +292,7 @@
 					 */
 					getParent: function() {
 					
-						if(!this.hasParent()) {
+						if(!this.hasParent() || !$s.$parent.$parent) {
 							return false;
 						}
 						

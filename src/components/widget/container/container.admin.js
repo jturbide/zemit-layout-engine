@@ -13,12 +13,12 @@
 		draggable: false,
 		drop: {
 			outside: {
-				enabled: false
+				enabled: false,
 			},
 			inside: {
 				enabled: true,
-				accept: ['row'],
-				decline: false
+				accept: '*',
+				decline: ['column']
 			}
 		},
 		settings: {

@@ -115,9 +115,15 @@
 				/**
 				 * Get Zemit data
 				 */
-				get: function(parser) {
+				get: function(parser, cleaned) {
 					
-					return (parser && this.parse(this.data)) || this.data;
+					var data = (parser && this.parse(this.data)) || this.data;
+					
+					if(cleaned) {
+						data = angular.fromJson(angular.toJson(data));
+					}
+					
+					return data;
 				},
 				
 				/**

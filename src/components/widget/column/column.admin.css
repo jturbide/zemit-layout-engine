@@ -129,6 +129,7 @@
   cursor: col-resize;
   font-size: 1rem;
   text-align: center;
+  touch-action: none; /* Required by InteractJS */
 }
 .zm-widget-column .zm-widget-column-resize-handler .fa {
   background-color: #ccc;

@@ -184,7 +184,6 @@
 								$s.isDraggable = true;
 								
 								var draggableOptions = {
-									hold: 200,
 									restrict: {
 										endOnly: true,
 										elementRect: {
@@ -232,6 +231,8 @@
 										
 										// Set dragged widget
 										$zm.widget.drag.set(_this);
+										event.interaction.draggedWidget = _this;
+										event.interaction.dontRemove = false;
 										
 										event.interaction.initialScroll = {
 											y: $container.scrollTop(),
@@ -253,7 +254,9 @@
 								 * Move the element around
 								 */
 								var $draggable = $element.find('.zm-widget-inner:eq(0)');
-								var interactObj = interact($draggable[0]).draggable(draggableOptions).styleCursor(false);
+								var interactObj = interact($draggable[0]).draggable(draggableOptions).pointerEvents({
+									holdDuration: 200
+								}).styleCursor(false);
 								
 								if($device.isTouch()) {
 									interactObj.on('hold', function(event) {
@@ -261,6 +264,9 @@
 										var interaction = event.interaction;
 										
 										if(!interaction.interacting()) {
+											
+											interaction.dontRemove = false;
+											interaction.draggedWidget = _this;
 											
 											// Set dragged widget
 											var nearestSelected = _this;
@@ -280,6 +286,7 @@
 												
 												$device.vibrate();
 												
+												//event.interaction.draggedWidget = nearestSelected;
 												$zm.widget.drag.set(nearestSelected);
 												$draggable = nearestSelected.getScope().$element.find('.zm-widget-inner:eq(0)');
 												
@@ -329,11 +336,15 @@
 								var checkAccept = function(accept, widget, hoveredWidget) {
 									
 									if(accept instanceof Array) {
-										return accept.indexOf(widget.type) !== -1
-											|| accept.indexOf('*') !== -1;
+										return accept.indexOf('*') !== -1
+											|| accept.indexOf(widget.type) !== -1;
 									}
 									else if(accept instanceof Function) {
 										return accept(widget, hoveredWidget);
+									}
+									else if(typeof accept === 'string') {
+										return accept === '*'
+											|| accept(accept, hoveredWidget);
 									}
 								};
 								
@@ -341,19 +352,19 @@
 								 * Accept widgets to be dropped outside
 								 */
 								var $dropZone = $element;
-								let $dropContainer = $dropZone.find('[zm-accept-widget-inside]');
+								let $dropContainer = $dropZone.find('.zmAcceptWidgetInside:eq(0)');
 								if($dropContainer.length > 0) {
 									$dropZone = $dropContainer;
 								}
 								 
-								interact($dropContainer[0]).dropzone({
+								interact($dropZone[0]).dropzone({
 									accept: '.zm-widget-draggable',
 									overlap: 'pointer',
 									ondropactivate: function(event) {
-										$element.addClass('zm-drop-activated');
+										$dropZone.addClass('zm-drop-activated');
 									},
 									ondropdeactivate: function(event) {
-										$element.removeClass('zm-drop-activated');
+										$dropZone.removeClass('zm-drop-activated');
 									},
 									ondragenter: function(event) {
 										
@@ -371,7 +382,7 @@
 										
 										var dropState = event.interaction.dropState;
 										var hoveredWidgets = $zm.widget.hovered.getAll();
-										var draggedWidget = $zm.widget.drag.get();
+										var draggedWidget = event.interaction.draggedWidget;
 										var draggedElement = draggedWidget.getScope().$element;
 										if(hoveredWidgets.length === 0 || !draggedWidget) {
 											return;
@@ -392,7 +403,7 @@
 											if(draggedWidget.token === hoveredWidget.token
 											|| !configs.drop) {
 
-												return;
+												break;
 											}
 											
 											if(dropState.widget) {
@@ -622,12 +633,12 @@
 										}
 									},
 									ondragleave: function(event) {
-//console.log('LEAVE', $s.widget.token);
+//console.log('LEAVE', $s.widget.token, event);
 										var dropState = event.interaction.dropState;
 										
 										if(dropState.widget) {
 											
-											var drag = $zm.widget.drag.get();
+											var drag = event.interaction.draggedWidget;
 											var draggedElement = drag.getScope().$element;
 											if(draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
@@ -660,7 +671,7 @@
 											// Hide placeholder
 											$placeholder[0].classList.add('zm-hidden');
 											
-											var drag = $zm.widget.drag.get();
+											var drag = event.interaction.draggedWidget;
 											var draggedElement = drag.getScope().$element;
 											if(draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
@@ -693,6 +704,7 @@
 												// If CTRL or Command key are enabled, do not erase dragged element
 												// (duplicate)
 												if(!event.dragEvent.ctrlKey && !event.dragEvent.metaKey && !event.interaction.dontRemove) {
+													event.interaction.dontRemove = false;
 													drag.remove();
 												}
 											}
@@ -705,6 +717,8 @@
 												newWidget.select();
 												newWidget.getScope().$apply();
 											}
+											
+											$zm.widget.drag.resetCursor();
 										};
 										
 										// If no widget hovered, skip this
@@ -714,7 +728,7 @@
 										}
 										
 										// Clone dragged element
-										var dragged = $zm.widget.drag.get();
+										var dragged = event.interaction.draggedWidget;
 										var clone = dragged.clone(event.dragEvent.ctrlKey || event.dragEvent.metaKey);
 										var parent = dropState.widget.getParent();
 										var scope = dropState.widget.getScope();

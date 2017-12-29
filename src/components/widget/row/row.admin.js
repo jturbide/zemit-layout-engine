@@ -14,15 +14,12 @@
 			section: 'structure',
 			title: 'Row',
 			desc: 'Row and columns',
-			icon: 'columns',
+			icon: 'window-minimize',
 		},
 		drop: {
 			outside: {
-				accept: function(draggedWidget, currentWidget) {
-					return draggedWidget.type === 'row'
-						|| currentWidget.getParent().type === 'column';
-				},
-				decline: false
+				accept: '*',
+				//decline: 'column'
 			}
 		},
 		defaultTemplate: false,

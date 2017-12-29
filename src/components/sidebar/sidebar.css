@@ -8,10 +8,7 @@
   border-left: #ccc solid 1px;
 }
 .zm-sidebar.zm-hide-all-tabs .zm-sidebar-tab {
-  position: absolute;
-  opacity: 0;
-  z-index: -1;
-  pointer-events: none;
+  display: none !important;
 }
 .zm-sidebar .zm-sidebar-tabs {
   box-shadow: inset 1rem 0 1rem -0.5rem rgba(0, 0, 0, 0.05);
