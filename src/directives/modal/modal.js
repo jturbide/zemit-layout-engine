@@ -327,7 +327,10 @@
 						
 						$s.modal.visible = false;
 						$s.modal.backdrop = false;
-						$s.modal.$backdrop.remove();
+						
+						if($s.modal.$backdrop) {
+							$s.modal.$backdrop.remove();
+						}
 						
 						$timeout(function() {
 							$s.modal.hidden = true;
