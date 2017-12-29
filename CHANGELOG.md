@@ -7,14 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 - 0.0.8:
 - Complete workspace area
-- Android back button support
 - Add next button on dimissable panels
-- Update app's inner documentation
 - Bug with data cache (doesn't load on refresh)
 - 0.0.9
 - Show "prevent cursor" when dragging a widget over another that doesn't accept its type
+- Scrollable sidebar
 
 ## [0.0.8]
+- Update app's inner documentation
 - Center column's add widget icon on desktop devices
 - Confirm dialog on document clearing
 - Can add widgets outside of a row

@@ -17,7 +17,7 @@ Zemit supports all browsers that are ES5-compliant \(the application itself is n
 
 ### Technology
 
-Zemit is built over AngularJS and use other different libraries such as jQuery, Font Awesome, JSONDiffPath and InteractJS.
+Zemit is built over AngularJS and use other different libraries such as jQuery, Font Awesome, JSONDiffPatch and InteractJS.
 
 ### Installation
 
