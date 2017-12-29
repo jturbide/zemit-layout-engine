@@ -136,10 +136,24 @@
 				
 				clear: function() {
 					
-					var containerWidget = factory.getBaseScope().widget;
-					factory.action(function() {
-						containerWidget.childs = [];
-					}, undefined, containerWidget);
+					$modal.dialog('content_clear', {
+						backdrop: true,
+						title: 'Clear content',
+						content: 'Are you sure you want to clear your content?',
+						buttons: [{
+							label: 'Clear content',
+							callback: (event, modal) => {
+								var containerWidget = factory.getBaseScope().widget;
+								factory.action(function() {
+									containerWidget.childs = [];
+								}, undefined, containerWidget);
+								
+								modal.close();
+							}
+						}, {
+							label: 'Cancel'
+						}]
+					});
 				},
 				
 				/**

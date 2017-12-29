@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 - 0.0.8:
 - Complete workspace area
-- Confirm dialog on document clearing
 - Android back button support
 - Add next button on dimissable panels
 - Update app's inner documentation
@@ -16,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Show "prevent cursor" when dragging a widget over another that doesn't accept its type
 
 ## [0.0.8]
+- Confirm dialog on document clearing
 - Can add widgets outside of a row
 - Hold and drag a widget (slower delay)
 - Update InteractJS to 1.3.2

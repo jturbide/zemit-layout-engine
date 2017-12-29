@@ -15,13 +15,13 @@
 			dialog: function(id, params = {}) {
 				
 				return this.create(id, params, function(modal) {
-					modal.open({
+					modal.open(angular.extend(params, {
 						onClose: function() {
 							setTimeout(function() {
 								modal.remove();
 							}, 250);
 						}
-					});
+					}));
 				});
 			},
 			
@@ -105,10 +105,18 @@
 							$modalFooter.html('');
 							angular.forEach(params.buttons, function(button) {
 								var $btn = angular.element('<div class="zm-btn" />');
+								
 								$btn.click(function(event) {
-									button.callback(event);
+									
+									if(button.callback instanceof Function) {
+										button.callback(event, scope.$$childHead.modal);
+									}
+									else {
+										scope.$$childHead.modal.close();
+									}
 									$s.$apply();
 								});
+								
 								$btn.text(button.label);
 								
 								if(button.icon) {
@@ -189,7 +197,9 @@
 						
 						$s.modal.visible = true;
 						$s.modal.hidden = false;
+						$s.modal.backdrop = params.backdrop || false;
 						
+						var $backdrop;
 						var $inner = $e.children('.zm-modal-inner');
 						var $dragHandler = $inner.children('.zm-modal-header');
 						
@@ -204,6 +214,11 @@
 							pos.y = pos.y > maxY ? maxY : pos.y < 0 ? 0 : pos.y;
 							pos.x = pos.x > maxX ? maxX : pos.x < 0 ? 0 : pos.x;
 						};
+						
+						if($s.modal.backdrop) {
+							$s.modal.$backdrop = angular.element('<div class="zm-modal-backdrop"></div>');
+							angular.element('body').append($s.modal.$backdrop);
+						}
 						
 						$inner.css('top', '');
 						$inner.css('left', '');
@@ -252,8 +267,9 @@
 						// Make modal draggable
 						if(!$device.isTouch()) {
 							
-							interact($inner[0]).allowFrom($dragHandler[0]).draggable({
+							interact($inner[0]).draggable({
 								autoScroll: false,
+								allowForm: $dragHandler[0],
 								onstart: function(event) {
 									
 									angular.element('html:eq(0)').addClass('zm-cursor-drag-all');
@@ -297,7 +313,7 @@
 							hook.add('onClose', params.onClose);
 						}
 						
-						if(params.onClose instanceof Function) {
+						if(params.onRemove instanceof Function) {
 							hook.add('onRemove', params.onRemove);
 						}
 						
@@ -310,6 +326,8 @@
 					close: function() {
 						
 						$s.modal.visible = false;
+						$s.modal.backdrop = false;
+						$s.modal.$backdrop.remove();
 						
 						$timeout(function() {
 							$s.modal.hidden = true;

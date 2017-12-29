@@ -31,6 +31,10 @@
 				}
 			},
 			
+			isSmall: function() {
+				return window.innerWidth < 767;
+			},
+			
 			isLargeEnough: function() {
 				return window.innerWidth > 991;
 			},

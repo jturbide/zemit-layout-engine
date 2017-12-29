@@ -161,7 +161,7 @@
 						// Unset dragged widget
 						//$zm.widget.drag.set(null);
 						
-						if(window.innerWidth < 767) {
+						if($device.isSmall()) {
 							$s.$apply(function() {
 								$s.sidebar.tabs.unhideAll();
 								$s.sidebar.tabs.closeAll();
@@ -202,11 +202,6 @@
 							'height': $e.height()
 						});
 						
-						// If in portrait mode, close all sidebar tabs
-						if(window.innerWidth < 767) {
-							$s.sidebar.tabs.hideAll();
-						}
-						
 						$timeout(() => {
 							scope.widget.updateToken();
 							scope.widget.updateId();
@@ -231,15 +226,20 @@
 						$device.isTouch() && $device.vibrate();
 						var $clone = onStart(event);
 						
-						interaction.start({
-							name: 'drag'
-						}, event.interactable, $clone[0]);
+						// If in portrait mode, close all sidebar tabs
+						if($device.isSmall()) {
+							$s.sidebar.tabs.hideAll();
+						}
+						
+						$timeout(() => {
+							interaction.start({
+								name: 'drag'
+							}, event.interactable, $clone[0]);
+						});
 					}
 				};
 				//interact.debug().defaultOptions._holdDuration = 200;
-				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).pointerEvents({
-					holdDuration: 200
-				}).styleCursor(false);
+				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).styleCursor(false);
 				
 				!$device.isTouch() && interactObj.on('move', manualStartStart);
 				$device.isTouch() && interactObj.on('hold', manualStartStart);

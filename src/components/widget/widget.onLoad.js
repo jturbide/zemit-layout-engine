@@ -254,9 +254,7 @@
 								 * Move the element around
 								 */
 								var $draggable = $element.find('.zm-widget-inner:eq(0)');
-								var interactObj = interact($draggable[0]).draggable(draggableOptions).pointerEvents({
-									holdDuration: 200
-								}).styleCursor(false);
+								var interactObj = interact($draggable[0]).draggable(draggableOptions).styleCursor(false);
 								
 								if($device.isTouch()) {
 									interactObj.on('hold', function(event) {

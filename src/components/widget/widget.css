@@ -133,6 +133,7 @@
 }
 .zm-widget .zm-drop-inside-activate {
   background-color: rgba(0,0,0, 0.5)  !important;
+  touch-action: none; /* Required by InteractJS */
 }
 .zm-widget .zm-drop-inside-activate.zm-drop-inside-activate-invalid {
   background-color: red;
