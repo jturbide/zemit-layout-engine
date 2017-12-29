@@ -17,6 +17,9 @@
   padding: 1.5rem 0;
   opacity: 0;
   transition: opacity 100ms ease-in;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
 }
 .zm-widget-add .fa:hover {
   color: #75a9f9;

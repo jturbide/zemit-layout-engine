@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Show "prevent cursor" when dragging a widget over another that doesn't accept its type
 
 ## [0.0.8]
+- Center column's add widget icon on desktop devices
 - Confirm dialog on document clearing
 - Can add widgets outside of a row
 - Hold and drag a widget (slower delay)
