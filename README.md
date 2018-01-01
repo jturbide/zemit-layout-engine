@@ -1,6 +1,6 @@
 ![Zemit Layout Engine](https://www.zemit.com/logo.png?raw=true "Zemit Layout Engine")
 
-[![version](https://img.shields.io/npm/v/zemit-layout-engine.svg)](https://www.npmjs.com/package/zemit-layout-engine)
+[![version](https://img.shields.io/npm/v/zemit-layout-engine.svg)](https://www.npmjs.com/package/zemit-layout-engine)  
 [![license](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/zemit-layout-engine)
 
 Zemit \(pronounced /zemitː/\) is a free & open-source layout engine that aims to facilitates the integration of your interface and help with the communication of its widgets with your server logic.
@@ -40,3 +40,4 @@ Afterward, check /dist/index.html or /dist/index.min.html
 MIT
 
 Copyright \(c\) 2017-present, Danny Coulombe
+
