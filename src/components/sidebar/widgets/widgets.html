@@ -18,7 +18,7 @@
     
 	<!-- TABS -->
 	<div class="zm-sidebar-group" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">
-        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.config.sidebar.widgets.tabs[key].visible = !$root.config.sidebar.widgets.tabs[key].visible" zm-clickable>
+        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.session.sidebar.widgets.tabs[key].visible = !$root.session.sidebar.widgets.tabs[key].visible" zm-clickable>
             
             <span class="zm-sidebar-title-text">
             	{{ ::section.title }}
@@ -30,9 +30,9 @@
             </div>
             
             <!-- CHEVRON -->
-            <i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': $root.config.sidebar.widgets.tabs[key].visible, 'fa-chevron-right': !$root.config.sidebar.widgets.tabs[key].visible}"></i>
+            <i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': $root.session.sidebar.widgets.tabs[key].visible, 'fa-chevron-right': !$root.session.sidebar.widgets.tabs[key].visible}"></i>
         </div>
-        <zm-field class="zm-sidebar-content zm-content-small" ng-show="$root.config.sidebar.widgets.tabs[key].visible">
+        <zm-field class="zm-sidebar-content zm-content-small" ng-show="$root.session.sidebar.widgets.tabs[key].visible">
             <div ng-if="section.widgets.length > 0" class="zm-flex-container zm-flex-container-gap zm-flex-equal-size">
 				
 				<!-- LIST OF ITEMS (REPEAT) -->

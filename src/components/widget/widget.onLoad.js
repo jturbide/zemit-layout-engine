@@ -144,7 +144,7 @@
 							_this.getScope().position.set(event);
 							$s.$apply();
 						});
-						$s.$watch('config.context', function(nv, ov) {
+						$s.$watch('session.context', function(nv, ov) {
 							if(nv !== ov && nv === 'structure') {
 								var $draggable = $element.find('.zm-widget-inner:eq(0)');
 								interact($draggable[0]).draggable(true);
@@ -184,6 +184,7 @@
 								$s.isDraggable = true;
 								
 								var draggableOptions = {
+									holdDuration: 200,
 									restrict: {
 										endOnly: true,
 										elementRect: {
@@ -381,7 +382,7 @@
 										var dropState = event.interaction.dropState;
 										var hoveredWidgets = $zm.widget.hovered.getAll();
 										var draggedWidget = event.interaction.draggedWidget;
-										var draggedElement = draggedWidget.getScope().$element;
+										var draggedElement = draggedWidget.getScope && draggedWidget.getScope().$element;
 										if(hoveredWidgets.length === 0 || !draggedWidget) {
 											return;
 										}
@@ -512,12 +513,12 @@
 												}
 												
 												dropState.widget = null;
-												draggedElement.addClass('zm-drop-inside-activate');
+												draggedElement && draggedElement.addClass('zm-drop-inside-activate');
 												
 												break widgetLoop;
 											}
 											
-											if(draggedElement.hasClass('zm-drop-inside-activate')) {
+											if(draggedElement && draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
 											}
 											
@@ -637,8 +638,8 @@
 										if(dropState.widget) {
 											
 											var drag = event.interaction.draggedWidget;
-											var draggedElement = drag.getScope().$element;
-											if(draggedElement.hasClass('zm-drop-inside-activate')) {
+											var draggedElement = drag.getScope && drag.getScope().$element;
+											if(draggedElement && draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
 											}
 											
@@ -664,14 +665,14 @@
 										angular.element('.zm-drop-activated').removeClass('zm-drop-activated');
 										
 										// Finalize callback
-										var finalize = function(newWidget) {
+										var finalize = (newWidget, callback = () => {}) => {
 																						
 											// Hide placeholder
 											$placeholder[0].classList.add('zm-hidden');
 											
 											var drag = event.interaction.draggedWidget;
-											var draggedElement = drag.getScope().$element;
-											if(draggedElement.hasClass('zm-drop-inside-activate')) {
+											var draggedElement = drag.getScope && drag.getScope().$element;
+											if(draggedElement && draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
 											}
 											
@@ -680,7 +681,7 @@
 												switch(dropState.part) {
 													case 'inside':
 														// Insert dragged element at given position
-														scope.widget.addNewChild(newWidget);
+														scope.widget.addChild(newWidget);
 														
 														// Unset hovered widget
 														dropState.widget.setDropInsideActivate(false);
@@ -688,7 +689,7 @@
 														
 													case 'outside':
 														// Insert dragged element at given position
-														parent.addNewChild(newWidget, dropState.position === 'before'
+														parent.addChild(newWidget, dropState.position === 'before'
 																? index
 																: index + 1);
 														break;
@@ -711,12 +712,14 @@
 											$s.$apply();
 											
 											// Reselect widget
-											if(newWidget && newWidget.getParent().isSelectable !== false) {
+											if(newWidget && newWidget.getParent().getScope().isSelectable !== false) {
 												newWidget.select();
 												newWidget.getScope().$apply();
 											}
 											
 											$zm.widget.drag.resetCursor();
+											
+											callback();
 										};
 										
 										// If no widget hovered, skip this
@@ -727,19 +730,29 @@
 										
 										// Clone dragged element
 										var dragged = event.interaction.draggedWidget;
-										var clone = dragged.clone(event.dragEvent.ctrlKey || event.dragEvent.metaKey);
 										var parent = dropState.widget.getParent();
 										var scope = dropState.widget.getScope();
 										var configs = scope.configs;
 										var index = scope.$index;
 										
-										// If a hook on the drop callback has been
-										// declared, try to run it.
-										$zm.action(function() {
-											(configs.drop.onDrop instanceof Function)
-												? configs.drop.onDrop(clone, parent, index, dropState.part, finalize)
-												: finalize(clone);
-										});
+										var completeCreation = (newWidget) => {
+											
+											// If a hook on the drop callback has been
+											// declared, try to run it.
+											$zm.action(() => {
+												(configs.drop.onBeforeDrop instanceof Function)
+													? configs.drop.onBeforeDrop(newWidget, parent, index, dropState.part, finalize)
+													: finalize(newWidget);
+											});
+										};
+										
+										if(!dragged.getScope) {
+											completeCreation(dragged);
+										}
+										else {
+											var clone = dragged.clone(event.dragEvent.ctrlKey || event.dragEvent.metaKey);
+											completeCreation(clone);
+										}
 									}
 								}).styleCursor(false);
 							}
@@ -754,6 +767,10 @@
 						$element = _$element;
 						this.bindEvents(); // Wait for widget to be fully loaded...
 						$s.hooks.run('onLoad', $element);
+						
+						if($s.onLoad instanceof Function) {
+							$s.onLoad($element);
+						}
 						
 						setTimeout(function() {
 							$e.addClass('zm-visible');

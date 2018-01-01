@@ -11,7 +11,7 @@
     </div>
     
 	<div class="zm-sidebar-group" ng-repeat="organization in workspace.organizations" ng-if="workspace.organizations.length > 0">
-        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.config.sidebar.workspace.tabs[organization.key].visible = !$root.config.sidebar.workspace.tabs[organization.key].visible" zm-clickable>
+        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.session.sidebar.workspace.tabs[organization.key].visible = !$root.session.sidebar.workspace.tabs[organization.key].visible" zm-clickable>
             
             <span class="zm-sidebar-title-text">
                 {{ ::organization.title }}
@@ -22,9 +22,9 @@
             	{{ stats.countNodes(organization.data) }}
             </div>
             
-            <i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': $root.config.sidebar.workspace.tabs[organization.key].visible, 'fa-chevron-right': !$root.config.sidebar.workspace.tabs[organization.key].visible}"></i>
+            <i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': $root.session.sidebar.workspace.tabs[organization.key].visible, 'fa-chevron-right': !$root.session.sidebar.workspace.tabs[organization.key].visible}"></i>
         </div>
-        <div class="zm-sidebar-content" ng-show="$root.config.sidebar.workspace.tabs[organization.key].visible">
+        <div class="zm-sidebar-content" ng-show="$root.session.sidebar.workspace.tabs[organization.key].visible">
         	
         	<!-- TREEVIEW -->
         	<zm-field-treeview ng-model="organization.data" options="{

@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebarWidgets', ['$config', '$filter', function($config, $filter) {
+	Zemit.app.directive('zmSidebarWidgets', ['$session', '$filter', function($session, $filter) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -8,7 +8,7 @@
 			link: function ($s, $e, attrs) {
 				
 				var widgets = Zemit.widgets.getAll();
-				var config = $config.get();
+				var session = $session.get();
 				
 				// List of available widgets (items)
 				var sections = {
@@ -65,7 +65,7 @@
 					updateWidgets();
 				});
 				
-				$config.prepare({
+				$session.prepare({
 					sidebar: {
 						widgets: {
 							tabs: tabsConfigs
@@ -89,6 +89,7 @@
 			link: function($s, $e, attrs) {
 				
 				var draggableOptions = {
+					holdDuration: 200,
 					manualStart: true,
 					restrict: {
 						endOnly: true,
@@ -169,6 +170,7 @@
 						}
 						
 						event.interaction.$element.remove();
+						$element.remove();
 					}
 				};
 				
@@ -186,31 +188,21 @@
 					document.body.appendChild($clone[0]);
 					event.interaction.$element = $clone;
 					
-					// Create temporary widget
-					var $widget = angular.element('<zm-widget></zm-widget>');
-					$widget.attr('type', attrs.zmSidebarWidgetsItem);
-					var $compiledWidget = $compile($widget)($s, function($cloned, scope) {
-						
-						// Set dragged widget
-						scope.$element = $clone;
-						$clone[0].setAttribute('data-y', $e.offset().top);
-						$clone[0].setAttribute('data-x', $e.offset().left);
-						$clone.css({
-							'top': $e.offset().top + 'px',
-							'left': $e.offset().left + 'px',
-							'width': $e.width(),
-							'height': $e.height()
-						});
-						
-						$timeout(() => {
-							scope.widget.updateToken();
-							scope.widget.updateId();
-							event.interaction.draggedWidget = scope.widget;
-							//$zm.widget.drag.set(scope.widget, true);
-							
-							event.interaction.isReady = true;
-						});
+					// Set dragged widget
+					$clone[0].setAttribute('data-y', $e.offset().top);
+					$clone[0].setAttribute('data-x', $e.offset().left);
+					$clone.css({
+						'top': $e.offset().top + 'px',
+						'left': $e.offset().left + 'px',
+						'width': $e.width(),
+						'height': $e.height()
 					});
+					
+					event.interaction.draggedWidget = {
+						type: attrs.zmSidebarWidgetsItem
+					};
+					
+					event.interaction.isReady = true;
 					
 					return $clone;
 				}
@@ -218,7 +210,7 @@
 				/**
 				 * Move the element around
 				 */
-				var manualStartStart = function(event) {
+				var manualStart = function(event) {
 					var interaction = event.interaction;
 						
 					if (interaction.pointerIsDown && !interaction.interacting()) {
@@ -231,18 +223,16 @@
 							$s.sidebar.tabs.hideAll();
 						}
 						
-						$timeout(() => {
-							interaction.start({
-								name: 'drag'
-							}, event.interactable, $clone[0]);
-						});
+						interaction.start({
+							name: 'drag'
+						}, event.interactable, $clone[0]);
 					}
 				};
-				//interact.debug().defaultOptions._holdDuration = 200;
+				
 				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).styleCursor(false);
 				
-				!$device.isTouch() && interactObj.on('move', manualStartStart);
-				$device.isTouch() && interactObj.on('hold', manualStartStart);
+				!$device.isTouch() && interactObj.on('move', manualStart);
+				$device.isTouch() && interactObj.on('hold', manualStart);
 			}
 		};
 	}]);

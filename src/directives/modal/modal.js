@@ -25,11 +25,40 @@
 				});
 			},
 			
+			info: function(params = {}) {
+				
+				var id = 'info';
+				
+				params = angular.extend({
+					buttons: [{
+						label: 'OK'
+					}]
+				}, params);
+				
+				return this.create(id, params, function(modal) {
+					modal.open({
+						backdrop: true,
+						onClose: function() {
+							setTimeout(function() {
+								modal.remove();
+							}, 250);
+						}
+					});
+				});
+			},
+			
 			warning: function(params = {}) {
+				
+				params = angular.extend({
+					buttons: [{
+						label: 'OK'
+					}]
+				}, params);
 				
 				var id = 'warning';
 				return this.create(id, params, function(modal) {
 					modal.open({
+						backdrop: true,
 						onClose: function() {
 							setTimeout(function() {
 								modal.remove();
@@ -41,9 +70,16 @@
 			
 			error: function(params = {}) {
 				
+				params = angular.extend({
+					buttons: [{
+						label: 'OK'
+					}]
+				}, params);
+				
 				var id = 'error';
 				return this.create(id, params, function(modal) {
 					modal.open({
+						backdrop: true,
 						onClose: function() {
 							setTimeout(function() {
 								modal.remove();

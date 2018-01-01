@@ -6,7 +6,7 @@
 	/**
 	 * Parameters directive
 	 */
-	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$config', function($zm, $history, $config) {
+	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', function($zm, $history, $session) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -15,7 +15,7 @@
 			link: function ($s, $e, attrs) {
 				
 				var data = [];
-				var config = $config.get();
+				var session = $session.get();
 				var workspace = {
 					organizations: [{
 						key: 'general',
@@ -48,7 +48,7 @@
 					};
 				});
 				
-				$config.prepare({
+				$session.prepare({
 					sidebar: {
 						workspace: {
 							tabs: tabsConfigs

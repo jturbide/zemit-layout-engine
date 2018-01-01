@@ -44,7 +44,7 @@
 			
 			// Add a row if no widget available
 			// if($s.container.childs.length === 0) {
-			// 	$s.container.addNewChild('row');
+			// 	$s.container.addChild('row');
 			// }
 		}
 	});

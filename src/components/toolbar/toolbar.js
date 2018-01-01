@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$config', function($history, $zm, $modal, $config) {
+	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', function($history, $zm, $modal, $session) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -8,7 +8,7 @@
 			link: function ($s, $e, attrs) {
 				
 				// Set container scopes
-				var config = $config.get();
+				var session = $session.get();
 				$s.container = $zm.content.get();
 				$s.zm = $zm;
 				$s.history = $history;
@@ -16,8 +16,8 @@
 				
 				$s.setTab = function(context) {
 					$zm.action(function() {
-						config.context = context;
-					}, undefined, config);
+						session.context = context;
+					}, undefined, session);
 				};
 			}
 		};

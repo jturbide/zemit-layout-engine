@@ -5,16 +5,18 @@
  * Keeps track of every changes. Undo/redo capabilities
  */
 (function() {
-	Zemit.app.factory('$history', ['$diff', '$config', '$hook', '$injector', '$timeout', function($diff, $config, $hook, $injector, $timeout) {
+	Zemit.app.factory('$history', ['$diff', '$session', '$hook', '$injector', '$timeout', '$storage', function($diff, $session, $hook, $injector, $timeout, $storage) {
 	    
 	    $hook.add('onload', function() {
-			var changes = $config.get('history');
-			factory.load(changes);
+			$storage.get('session', 'history', function(changes) {
+				factory.load(changes);
+			});
+			
 	    });
 	    
 	    $hook.add('onbeforeunload', function() {
 	    	var changes = factory.dump();
-			$config.set('history', changes);
+	    	$storage.set('session', 'history', changes);
 	    });
 	    
 		var factory = {
@@ -157,9 +159,7 @@
 				
 				return {
 					changes: changes,
-					position: this.position,
-					canUndo: this.canUndo,
-					canRedo: this.canRedo
+					position: this.position
 				};
 			},
 			
@@ -182,8 +182,9 @@
 				
 				this.changes = changes;
 				this.position = data.position || 0;
-				this.canUndo = data.canUndo === undefined ? false : data.canUndo;
-				this.canRedo = data.canRedo === undefined ? false : data.canRedo;
+				
+				this.canRedo = this.position < this.changes.length;
+				this.canUndo = this.position > 0;
 			},
 			
 			flush: function() {

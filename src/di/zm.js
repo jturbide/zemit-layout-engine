@@ -5,16 +5,25 @@
  * Store object in the cache
  */
 (function() {
-	Zemit.app.factory('$zm', ['$history', '$file', '$config', '$modal', function($history, $file, $config, $modal) {
+	Zemit.app.factory('$zm', ['$history', '$file', '$session', '$modal', '$hook', '$storage', function($history, $file, $session, $modal, $hook, $storage) {
+	    
+	    $hook.add('onload', function() {
+			$storage.get('session', 'content', function(content) {
+				factory.content.set(content, true);
+			});
+	    });
+	    
+	    $hook.add('onbeforeunload', function() {
+	    	var content = factory.content.get(true, true);
+	    	$storage.set('session', 'content', content);
+	    });
 	    
 		var factory = {
 		    
 		    baseScope: null,
 			version: Zemit.version,
-			childs: [],
 			
 			defaultContainer: {
-				version: Zemit.version,
 				childs: []
 			},
 			
@@ -84,14 +93,15 @@
 				flushAll: function() {
 					
 					$history.flush();
-					$config.flush();
 					factory.getBaseScope().widget.childs = [];
 				}
 			},
 			
 			content: {
 				
-				data: {},
+				data: {
+					childs: []
+				},
 				
 				ENCODE: 1,
 				DECODE: -1,
@@ -131,7 +141,11 @@
 				 */
 				set: function(data, parser) {
 					
-					this.data = (parser && this.parse(data)) || data;
+					if(!(data instanceof Object)) {
+						data = {};
+					}
+					
+					this.data.childs = angular.copy((parser && this.parse(data)) || data).childs || [];
 				},
 				
 				clear: function() {
@@ -159,17 +173,26 @@
 				/**
 				 * Export Zemit session to JSON and download it automatically
 				 */
-				export: function(filename = 'zemit') {
+				export: function(filename) {
 					
-					var changes = $history.dump();
+					if(!filename) {
+						filename = 'zmle-export.' + new Date().toISOString();
+					}
+					
+					var history = $history.dump();
 					var content = factory.content.get();
 					var data = angular.toJson({
-						changes: changes,
+						history: history,
 						content: content,
 						version: Zemit.version
 					});
 					
 					$file.downloadAs('text/json', filename + '.json', data);
+					
+					$modal.info({
+						title: 'Content exported',
+						content: 'The content has been automatically downloaded into your computer'
+					});
 				},
 				
 				/**
@@ -195,8 +218,13 @@
 								}
 								else {
 									factory.session.flushAll();
-									$history.load(data.changes);
-									factory.getBaseScope().widget.childs = data.content.childs;
+									$history.load(data.history);
+									factory.content.set(data.content, true);
+									
+									$modal.info({
+										title: 'Data imported',
+										content: 'Your workspace has been updated with the imported data.'
+									});
 								}
 							}
 							reader.readAsText(file);
@@ -208,6 +236,15 @@
 								content: 'The file you are trying to import doesn\'t seem to be in a valid Zemit file format.'
 							});
 						}
+					});
+				},
+				
+				load: () => {
+					
+					$storage.get('config', 'config', function(value) {
+						var data = angular.fromJson(value);
+						factory.data = data || {};
+						callback && callback(factory.data);
 					});
 				}
 			},

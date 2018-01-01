@@ -130,14 +130,18 @@
 							
 							return false;
 						},
-						onDrop: function(widget, parent, index, part, callback) {
+						onBeforeDrop: function(widget, parent, index, part, callback = () => {}) {
 							
 							var otherWidget = parent.childs[index];
 							
 							// If dropped inside or in the same row, skip this process
 							if(part === 'inside'
-							|| widget.getScope().parentToken === otherWidget.getScope().parentToken) {
-								return callback(widget);
+							|| (widget.getScope && widget.getScope().parentToken === otherWidget.getScope().parentToken)) {
+								return callback && callback(widget);
+							}
+							
+							if(!widget.size) {
+								widget.size = 12;
 							}
 							
 							// Calculate the new sizes

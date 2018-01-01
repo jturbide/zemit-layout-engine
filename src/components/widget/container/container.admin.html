@@ -1,4 +1,4 @@
-<div class="zm-container zm-flex-container zm-context-{{ config.context }}">
+<div class="zm-container zm-flex-container zm-context-{{ session.context }}">
 	<div class="zm-container-inner">
 		<div class="zm-flex-container-column" style="height: 100%">
 			<div class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
@@ -8,11 +8,11 @@
 				
 				<!-- ADD ROW -->
 				<!--<div class="zm-container-add-row" ng-if="container.childs.length === 0">-->
-				<!--	<i class="fa fa-plus-circle" zm-clickable zm-zoomable ng-click="container.addNewChild('row')"></i>-->
+				<!--	<i class="fa fa-plus-circle" zm-clickable zm-zoomable ng-click="container.addChild('row')"></i>-->
 				<!--</div>-->
 			</div>
 			
-			<div class="zm-container-notices zm-flex-minimal" ng-if="config.directives.dismissable.visible">
+			<div class="zm-container-notices zm-flex-minimal" ng-if="session.directives.dismissable.visible">
 				<div class="zm-container-notices-scrollable">
 					
 					<!-- NOTICE -->
@@ -32,14 +32,14 @@
 					</zm-dismissable>
 					
 					<!-- NOTICE: STANDALONE -->
-					<zm-dismissable ng-if="!device.isStandalone()" type="info" key="zm-widget-container-first-row">
+					<zm-dismissable ng-if="!device.isStandalone() && device.isTouch()" type="info" key="zm-widget-container-first-row">
 						Enjoy a <strong>full screen</strong> experience by adding this app on your home screen. Check your browser options!
 					</zm-dismissable>
 				</div>
 			</div>
 			
 			<!-- QUICK ACTIONS -->
-			<div ng-if="config.context !== 'preview'" class="zm-quick-actions zm-flex-minimal">
+			<div ng-if="session.context !== 'preview'" class="zm-quick-actions zm-flex-minimal">
 				<div class="zm-flex-container zm-flex-container-gap">
 					
 					<zm-tabs anchor="bottom-left" ng-disabled="zm.widget.totalSelected === 0" zm-tabs-keep-open>
@@ -69,5 +69,5 @@
 	</div>
 	
 	<!-- SIDEBAR -->
-	<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-if="config.context !== 'preview'"></zm-sidebar>
+	<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-if="session.context !== 'preview'"></zm-sidebar>
 </div>

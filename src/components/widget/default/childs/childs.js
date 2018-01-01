@@ -25,7 +25,7 @@
 				$s.add = function(index) {
 					
 					if($s.type) {
-						$zm.action($s.widget.addNewChild, ['row', index], $s.widget);
+						$zm.action($s.widget.addChild, ['row', index], $s.widget);
 					}
 					else {
 						$s.panel.open($s.widget, index);

@@ -73,7 +73,7 @@
 				 */
 				$s.addWidget = function(item) {
 					
-					$zm.action($s.modal.data.widget.addNewChild, [
+					$zm.action($s.modal.data.widget.addChild, [
 						item.type,
 						$s.modal.data.index, {
 							defaultTemplate: item.defaultTemplate === false ? false : true

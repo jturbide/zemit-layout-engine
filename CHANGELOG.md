@@ -8,12 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 0.0.8:
 - Complete workspace area
 - Add next button on dimissable panels
-- Bug with data cache (doesn't load on refresh)
 - 0.0.9
 - Show "prevent cursor" when dragging a widget over another that doesn't accept its type
 - Scrollable sidebar
 
 ## [0.0.8]
+- Bug with data import (lost of context when switching from preview to structure)
 - Update app's inner documentation
 - Center column's add widget icon on desktop devices
 - Confirm dialog on document clearing
