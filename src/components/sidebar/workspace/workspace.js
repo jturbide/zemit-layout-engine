@@ -18,8 +18,8 @@
 				var session = $session.get();
 				var workspace = {
 					organizations: [{
-						key: 'general',
-						title: 'General',
+						key: 'playground',
+						title: 'Playground',
 						data: data
 					}]
 				};

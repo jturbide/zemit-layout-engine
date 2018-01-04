@@ -13,7 +13,7 @@
 		injectable: {
 			section: 'structure',
 			title: 'Row',
-			desc: 'Row and columns',
+			desc: 'Horizontal line that contain columns',
 			icon: 'window-minimize',
 		},
 		drop: {

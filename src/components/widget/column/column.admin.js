@@ -13,7 +13,7 @@
 		injectable: {
 			section: 'structure',
 			title: 'Column',
-			desc: 'Divide row in columns',
+			desc: 'Add a vertical division in a row',
 			icon: 'columns',
 		},
 		drop: {

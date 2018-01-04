@@ -10,7 +10,7 @@
 		injectable: {
 			section: 'content',
 			title: 'Image',
-			desc: 'Basic image',
+			desc: 'A picture, icon or drawing',
 			icon: 'image',
 		},
 		defaultAction: function($s, widget) {

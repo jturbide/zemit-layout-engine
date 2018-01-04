@@ -7,7 +7,7 @@
 (function() {
 	Zemit.app.factory('$workspace', ['$storage', function($storage) {
 	    
-	    $storage.defineStore('workspace');
+	    $storage.defineStore('block');
 	    
 		var factory = {
 			
