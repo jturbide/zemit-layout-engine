@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Complete workspace area
 - Add next button on dimissable panels
 - 0.0.9
+- Get/set media factory
 - Show "prevent cursor" when dragging a widget over another that doesn't accept its type
 - Scrollable sidebar
 
