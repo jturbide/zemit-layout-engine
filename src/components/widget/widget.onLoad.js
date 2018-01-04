@@ -315,6 +315,7 @@
 								var $placeholder = $s.container.getScope().$placeholder;
 								
 								var acceptWidgetOutside = function(configs, widget, hoveredWidget) {
+									
 									return configs.drop.outside.enabled
 										&& checkAccept(configs.drop.outside.accept, widget, hoveredWidget)
 										&& (!configs.drop.outside.decline || configs.drop.outside.decline.indexOf(widget.type) === -1)
@@ -466,14 +467,22 @@
 
 														var firstChild = hoveredWidget.childs[0];
 														var lastChild = hoveredWidget.childs[hoveredWidget.childs.length - 1];
-														hoveredWidget = event.dragmove[directions[1]] <= firstChild.getScope().$element.offset()[directions[0]]
+														var nextWidget = event.dragmove[directions[1]] <= firstChild.getScope().$element.offset()[directions[0]]
 															? firstChild
 															: event.dragmove[directions[1]] >= (lastChild.getScope().$element.offset()[directions[0]] + eval('lastChild.getScope().$element.' + directions[2] + '()'))
 																? lastChild
 																: hoveredWidget;
 														
+														if(acceptWidgetOutside(nextWidget.getScope().configs, draggedWidget, nextWidget)) {
+															hoveredWidget = nextWidget;
+														}
+														else {
+															return;
+														}
+														
 														// Hightlight current dragged element if it's the same
 														if(hoveredWidget.token === draggedWidget.token) {
+															
 															isSame = true;
 															return;
 														}
