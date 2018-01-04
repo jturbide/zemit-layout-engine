@@ -11,7 +11,7 @@
 			restrict: "A",
 			link: function($s, $e, attrs) {
 				
-				var $body = angular.element('body');
+				var $container = $e.parents('zemit:eq(0)');
 				
 				// Prepare the original tooltip element
 				var $tooltip;
@@ -37,7 +37,7 @@
 							var offset = $e.offset();
 							$tooltip = $oriTooltip.clone();
 							$tooltip.children('.zm-tooltip-inner').html(attrs.zmTooltip);
-							$body.append($tooltip);
+							$container.append($tooltip);
 							
 							$tooltip.css('top', offset.top + $e.outerHeight());
 							$tooltip.css('left', offset.left + ($e.outerWidth() / 2) - ($tooltip.outerWidth() / 2));
