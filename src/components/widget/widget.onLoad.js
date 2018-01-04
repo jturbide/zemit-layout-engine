@@ -82,25 +82,7 @@
 						
 						if(configs.selectable !== false) {
 							
-							//var dragging = false;
-							// $element.on('touchstart.' + namespace, function(event) {
-							// 	dragging = false;
-							// 	$s.isTouched = true;
-							// 	$s.$digest();
-							// 	event.stopPropagation();
-							// });
-							// $element.on('touchend.' + namespace, function(event) {
-								
-							// 	$s.isTouched = false;
-							// 	$s.$digest();
-								
-							// 	if (dragging) {
-							// 		return;
-							// 	}
-							// });
 							$element.on('touchmove.' + namespace, function(event) {
-								
-								//dragging = true;
 								
 								var element = document.elementFromPoint(
 									event.touches[0].clientX,
@@ -114,8 +96,6 @@
 								if($zm.widget.drag.enabled) {
 									event.preventDefault();
 								}
-								
-								event.stopPropagation();
 							});
 							
 							$element.on('click.' + namespace, function(event) {
@@ -148,34 +128,6 @@
 								_this.getScope().position.set(event);
 								_this.getScope().$digest();
 							});
-							
-							// $element.on('mousemove.' + namespace, function(event) {
-								
-							// 	event.stopPropagation();
-								
-							// 	_this.getScope().position.set(event);
-							// 	$s.$digest();
-								
-								//if($zm.widget.drag.enabled) {
-									//event.stopPropagation();
-									
-								//}
-								
-								// var element = document.elementFromPoint(
-								// 	event.clientX,
-								// 	event.clientY
-								// );
-								// angular.element(element).trigger('dragHoverTouch', {
-								// 	x: event.clientX,
-								// 	y: event.clientY
-								// });
-								
-								// if($zm.widget.drag.enabled) {
-								// 	event.preventDefault();
-								// 	//event.stopPropagation();
-								// 	console.log($s.widget.type);
-								// }
-							// });
 						}
 						$s.$watch('session.context', function(nv, ov) {
 							if(nv !== ov && nv === 'structure') {

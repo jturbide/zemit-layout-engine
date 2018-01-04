@@ -1,4 +1,4 @@
-<div class="zm-container zm-flex-container zm-context-{{ session.context }}">
+<div class="zm-container zm-flex-container zm-context-{{ session.context }}" ng-class="{ 'zm-container-show-content': showContent }">
 	<div class="zm-container-inner">
 		<div class="zm-flex-container-column" style="height: 100%">
 			<div class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>

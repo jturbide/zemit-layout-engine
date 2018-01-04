@@ -49,7 +49,7 @@
 					hideAll: function() {
 						
 						if(this.showContent) {
-							$e.parents('zemit:eq(0)').removeClass('zm-sidebar-show-content');
+							$s.container.getScope().showContent = false;
 						}
 						
 						this.hidden = true;
@@ -58,7 +58,7 @@
 					unhideAll: function() {
 						
 						if(this.showContent) {
-							$e.parents('zemit:eq(0)').addClass('zm-sidebar-show-content');
+							$s.container.getScope().showContent = true;
 						}
 						
 						this.hidden = false;
@@ -91,13 +91,15 @@
 					},
 					
 					show: function() {
+						
 						this.showContent = true;
-						$e.parents('zemit:eq(0)').addClass('zm-sidebar-show-content');
+						$s.container.getScope().showContent = true;
 					},
 					
 					hide: function() {
+						
 						this.showContent = false;
-						$e.parents('zemit:eq(0)').removeClass('zm-sidebar-show-content');
+						$s.container.getScope().showContent = false;
 					},
 					
 					toggle: function(name) {

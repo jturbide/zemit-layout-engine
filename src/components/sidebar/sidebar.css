@@ -103,13 +103,13 @@
   .zm-sidebar-title {
     border-left: 0;
   }
-  .zm-sidebar-show-content .zm-container-inner {
+  .zm-container-show-content .zm-container-inner {
     display: none;
   }
-  .zm-sidebar-show-content .zm-sidebar .zm-sidebar-inner {
+  .zm-container-show-content .zm-sidebar .zm-sidebar-inner {
     border-left: 0;
   }
-  .zm-sidebar-show-content .zm-sidebar {
+  .zm-container-show-content .zm-sidebar {
     flex: 100%;
   }
 }
