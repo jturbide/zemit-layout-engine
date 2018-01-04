@@ -202,10 +202,10 @@
 					
 					$file.promptFileDialog(function(file) {
 						
-						try {
+						var reader = new FileReader();
+						reader.onload = function(event) {
 							
-							var reader = new FileReader();
-							reader.onload = function(event) {
+							try {
 								var json = event.target.result;
 								var data = angular.fromJson(json);
 								
@@ -228,15 +228,15 @@
 									});
 								}
 							}
-							reader.readAsText(file);
+							catch(e) {
+								
+								$modal.error({
+									title: 'Wrong file format',
+									content: 'The file you are trying to import doesn\'t seem to be in a valid Zemit file format.'
+								});
+							}
 						}
-						catch(e) {
-							
-							$modal.error({
-								title: 'Wrong file format',
-								content: 'The file you are trying to import doesn\'t seem to be in a valid Zemit file format.'
-							});
-						}
+						reader.readAsText(file);
 					});
 				},
 				

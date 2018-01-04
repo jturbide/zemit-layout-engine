@@ -12,7 +12,7 @@
 			replace: true,
 			scope: true,
 			templateUrl: 'components/sidebar/debug/debug.html',
-			link: function ($s, $e, attrs) {
+			link: ($s, $e, attrs) => {
 				
 				$s.history = $history;
 				$s.version = Zemit.version;
