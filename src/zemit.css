@@ -125,7 +125,6 @@ zm-widget[type="container"] {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  flex-wrap: wrap;
 }
 .zm-flex-nowrap {
   flex-wrap: nowrap;

@@ -35,9 +35,6 @@
   position: relative;
   padding: 0;
 }
-.zm-widget-row > .zm-widget-inner > .zm-widget > .zm-widget-inner {
-  height: 100%;
-}
 .zm-widget-container:not(.zm-context-preview) .zm-widget-column > .zm-widget-inner {
   padding: 1rem;
 }
