@@ -77,12 +77,12 @@
 								widget.getScope().position.set(event);
 							});
 							
-							$s.$apply();
+							$s.$digest();
 						});
 						
 						if(configs.selectable !== false) {
 							
-							var dragging = false;
+							//var dragging = false;
 							// $element.on('touchstart.' + namespace, function(event) {
 							// 	dragging = false;
 							// 	$s.isTouched = true;
@@ -100,7 +100,7 @@
 							// });
 							$element.on('touchmove.' + namespace, function(event) {
 								
-								dragging = true;
+								//dragging = true;
 								
 								var element = document.elementFromPoint(
 									event.touches[0].clientX,
@@ -114,6 +114,8 @@
 								if($zm.widget.drag.enabled) {
 									event.preventDefault();
 								}
+								
+								event.stopPropagation();
 							});
 							
 							$element.on('click.' + namespace, function(event) {
@@ -134,16 +136,47 @@
 							$s.$digest();
 						});
 						$element.on('mouseover.' + namespace, function(event) {
-							
+													
 							$zm.widget.hovered.set(_this);
 							_this.highlight(event);
 							$s.$digest();
 						});
-						$element.on('mousemove.' + namespace, function(event) {
+						
+						if($s.configs.hoverable !== false) {
 							
-							_this.getScope().position.set(event);
-							$s.$apply();
-						});
+							$element.on('mousemove.' + namespace, function(event) {
+								_this.getScope().position.set(event);
+								_this.getScope().$digest();
+							});
+							
+							// $element.on('mousemove.' + namespace, function(event) {
+								
+							// 	event.stopPropagation();
+								
+							// 	_this.getScope().position.set(event);
+							// 	$s.$digest();
+								
+								//if($zm.widget.drag.enabled) {
+									//event.stopPropagation();
+									
+								//}
+								
+								// var element = document.elementFromPoint(
+								// 	event.clientX,
+								// 	event.clientY
+								// );
+								// angular.element(element).trigger('dragHoverTouch', {
+								// 	x: event.clientX,
+								// 	y: event.clientY
+								// });
+								
+								// if($zm.widget.drag.enabled) {
+								// 	event.preventDefault();
+								// 	//event.stopPropagation();
+								// 	console.log($s.widget.type);
+								// }
+							// });
+						}
 						$s.$watch('session.context', function(nv, ov) {
 							if(nv !== ov && nv === 'structure') {
 								var $draggable = $element.find('.zm-widget-inner:eq(0)');
@@ -174,7 +207,7 @@
 								$element.toggleClass('zm-highlighted', nv);
 							}
 						});
-							
+						
 						(function() {
 							
 							var $container = $s.container.getScope().$element.find('.zm-container-scrollable:eq(0)');
@@ -313,6 +346,9 @@
 								}
 							}
 							
+							/**
+							 * TODO: Validate if this block necessary? Probably an old artifact...
+							 */
 							if($element.length === 0) {
 								return;
 							}
@@ -386,7 +422,7 @@
 										if(hoveredWidgets.length === 0 || !draggedWidget) {
 											return;
 										}
-										
+																		
 										// Loop through all widgets found and
 										// if once match any of the conditions,
 										// break the loop and end the process.

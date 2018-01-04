@@ -220,6 +220,7 @@
 									factory.session.flushAll();
 									$history.load(data.history);
 									factory.content.set(data.content, true);
+									factory.widget.updateWidgetStates();
 									
 									$modal.info({
 										title: 'Data imported',
@@ -288,7 +289,8 @@
 			},
 			
 			widget: {
-					
+				
+				total: 0,
 				totalSelected: 0,
 				hoveredWidget: null,
 				allSelectedSameType: true,
@@ -296,6 +298,15 @@
 				updateWidgetStates: function() {
 					this.allSelectedSameType = this.areAllSelectedSameType();
 					this.totalSelected = this.countSelected();
+					this.total = this.count();
+				},
+				
+				count: function() {
+					var total = 0;
+					factory.baseScope.widget.forEachChilds(function(widget) {
+						total++;
+					});
+					return total;
 				},
 				
 				countSelected: function() {
@@ -499,12 +510,12 @@
 						type = type === undefined ? 'default' : type;
 						
 						this.resetCursor();
-						angular.element('html:eq(0)').addClass('zm-cursor-drag-' + type);
+						//angular.element('html:eq(0)').addClass('zm-cursor-drag-' + type);
 					},
 					
 					resetCursor: function() {
 						
-						angular.element('html:eq(0)').removeClass('zm-cursor-drag-default zm-cursor-drag-move zm-cursor-drag-copy');
+						//angular.element('html:eq(0)').removeClass('zm-cursor-drag-default zm-cursor-drag-move zm-cursor-drag-copy');
 					}
 				},
 				

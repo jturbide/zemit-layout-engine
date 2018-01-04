@@ -11,6 +11,7 @@
 		selectable: false,
 		defaultTemplate: false,
 		draggable: false,
+		hoverable: false,
 		drop: {
 			outside: {
 				enabled: false,

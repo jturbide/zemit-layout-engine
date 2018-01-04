@@ -184,6 +184,7 @@
 					
 					x: 0,
 					y: 0,
+					bounds: null,
 					
 					/**
 					 * Sets the position of the cursor based on the event
@@ -193,31 +194,14 @@
 						
 						var element = target || event.currentTarget || event.target;
 						
-						/////////////////////////////////
-						// TODO: POTENTIALY BETTER PERFORMANCE BUT NOT ACCURATE YET:
-						// var bounds = {
-						// 	left: element.offsetLeft,
-						// 	top: element.offsetTop,
-						// 	width: element.offsetWidth,
-						// 	height: element.offsetHeight,
-						// }
-						
-						// if(event.touches) {
-						// 	event = event.touches[0];
-						// }
-						
-						// this.x = (event.clientX - bounds.left) * 100 / bounds.width;
-						// this.y = (event.clientY - bounds.top) * 100 / bounds.height;
-						////////////////////////////////
-						
-						var bounds = element.getBoundingClientRect();
+						this.bounds = element.getBoundingClientRect();
 						
 						if(event.touches) {
 							event = event.touches[0];
 						}
 						
-						this.x = (event.clientX - bounds.left) * 100 / bounds.width;
-						this.y = (event.clientY - bounds.top) * 100 / bounds.height;
+						this.x = (event.clientX - this.bounds.left) * 100 / this.bounds.width;
+						this.y = (event.clientY - this.bounds.top) * 100 / this.bounds.height;
 					}
 				};
 				
