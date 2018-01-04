@@ -3,7 +3,7 @@
  */
 (function() {
 	
-	Zemit.app.directive("zmDismissable", ['$config', function($config) {
+	Zemit.app.directive("zmDismissable", ['$session', function($session) {
 		return {
 			restrict: 'E',
 			templateUrl: 'directives/dismissable/dismissable.html',
@@ -11,8 +11,8 @@
 			scope: true,
 			link: function ($s, $e, attrs) {
 				
-				var config = $config.get();
-				$config.prepare({
+				var session = $session.get();
+				$session.prepare({
 					directives: {
 						dismissable: {
 							visible: true
@@ -20,12 +20,12 @@
 					}
 				});
 				
-				$s.config = config.directives.dismissable;
+				$s.session = session.directives.dismissable;
 				$s.type = attrs.type;
 				
 				$s.close = function() {
 					
-					$s.config.visible = false;
+					$s.session.visible = false;
 				};
 			}
 		};

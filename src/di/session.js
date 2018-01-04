@@ -1,11 +1,13 @@
 /**
- * Zemit Configs
+ * Zemit Session
  * @author: <contact@dannycoulombe.com>
  * 
  * Get and set configurations
  */
 (function() {
-	Zemit.app.factory('$config', ['$storage', function($storage) {
+	Zemit.app.factory('$session', ['$storage', function($storage) {
+	    
+	    $storage.defineStore('session');
 	    
 		var factory = {
 			
@@ -27,25 +29,22 @@
 				angular.merge(this.data, data, copy);
 			},
 			
-			load: function(callback) {
+			load: function(callback = () => {}) {
 				
-				$storage.get('config', 'config', function(value) {
-					var data = angular.fromJson(value);
+				$storage.get('session', 'settings', function(data) {
 					factory.data = data || {};
-					callback && callback(factory.data);
+					callback(factory.data);
 				});
 			},
 			
 			save: function() {
 				
-				var json = angular.toJson(this.data);
-				$storage.set('config', 'config', json);
+				$storage.set('session', 'settings', this.data);
 			},
 			
 			flush: function() {
 				
-				$storage.set('config', 'config', null);
-				localStorage.setItem('config', null);
+				$storage.set('session', 'settings', null);
 				this.data = {};
 			}
 		};

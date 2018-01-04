@@ -6,7 +6,7 @@
 	/**
 	 * Parameters directive
 	 */
-	Zemit.app.directive('zmSidebarDebug', ['$zm', '$history', '$config', function($zm, $history, $config) {
+	Zemit.app.directive('zmSidebarDebug', ['$zm', '$history', '$session', function($zm, $history, $session) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -18,14 +18,16 @@
 				$s.version = Zemit.version;
 				
 				$s.dump = () => {
-					var changes = $history.dump();
+					
 					var content = $zm.content.get(true, true);
+					var history = $history.dump();
 					var data = {
-						changes: changes,
+						history: history,
 						content: content,
 						version: Zemit.version
 					};
-					console.log(data);
+					
+					console.log('DEBUG', data);
 				};
 			}
 		}

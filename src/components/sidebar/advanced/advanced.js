@@ -6,7 +6,7 @@
 	/**
 	 * Parameters directive
 	 */
-	Zemit.app.directive('zmSidebarAdvanced', ['$zm', '$history', '$config', function($zm, $history, $config) {
+	Zemit.app.directive('zmSidebarAdvanced', ['$zm', '$history', '$session', function($zm, $history, $session) {
 		return {
 			restrict: 'E',
 			replace: true,

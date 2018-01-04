@@ -6,18 +6,18 @@
 			<toggle>
 				
 				<i class="fa" ng-class="{
-					'fa-cubes': config.context === 'structure',
-					'fa-paint-brush': config.context === 'style',
-					'fa-eye': config.context === 'preview'
+					'fa-cubes': session.context === 'structure',
+					'fa-paint-brush': session.context === 'style',
+					'fa-eye': session.context === 'preview'
 				}"></i>
 				
-				<span ng-if="config.context === 'structure'">
+				<span ng-if="session.context === 'structure'">
 					Structure
 				</span>
-				<!--<span ng-if="config.context === 'style'">-->
+				<!--<span ng-if="session.context === 'style'">-->
 				<!--	Style-->
 				<!--</span>-->
-				<span ng-if="config.context === 'preview'">
+				<span ng-if="session.context === 'preview'">
 					Preview
 				</span>
 				
@@ -26,19 +26,19 @@
 			<items>
 				
 				<!-- STRUCTURE -->
-				<li class="zm-tab-item" ng-class="{active: config.context === 'structure'}" ng-click="setTab('structure')">
+				<li class="zm-tab-item" ng-class="{active: session.context === 'structure'}" ng-click="setTab('structure')">
 					<i class="fa fa-cubes"></i>
 					Structure
 				</li>
 				
 				<!-- STYLE -->
-				<!--<li class="zm-tab-item" ng-class="{active: config.context === 'style'}" ng-click="setTab('style')">-->
+				<!--<li class="zm-tab-item" ng-class="{active: session.context === 'style'}" ng-click="setTab('style')">-->
 				<!--	<i class="fa fa-paint-brush"></i>-->
 				<!--	Style-->
 				<!--</li>-->
 				
 				<!-- PREVIEW -->
-				<li class="zm-tab-item" ng-class="{active: config.context === 'preview'}" ng-click="setTab('preview')">
+				<li class="zm-tab-item" ng-class="{active: session.context === 'preview'}" ng-click="setTab('preview')">
 					<i class="fa fa-eye"></i>
 					Preview
 				</li>
@@ -68,14 +68,14 @@
 		<div class="zm-toolbar-actions zm-toolbar-actions-general">
 			
 			<!-- CLEAR -->
-			<zm-btn zm-tooltip="Clear document" ng-click="zm.content.clear()">
+			<zm-btn zm-tooltip="Clear document" ng-disabled="zm.content.data.childs.length === 0" ng-click="zm.content.clear()">
 				<i class="fa fa-eraser"></i>
 			</zm-btn>
 			
 			<div class="zm-btn-sep zm-hide-mobile"></div>
 			
 			<!-- EXPORT -->
-			<zm-btn zm-tooltip="Export" class="zm-hide-mobile" ng-click="zm.content.export()">
+			<zm-btn zm-tooltip="Export" class="zm-hide-mobile" ng-disabled="zm.content.data.childs.length === 0" ng-click="zm.content.export()">
 				<i class="fa fa-download"></i>
 			</zm-btn>
 			

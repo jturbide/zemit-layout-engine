@@ -46,24 +46,37 @@
 				$s.$element = $e;
 			}
 			
+			$s.countColumns = () => {
+				
+				var count = 0;
+				
+				$s.widget.forEachChilds((widget) => {
+					count += widget.size;
+				});
+				
+				return count;
+			};
+			
 			$s.addColumns = function(amount) {
 				
-				$s.row.getParent().isSelectable = true;
+				$s.row.getParent().getScope().isSelectable = true;
 				
 				$zm.action(function() {
 					for(var i = 0; i < amount; i++) {
-						$s.row.addNewChild('column', undefined, {
+						$s.row.addChild('column', undefined, {
 							size: (12 / amount)
 						});
 					}
 				}, $s.row.childs);
 			};
 			
-			$s.row.getParent().isSelectable = false;
+			$s.hooks.add('onLoad', ($element) => {
+				$s.row.getParent().getScope().isSelectable = false;
+			});
 			
 			// Add default column if no columns available
 			// if($s.row.childs.length === 0) {
-			// 	$s.row.addNewChild('column');
+			// 	$s.row.addChild('column');
 			// }
 		}
 	});

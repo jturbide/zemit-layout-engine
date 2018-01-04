@@ -99,25 +99,23 @@ var Zemit = {
 		Zemit.app.compileProvider = $compileProvider;
 	});
 	
-	Zemit.app.directive('zemit', ['$zm', '$compile', '$config', '$window', '$hook', '$device', '$storage', function($zm, $compile, $config, $window, $hook, $device, $storage) {
+	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media) {
 		return {
 			restrict: 'E',
 			link: function ($s, $e, attrs) {
 				
 				$storage.init(function() {
 					
-					$config.load(function() {
-						$config.prepare({
-							content: {},
+					$session.load(function() {
+						
+						$session.prepare({
 							context: 'structure'
 						});
 						
 						$zm.setBaseScope($s);
-						$zm.content.set($config.data.content);
-						
 						$s.zemit = $zm.content.get();
 						$s.widget = $s.zemit;
-						$s.config = $config.get();
+						$s.session = $session.get();
 						$s.device = $device;
 						
 						var template = '<zm-toolbar></zm-toolbar>'
@@ -145,12 +143,12 @@ var Zemit = {
 				// Save all configurations before leaving
 				// $window.onbeforeunload = function() {
 				// 	$hook.run('onbeforeunload');
-				// 	$config.save();
+				// 	$session.save();
 				// };
 				
 				if($device.isStandalone()) {
 					$hook.add(['onNewHistory', 'onUndoHistory', 'onRedoHistory'], function() {
-						$config.save();
+						$session.save();
 					});
 				}
 				
@@ -158,13 +156,13 @@ var Zemit = {
 					$hook.run('onPageShow');
 					
 					if($device.isStandalone()) {
-						$config.load();
+						$session.load();
 					}
 				};
 				
 				$window.onpagehide = function() {
 					$hook.run('onbeforeunload');
-					$config.save();
+					$session.save();
 				};
 			}
 		};

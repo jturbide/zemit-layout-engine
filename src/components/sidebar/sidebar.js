@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebar', ['$config', '$device', function($config, $device) {
+	Zemit.app.directive('zmSidebar', ['$session', '$device', function($session, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -9,8 +9,8 @@
 				
 				$s.sidebar = $s;
 				
-				var config = $config.get();
-				$config.prepare({
+				var session = $session.get();
+				$session.prepare({
 					sidebar: {
 						tabs: {
 							workspace: {
@@ -31,11 +31,11 @@
 				
 				$s.toggleDebug = () => {
 					
-					if(config.debug && config.sidebar.tabs.debug.visible) {
+					if(session.debug && session.sidebar.tabs.debug.visible) {
 						$s.tabs.toggle('debug');
 					}
 					
-					config.debug = !config.debug;
+					session.debug = !session.debug;
 				};
 				
 				$s.tabs = {
@@ -66,7 +66,7 @@
 					
 					closeAll: function() {
 						
-						angular.forEach(config.sidebar.tabs, function(tab, key) {
+						angular.forEach(session.sidebar.tabs, function(tab, key) {
 							tab.visible = false;
 						});
 						
@@ -77,7 +77,7 @@
 						
 						var show = false;
 						
-						angular.forEach(config.sidebar.tabs, function(tab) {
+						angular.forEach(session.sidebar.tabs, function(tab) {
 							if(tab.visible) {
 								show = true;
 							}
@@ -102,20 +102,20 @@
 					
 					toggle: function(name) {
 						
-						angular.forEach(config.sidebar.tabs, function(tab, key) {
+						angular.forEach(session.sidebar.tabs, function(tab, key) {
 							if(key !== name) {
 								tab.visible = false;
 							}
 						});
 						
-						config.sidebar.tabs[name].visible = !config.sidebar.tabs[name].visible;
+						session.sidebar.tabs[name].visible = !session.sidebar.tabs[name].visible;
 						this.updateShowContent();
 					}
 				};
 				
 				$s.tabs.init();
 				$s.sidebar.tabs = $s.tabs;
-				$s.config = config;
+				$s.session = session;
 			}
 		};
 	}]);

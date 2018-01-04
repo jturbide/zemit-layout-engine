@@ -205,7 +205,13 @@
 					}
 				};
 				
-				angular.extend($s.widget, {
+				var defaultWidget = angular.copy($zm.defaultWidget);
+				
+				if(!$s.widget) {
+					$s.widget = {};
+				}
+				
+				angular.extend($s.widget, defaultWidget, {
 					
 					/**
 					 * Set default values
@@ -503,18 +509,16 @@
 					/**
 					 * Add a child inside widget
 					 */
-					addNewChild: function(type, index, defaultValues) {
+					addChild: function(type, index, defaultValues) {
 						
 						var widget;
 						if(typeof type === 'string') {
-							var defaultWidget = angular.copy($zm.defaultWidget);
-							widget = angular.merge({}, defaultWidget, defaultValues);
+							widget = angular.merge({}, defaultValues);
 							widget.type = type;
 						}
 						else {
 							widget = type;
 						}
-						
 						
 						var childs = (this.childs || $s.widget.childs);
 						if(index === undefined) {
