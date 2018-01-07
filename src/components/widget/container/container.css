@@ -5,14 +5,11 @@
 .zm-container-scrollable {
   margin-top: -1px;
   padding-top: 1px;
-  /*height: calc(100% + 1px);*/
-  /*height: 100%;*/
   overflow: auto;
   position: relative;
+  margin-right: -1px;
+  margin-bottom: -1px;
 }
-/*.zm-context-structure .zm-container-scrollable {*/
-/*  padding-bottom: 5rem;*/
-/*}*/
 .zm-container-notices-scrollable {
   overflow: auto;
   max-height: 25vh;

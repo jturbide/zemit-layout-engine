@@ -1,21 +1,20 @@
 .zm-widget {
   position: relative;
-  /*outline: #ccc solid 1px;*/
-  /*outline-offset: -1px;*/
   cursor: default;
 }
-.zm-context-structure .zm-widget,
-.zm-context-style .zm-widget {
+.zm-context-structure .zm-widget > .zm-widget-highlightable,
+.zm-context-style .zm-widget > .zm-widget-highlightable {
   outline: #ccc solid 1px;
+  outline-offset: -1px;
 }
 @media all and (pointer: fine) {
-  .zm-widget.zm-highlighted:not(.zm-drop-activated) {
+  .zm-widget.zm-highlighted:not(.zm-drop-activated) > .zm-widget-highlightable {
     outline-color: #999;
     z-index: 2;
   }
 }
 @media all and (pointer: coarse) {
-  .zm-widget-container:not(.zm-context-preview) .zm-widget.zm-selected:not(.zm-drop-activated) {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget.zm-selected:not(.zm-drop-activated) > .zm-widget-highlightable {
     outline-color: #999;
     z-index: 2;
   }
@@ -122,7 +121,7 @@
   pointer-events: none !important;
   z-index: 100;
 }
-.zm-widget-drag .zm-widget-draggable {
+.zm-widget-drag .zm-widget-item {
   opacity: 0.50 !important;
 }
 .zm-drop-placeholder {
@@ -173,6 +172,9 @@
 }
 .zm-widget-row > .zm-widget-inner > .zm-drop-placeholder-vertical {
   margin-top: 0.5rem;
+}
+.zm-drop-placeholder-horizontal.zm-drop-placeholder-after {
+    margin-top: -1px;
 }
 
 /**

@@ -217,7 +217,7 @@
 										
 										// Set dragged widget
 										$zm.widget.drag.set(_this);
-										event.interaction.draggedWidget = _this;
+										event.interaction.draggedItem = _this;
 										event.interaction.dontRemove = false;
 										
 										event.interaction.initialScroll = {
@@ -250,7 +250,7 @@
 										if(!interaction.interacting()) {
 											
 											interaction.dontRemove = false;
-											interaction.draggedWidget = _this;
+											interaction.draggedItem = _this;
 											
 											// Set dragged widget
 											var nearestSelected = _this;
@@ -270,7 +270,7 @@
 												
 												$device.vibrate();
 												
-												//event.interaction.draggedWidget = nearestSelected;
+												//event.interaction.draggedItem = nearestSelected;
 												$zm.widget.drag.set(nearestSelected);
 												$draggable = nearestSelected.getScope().$element.find('.zm-widget-inner:eq(0)');
 												
@@ -346,7 +346,7 @@
 								}
 								 
 								interact($dropZone[0]).dropzone({
-									accept: '.zm-widget-draggable',
+									accept: '.zm-widget-item',
 									overlap: 'pointer',
 									ondropactivate: function(event) {
 										$dropZone.addClass('zm-drop-activated');
@@ -370,7 +370,7 @@
 										
 										var dropState = event.interaction.dropState;
 										var hoveredWidgets = $zm.widget.hovered.getAll();
-										var draggedWidget = event.interaction.draggedWidget;
+										var draggedWidget = event.interaction.draggedItem;
 										var draggedElement = draggedWidget.getScope && draggedWidget.getScope().$element;
 										if(hoveredWidgets.length === 0 || !draggedWidget) {
 											return;
@@ -634,7 +634,7 @@
 										
 										if(dropState.widget) {
 											
-											var drag = event.interaction.draggedWidget;
+											var drag = event.interaction.draggedItem;
 											var draggedElement = drag.getScope && drag.getScope().$element;
 											if(draggedElement && draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
@@ -667,7 +667,7 @@
 											// Hide placeholder
 											$placeholder[0].classList.add('zm-hidden');
 											
-											var drag = event.interaction.draggedWidget;
+											var drag = event.interaction.draggedItem;
 											var draggedElement = drag.getScope && drag.getScope().$element;
 											if(draggedElement && draggedElement.hasClass('zm-drop-inside-activate')) {
 												draggedElement.removeClass('zm-drop-inside-activate');
@@ -726,7 +726,7 @@
 										}
 										
 										// Clone dragged element
-										var dragged = event.interaction.draggedWidget;
+										var dragged = event.interaction.draggedItem;
 										var parent = dropState.widget.getParent();
 										var scope = dropState.widget.getScope();
 										var configs = scope.configs;

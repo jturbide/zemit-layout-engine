@@ -1,13 +1,13 @@
 <div class="zm-sidebar-debug">
     
     <!-- NOTICE -->
-    <zm-dismissable type="warning" key="zm-sidebar-debug-intro">
+    <zm-dismissable locked type="warning" key="zm-sidebar-debug-intro">
     	<strong>Warning!</strong> Use these actions with caution.
     </zm-dismissable>
     
     <!-- DETAILS -->
     <div class="zm-sidebar-group">
-        <div class="zm-sidebar-title" ng-click="details.visible = !details.visible" zm-clickable>
+        <div class="zm-sidebar-title" ng-click="details.visible = !details.visible">
             Details
             
             <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': details.visible, 'fa-chevron-right': !details.visible}"></i>
@@ -30,7 +30,7 @@
 
 	<!-- ACTIONS -->
     <div class="zm-sidebar-group">
-        <div class="zm-sidebar-title" ng-click="actions.visible = !actions.visible" zm-clickable>
+        <div class="zm-sidebar-title" ng-click="actions.visible = !actions.visible">
             Actions
             
             <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': actions.visible, 'fa-chevron-right': !actions.visible}"></i>

@@ -17,6 +17,11 @@
 				<zm-sidebar-widgets></zm-sidebar-widgets>
 			</div>
 			
+			<!-- MEDIA -->
+			<div ng-show="session.sidebar.tabs.media.visible && session.context === 'structure'">
+				<zm-sidebar-media></zm-sidebar-media>
+			</div>
+			
 			<!-- DEBUG -->
 			<div ng-show="session.sidebar.tabs.debug.visible && session.context === 'structure'" class="zm-sidebar-group" ng-if="session.debug">
 				<zm-sidebar-debug></zm-sidebar-debug>
@@ -32,6 +37,9 @@
 				<!--</li>-->
 				<li ng-show="session.context === 'structure'" ng-class="{'active': session.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
 					Widgets
+				</li>
+				<li ng-show="session.context === 'structure'" ng-class="{'active': session.sidebar.tabs.media.visible}" ng-click="tabs.toggle('media')" class="zm-tab-item">
+					Media
 				</li>
 				
 				<li ng-if="session.debug" ng-show="session.context === 'structure'" ng-class="{'active': session.sidebar.tabs.debug.visible}" ng-click="tabs.toggle('debug')" class="zm-tab-item">

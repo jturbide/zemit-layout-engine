@@ -4,7 +4,7 @@
 		<!-- DEBUG -->
 		<zm-widget-debug widget="widget" />
 	</div>
-	<div class="zm-widget-row-empty zm-selected-bg" ng-if="row.childs.length === 0 && session.context === 'structure'">
+	<div class="zm-widget-row-empty zm-widget-highlightable zm-selected-bg" ng-if="row.childs.length === 0 && session.context === 'structure'">
 		
 		<!-- COLUMNS SELECTOR -->
 		<div class="zm-widget-row-add-columns zm-flex-container">
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 	</div>
-	<div ng-show="row.childs.length > 0" class="zm-widget-inner zm-widget-draggable zm-draggable" zm-accept-widget-inside>
+	<div ng-show="row.childs.length > 0" class="zm-widget-inner zm-widget-highlightable zm-widget-item zm-draggable" zm-accept-widget-inside>
 		
 		<!-- LIST OF CHILD WIDGETS -->
 		<zm-widget type="column" ng-repeat="widget in row.childs"></zm-widget>

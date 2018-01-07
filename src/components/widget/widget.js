@@ -69,7 +69,7 @@
 					return {
 						restrict: 'E',
 						replace: true,
-						templateUrl: Zemit.widgets.get(widget.name).uri + '/' + dashed + '.admin.html',
+						templateUrl: Zemit.widgets.get(widget.name).uri + '/' + dashed + '.html',
 						link: function($s, $e, attrs) {
 							
 							if(widget.params.defaultTemplate === false) {
@@ -97,7 +97,7 @@
 						restrict: 'E',
 						replace: true,
 						scope: true,
-						templateUrl: Zemit.widgets.get(widget.name).uri + '/' + dashed + '.admin.settings.html',
+						templateUrl: Zemit.widgets.get(widget.name).uri + '/' + dashed + '.settings.html',
 						link: function($s, $e, attrs) {
 							
 							var $widgets = {

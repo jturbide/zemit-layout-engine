@@ -16,11 +16,14 @@
 							workspace: {
 								visible: false
 							},
-							advanced: {
-								visible: false
-							},
+							// advanced: {
+							// 	visible: false
+							// },
 							widgets: {
 								visible: $device.isLargeEnough()
+							},
+							media: {
+								visible: false
 							},
 							debug: {
 								visible: false

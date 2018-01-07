@@ -4,7 +4,7 @@
 (function() {
 	
 	/**
-	 * Parameters directive
+	 * Debug sidebar
 	 */
 	Zemit.app.directive('zmSidebarDebug', ['$zm', '$history', '$session', function($zm, $history, $session) {
 		return {

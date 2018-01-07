@@ -111,6 +111,18 @@ zm-widget[type="container"] {
 }
 
 /**
+ * Mansory
+ */
+.zm-mansory-container {
+    column-gap: 0.5rem;
+    column-count: 3;
+}
+.zm-mansory-container > * {
+    display: inline-block;
+    margin: 0 0 0.5rem;
+}
+
+/**
  * Flex containers
  */
 .zm-flex-container {

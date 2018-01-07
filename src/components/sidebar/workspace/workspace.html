@@ -11,7 +11,7 @@
     </div>
     
 	<div class="zm-sidebar-group" ng-repeat="organization in workspace.organizations" ng-if="workspace.organizations.length > 0">
-        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.session.sidebar.workspace.tabs[organization.key].visible = !$root.session.sidebar.workspace.tabs[organization.key].visible" zm-clickable>
+        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.session.sidebar.workspace.tabs[organization.key].visible = !$root.session.sidebar.workspace.tabs[organization.key].visible">
             
             <span class="zm-sidebar-title-text">
                 {{ ::organization.title }}

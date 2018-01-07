@@ -22,6 +22,7 @@
 				
 				$s.session = session.directives.dismissable;
 				$s.type = attrs.type;
+				$s.locked = attrs.locked !== undefined;
 				
 				$s.close = function() {
 					

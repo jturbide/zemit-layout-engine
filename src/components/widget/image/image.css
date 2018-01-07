@@ -1,15 +1,31 @@
 .zm-widget-image {
 	text-align: center;
 }
+.zm-widget-image-container.zm-drop-hover {
+  background-color: black;
+}
+.zm-widget-image-container.zm-drop-hover > * {
+  opacity: 0.5;
+}
 .zm-widget-image img {
 	max-width: 100%;
 	min-width: 1rem;
   vertical-align: middle;
 }
+.zm-widget-image.zm-selected .zm-widget-image-ready {
+  opacity: 0.8;
+}
+.zm-widget-image-ready {
+  background: transparent center center no-repeat;
+  background-size: cover;
+  padding-top: 25%;
+  min-height: calc(4rem + 1px);
+}
 .zm-widget-image-empty {
   background-color: rgba(0, 0, 0, 0.1);
   color: white;
   font-size: 3rem;
+  padding: 12.5%;
 }
 @media (pointer: coarse) {
   .zm-widget-image-empty {

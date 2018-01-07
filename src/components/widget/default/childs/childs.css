@@ -1,0 +1,7 @@
+.zm-widget-container:not(.zm-context-preview) .zm-widget-child {
+    margin-top: -1px;
+}
+.zm-widget-container:not(.zm-context-preview) .zm-widget-child:hover {
+    z-index: 1;
+    position: relative;
+}

@@ -2,7 +2,7 @@
     
     <!-- SELECTED SETTINGS -->
     <div class="zm-sidebar-group" ng-repeat="(key, setting) in getSettings()">
-        <div class="zm-sidebar-title" ng-click="setting.visible = !setting.visible" zm-clickable>
+        <div class="zm-sidebar-title" ng-click="setting.visible = !setting.visible">
             {{ ::setting.title }}
             
             <i class="fa zm-pull-right" ng-class="{'fa-chevron-down': setting.visible, 'fa-chevron-right': !setting.visible}"></i>

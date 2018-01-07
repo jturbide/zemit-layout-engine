@@ -4,7 +4,7 @@
 (function() {
 	
 	/**
-	 * Parameters directive
+	 * Workspace sidebar
 	 */
 	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', function($zm, $history, $session) {
 		return {

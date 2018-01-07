@@ -17,7 +17,7 @@
 			$s.promptFileDialog();
 		},
 		defaultValues: {
-			src: null
+			mediaId: null
 		},
 		settings: {
 			title: 'Image',
@@ -29,30 +29,52 @@
 			
 			var $zm = $di.get('$zm');
 			var $file = $di.get('$file');
+			var $media = $di.get('$media');
+			
+			var initMedia = (media) => {
+				
+				$s.src.original = URL.createObjectURL(media.getFile());
+				angular.forEach(media.breakpoints, (size, name) => {
+					$s.src[name] = URL.createObjectURL(media.structure.sizes[name].data);
+				});
+				
+				$s.widget.mediaId = media.getId();
+				$s.$digest();
+			};
+			
+			$s.src = {};
+			
+			if($s.widget.mediaId) {
+				$media.get($s.widget.mediaId).then(initMedia);
+			}
 			
 			$s.promptFileDialog = function() {
 				
 				$file.promptFileDialog(function(file, data) {
-					var reader = new FileReader();
-					reader.onload = function(event) {
-						$zm.action(function() {
-							$s.widget.src = reader.result;
-							$s.$digest();
-						}, $s.widget);
-					}
-					reader.readAsDataURL(file);
+					
+					$zm.action(function() {
+						$media.add(file).then(initMedia);
+					}, $s.widget);
 				}, 'image/jpeg,image/gif,image/png');
-			}
+			};
+			
+			$s.dropzoneOptions = {
+				accept: '.zm-media-item',
+				onDrop: (media) => {
+					$media.add(media.getFile()).then(initMedia);
+				}
+			};
 			
 			$file.drop.init($s.$element, $s, {
 				supportedTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
 				onComplete: function(event, files) {
-					
 					$zm.action(function() {
-						$s.widget.src = files[0].target.result;
+						$media.add(files[0]).then(initMedia);
 					}, $s.widget);
 				}
 			});
+			
+			$s.isLoaded = true;
 		}
 	});
 })();

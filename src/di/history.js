@@ -8,10 +8,9 @@
 	Zemit.app.factory('$history', ['$diff', '$session', '$hook', '$injector', '$timeout', '$storage', function($diff, $session, $hook, $injector, $timeout, $storage) {
 	    
 	    $hook.add('onload', function() {
-			$storage.get('session', 'history', function(changes) {
+			$storage.get('session', 'history').then((changes) => {
 				factory.load(changes);
 			});
-			
 	    });
 	    
 	    $hook.add('onbeforeunload', function() {

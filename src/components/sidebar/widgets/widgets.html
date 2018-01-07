@@ -18,7 +18,7 @@
     
 	<!-- TABS -->
 	<div class="zm-sidebar-group" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">
-        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.session.sidebar.widgets.tabs[key].visible = !$root.session.sidebar.widgets.tabs[key].visible" zm-clickable>
+        <div class="zm-sidebar-title zm-flex-container zm-flex-container-gap" ng-click="$root.session.sidebar.widgets.tabs[key].visible = !$root.session.sidebar.widgets.tabs[key].visible">
             
             <span class="zm-sidebar-title-text">
             	{{ ::section.title }}
@@ -36,7 +36,7 @@
             <div ng-if="section.widgets.length > 0" class="zm-flex-container zm-flex-container-gap zm-flex-equal-size">
 				
 				<!-- LIST OF ITEMS (REPEAT) -->
-				<div class="zm-sidebar-widgets-item" zm-sidebar-widgets-item="{{ ::widget.type }}" ng-repeat="widget in section.widgets">
+				<div zm-draggable="draggableOptions" zm-draggable-item="dragWidget" ng-init="dragWidget = { type: widget.type }" class="zm-sidebar-widgets-item zm-widget-item" ng-repeat="widget in section.widgets">
 					<div class="zm-vertical-align-middle">
 						
 						<!-- ICON -->

@@ -104,30 +104,32 @@ var Zemit = {
 			restrict: 'E',
 			link: function ($s, $e, attrs) {
 				
-				$storage.init(function() {
-					
-					$session.load(function() {
-						
-						$session.prepare({
-							context: 'structure'
-						});
-						
-						$zm.setBaseScope($s);
-						$s.zemit = $zm.content.get();
-						$s.widget = $s.zemit;
-						$s.session = $session.get();
-						$s.device = $device;
-						
-						var template = '<zm-toolbar></zm-toolbar>'
-							+ '<zm-widget type="container"></zm-widget>';
+				$storage.init().then(() => {
+					$session.load().then(() => {
+						$storage.get('session', 'content').then((content) => {
+							$zm.content.set(content, true);
 							
-						if(!$device.isSupported()) {
-							template = '<zm-unsupported-device></zm-unsupported-device>';
-						}
-						
-						var $template = angular.element(template);
-						$e.append($template);
-						$compile($template)($s);
+							$session.prepare({
+								context: 'structure'
+							});
+							
+							$zm.setBaseScope($s);
+							$s.zemit = $zm.content.get();
+							$s.widget = $s.zemit;
+							$s.session = $session.get();
+							$s.device = $device;
+							
+							var template = '<zm-toolbar></zm-toolbar>'
+								+ '<zm-widget type="container"></zm-widget>';
+								
+							if(!$device.isSupported()) {
+								template = '<zm-unsupported-device></zm-unsupported-device>';
+							}
+							
+							var $template = angular.element(template);
+							$e.append($template);
+							$compile($template)($s);
+						});
 						
 						$hook.run('onload');
 					});

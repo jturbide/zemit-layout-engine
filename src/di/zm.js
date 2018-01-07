@@ -7,12 +7,6 @@
 (function() {
 	Zemit.app.factory('$zm', ['$history', '$file', '$session', '$modal', '$hook', '$storage', function($history, $file, $session, $modal, $hook, $storage) {
 	    
-	    $hook.add('onload', function() {
-			$storage.get('session', 'content', function(content) {
-				factory.content.set(content, true);
-			});
-	    });
-	    
 	    $hook.add('onbeforeunload', function() {
 	    	var content = factory.content.get(true, true);
 	    	$storage.set('session', 'content', content);
@@ -242,10 +236,12 @@
 				
 				load: () => {
 					
-					$storage.get('config', 'config', function(value) {
-						var data = angular.fromJson(value);
-						factory.data = data || {};
-						callback && callback(factory.data);
+					return new Promise((resolve, reject) => {
+						$storage.get('config', 'config').then((value) => {
+							var data = angular.fromJson(value);
+							factory.data = data || {};
+							resolve(factory.data);
+						}).catch(reject);
 					});
 				}
 			},

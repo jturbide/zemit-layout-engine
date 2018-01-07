@@ -29,23 +29,25 @@
 				angular.merge(this.data, data, copy);
 			},
 			
-			load: function(callback = () => {}) {
+			load: function() {
 				
-				$storage.get('session', 'settings', function(data) {
-					factory.data = data || {};
-					callback(factory.data);
+				return new Promise((resolve, reject) => {
+					$storage.get('session', 'settings').then((data) => {
+						factory.data = data || {};
+						resolve(factory.data);
+					}).catch(reject);
 				});
 			},
 			
 			save: function() {
 				
-				$storage.set('session', 'settings', this.data);
+				return $storage.set('session', 'settings', this.data);
 			},
 			
 			flush: function() {
 				
-				$storage.set('session', 'settings', null);
 				this.data = {};
+				return $storage.set('session', 'settings', null);
 			}
 		};
 		

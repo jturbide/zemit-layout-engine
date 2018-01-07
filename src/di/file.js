@@ -11,6 +11,44 @@
 		
 		var factory = {
 			
+			toBase64: (file) => {
+				
+				return new Promise((resolve, reject) => {
+					
+					var reader = new FileReader();
+					reader.onload = function(event) {
+					    resolve(event);
+					};
+					reader.onerror = reject;
+					reader.readAsDataURL(file);
+				});
+			},
+			
+			base64toFile: (base64, mimeType) => {
+				
+				var data = base64.split(',')[1];
+				return new Blob([window.atob(data)],  {type: mimeType, encoding: 'utf-8'});
+			},
+			
+			getChecksum: (file) => {
+				
+				return new Promise((resolve, reject) => {
+					
+					factory.toBase64(file).then((event) => {
+						var string = event.target.result;
+						
+						let index;
+					    let checksum = 0x12345678;
+					
+					    for (index = 0; index < string.length; index++) {
+					        checksum += (string.charCodeAt(index) * (index + 1));
+					    }
+					
+					    resolve(checksum);
+					});
+				});
+			},
+			
 			downloadAs: function(mimeType, fileName, content) {
 				
 				var data = 'data:' + mimeType + 'charset=utf-8,' + content;
@@ -89,12 +127,10 @@
 						
 						$e.removeClass('zm-file-drop-activate zm-file-drop-invalid');
 						
-						if(isSupported(event.originalEvent)) {
+						if(isSupported(event.originalEvent)
+						&& settings.onComplete instanceof Function) {
 							
-							return (settings.onComplete instanceof Function && parseEvent(event.originalEvent, function(files) {
-								settings.onComplete(event, files);
-								scope.$apply();
-							}) || !settings.onDrop);
+							settings.onComplete(event, event.originalEvent.dataTransfer.files);
 						}
 					});
 					
