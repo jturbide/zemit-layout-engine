@@ -1,0 +1,10 @@
+<div class="zm-tabs">
+	<zm-btn class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle();">
+		<div class="zm-tabs-toggle" ng-transclude="toggle">
+			<i class="fa fa-bars"></i>
+		</div>
+	</zm-btn>
+	<ul ng-click="tabs.clickInside()" class="zm-tabs-list zm-shadow-down" ng-if="tabs.visible" ng-transclude="items">
+		<!-- TRANSCLUDE HERE -->
+	</ul>
+</div>

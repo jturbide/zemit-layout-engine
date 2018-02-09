@@ -1,0 +1,8 @@
+.zm-badge {
+  display: inline-block;
+  background-color: #999;
+  color: white;
+  border-radius: 0.25rem;
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+}

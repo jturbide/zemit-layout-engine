@@ -1,0 +1,33 @@
+#zm_modal_zm_widget_add .zm-modal-inner {
+  max-width: 100%;
+  width: 35rem;
+}
+.zm-widget-add-item {
+  min-width: 8rem;
+  border: #ddd solid 1px;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+.zm-widget-add-item:hover {
+  cursor: pointer;
+  color: #75a9f9;
+  border-color: #75a9f9;
+}
+.zm-widget-add-item-icon .fa {
+  font-size: 2rem;
+}
+.zm-widget-add-item-title {
+  margin: 0;
+}
+.zm-widget-add-item-desc {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+.zm-widget-modal-add-widget .zm-tabs {
+  border-bottom: #ddd solid 1px;
+}
+.zm-widget-modal-add-widget .zm-tabs .zm-tab-item {
+  margin-bottom: -1px;
+  padding: 0.5rem 1rem;
+}

@@ -1,0 +1,25 @@
+@keyframes placeHolderShimmer{
+    0% {
+        background-position: -100vw 0;
+    }
+    100% {
+        background-position: 100vw 0;
+    }
+}
+.zm-loading-bar {
+	display: block;
+	width: 100%;
+	border-radius: calc(0.25rem - 1px);
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05) 8%, rgba(255, 255, 255, 0.15) 18%, rgba(0, 0, 0, 0.05) 33%);
+    background-size: 100vw 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}

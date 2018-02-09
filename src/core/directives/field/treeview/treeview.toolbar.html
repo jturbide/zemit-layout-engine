@@ -1,0 +1,23 @@
+<!-- ICON -->
+<span ng-if="parentOptions.icon" class="zm-flex-minimal">
+	<i class="fa fa-{{ parentOptions.icon }}"></i>
+</span>
+
+<!-- TITLE -->
+<span>
+	{{ parentOptions.getTitle(node) }}
+</span>
+
+<!-- OPTIONS -->
+<div ng-if="!lvlOptions.canAdd" ng-include="defaultLvlOptions"></div>
+
+<!-- TOTAL NODES -->
+<div ng-if="depth < options.levels.length" class="zm-badge" ng-class="{ 'zm-empty': lvlList.length === 0 }">
+	{{ lvlList.length }}
+</div>
+
+<!-- CHEVRON -->
+<i ng-if="lvlOptions.canAdd" class="fa zm-pull-right zm-flex-minimal" ng-class="{
+	'fa-chevron-down': lvlSettings.viewItems,
+	'fa-chevron-right': !lvlSettings.viewItems
+}"></i>

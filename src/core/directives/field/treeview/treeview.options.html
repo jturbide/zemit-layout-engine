@@ -1,0 +1,40 @@
+<div ng-click="$event.stopPropagation()" class="zm-flex-container zm-flex-container-gap zm-flex-nowrap">
+	
+	<!-- MORE OPTIONS -->
+	<zm-tabs anchor="top-right">
+		<items>
+			
+			<!-- EDIT -->
+			<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-click="lvlOptions.onEdit(node, parent, depth)">
+				<i class="fa fa-pencil zm-flex-minimal"></i>
+				<span>
+					{{ ::$root.t('core.directives.field.treeview.btnEdit') }}
+				</span>
+			</li>
+			
+			<!-- ADD -->
+			<li ng-if="lvlOptions.canAdd" ng-click="lvlOptions.onAdd(node, parent, depth)" class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-click="lvlOptions.onEdit(node, parent, depth)">
+				<i class="fa fa-plus zm-flex-minimal"></i>
+				<span>
+					{{ ::$root.t('core.directives.field.treeview.btnAdd') }}
+				</span>
+			</li>
+			
+			<!-- OPEN -->
+			<li ng-if="lvlOptions.canOpen" ng-click="lvlOptions.onOpen(node, parent, depth)" class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-click="lvlOptions.onEdit(node, parent, depth)">
+				<i class="fa fa-external-link zm-flex-minimal"></i>
+				<span>
+					{{ ::$root.t('core.directives.field.treeview.btnOpen') }}
+				</span>
+			</li>
+			
+			<!-- REMOVE -->
+			<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-click="lvlOptions.onRemove(node, parent, depth)">
+				<i class="fa fa-trash-o zm-flex-minimal"></i>
+				<span>
+					{{ ::$root.t('core.directives.field.treeview.btnRemove') }}
+				</span>
+			</li>
+		</items>
+	</zm-tabs>
+</div>

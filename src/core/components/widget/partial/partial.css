@@ -1,0 +1,3 @@
+.zm-widget-partial .zm-widget-inner > * {
+    pointer-events: none;
+}

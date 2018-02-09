@@ -1,0 +1,41 @@
+.zm-treeview-container,
+.zm-treeview-container ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.zm-treeview-group-back,
+.zm-treeview-group-title {
+  padding: 0.25rem 1rem;
+  background-color: white;
+  border: #ccc solid 1px;
+}
+
+.zm-field-treeview-sub-level {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.zm-treeview-container ol>li+li,
+.zm-field-treeview-sub-level ol>li+li {
+  margin-top: -1px;
+}
+
+.zm-field-treeview-sub-level ol>li,
+.zm-treeview-container ol>li {
+  position: relative;
+}
+
+.zm-field-treeview-sub-level ol>li:hover,
+.zm-treeview-container ol>li:hover {
+  z-index: 1;
+}
+
+.zm-treeview-container .zm-badge.zm-empty {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.zm-treeview-group-title .fa {
+  min-width: 1rem;
+  text-align: center;
+}

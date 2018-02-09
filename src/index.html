@@ -21,39 +21,50 @@
 		<!-- endbuild -->
 		<!-- build:css assets/css/zemit.min.css -->
 		<link rel="stylesheet" href="./zemit.css" />
-		<link rel="stylesheet" href="./directives/general/general.css" />
-		<link rel="stylesheet" href="./directives/badge/badge.css" />
-		<link rel="stylesheet" href="./directives/btn/btn.css" />
-		<link rel="stylesheet" href="./directives/dismissable/dismissable.css" />
-		<link rel="stylesheet" href="./directives/draggable/draggable.css" />
-		<link rel="stylesheet" href="./directives/field/default/default.css" />
-		<link rel="stylesheet" href="./directives/field/email/email.css" />
-		<link rel="stylesheet" href="./directives/field/password/password.css" />
-		<link rel="stylesheet" href="./directives/field/switch/switch.css" />
-		<link rel="stylesheet" href="./directives/field/text/text.css" />
-		<link rel="stylesheet" href="./directives/field/treeview/treeview.css" />
-		<link rel="stylesheet" href="./directives/loading/loading.css" />
-		<link rel="stylesheet" href="./directives/modal/modal.css" />
-		<link rel="stylesheet" href="./directives/overlay/overlay.css" />
-		<link rel="stylesheet" href="./directives/tabs/tabs.css" />
-		<link rel="stylesheet" href="./directives/tooltip/tooltip.css" />
-		<link rel="stylesheet" href="./directives/unsupported-device/unsupported-device.css" />
-		<link rel="stylesheet" href="./components/toolbar/toolbar.css" />
-		<link rel="stylesheet" href="./components/sidebar/sidebar.css" />
-		<link rel="stylesheet" href="./components/sidebar/advanced/advanced.css" />
-		<link rel="stylesheet" href="./components/sidebar/debug/debug.css" />
-		<link rel="stylesheet" href="./components/sidebar/media/media.css" />
-		<link rel="stylesheet" href="./components/sidebar/widgets/widgets.css" />
-		<link rel="stylesheet" href="./components/sidebar/workspace/workspace.css" />
-		<link rel="stylesheet" href="./components/doc/doc.css" />
-		<link rel="stylesheet" href="./components/widget/widget.css" />
-		<link rel="stylesheet" href="./components/widget/debug/debug.css" />
-		<link rel="stylesheet" href="./components/widget/default/childs/childs.css" />
-		<link rel="stylesheet" href="./components/widget/container/container.css" />
-		<link rel="stylesheet" href="./components/widget/row/row.css" />
-		<link rel="stylesheet" href="./components/widget/column/column.css" />
-		<link rel="stylesheet" href="./components/widget/image/image.css" />
-		<link rel="stylesheet" href="./components/widget/text/text.css" />
+		<link rel="stylesheet" href="./core/components/toolbar/toolbar.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/sidebar.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/advanced/advanced.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/debug/debug.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/media/media.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/widgets/widgets.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/workspace/workspace.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/connect/connect.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/project/project.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/segment/segment.css" />
+		<link rel="stylesheet" href="./core/components/doc/doc.css" />
+		<link rel="stylesheet" href="./core/components/widget/widget.css" />
+		<link rel="stylesheet" href="./core/components/widget/code/code.css" />
+		<link rel="stylesheet" href="./core/components/widget/container/container.css" />
+		<link rel="stylesheet" href="./core/components/widget/column/column.css" />
+		<link rel="stylesheet" href="./core/components/widget/debug/debug.css" />
+		<link rel="stylesheet" href="./core/components/widget/default/add/add.css" />
+		<link rel="stylesheet" href="./core/components/widget/default/childs/childs.css" />
+		<link rel="stylesheet" href="./core/components/widget/image/image.css" />
+		<link rel="stylesheet" href="./core/components/widget/partial/partial.css" />
+		<link rel="stylesheet" href="./core/components/widget/row/row.css" />
+		<link rel="stylesheet" href="./core/components/widget/segment/segment.css" />
+		<link rel="stylesheet" href="./core/components/widget/text/text.css" />
+		<link rel="stylesheet" href="./core/directives/general/general.css" />
+		<link rel="stylesheet" href="./core/directives/badge/badge.css" />
+		<link rel="stylesheet" href="./core/directives/btn/btn.css" />
+		<link rel="stylesheet" href="./core/directives/dismissable/dismissable.css" />
+		<link rel="stylesheet" href="./core/directives/draggable/draggable.css" />
+		<link rel="stylesheet" href="./core/directives/field/default/default.css" />
+		<link rel="stylesheet" href="./core/directives/field/email/email.css" />
+		<link rel="stylesheet" href="./core/directives/field/number/number.css" />
+		<link rel="stylesheet" href="./core/directives/field/password/password.css" />
+		<link rel="stylesheet" href="./core/directives/field/switch/switch.css" />
+		<link rel="stylesheet" href="./core/directives/field/text/text.css" />
+		<link rel="stylesheet" href="./core/directives/field/treeview/treeview.css" />
+		<link rel="stylesheet" href="./core/directives/iframe/iframe.css" />
+		<link rel="stylesheet" href="./core/directives/loading/loading.css" />
+		<link rel="stylesheet" href="./core/directives/modal/modal.css" />
+		<link rel="stylesheet" href="./core/directives/overlay/overlay.css" />
+		<link rel="stylesheet" href="./core/directives/sizing/sizing.css" />
+		<link rel="stylesheet" href="./core/directives/tabs/tabs.css" />
+		<link rel="stylesheet" href="./core/directives/tooltip/tooltip.css" />
+		<link rel="stylesheet" href="./core/directives/unsupported-device/unsupported-device.css" />
+		<link rel="stylesheet" href="./core/modules/easteregg/easteregg.css" />
 		<!-- endbuild -->
 		<style>
 			html,
@@ -63,7 +74,7 @@
 				overflow: hidden;
 			}
 			html {
-				font-size: 15px;
+				font-size: 14px;
 				font-family: Avenir,Open Sans,Helvetica,Arial,sans-serif;
 			}
 			body {
@@ -81,58 +92,89 @@
 		<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
+		<script src="../node_modules/feathers-client/dist/feathers.min.js"></script>
 		<!-- endbuild -->
 		<!-- build:js assets/js/zemit.min.js -->
 		<script src="./zemit.js"></script>
 		<!-- include: "type": "js", "files": "templates.js" -->
 		<!-- include: "type": "js", "files": "service-worker.js" -->
-		<script src="./di/device.js"></script>
-		<script src="./di/diff.js"></script>
-		<script src="./di/file.js"></script>
-		<script src="./di/history.js"></script>
-		<script src="./di/hook.js"></script>
-		<script src="./di/media.js"></script>
-		<script src="./di/session.js"></script>
-		<script src="./di/storage.js"></script>
-		<script src="./di/workspace.js"></script>
-		<script src="./di/zm.js"></script>
-		<script src="./filters/general.js"></script>
-		<script src="./directives/general/general.js"></script>
-		<script src="./directives/badge/badge.js"></script>
-		<script src="./directives/btn/btn.js"></script>
-		<script src="./directives/dismissable/dismissable.js"></script>
-		<script src="./directives/draggable/draggable.js"></script>
-		<script src="./directives/dropzone/dropzone.js"></script>
-		<script src="./directives/field/default/default.js"></script>
-		<script src="./directives/field/email/email.js"></script>
-		<script src="./directives/field/password/password.js"></script>
-		<script src="./directives/field/text/text.js"></script>
-		<script src="./directives/field/treeview/treeview.js"></script>
-		<script src="./directives/field/switch/switch.js"></script>
-		<script src="./directives/loading/loading.js"></script>
-		<script src="./directives/modal/modal.js"></script>
-		<script src="./directives/overlay/overlay.js"></script>
-		<script src="./directives/tabs/tabs.js"></script>
-		<script src="./directives/tooltip/tooltip.js"></script>
-		<script src="./directives/unsupported-device/unsupported-device.js"></script>
-		<script src="./components/toolbar/toolbar.js"></script>
-		<script src="./components/sidebar/sidebar.js"></script>
-		<script src="./components/sidebar/advanced/advanced.js"></script>
-		<script src="./components/sidebar/debug/debug.js"></script>
-		<script src="./components/sidebar/media/media.js"></script>
-		<script src="./components/sidebar/widgets/widgets.js"></script>
-		<script src="./components/sidebar/workspace/workspace.js"></script>
-		<script src="./components/doc/doc.js"></script>
-		<script src="./components/widget/widget.js"></script>
-		<script src="./components/widget/widget.onLoad.js"></script>
-		<script src="./components/widget/default/add/add.js"></script>
-		<script src="./components/widget/default/childs/childs.js"></script>
-		<script src="./components/widget/default/toolbar/toolbar.js"></script>
-		<script src="./components/widget/container/container.js"></script>
-		<script src="./components/widget/row/row.js"></script>
-		<script src="./components/widget/column/column.js"></script>
-		<script src="./components/widget/image/image.js"></script>
-		<script src="./components/widget/text/text.js"></script>
+		<script src="./core/components/toolbar/toolbar.js"></script>
+		<script src="./core/components/sidebar/sidebar.js"></script>
+		<script src="./core/components/sidebar/advanced/advanced.js"></script>
+		<script src="./core/components/sidebar/debug/debug.js"></script>
+		<script src="./core/components/sidebar/media/media.js"></script>
+		<script src="./core/components/sidebar/widgets/widgets.js"></script>
+		<script src="./core/components/sidebar/workspace/workspace.js"></script>
+		<script src="./core/components/sidebar/workspace/modals/connect/connect.js"></script>
+		<script src="./core/components/sidebar/workspace/modals/project/project.js"></script>
+		<script src="./core/components/sidebar/workspace/modals/segment/segment.js"></script>
+		<script src="./core/components/doc/doc.js"></script>
+		<script src="./core/components/widget/widget.js"></script>
+		<script src="./core/components/widget/widget.onLoad.js"></script>
+		<script src="./core/components/widget/code/code.js"></script>
+		<script src="./core/components/widget/column/column.js"></script>
+		<script src="./core/components/widget/container/container.js"></script>
+		<script src="./core/components/widget/default/add/add.js"></script>
+		<script src="./core/components/widget/default/childs/childs.js"></script>
+		<script src="./core/components/widget/default/toolbar/toolbar.js"></script>
+		<script src="./core/components/widget/image/image.js"></script>
+		<script src="./core/components/widget/partial/partial.js"></script>
+		<script src="./core/components/widget/row/row.js"></script>
+		<script src="./core/components/widget/segment/segment.js"></script>
+		<script src="./core/components/widget/text/text.js"></script>
+		<script src="./core/classes/error.js"></script>
+		<script src="./core/classes/socket.js"></script>
+		<script src="./core/directives/badge/badge.js"></script>
+		<script src="./core/directives/btn/btn.js"></script>
+		<script src="./core/directives/dismissable/dismissable.js"></script>
+		<script src="./core/directives/draggable/draggable.js"></script>
+		<script src="./core/directives/dropzone/dropzone.js"></script>
+		<script src="./core/directives/field/default/default.js"></script>
+		<script src="./core/directives/field/email/email.js"></script>
+		<script src="./core/directives/field/number/number.js"></script>
+		<script src="./core/directives/field/password/password.js"></script>
+		<script src="./core/directives/field/text/text.js"></script>
+		<script src="./core/directives/field/treeview/treeview.js"></script>
+		<script src="./core/directives/field/switch/switch.js"></script>
+		<script src="./core/directives/general/general.js"></script>
+		<script src="./core/directives/iframe/iframe.js"></script>
+		<script src="./core/directives/loading/loading.js"></script>
+		<script src="./core/directives/modal/modal.js"></script>
+		<script src="./core/directives/overlay/overlay.js"></script>
+		<script src="./core/directives/tabs/tabs.js"></script>
+		<script src="./core/directives/tooltip/tooltip.js"></script>
+		<script src="./core/directives/unsupported-device/unsupported-device.js"></script>
+		<script src="./core/di/cache.js"></script>
+		<script src="./core/di/debug.js"></script>
+		<script src="./core/di/device.js"></script>
+		<script src="./core/di/diff.js"></script>
+		<script src="./core/di/file.js"></script>
+		<script src="./core/di/history.js"></script>
+		<script src="./core/di/hook.js"></script>
+		<script src="./core/di/i18n.js"></script>
+		<script src="./core/di/modal.js"></script>
+		<script src="./core/di/socket.js"></script>
+		<script src="./core/di/storage.js"></script>
+		<script src="./core/di/util.js"></script>
+		<script src="./core/di/zm.js"></script>
+		<script src="./core/filters/general.js"></script>
+		<script src="./core/i18n/literals.js"></script>
+		<script src="./core/models/model.js"></script>
+		<script src="./core/models/media.js"></script>
+		<script src="./core/models/project.js"></script>
+		<script src="./core/models/segment.js"></script>
+		<script src="./core/models/session.js"></script>
+		<script src="./core/models/user.js"></script>
+		<script src="./core/models/workspace.js"></script>
+		<script src="./core/modules/easteregg/easteregg.js"></script>
+		<script src="./core/modules/interceptor/interceptor.js"></script>
+		<script src="./core/modules/shortcut/shortcut.js"></script>
+		<script src="./core/services/media.js"></script>
+		<!--<script src="./core/services/project.js"></script>-->
+		<!--<script src="./core/services/segment.js"></script>-->
+		<script src="./core/services/session.js"></script>
+		<script src="./core/services/session.workspace.js"></script>
+		<script src="./core/services/workspace.js"></script>
 		<!-- endbuild -->
 	</body>
 </html>

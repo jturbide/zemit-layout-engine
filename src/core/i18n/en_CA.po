@@ -1,0 +1,557 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_CA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "core.classes.errAlreadyConn"
+msgstr "A connection has already been established to that server."
+
+msgid "core.classes.errConnLost"
+msgstr "The connection has been lost. Is the server down?"
+
+msgid "core.classes.errConnTimeout"
+msgstr "The connection has timed out."
+
+msgid "core.classes.errNotResponding"
+msgstr ""
+"The server is either not responding or the information provided are "
+"incorrect."
+
+msgid "core.classes.errUserPassIncorrect"
+msgstr "The username and/or password provided are incorrect."
+
+msgid "core.components.doc.title"
+msgstr "Documentation"
+
+msgid "core.components.sidebar.debug.actionsBtnDump"
+msgstr "Dump session to console"
+
+msgid "core.components.sidebar.debug.actionsBtnFlushHistory"
+msgstr "Flush history only"
+
+msgid "core.components.sidebar.debug.actionsBtnFlushMemory"
+msgstr "Flush memory"
+
+msgid "core.components.sidebar.debug.actionsTitle"
+msgstr "Actions"
+
+msgid "core.components.sidebar.debug.actionsWarning"
+msgstr "<strong>Warning!</strong> Use these actions with caution."
+
+msgid "core.components.sidebar.debug.clearConsole"
+msgstr "Clear console"
+
+msgid "core.components.sidebar.debug.detailsTitle"
+msgstr "Details"
+
+msgid "core.components.sidebar.debug.flushBtn"
+msgstr "Flush all"
+
+msgid "core.components.sidebar.debug.flushContent"
+msgstr "Are you sure you want to flush everything you have in memory?"
+
+msgid "core.components.sidebar.debug.flushTitle"
+msgstr "Flush all"
+
+msgid "core.components.sidebar.debug.history"
+msgstr "History:"
+
+msgid "core.components.sidebar.debug.logsEmpty"
+msgstr "No log available yet."
+
+msgid "core.components.sidebar.debug.logsTitle"
+msgstr "Logs"
+
+msgid "core.components.sidebar.debug.maxLogs"
+msgstr "Max logs:"
+
+msgid "core.components.sidebar.debug.selectedWidgets"
+msgstr "Selected widgets:"
+
+msgid "core.components.sidebar.debug.settings.showWidgetTokenId"
+msgstr "Show widget tokens & IDs"
+
+msgid "core.components.sidebar.debug.settingsTitle"
+msgstr "Settings"
+
+msgid "core.components.sidebar.debug.totalWidgets"
+msgstr "Total widgets:"
+
+msgid "core.components.sidebar.debug.version"
+msgstr "Version:"
+
+msgid "core.components.sidebar.media.btnAddMedia"
+msgstr "Add new media"
+
+msgid "core.components.sidebar.media.empty"
+msgstr "No media available yet."
+
+msgid "core.components.sidebar.media.filterPlaceholder"
+msgstr "Filter media..."
+
+msgid "core.components.sidebar.media.images"
+msgstr "Images"
+
+msgid "core.components.sidebar.media.noMediaFound"
+msgstr "No media found based on your search criteria."
+
+msgid "core.components.sidebar.media.noticeIntro"
+msgstr "Every media added in your document is added here beforehand."
+
+msgid "core.components.sidebar.tabs.debug"
+msgstr "Debug"
+
+msgid "core.components.sidebar.tabs.media"
+msgstr "Media"
+
+msgid "core.components.sidebar.tabs.widgets"
+msgstr "Widgets"
+
+msgid "core.components.sidebar.tabs.workspace"
+msgstr "Workspace"
+
+msgid "core.components.sidebar.tooltips.debug"
+msgstr "Show debugging information"
+
+msgid "core.components.sidebar.tooltips.help"
+msgstr "Show help boxes"
+
+msgid "core.components.sidebar.tooltips.zemit"
+msgstr "We're Zemit, check us out!"
+
+msgid "core.components.sidebar.widgets.filterPlaceholder"
+msgstr "Filter widgets..."
+
+msgid "core.components.sidebar.widgets.noWidgetsFound"
+msgstr "No widget found based on your search criteria."
+
+msgid "core.components.sidebar.widgets.noticesDesktopDrag"
+msgstr "Add widgets by dragging them into your container."
+
+msgid "core.components.sidebar.widgets.noticesMobileDrag"
+msgstr "Tap and hold a widget to drag it into your content."
+
+msgid "core.components.sidebar.workspace.addProjectLabel"
+msgstr "Add a project"
+
+msgid "core.components.sidebar.workspace.addProjectTitle"
+msgstr "Add new project"
+
+msgid "core.components.sidebar.workspace.addSegmentLabel"
+msgstr "Add a segment"
+
+msgid "core.components.sidebar.workspace.addSegmentModalBtnCancel"
+msgstr "Cancel"
+
+msgid "core.components.sidebar.workspace.addSegmentModalBtnCreate"
+msgstr "Create"
+
+msgid "core.components.sidebar.workspace.addSegmentModalTitle"
+msgstr "Add new segment"
+
+msgid "core.components.sidebar.workspace.btnAddNewWorkspace"
+msgstr "Add a new workspace"
+
+msgid "core.components.sidebar.workspace.connect.browser"
+msgstr "Browser"
+
+msgid "core.components.sidebar.workspace.connect.browserTooltip"
+msgstr "Data will be saved in your browser session"
+
+msgid "core.components.sidebar.workspace.connect.envTitle"
+msgstr "Environment:"
+
+msgid "core.components.sidebar.workspace.connect.hostPlaceholder"
+msgstr "ex: ws.zemit.com"
+
+msgid "core.components.sidebar.workspace.connect.hostTitle"
+msgstr "Host:"
+
+msgid "core.components.sidebar.workspace.connect.namePlaceholder"
+msgstr "ex: Zemit"
+
+msgid "core.components.sidebar.workspace.connect.nameTitle"
+msgstr "Name:"
+
+msgid "core.components.sidebar.workspace.connect.passTitle"
+msgstr "Password:"
+
+msgid "core.components.sidebar.workspace.connect.remote"
+msgstr "Remote"
+
+msgid "core.components.sidebar.workspace.connect.userPlaceholder"
+msgstr "ex: unclebob"
+
+msgid "core.components.sidebar.workspace.connect.userTitle"
+msgstr "User:"
+
+msgid "core.components.sidebar.workspace.connectWorkspaceTitle"
+msgstr "Connect to workspace"
+
+msgid "core.components.sidebar.workspace.editProjectTitle"
+msgstr "Edit project"
+
+msgid "core.components.sidebar.workspace.editSegmentModalBtnUpdate"
+msgstr "Update"
+
+msgid "core.components.sidebar.workspace.editSegmentModalTitle"
+msgstr "Edit segment"
+
+msgid "core.components.sidebar.workspace.emptyProjectLabel"
+msgstr "No project available yet."
+
+msgid "core.components.sidebar.workspace.emptySegmentLabel"
+msgstr "No segment available yet."
+
+msgid "core.components.sidebar.workspace.filterPlaceholder"
+msgstr "Search in all workspaces..."
+
+msgid "core.components.sidebar.workspace.noProjectAdd"
+msgstr "No project yet, add one:"
+
+msgid "core.components.sidebar.workspace.noWorkspaceJoined"
+msgstr "No workspace joined yet."
+
+msgid "core.components.sidebar.workspace.noticeExplanation"
+msgstr ""
+"Each workspaces contains projects which contains segments. A segment is like "
+"a page but it can instanciates other segments."
+
+msgid "core.components.sidebar.workspace.project.namePlaceholder"
+msgstr "ex: McGill University"
+
+msgid "core.components.sidebar.workspace.project.nameTitle"
+msgstr "Name:"
+
+msgid "core.components.sidebar.workspace.projectBtnCancel"
+msgstr "Cancel"
+
+msgid "core.components.sidebar.workspace.projectBtnCreate"
+msgstr "Create"
+
+msgid "core.components.sidebar.workspace.projectBtnUpdate"
+msgstr "Update"
+
+msgid "core.components.sidebar.workspace.projectRemoveBtnCancel"
+msgstr "Cancel"
+
+msgid "core.components.sidebar.workspace.projectRemoveBtnRemove"
+msgstr "Remove"
+
+msgid "core.components.sidebar.workspace.projectRemoveContent"
+msgstr ""
+"Are you sure you want to remove the project <strong>:project:</strong> from "
+"your workspace <strong>:workspace:</strong>?"
+
+msgid "core.components.sidebar.workspace.projectRemoveTitle"
+msgstr "Remove project"
+
+msgid "core.components.sidebar.workspace.removeSegmentModalBtnCancel"
+msgstr "Cancel"
+
+msgid "core.components.sidebar.workspace.removeSegmentModalBtnRemove"
+msgstr "Remove"
+
+msgid "core.components.sidebar.workspace.removeSegmentModalContent"
+msgstr ""
+"Are you sure you want to remove the segment <strong>:segment:</strong> from "
+"your project <strong>:project:</strong>?"
+
+msgid "core.components.sidebar.workspace.removeSegmentModalTitle"
+msgstr "Remove segment"
+
+msgid "core.components.sidebar.workspace.removeWorkspaceModalBtnCancel"
+msgstr "Cancel"
+
+msgid "core.components.sidebar.workspace.removeWorkspaceModalBtnRemove"
+msgstr "Remove"
+
+msgid "core.components.sidebar.workspace.removeWorkspaceModalContent"
+msgstr ""
+"Are you sure you want to remove <strong>:workspace:</strong> from your "
+"workspaces?"
+
+msgid "core.components.sidebar.workspace.removeWorkspaceModalTitle"
+msgstr "Remove workspace"
+
+msgid "core.components.sidebar.workspace.segment.namePlaceholder"
+msgstr "ex: McGill University"
+
+msgid "core.components.sidebar.workspace.segment.nameTitle"
+msgstr "Name:"
+
+msgid "core.components.sidebar.workspace.treeview.segmentTotalWidgets"
+msgstr "Total widgets:"
+
+msgid "core.components.sidebar.workspace.tryAgain"
+msgstr "Try again"
+
+msgid "core.components.sidebar.workspace.updateWorkspaceBtnCancel"
+msgstr "Cancel"
+
+msgid "core.components.sidebar.workspace.updateWorkspaceBtnConnect"
+msgstr "Connect"
+
+msgid "core.components.sidebar.workspace.updateWorkspaceBtnUpdate"
+msgstr "Update"
+
+msgid "core.components.sidebar.workspace.updateWorkspaceTitle"
+msgstr "Connect to workspace"
+
+msgid "core.components.toolbar.doc"
+msgstr "Doc"
+
+msgid "core.components.toolbar.openWorkspaceDrawer"
+msgstr ""
+"Open the Workspace drawer and select or create a workspace/project/segment."
+
+msgid "core.components.toolbar.preview"
+msgstr "Preview"
+
+msgid "core.components.toolbar.structure"
+msgstr "Structure"
+
+msgid "core.components.toolbar.tooltip.changeMode"
+msgstr "Change edition mode"
+
+msgid "core.components.toolbar.tooltip.clearDoc"
+msgstr "Clear document"
+
+msgid "core.components.toolbar.tooltip.doc"
+msgstr "Documentation"
+
+msgid "core.components.toolbar.tooltip.export"
+msgstr "Export"
+
+msgid "core.components.toolbar.tooltip.import"
+msgstr "Import"
+
+msgid "core.components.toolbar.tooltip.redo"
+msgstr "Redo"
+
+msgid "core.components.toolbar.tooltip.undo"
+msgstr "Undo"
+
+msgid "core.components.toolbar.workspaceSaved"
+msgstr "Saved"
+
+msgid "core.components.widget.code.desc"
+msgstr "Hand code a segment yourself"
+
+msgid "core.components.widget.code.title"
+msgstr "Code"
+
+msgid "core.components.widget.column.desc"
+msgstr "Use it to divide your rows in more columns"
+
+msgid "core.components.widget.column.title"
+msgstr "Column"
+
+msgid "core.components.widget.container.actions.duplicate"
+msgstr "Duplicate"
+
+msgid "core.components.widget.container.actions.edit"
+msgstr "Edit"
+
+msgid "core.components.widget.container.actions.remove"
+msgstr "Remove"
+
+msgid "core.components.widget.container.notices.clickHoldDrag"
+msgstr "Click and hold the selection to drag it around."
+
+msgid "core.components.widget.container.notices.numberColumn"
+msgstr "Choose the number of column(s) you desire."
+
+msgid "core.components.widget.container.notices.openWidget"
+msgstr ""
+"Open the widget drawer and select or create a workspace/project/segment."
+
+msgid "core.components.widget.container.notices.standalone"
+msgstr ""
+"Enjoy a <strong>full screen</strong> experience by adding this app on your "
+"home screen. Check your browser options!"
+
+msgid "core.components.widget.container.notices.startAddingRow"
+msgstr "Start by opening the widgets drawer and adding a new row."
+
+msgid "core.components.widget.container.notices.taploopParent"
+msgstr ""
+"Tap multiple time the same widget to loop through its parents. Now tap and "
+"hold the selection to drag it around."
+
+msgid "core.components.widget.default.add.content"
+msgstr "Content"
+
+msgid "core.components.widget.default.add.customizable"
+msgstr "Customizable"
+
+msgid "core.components.widget.default.add.modalAddTitle"
+msgstr "Add a new widget"
+
+msgid "core.components.widget.default.add.structure"
+msgstr "Structure"
+
+msgid "core.components.widget.image.desc"
+msgstr "A picture, icon or drawing"
+
+msgid "core.components.widget.image.title"
+msgstr "Image"
+
+msgid "core.components.widget.partial.desc"
+msgstr "A local or remote partial to inject within the widget"
+
+msgid "core.components.widget.partial.title"
+msgstr "Partial"
+
+msgid "core.components.widget.row.desc"
+msgstr "An horizontal line that contains columns"
+
+msgid "core.components.widget.row.title"
+msgstr "Row"
+
+msgid "core.components.widget.segment.desc"
+msgstr "Link another segment into your content"
+
+msgid "core.components.widget.segment.title"
+msgstr "Segment"
+
+msgid "core.components.widget.text.desc"
+msgstr "Content with basic formatting"
+
+msgid "core.components.widget.text.overlay.title"
+msgstr "Edit text content"
+
+msgid "core.components.widget.text.title"
+msgstr "Text"
+
+msgid "core.di.cache.debugTitle"
+msgstr "Cache events"
+
+msgid "core.di.modal.btnCancel"
+msgstr "Cancel"
+
+msgid "core.di.modal.btnOk"
+msgstr "OK"
+
+msgid "core.di.modal.errNotFound"
+msgstr "Modal :id: not found."
+
+msgid "core.di.modal.errorTitle"
+msgstr "Error"
+
+msgid "core.di.modal.infoTitle"
+msgstr "Info"
+
+msgid "core.di.modal.warningTitle"
+msgstr "Warning"
+
+msgid "core.di.storage.errModelNotInitiated"
+msgstr "Model :name: not initiated."
+
+msgid "core.di.zm.clearContentBtn"
+msgstr "Clear content"
+
+msgid "core.di.zm.clearContentContent"
+msgstr "Are you sure you want to clear your content?"
+
+msgid "core.di.zm.clearContentTitle"
+msgstr "Clear content"
+
+msgid "core.di.zm.errImportWrongFormatContent"
+msgstr ""
+"The file you are trying to import doesn't seem to be in a valid Zemit file "
+"format."
+
+msgid "core.di.zm.errImportWrongFormatTitle"
+msgstr "Wrong file format"
+
+msgid "core.di.zm.importCompleteContent"
+msgstr "Your workspace has been updated with the imported data."
+
+msgid "core.di.zm.importCompleteTitle"
+msgstr "Data imported"
+
+msgid "core.di.zm.importVerMismatchContent"
+msgstr ""
+"The version you are using (:currentVersion:) does not match the imported one "
+"(:importedVersion:)"
+
+msgid "core.di.zm.importVerMismatchTitle"
+msgstr "Version mismatch"
+
+msgid "core.di.zm.modalExportContent"
+msgstr "The content has been automatically downloaded into your computer."
+
+msgid "core.di.zm.modalExportTitle"
+msgstr "Content exported"
+
+msgid "core.directives.draggable.debugTitle"
+msgstr "Draggable events"
+
+msgid "core.directives.field.treeview.btnAdd"
+msgstr "Add"
+
+msgid "core.directives.field.treeview.btnEdit"
+msgstr "Edit"
+
+msgid "core.directives.field.treeview.btnOpen"
+msgstr "Open"
+
+msgid "core.directives.field.treeview.btnRemove"
+msgstr "Remove"
+
+msgid "core.directives.field.treeview.listEmpty"
+msgstr "No data available yet."
+
+msgid "core.directives.modal.btnClose"
+msgstr "Close"
+
+msgid "core.directives.modal.debugTitle"
+msgstr "Modal events"
+
+msgid "core.directives.tooltip.debugTitle"
+msgstr "Tooltip events"
+
+msgid "core.model.notValidate"
+msgstr "Model does not validate."
+
+msgid "core.services.media.errResizeNoWidthHeight"
+msgstr "Resized image must have either a width or height value."
+
+msgid "core.services.workspace.errAlreadyExists"
+msgstr "Workspace already exists."
+
+msgid "core.services.workspace.errUnableConnectCred"
+msgstr "Unable to connect to the server using the provided credentials."
+
+msgid "easteregg.title"
+msgstr "A title... who care?"
+
+#~ msgid "core.components.sidebar.workspace.btnEdit"
+#~ msgstr "Edit"
+
+#~ msgid "core.components.sidebar.workspace.btnRemove"
+#~ msgstr "Remove"
+
+#~ msgid "core.components.sidebar.workspace.workspaceRemoveBtnCancel"
+#~ msgstr "Cancel"
+
+#~ msgid "core.components.sidebar.workspace.workspaceRemoveBtnRemove"
+#~ msgstr "Remove"
+
+#~ msgid "core.components.sidebar.workspace.workspaceRemoveContent"
+#~ msgstr ""
+#~ "Are you sure you want to remove the project <strong>:project:</strong> "
+#~ "from your workspace <strong>:workspace:</strong>?"
+
+#~ msgid "core.components.sidebar.workspace.workspaceRemoveTitle"
+#~ msgstr "Remove workspace"

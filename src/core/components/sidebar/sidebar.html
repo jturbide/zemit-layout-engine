@@ -1,0 +1,68 @@
+<div class="zm-sidebar" ng-class="{'zm-open': tabs.showContent, 'zm-hide-all-tabs': tabs.hidden}">
+	<div class="zm-sidebar-inner zm-clearfix zm-flex-container">
+		<div ng-show="tabs.showContent" class="zm-sidebar-tab zm-flex-container">
+			
+			<!-- WORKSPACE -->
+			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.workspace.visible">
+				<zm-sidebar-workspace></zm-sidebar-workspace>
+			</div>
+				
+			<!-- ADVANCED -->
+			<!--<div class="zm-flex-container" ng-disabled="!$sessionWorkspace.isValid()" ng-show="settings.sidebar.tabs.advanced.visible">-->
+			<!--	<zm-sidebar-advanced></zm-sidebar-advanced>-->
+			<!--</div>-->
+			
+			<!-- WIDGETS -->
+			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.widgets.visible && settings.context === 'structure' && $sessionWorkspace.isValid()">
+				<zm-sidebar-widgets></zm-sidebar-widgets>
+			</div>
+			
+			<!-- MEDIA -->
+			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.media.visible && settings.context === 'structure' && $sessionWorkspace.isValid()">
+				<zm-sidebar-media></zm-sidebar-media>
+			</div>
+			
+			<!-- DEBUG -->
+			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.debug.visible && settings.context === 'structure'" class="zm-sidebar-group" ng-if="settings.debug.activated">
+				<zm-sidebar-debug></zm-sidebar-debug>
+			</div>
+		</div>
+		<div class="zm-sidebar-tabs zm-flex-minimal zm-flex-container-column">
+			<div class="zm-sidebar-tabs-inner zm-flex-container-column">
+				<ul class="zm-tabs zm-tabs-vertical-right zm-flex-minimal">
+					<li ng-class="{'active': settings.sidebar.tabs.workspace.visible}" ng-click="tabs.toggle('workspace')" class="zm-tab-item">
+						{{ ::t('core.components.sidebar.tabs.workspace') }}
+					</li>
+					<!--<li ng-class="{'active': settings.sidebar.tabs.advanced.visible}" ng-click="tabs.toggle('advanced')" class="zm-tab-item">-->
+					<!--	Advanced-->
+					<!--</li>-->
+					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item">
+						{{ ::t('core.components.sidebar.tabs.widgets') }}
+					</li>
+					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.media.visible}" ng-click="tabs.toggle('media')" class="zm-tab-item">
+						{{ ::t('core.components.sidebar.tabs.media') }}
+					</li>
+					
+					<li ng-if="settings.debug.activated" ng-show="settings.context === 'structure'" ng-class="{'active': settings.sidebar.tabs.debug.visible}" ng-click="tabs.toggle('debug')" class="zm-tab-item">
+						{{ ::t('core.components.sidebar.tabs.debug') }}
+					</li>
+				</ul>
+				
+				<!-- ICONS -->
+				<div ng-if="tooltip.options">
+					<a zm-tooltip="{{ ::t('core.components.sidebar.tooltips.help') }}" zm-tooltip-options="tooltip.options" class="zm-sidebar-icon zm-sidebar-help" ng-click="settings.directives.dismissable.visible = !settings.directives.dismissable.visible" ng-class="{ active: settings.directives.dismissable.visible }">
+						<i class="fa fa-info-circle"></i>
+					</a>
+					<a zm-tooltip="{{ ::t('core.components.sidebar.tooltips.debug') }}" zm-tooltip-options="tooltip.options" class="zm-sidebar-icon zm-sidebar-debug" ng-click="toggleDebug()" ng-class="{ active: settings.debug.activated }">
+						<i class="fa fa-bug"></i>
+					</a>
+				</div>
+				
+				<!-- LOGO -->
+				<a ng-if="tooltip.options" zm-tooltip="{{ ::t('core.components.sidebar.tooltips.zemit') }}" zm-tooltip-options="tooltip.options" class="zm-sidebar-icon zm-sidebar-logo zm-flex-minimal" href="https://zemit.com" target="_blank">
+					<img src="/src/assets/img/logo-empty.png" />
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

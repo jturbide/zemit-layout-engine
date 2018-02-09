@@ -9,131 +9,72 @@ var Zemit = {
 	version: 'dev'
 };
 (function() {
+	
 	Zemit.app = angular.module('zemit', [
 		'ngSanitize'
 	]);
 	
-	Zemit.app.run(['$rootScope', '$zm', '$history', function($rs, $zm, $history) {
-		
-		Zemit.widgets.register([
-			'components/widget/container',
-			'components/widget/row',
-			'components/widget/column',
-			'components/widget/image',
-			'components/widget/text'
-		]);
-		
-		angular.element(document).on('click', function(event) {
-			$rs.$broadcast('documentClick', event);
-		});
-		
-		/**
-		 * Listen to key events
-		 */
-		angular.element(document).on('keydown', function(event) {
-			
-			if(angular.element(event.target).is('input')
-			|| angular.element(event.target).is('textarea')
-			|| angular.element(event.target).is('[contenteditable]')) {
-				return;
-			}
-			
-			switch(event.which) {
-				case 9: // Tab
-					break;
-				case 13: // Enter
-					break;
-				case 27: // ESC
-					break;
-				case 8: // Delete MAC
-					if(event.metaKey) {
-						$zm.action($zm.widget.removeAllSelected);
-						$rs.$digest();
-					}
-					
-					return false;
-					break;
-				case 46: // Delete PC
-					$zm.action($zm.widget.removeAllSelected);
-					$rs.$digest();
-					
-					return false;
-					break;
-				case 68: // D
-					if(event.ctrlKey || event.metaKey) {
-						$zm.action($zm.widget.duplicate);
-						$rs.$digest();
-						
-						return false;
-					}
-					break;
-				case 89: // Y
-					if(event.ctrlKey || event.metaKey) {
-						event.preventDefault();
-						$history.redo();
-						$rs.$apply();
-						
-						return false;
-					}
-					break;
-				case 90: // Z
-					if(event.ctrlKey || event.metaKey) {
-						event.preventDefault();
-						$history.undo();
-						$rs.$apply();
-						
-						return false;
-					}
-					break;
-			}
-		});
-		
-		console.log('ZEMIT INIT');
-	}]);
+	var onReadyList = [];
+	Zemit.app.onReady = (args = []) => {
+		onReadyList.push(args);
+	};
 	
 	/**
 	 * Dynamic directive loader
 	 */
-	Zemit.app.config(function ($compileProvider) {
+	Zemit.app.config(function($compileProvider) {
 		$compileProvider.debugInfoEnabled(false);
 		Zemit.app.compileProvider = $compileProvider;
 	});
 	
-	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media) {
+	Zemit.app.run(['$rootScope', '$i18n', '$injector', '$hook', function($rs, $i18n, $injector, $hook) {
+		
+		$hook.add('onReady', () => {
+			onReadyList.forEach((args) => {
+				let callback = args.splice(args.length - 1, 1)[0];
+				let params = args;
+				let injectors = [];
+				params.forEach((param) => {
+					injectors.push($injector.get(param));
+				});
+				callback.apply(null, injectors);
+			});
+		});
+		
+		Zemit.widgets.register([
+			'core/components/widget/code',
+			'core/components/widget/column',
+			'core/components/widget/container',
+			'core/components/widget/image',
+			'core/components/widget/partial',
+			'core/components/widget/row',
+			'core/components/widget/segment',
+			'core/components/widget/text'
+		]);
+	}]);
+	
+	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', '$socket', '$i18n', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media, $socket, $i18n) {
 		return {
 			restrict: 'E',
-			link: function ($s, $e, attrs) {
+			link: async function ($s, $e, attrs) {
 				
-				$storage.init().then(() => {
-					$session.load().then(() => {
-						$storage.get('session', 'content').then((content) => {
-							$zm.content.set(content, true);
-							
-							$session.prepare({
-								context: 'structure'
-							});
-							
-							$zm.setBaseScope($s);
-							$s.zemit = $zm.content.get();
-							$s.widget = $s.zemit;
-							$s.session = $session.get();
-							$s.device = $device;
-							
-							var template = '<zm-toolbar></zm-toolbar>'
-								+ '<zm-widget type="container"></zm-widget>';
-								
-							if(!$device.isSupported()) {
-								template = '<zm-unsupported-device></zm-unsupported-device>';
-							}
-							
-							var $template = angular.element(template);
-							$e.append($template);
-							$compile($template)($s);
-						});
-						
-						$hook.run('onload');
-					});
+				await $storage.init();
+				await $session.load();
+				await $workspace.init();
+				await $i18n.init();
+				
+				var session = await $session.getAll();		
+				$session.prepare('settings', {
+					context: 'structure'
 				});
+				
+				$zm.setBaseScope($s);
+				$s.zemit = session.content;
+				$s.widget = $s.zemit;
+				$s.settings = session.settings;
+				$s.device = $device;
+				$s.t = $i18n.get;
+				$s.$zemit = $e;
 				
 				// Prevent mobile contextual menu
 				$e.on('contextmenu', function(event) {
@@ -142,30 +83,43 @@ var Zemit = {
 					 return false;
 				});
 				
-				// Save all configurations before leaving
-				// $window.onbeforeunload = function() {
-				// 	$hook.run('onbeforeunload');
-				// 	$session.save();
-				// };
+				// Listen to window events
+				$window.onpageshow = () => $hook.run('onPageShow');
+				$window.onresize = () => $hook.run('onWindowResize');
 				
 				if($device.isStandalone()) {
-					$hook.add(['onNewHistory', 'onUndoHistory', 'onRedoHistory'], function() {
-						$session.save();
-					});
+					$window.onpagehide = () => $hook.run('onBeforeUnload');
+				}
+				else {
+					$window.onbeforeunload = () => $hook.run('onBeforeUnload');
 				}
 				
-				$window.onpageshow = function() {
-					$hook.run('onPageShow');
+				// Prepare template
+				var template = '<div tabindex="0" class="zemit-container">';
 					
-					if($device.isStandalone()) {
-						$session.load();
-					}
-				};
+				if(!$device.isSupported()) {
+					template += '<zm-unsupported-device></zm-unsupported-device>';
+				}
+				else {
+					template += '<zm-toolbar></zm-toolbar>'
+							  + '<zm-widget type="container"></zm-widget>';
+				}
 				
-				$window.onpagehide = function() {
-					$hook.run('onbeforeunload');
-					$session.save();
-				};
+				template += '</div>';
+				
+				// Compile template
+				var $template = angular.element(template);
+				$e.append($template);
+				$compile($template)($s);
+				
+				$s.$zemit.on('click', function(event) {
+					$s.$broadcast('documentClick', event);
+				});
+				
+				// OK, everything should be ready now
+				$hook.run('onReady');
+				
+				console.log('ZEMIT INIT');
 			}
 		};
 	}]);

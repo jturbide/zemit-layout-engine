@@ -1,0 +1,8 @@
+#zm_modal_easteregg .zm-modal-body {
+	padding: 0;
+	max-width: 640px;
+}
+#zm_modal_easteregg .zm-modal-body .zm-iframe-container {
+	width: 640px;
+	height: 360px;
+}

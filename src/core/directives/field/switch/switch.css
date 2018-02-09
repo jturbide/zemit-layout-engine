@@ -1,0 +1,14 @@
+.zm-field-switch {
+  cursor: pointer;
+}
+.zm-field-switch:hover,
+.zm-field-switch .fa-toggle-on {
+  color: #75a9f9;
+}
+.zm-field-switch-toggle,
+.zm-field-switch-title {
+  display: inline-block;
+}
+.zm-field-switch-toggle .fa {
+  font-size: 1.5rem;
+}

@@ -1,0 +1,69 @@
+<div class="zm-container zm-flex-container zm-context-{{ settings.context }}" ng-class="{ 'zm-container-show-content': showContent }">
+	<div class="zm-container-inner">
+		<div class="zm-flex-container-column" style="height: 100%">
+			<div class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
+				
+				<!-- LIST OF CHILD WIDGETS -->
+				<zm-widget-childs type="'row'" childs="container.childs"></zm-widget-childs>
+				
+				<!-- ADD ROW -->
+				<!--<div class="zm-container-add-row" ng-if="container.childs.length === 0">-->
+				<!--	<i class="fa fa-plus-circle" zm-clickable zm-zoomable ng-click="container.addChild('row')"></i>-->
+				<!--</div>-->
+			</div>
+			
+			<div class="zm-container-notices zm-flex-minimal" ng-if="settings.directives.dismissable.visible">
+				<div class="zm-container-notices-scrollable">
+					
+					<!-- NOTICES -->
+					<zm-dismissable list="notices"></zm-dismissable>
+				</div>
+			</div>
+			
+			<!-- QUICK ACTIONS -->
+			<div ng-if="settings.context !== 'preview'" class="zm-quick-actions zm-flex-minimal zm-p-2">
+				<div class="zm-flex-container zm-flex-container-gap">
+					
+					<zm-tabs anchor="bottom-left" ng-disabled="zm.widget.totalSelected === 0" zm-tabs-keep-open>
+						<items>
+							<!-- REMOVE -->
+							<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="zm.action(zm.widget.removeAllSelected)">
+								<i class="fa fa-trash-o zm-flex-minimal"></i>
+								<span>
+									{{ ::t('core.components.widget.container.actions.remove') }}
+								</span>
+								<small ng-if="device.isPrecise()" class="zm-shortcut-tip zm-flex-minimal">
+									<i ng-if="device.isMac()" class="fa fa-apple"></i>
+									<span ng-if="!device.isMac()">CTRL</span>
+									+ DEL
+								</small>
+							</li>
+							<!-- DUPLICATE -->
+							<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="zm.action(zm.widget.duplicate)">
+								<i class="fa fa-copy zm-flex-minimal"></i>
+								<span>
+									{{ ::t('core.components.widget.container.actions.duplicate') }}
+								</span>
+								<small ng-if="device.isPrecise()" class="zm-shortcut-tip zm-flex-minimal">
+									<i ng-if="device.isMac()" class="fa fa-apple"></i>
+									<span ng-if="!device.isMac()">CTRL</span>
+									+ D
+								</small>
+							</li>
+						</items>
+					</zm-tabs>
+					
+					<!-- EDIT -->
+					<zm-btn style="flex: 3" ng-disabled="!zm.widget.canEdit()" ng-click="zm.widget.edit()">
+						<i class="fa fa-pencil fa-margin-right"></i>
+						{{ ::t('core.components.widget.container.actions.edit') }}
+					</zm-btn>
+				</div>
+			</div>
+		</div>
+		<div class="zm-container-overlays"></div>
+	</div>
+	
+	<!-- SIDEBAR -->
+	<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'"></zm-sidebar>
+</div>

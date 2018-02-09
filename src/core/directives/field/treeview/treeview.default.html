@@ -1,0 +1,20 @@
+<div ng-init="currentNode = node; lvlSettings = { viewItems: false }; parentOptions = options.levels[depth - 1]; lvlOptions = options.levels[depth]; lvlList = lvlOptions.getList(node)">
+	
+	<!-- GROUP TITLE -->
+	<div ng-click="lvlSettings.viewItems = !lvlSettings.viewItems" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': lvlSettings.viewItems}"></div>
+	
+	<div ng-if="lvlSettings.viewItems" class="zm-p-3 zm-pr-0 zm-field-treeview-sub-level">
+		
+		<!-- BEFORE -->
+		<div ng-include="lvlOptions.beforeTemplate || defaultLvlBefore"></div>
+		
+		<!-- LIST OF ELEMENTS -->
+		<ol ng-if="depth < options.levels.length">
+			<!--<li ng-class="{ 'zm-mb-3': lvlList.length > 0 }" ng-include="defaultLvlOptions"></li>-->
+			<li ng-init="depth = depth + 1; parent = currentNode;" class="zm-treeview-list-item" ng-repeat="node in lvlList track by $index" ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
+		</ol>
+		
+		<!-- AFTER -->
+		<div ng-include="lvlOptions.afterTemplate || defaultLvlAfter"></div>
+	</div>
+</div>

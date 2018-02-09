@@ -1,0 +1,29 @@
+<div class="zm-widget-modal-add-widget">
+	
+	<!-- TABS -->
+	<ul class="zm-tabs">
+		<li class="zm-tab-item" ng-click="tab.current = key" ng-class="{active: tab.current === key}" ng-repeat="(key, item) in items">{{ ::item.title }}</li>
+	</ul>
+	
+	<div class="zm-mt-3 zm-flex-container zm-flex-container-gap" ng-repeat="row in items[tab.current].rows">
+		
+		<!-- LIST OF ITEMS (REPEAT) -->
+		<div class="zm-widget-add-item" ng-click="addWidget(item)" ng-repeat="item in row" zm-clickable>
+			
+			<!-- ICON -->
+			<div class="zm-widget-add-item-icon" ng-if="item.icon">
+				<i class="fa fa-{{ item.icon }}"></i>
+			</div>
+			
+			<!-- TITLE -->
+			<h4 class="zm-widget-add-item-title" ng-if="item.title">
+				{{ item.title }}
+			</h4>
+			
+			<!-- DESCRIPTION -->
+			<p class="zm-widget-add-item-desc zm-mt-0" ng-if="item.desc">
+				{{ item.desc }}
+			</p>
+		</div>
+	</div>
+</div>
