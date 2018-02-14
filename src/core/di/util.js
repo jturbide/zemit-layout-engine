@@ -38,7 +38,7 @@
 			/**
 			 * Convert camelized strings to dashed
 			 */
-			camelToDash: function(str) {
+			snakeCase: function(str) {
 				return str.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
 			},
 			

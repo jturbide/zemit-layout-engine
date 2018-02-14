@@ -24,7 +24,7 @@ class ZmModel {
 		this.$hook = new this.$injector.get('$hook').$new();
 
 		// Prepare class name
-		this.className = this.$util.camelToDash(this.constructor.name.substring(2));
+		this.className = this.$util.snakeCase(this.constructor.name.substring(2));
 		
 		if(data) {
 			this.setData(data);
@@ -77,6 +77,8 @@ class ZmModel {
 	
 	setJoins(joins) {
 		
+		var vm = this; // Necessary for compilation
+		
 		angular.extend(this.joins, joins);
 		
 		joins.forEach((join) => {
@@ -98,8 +100,8 @@ class ZmModel {
 						this.data[joinModelKey] = model.getKey();
 					};
 					
-					eval('this.get' + camelizedModel + ' = singleGetFunc');
-					eval('this.set' + camelizedModel + ' = singleSetFunc');
+					eval('vm.get' + camelizedModel + ' = singleGetFunc');
+					eval('vm.set' + camelizedModel + ' = singleSetFunc');
 					break;
 					
 				case this.joinRelation.many:
@@ -124,8 +126,8 @@ class ZmModel {
 					};
 					
 					// eval('this.get' + camelizedModel + ' = manyGetFunc');
-					eval('this.set' + camelizedModel + ' = manySetFunc');
-					eval('this.getAll' + camelizedModel + 's = manyGetAllFunc');
+					eval('vm.set' + camelizedModel + ' = manySetFunc');
+					eval('vm.getAll' + camelizedModel + 's = manyGetAllFunc');
 					break;
 			}
 		});

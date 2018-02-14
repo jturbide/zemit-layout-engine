@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 					assetsUrlPrefix: 'assets/img/'
 				},
 				files: {
-					'src/.grunt-tmp/components/sidebar/sidebar.html': 'src/.grunt-tmp/components/sidebar/sidebar.html',
+					'src/.grunt-tmp/core/components/sidebar/sidebar.html': 'src/.grunt-tmp/core/components/sidebar/sidebar.html',
 				}
 			}
 		},
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 		ngtemplates: {
 			zemit: {
 				cwd: 'src/.grunt-tmp',
-				src: ['components/**/*.html', 'directives/**/*.html'],
+				src: ['core/components/**/*.html', 'core/directives/**/*.html'],
 				dest: 'src/.grunt-tmp/templates.js'
 			}
 		},
@@ -138,7 +138,7 @@ module.exports = function(grunt) {
 		babel: {
 			options: {
 				sourceMap: true,
-				presets: ['latest']
+				presets: ['env']
 			},
 			dist: {
 				files: [{

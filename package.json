@@ -40,7 +40,12 @@
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
-		"babel-preset-latest": "^6.24.1",
+		"babel-plugin-syntax-async-functions": "^6.1.4",
+		"babel-plugin-transform-async-to-generator": "^6.24.1",
+		"babel-plugin-transform-regenerator": "^6.1.4",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-polyfill": "^6.1.4",
+		"babel-preset-env": "^1.6.1",
 		"grunt": "^1.0.1",
 		"grunt-angular-templates": "^1.1.0",
 		"grunt-appcache": "^0.2.0",
@@ -63,6 +68,7 @@
 		"grunt-sw-precache": "^1.0.3",
 		"grunt-template-render": "0.0.1",
 		"grunt-usemin": "^3.1.0",
-		"grunt-version": "^1.2.1"
+		"grunt-version": "^1.2.1",
+		"request": "^2.65.0"
 	}
 }

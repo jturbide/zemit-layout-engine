@@ -8,7 +8,7 @@
 	
 	<!-- FILTER -->
     <div class="zm-p-2">
-        <zm-field-text icon="search" placeholder="{{ ::t('core.components.sidebar.widgets.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
+        <zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.widgets.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
         
         <!-- IF NO WIDGET FOUND -->
         <p ng-if="noWidgetsFound" style="text-align: center">

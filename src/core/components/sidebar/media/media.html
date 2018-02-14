@@ -7,7 +7,7 @@
 	
 	<!-- FILTER -->
     <div class="zm-flex-minimal zm-p-2">
-        <zm-field-text icon="search" placeholder="{{ ::t('core.components.sidebar.media.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
+        <zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.media.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
         
         <!-- IF NO MEDIA FOUND -->
         <p ng-if="noMediaFound" style="text-align: center">

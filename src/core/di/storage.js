@@ -10,6 +10,7 @@
 		var factory = {
 			
 			db: null,
+			version: 1,
 			dbname: 'zm-layout-engine',
 			objectStores: [],
 			
@@ -24,9 +25,7 @@
 				
 				return new Promise((resolve, reject) => {
 					
-					// TODO: IMPORTANT: A version with two sub digits will corrupt the database
-					var version = parseInt('1' + Zemit.version.replace(/[^0-9]/gim, ''));
-					var request = indexedDB.open(this.dbname, version);
+					var request = indexedDB.open(this.dbname, this.version);
 					
 					request.onupgradeneeded = (e) =>  {
 						
@@ -34,14 +33,16 @@
 						
 						angular.forEach(factory.objectStores, (store) => {
 							
-							let objectStore = db.createObjectStore(store.name);
-							store.indexes.forEach((index, key) => {
-								objectStore.createIndex(
-									index.name,
-									index.keyPath || index.name,
-									index.params
-								);
-							});
+							if(!db.objectStoreNames.contains(store.name)) {
+								let objectStore = db.createObjectStore(store.name);
+								store.indexes.forEach((index, key) => {
+									objectStore.createIndex(
+										index.name,
+										index.keyPath || index.name,
+										index.params
+									);
+								});
+							}
 						});
 					}
 					

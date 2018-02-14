@@ -1,8 +1,0 @@
-.zm-field-email > input {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  box-sizing: border-box;
-}
-.zm-field-email > input:focus {
-  outline: 0;
-}

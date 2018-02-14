@@ -10,6 +10,8 @@
 		
 		// Prepare storage store
 		$storage.defineStore('workspace');
+		$storage.defineStore('project');
+		$storage.defineStore('segment');
 	}]);
 	
 	Zemit.app.factory('$workspace', ['$storage', '$session', '$socket', '$i18n', function($storage, $session, $socket, $i18n) {
