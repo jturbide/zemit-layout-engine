@@ -16,7 +16,7 @@
 .zm-form-group label {
   font-weight: bold;
 }
-.zm-form-group .zm-field + .zm-form-text {
+.zm-form-group .zm-field + .zm-form-input {
   display: inline-block;
 }
 .zm-field input:not([type="submit"])[disabled] {

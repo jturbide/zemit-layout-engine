@@ -27,16 +27,15 @@ zemit hr {
   grid-template-areas: "toolbar" "content";
   grid-template-rows: max-content auto;
   height: 100%;
-            
+}
+zemit {
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
   -webkit-touch-callout: none !important;
   user-select: none !important;
   touch-action: none;
 }
-.zemit-container input,
-.zemit-container textarea,
-.zemit-container [contenteditable] {
+zemit [contenteditable] {
   -webkit-user-select: text !important;
   user-select: text !important;
 }

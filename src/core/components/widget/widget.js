@@ -50,7 +50,7 @@
 	Zemit.app.run(['$util', function($util) {
 		Zemit.widgets.init = function(name, params) {
 			
-			var dashed = $util.camelToDash(name);
+			var dashed = $util.snakeCase(name);
 			Zemit.widgets.extend(name, {
 				dashedType: dashed
 			});

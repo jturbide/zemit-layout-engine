@@ -24,7 +24,7 @@
 			link: function ($s, $e, attrs) {
 				
 				$s.getUrl = () => {
-					var src = '//zemit.gitbooks.io/layout-engine/content/v/' + (Zemit.version === 'dev' ? 'dev' : 'master') + '/';
+					var src = '//zemit.gitbooks.io/layout-engine/content' + (Zemit.version === 'dev' ? '/v/dev' : '') + '/';
 					return $sce.trustAsResourceUrl(src);
 				};
 			}

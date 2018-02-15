@@ -30,8 +30,7 @@ Run the following commands to install the dependencies.
 Run the following commands to install the dependencies and build Zemit
 
 1. `npm install`
-2. `npm install --only=dev`
-3. `grunt`
+2. `grunt build`
 
 Afterward, check /dist/index.html or /dist/index.min.html
 
