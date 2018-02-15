@@ -18,6 +18,7 @@
 		
 		<!-- build:css assets/css/vendors.min.css -->
 		<link rel="stylesheet" href="../node_modules/font-awesome-base64/index.css" />
+		<link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
 		<!-- endbuild -->
 		<!-- build:css assets/css/zemit.min.css -->
 		<link rel="stylesheet" href="./zemit.css" />
@@ -49,6 +50,7 @@
 		<link rel="stylesheet" href="./core/directives/btn/btn.css" />
 		<link rel="stylesheet" href="./core/directives/dismissable/dismissable.css" />
 		<link rel="stylesheet" href="./core/directives/draggable/draggable.css" />
+		<link rel="stylesheet" href="./core/directives/field/code/code.css" />
 		<link rel="stylesheet" href="./core/directives/field/default/default.css" />
 		<link rel="stylesheet" href="./core/directives/field/input/input.css" />
 		<link rel="stylesheet" href="./core/directives/field/switch/switch.css" />
@@ -90,6 +92,12 @@
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
 		<script src="../node_modules/feathers-client/dist/feathers.min.js"></script>
+		<script src="../node_modules/codemirror/lib/codemirror.js"></script>
+		<script src="../node_modules/codemirror/mode/css/css.js"></script>
+		<script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>
+		<script src="../node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="../node_modules/codemirror/mode/xml/xml.js"></script>
+		<script src="../node_modules/codemirror/addon/edit/closetag.js"></script>
 		<script src="../node_modules/babel-polyfill/dist/polyfill.min.js"></script>
 		<!-- endbuild -->
 		<!-- build:js assets/js/zemit.min.js -->
@@ -127,6 +135,7 @@
 		<script src="./core/directives/dismissable/dismissable.js"></script>
 		<script src="./core/directives/draggable/draggable.js"></script>
 		<script src="./core/directives/dropzone/dropzone.js"></script>
+		<script src="./core/directives/field/code/code.js"></script>
 		<script src="./core/directives/field/default/default.js"></script>
 		<script src="./core/directives/field/input/input.js"></script>
 		<script src="./core/directives/field/switch/switch.js"></script>

@@ -22,6 +22,7 @@
 		    },
 		    
 		    isValid: () => {
+		    	return true;
 		        return false;
 		    },
 			

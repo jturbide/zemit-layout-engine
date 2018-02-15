@@ -1,0 +1,16 @@
+<div class="zm-widget-code-edit">
+    
+    <!-- TABS -->
+	<ul class="zm-tabs">
+		<li class="zm-tab-item" ng-click="tabs.set(item.key)" ng-class="{ active: tabs.current === item.key }" ng-repeat="item in tabs.items">{{ ::item.title }}</li>
+	</ul>
+	
+	<!-- CODE EDITORS -->
+	<zm-field-code ng-show="item.key === tabs.current" mode="item.key" ng-model="editors[item.key]" ng-repeat="item in tabs.items | filter: { editor: true }" />
+	
+	<div ng-if="tabs.current === 'preview'" class="zm-widget-code-edit-preview">
+	    <style scoped ng-bind-html="::(css | trustHtml)"></style>
+	    <script ng-bind-html="::(js | trustHtml)"></script>
+	    <div ng-bind-html="::(html | trustHtml)"></div>
+	</div>
+</div>
