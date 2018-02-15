@@ -58,10 +58,10 @@
 						onEdit: (model, parent, depth) => {
 							$s.connect(model);
 						},
-						onAdd: (model, parent, depth) => {
-							$s.editProject(model);
+						onAdd: (model, parent, addCallback, depth) => {
+							$s.editProject(model, undefined, addCallback);
 						},
-						onRemove: (model, parent, depth) => {
+						onRemove: (model, parent, removeCallback, depth) => {
 							
 							$modal.dialog('workspace_remove', {
 								backdrop: true,
@@ -76,7 +76,9 @@
 										callback: (event, modal) => {
 											model.disconnect().then(() => {
 												model.remove().then(() => {
-													$workspace.refresh().then(() => modal.close());
+													modal.close();
+													removeCallback();
+													$s.$digest();
 												});
 											});
 										}
@@ -92,7 +94,9 @@
 							var projects = [];
 							model.getAllProjects().then((results) => {
 								projects.push.apply(projects, results);
+								$s.$digest();
 							});
+							
 							return projects;
 						},
 						toolbarTemplate: 'core/components/sidebar/workspace/treeview/workspace.toolbar.html',
@@ -109,16 +113,17 @@
 							var segments = [];
 							model.getAllSegments().then((results) => {
 								segments.push.apply(segments, results);
+								$s.$digest();
 							});
 							return segments;
 						},
 						onEdit: (model, parent, depth) => {
 							$s.editProject(parent, model);
 						},
-						onAdd: (model, parent, depth) => {
-							$s.editSegment();
+						onAdd: (model, parent, addCallback, depth) => {
+							$s.editSegment(model, undefined, addCallback);
 						},
-						onRemove: async (model, parent, depth) => {
+						onRemove: async (model, parent, removeCallback, depth) => {
 							
 							$modal.dialog('workspace_remove_project', {
 								backdrop: true,
@@ -133,7 +138,9 @@
 										warning: true,
 										callback: (event, modal) => {
 											model.remove().then(() => {
-												$workspace.refresh().then(() => modal.close());
+												removeCallback();
+												modal.close();
+												$s.$digest();
 											});
 										}
 									}, cancel: {
@@ -152,7 +159,7 @@
 						onEdit: (model, parent, depth) => {
 							$s.editSegment(parent, model);
 						},
-						onRemove: (model, parent, depth) => {
+						onRemove: (model, parent, removeCallback, depth) => {
 							
 							$modal.dialog('workspace_remove_segment', {
 								backdrop: true,
@@ -167,7 +174,9 @@
 										warning: true,
 										callback: (event, modal) => {
 											model.remove().then(() => {
-												$workspace.refresh().then(() => modal.close());
+												removeCallback();
+												modal.close();
+												$s.$digest();
 											});
 										}
 									}, cancel: {
@@ -182,7 +191,7 @@
 					}]
 				};
 				
-				$s.editProject = (workspace, project = new ZmProject()) => {
+				$s.editProject = (workspace, project = new ZmProject(), callback = () => {}) => {
 					
 					var title = !project.getKey()
 						? $i18n.get('core.components.sidebar.workspace.addProjectTitle')
@@ -213,7 +222,10 @@
 								callback: (event, modal) => {
 									modal.bodyScope.project.setWorkspace(workspace);
 									modal.bodyScope.project.save().then(() => {
-										$workspace.refresh().then(() => modal.close());
+										modal.close();
+										callback(modal.bodyScope.project);
+										project.setData(modal.bodyScope.project.getData());
+										$s.$digest();
 									});
 								}
 							},
@@ -224,7 +236,7 @@
 					});
 				};
 				
-				$s.editSegment = (project, segment = new ZmSegment()) => {
+				$s.editSegment = (project, segment = new ZmSegment(), callback = () => {}) => {
 					
 					var title = !segment.getKey()
 						? $i18n.get('core.components.sidebar.workspace.addSegmentModalTitle')
@@ -242,7 +254,7 @@
 							modal.bodyScope.segment = new ZmSegment(
 								segment.getKey(),
 								segment.getData()
-							);;
+							);
 						},
 						buttons: {
 							add: {
@@ -255,7 +267,10 @@
 									
 									modal.bodyScope.segment.setProject(project);
 									modal.bodyScope.segment.save().then(() => {
-										$workspace.refresh().then(() => modal.close());
+										modal.close();
+										callback(modal.bodyScope.segment);
+										segment.setData(modal.bodyScope.segment.getData());
+										$s.$digest();
 									});
 								}
 							},
@@ -317,6 +332,7 @@
 											prepareSettings();
 										}
 										modal.close();
+										$s.$digest();
 									});
 								}
 							}, cancel: {

@@ -19,7 +19,7 @@
     </div>
     
     <!-- TREEVIEW -->
-	<zm-field-treeview ng-if="workspaces.length > 0" list="workspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
+	<zm-field-treeview ng-if="workspaces.length > 0" filter="filters.query" list="workspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
     
     <!-- ADD WORKSPACE -->
     <div class="zm-p-2 zm-flex-minimal">

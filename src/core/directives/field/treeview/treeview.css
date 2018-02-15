@@ -16,7 +16,7 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.zm-treeview-container ol>li+li,
+.zm-treeview-container > div + div,
 .zm-field-treeview-sub-level ol>li+li {
   margin-top: -1px;
 }

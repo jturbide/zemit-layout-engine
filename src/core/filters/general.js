@@ -89,10 +89,14 @@
 	 * Search in array
 	 */
 	Zemit.app.filter('search', function() {
-		return function(data, keys, query, strict) {
+		return function(data, keys, query, strict = false) {
 			
 			if(!(keys instanceof Array)) {
 				keys = [keys];
+			}
+			
+			if(!query) {
+				return data;
 			}
 			
 			// Convert the query in a clean array of keywords
@@ -107,8 +111,13 @@
 				keywordsLoop: for(var z = 0; z < keywords.length; z++) {
 					keysLoop: for(var y = 0; y < keys.length; y++) {
 						
-						found[z] = (model.hasOwnProperty(keys[y])
-							&& model[keys[y]].toLowerCase().trim().indexOf(keywords[z]) !== -1);
+						if(keys[y] instanceof Function) {
+							found[z] = keys[y](model).toLowerCase().trim().indexOf(keywords[z]) !== -1;
+						}
+						else {
+							found[z] = (model.hasOwnProperty(keys[y])
+								&& model[keys[y]].toLowerCase().trim().indexOf(keywords[z]) !== -1);
+						}
 						
 						if(found[z] && strict) {
 							break keysLoop;

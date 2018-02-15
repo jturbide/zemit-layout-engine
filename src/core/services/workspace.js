@@ -10,6 +10,8 @@
 		
 		// Prepare storage store
 		$storage.defineStore('workspace');
+		$storage.defineStore('project');
+		$storage.defineStore('segment');
 	}]);
 	
 	Zemit.app.factory('$workspace', ['$storage', '$session', '$socket', '$i18n', function($storage, $session, $socket, $i18n) {
@@ -84,13 +86,13 @@
 			
 			refresh: async () => {
 				
-				// var workspaces = await $storage.getAll('workspace');
+				var workspaces = await $storage.getAll('workspace');
 				
-				// this.data.splice(0, this.data.length);
+				this.data.splice(0, this.data.length);
 				
-				// workspaces.forEach(workspace => {
-				// 	this.data.push(workspace);
-				// });
+				workspaces.forEach(workspace => {
+					this.data.push(workspace);
+				});
 			},
 			
 			update: (workspace) => {

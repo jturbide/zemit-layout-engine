@@ -3,15 +3,15 @@
 	<!-- GROUP TITLE -->
 	<div ng-click="lvlSettings.viewItems = !lvlSettings.viewItems" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': lvlSettings.viewItems}"></div>
 	
-	<div ng-if="lvlSettings.viewItems" class="zm-p-3 zm-pr-0 zm-field-treeview-sub-level">
+	<div ng-show="lvlSettings.viewItems" class="zm-p-3 zm-pr-0 zm-field-treeview-sub-level">
 		
 		<!-- BEFORE -->
 		<div ng-include="lvlOptions.beforeTemplate || defaultLvlBefore"></div>
-		
+
 		<!-- LIST OF ELEMENTS -->
 		<ol ng-if="depth < options.levels.length">
 			<!--<li ng-class="{ 'zm-mb-3': lvlList.length > 0 }" ng-include="defaultLvlOptions"></li>-->
-			<li ng-init="depth = depth + 1; parent = currentNode;" class="zm-treeview-list-item" ng-repeat="node in lvlList track by $index" ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
+			<li ng-init="depth = depth + 1; parentList = lvlList; parent = currentNode;" class="zm-treeview-list-item" ng-repeat="node in filteredLvlList = filter(lvlList) track by $index" ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
 		</ol>
 		
 		<!-- AFTER -->

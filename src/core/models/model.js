@@ -89,7 +89,7 @@ class ZmModel {
 				case this.joinRelation.single:
 					let singleGetFunc = () => {
 						
-						let joinKey = this[joinModelKey];
+						let joinKey = this.data[joinModelKey];
 						
 						return this.$cache.get(this.$storage.get(join.model, joinKey));
 					};
