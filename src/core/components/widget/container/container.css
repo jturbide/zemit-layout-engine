@@ -5,6 +5,17 @@
 .zm-widget-container.zm-context-preview {
   user-select: text;
 }
+.zm-scrollable {
+  overflow: auto;
+}
+.zm-scrollable-y {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.zm-scrollable-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 .zm-container-scrollable {
   margin-top: -1px;
   padding-top: 1px;

@@ -1,31 +1,38 @@
-<div class="zm-sidebar-workspace zm-flex-container-column">
+<div class="zm-sidebar-workspace zm-flex-container-column zm-h100">
     
-    <!-- NOTICE -->
-	<zm-dismissable class="zm-flex-minimal" type="info" key="zm-sidebar-workspace-first-time">
-	    {{ ::t('core.components.sidebar.workspace.noticeExplanation') }}
-	</zm-dismissable>
-	
-	<!-- FILTER -->
-    <div class="zm-p-2 zm-flex-minimal">
-        <zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.workspace.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
-    </div>
-    
-    <!-- EMPTY -->
-    <div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="workspaces.length === 0">
-        <div>
-            <i class="fa fa-exclamation-circle" style="font-size: 2rem"></i>
-            <br />{{ ::t('core.components.sidebar.workspace.noWorkspaceJoined') }}
+    <div class="zm-flex-minimal">
+        
+        <!-- NOTICE -->
+    	<zm-dismissable class="zm-flex-minimal" type="info" key="zm-sidebar-workspace-first-time">
+    	    {{ ::t('core.components.sidebar.workspace.noticeExplanation') }}
+    	</zm-dismissable>
+    	
+    	<!-- FILTER -->
+        <div class="zm-p-2 zm-flex-minimal">
+            <zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.workspace.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
         </div>
     </div>
-    
-    <!-- TREEVIEW -->
-	<zm-field-treeview ng-if="workspaces.length > 0" filter="filters.query" list="workspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
-    
-    <!-- ADD WORKSPACE -->
-    <div class="zm-p-2 zm-flex-minimal">
-        <zm-btn class="zm-w100 zm-btn-primary" ng-click="connect()">
-            <i class="fa fa-link fa-margin-right"></i>
-            {{ ::t('core.components.sidebar.workspace.btnAddNewWorkspace') }}
-        </zm-btn>
+    <div class="zm-scrollable-y zm-flex-container-column">
+        
+        <!-- EMPTY -->
+        <div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="workspaces.length === 0">
+            <div>
+                <i class="fa fa-exclamation-circle" style="font-size: 2rem"></i>
+                <br />{{ ::t('core.components.sidebar.workspace.noWorkspaceJoined') }}
+            </div>
+        </div>
+        
+        <!-- TREEVIEW -->
+    	<zm-field-treeview ng-if="workspaces.length > 0" filter="filters.query" list="workspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
+    </div>
+    <div class="zm-flex-minimal">
+        
+        <!-- ADD WORKSPACE -->
+        <div class="zm-p-2 zm-flex-minimal">
+            <zm-btn class="zm-w100 zm-btn-primary" ng-click="connect()">
+                <i class="fa fa-link fa-margin-right"></i>
+                {{ ::t('core.components.sidebar.workspace.btnAddNewWorkspace') }}
+            </zm-btn>
+        </div>
     </div>
 </div>
