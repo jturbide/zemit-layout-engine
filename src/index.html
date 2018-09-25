@@ -24,9 +24,9 @@
 		<link rel="stylesheet" href="./zemit.css" />
 		<link rel="stylesheet" href="./core/components/toolbar/toolbar.css" />
 		<link rel="stylesheet" href="./core/components/sidebar/sidebar.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/advanced/advanced.css" />
 		<link rel="stylesheet" href="./core/components/sidebar/debug/debug.css" />
 		<link rel="stylesheet" href="./core/components/sidebar/media/media.css" />
+		<link rel="stylesheet" href="./core/components/sidebar/modules/modules.css" />
 		<link rel="stylesheet" href="./core/components/sidebar/widgets/widgets.css" />
 		<link rel="stylesheet" href="./core/components/sidebar/workspace/workspace.css" />
 		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/connect/connect.css" />
@@ -34,16 +34,16 @@
 		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/segment/segment.css" />
 		<link rel="stylesheet" href="./core/components/doc/doc.css" />
 		<link rel="stylesheet" href="./core/components/widget/widget.css" />
-		<link rel="stylesheet" href="./core/components/widget/code/code.css" />
+		<!--<link rel="stylesheet" href="./core/components/widget/code/code.css" />-->
 		<link rel="stylesheet" href="./core/components/widget/container/container.css" />
 		<link rel="stylesheet" href="./core/components/widget/column/column.css" />
 		<link rel="stylesheet" href="./core/components/widget/debug/debug.css" />
 		<link rel="stylesheet" href="./core/components/widget/default/add/add.css" />
 		<link rel="stylesheet" href="./core/components/widget/default/childs/childs.css" />
 		<link rel="stylesheet" href="./core/components/widget/image/image.css" />
-		<link rel="stylesheet" href="./core/components/widget/partial/partial.css" />
+		<!--<link rel="stylesheet" href="./core/components/widget/partial/partial.css" />-->
 		<link rel="stylesheet" href="./core/components/widget/row/row.css" />
-		<link rel="stylesheet" href="./core/components/widget/segment/segment.css" />
+		<!--<link rel="stylesheet" href="./core/components/widget/segment/segment.css" />-->
 		<link rel="stylesheet" href="./core/components/widget/text/text.css" />
 		<link rel="stylesheet" href="./core/directives/general/general.css" />
 		<link rel="stylesheet" href="./core/directives/badge/badge.css" />
@@ -63,7 +63,6 @@
 		<link rel="stylesheet" href="./core/directives/tabs/tabs.css" />
 		<link rel="stylesheet" href="./core/directives/tooltip/tooltip.css" />
 		<link rel="stylesheet" href="./core/directives/unsupported-device/unsupported-device.css" />
-		<link rel="stylesheet" href="./core/modules/easteregg/easteregg.css" />
 		<!-- endbuild -->
 		<style>
 			html,
@@ -89,6 +88,7 @@
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="../node_modules/angular/angular.min.js"></script>
 		<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+		<script src="../node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
 		<script src="../node_modules/feathers-client/dist/feathers.min.js"></script>
@@ -104,11 +104,12 @@
 		<script src="./zemit.js"></script>
 		<!-- include: "type": "js", "files": "templates.js" -->
 		<!-- include: "type": "js", "files": "service-worker.js" -->
+		<script src="./assets/i18n/literals.js"></script>
 		<script src="./core/components/toolbar/toolbar.js"></script>
 		<script src="./core/components/sidebar/sidebar.js"></script>
-		<script src="./core/components/sidebar/advanced/advanced.js"></script>
 		<script src="./core/components/sidebar/debug/debug.js"></script>
 		<script src="./core/components/sidebar/media/media.js"></script>
+		<script src="./core/components/sidebar/modules/modules.js"></script>
 		<script src="./core/components/sidebar/widgets/widgets.js"></script>
 		<script src="./core/components/sidebar/workspace/workspace.js"></script>
 		<script src="./core/components/sidebar/workspace/modals/connect/connect.js"></script>
@@ -117,16 +118,16 @@
 		<script src="./core/components/doc/doc.js"></script>
 		<script src="./core/components/widget/widget.js"></script>
 		<script src="./core/components/widget/widget.onLoad.js"></script>
-		<script src="./core/components/widget/code/code.js"></script>
+		<!--<script src="./core/components/widget/code/code.js"></script>-->
 		<script src="./core/components/widget/column/column.js"></script>
 		<script src="./core/components/widget/container/container.js"></script>
 		<script src="./core/components/widget/default/add/add.js"></script>
 		<script src="./core/components/widget/default/childs/childs.js"></script>
 		<script src="./core/components/widget/default/toolbar/toolbar.js"></script>
 		<script src="./core/components/widget/image/image.js"></script>
-		<script src="./core/components/widget/partial/partial.js"></script>
+		<!--<script src="./core/components/widget/partial/partial.js"></script>-->
 		<script src="./core/components/widget/row/row.js"></script>
-		<script src="./core/components/widget/segment/segment.js"></script>
+		<!--<script src="./core/components/widget/segment/segment.js"></script>-->
 		<script src="./core/components/widget/text/text.js"></script>
 		<script src="./core/classes/error.js"></script>
 		<script src="./core/classes/socket.js"></script>
@@ -157,12 +158,12 @@
 		<script src="./core/di/hook.js"></script>
 		<script src="./core/di/i18n.js"></script>
 		<script src="./core/di/modal.js"></script>
+		<script src="./core/di/modules.js"></script>
 		<script src="./core/di/socket.js"></script>
 		<script src="./core/di/storage.js"></script>
 		<script src="./core/di/util.js"></script>
 		<script src="./core/di/zm.js"></script>
 		<script src="./core/filters/general.js"></script>
-		<script src="./core/i18n/literals.js"></script>
 		<script src="./core/models/model.js"></script>
 		<script src="./core/models/media.js"></script>
 		<script src="./core/models/project.js"></script>
@@ -170,15 +171,13 @@
 		<script src="./core/models/session.js"></script>
 		<script src="./core/models/user.js"></script>
 		<script src="./core/models/workspace.js"></script>
-		<script src="./core/modules/easteregg/easteregg.js"></script>
-		<script src="./core/modules/interceptor/interceptor.js"></script>
-		<script src="./core/modules/shortcut/shortcut.js"></script>
 		<script src="./core/services/media.js"></script>
 		<!--<script src="./core/services/project.js"></script>-->
 		<!--<script src="./core/services/segment.js"></script>-->
 		<script src="./core/services/session.js"></script>
 		<script src="./core/services/session.workspace.js"></script>
 		<script src="./core/services/workspace.js"></script>
+		<script src="./modules/settings.js"></script>
 		<!-- endbuild -->
 	</body>
 </html>

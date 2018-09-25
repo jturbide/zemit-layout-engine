@@ -36,7 +36,11 @@
 			
 			get: function(key) {
 				
-				return key && this.data[key] && this.data[key];
+				if(key && !this.data[key]) {
+					this.data[key] = {};
+				}
+				
+				return key && this.data[key];
 			},
 			
 			getAll: function() {
@@ -45,7 +49,11 @@
 			
 			set: function(key, values) {
 				
-				this.data[key] = values;
+				for(let prop in this.data[key]) {
+					delete this.data[key][prop];
+				} 
+				
+				angular.merge(this.data[key], values);
 			},
 			
 			prepare: function(key, values) {

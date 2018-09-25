@@ -1,0 +1,8 @@
+msgid "modules.misc.easteregg.title"
+msgstr "EasterEgg"
+
+msgid "modules.misc.easteregg.desc"
+msgstr "This module hides a little secret inside the Layout Engine. Will you find it? :-)"
+
+msgid "modules.misc.easteregg.modalTitle"
+msgstr "A title... who care?"

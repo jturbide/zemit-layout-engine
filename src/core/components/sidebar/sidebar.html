@@ -22,6 +22,11 @@
 				<zm-sidebar-media></zm-sidebar-media>
 			</div>
 			
+			<!-- MODULES -->
+			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.modules.visible && settings.context === 'structure'" class="zm-sidebar-group">
+				<zm-sidebar-modules></zm-sidebar-modules>
+			</div>
+			
 			<!-- DEBUG -->
 			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.debug.visible && settings.context === 'structure'" class="zm-sidebar-group" ng-if="settings.debug.activated">
 				<zm-sidebar-debug></zm-sidebar-debug>
@@ -42,7 +47,9 @@
 					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.media.visible}" ng-click="tabs.toggle('media')" class="zm-tab-item">
 						{{ ::t('core.components.sidebar.tabs.media') }}
 					</li>
-					
+					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.modules.visible}" ng-click="tabs.toggle('modules')" class="zm-tab-item">
+						{{ ::t('core.components.sidebar.tabs.modules') }}
+					</li>
 					<li ng-if="settings.debug.activated" ng-show="settings.context === 'structure'" ng-class="{'active': settings.sidebar.tabs.debug.visible}" ng-click="tabs.toggle('debug')" class="zm-tab-item">
 						{{ ::t('core.components.sidebar.tabs.debug') }}
 					</li>

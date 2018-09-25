@@ -536,9 +536,6 @@ msgstr ""
 "Impossible de se connecter au serveur en utilisant les informations "
 "d'identification fournis."
 
-msgid "easteregg.title"
-msgstr "Un titre... on s'en balance !"
-
 #~ msgid "core.components.sidebar.workspace.btnEdit"
 #~ msgstr "Modifier"
 

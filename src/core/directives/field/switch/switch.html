@@ -2,7 +2,7 @@
 	<div class="zm-field-switch-toggle zm-flex-minimal">
 		<i class="fa" ng-class="{'fa-toggle-on': ngModel, 'fa-toggle-off': !ngModel}"></i>
 	</div>
-	<div class="zm-field-switch-title">
+	<div ng-if="title" class="zm-field-switch-title">
 		{{ ::title }}
 	</div>
 </zm-field>

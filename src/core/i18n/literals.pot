@@ -97,6 +97,9 @@ msgstr ""
 msgid "core.components.sidebar.tabs.media"
 msgstr ""
 
+msgid "core.components.sidebar.tabs.modules"
+msgstr ""
+
 msgid "core.components.sidebar.tabs.widgets"
 msgstr ""
 
@@ -197,9 +200,6 @@ msgid "core.components.sidebar.workspace.emptySegmentLabel"
 msgstr ""
 
 msgid "core.components.sidebar.workspace.filterPlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.noProjectAdd"
 msgstr ""
 
 msgid "core.components.sidebar.workspace.noWorkspaceJoined"
@@ -320,6 +320,12 @@ msgid "core.components.toolbar.workspaceSaved"
 msgstr ""
 
 msgid "core.components.widget.code.desc"
+msgstr ""
+
+msgid "core.components.widget.code.editModal.btnCancel"
+msgstr ""
+
+msgid "core.components.widget.code.editModal.btnSave"
 msgstr ""
 
 msgid "core.components.widget.code.title"
@@ -497,7 +503,4 @@ msgid "core.services.workspace.errAlreadyExists"
 msgstr ""
 
 msgid "core.services.workspace.errUnableConnectCred"
-msgstr ""
-
-msgid "easteregg.title"
 msgstr ""

@@ -533,8 +533,11 @@ msgstr "Workspace already exists."
 msgid "core.services.workspace.errUnableConnectCred"
 msgstr "Unable to connect to the server using the provided credentials."
 
-msgid "easteregg.title"
-msgstr "A title... who care?"
+msgid "core.modules.misc"
+msgstr "Miscellaneous"
+
+msgid "core.modules.widgets"
+msgstr "Widgets"
 
 #~ msgid "core.components.sidebar.workspace.btnEdit"
 #~ msgstr "Edit"

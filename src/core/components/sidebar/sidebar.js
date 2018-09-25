@@ -25,6 +25,9 @@
 							media: {
 								visible: false
 							},
+							modules: {
+								visible: false
+							},
 							debug: {
 								visible: false
 							}

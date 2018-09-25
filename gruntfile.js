@@ -1,3 +1,5 @@
+var deepMerge = require('deepmerge');
+
 module.exports = function(grunt) {
 	
 	// Project configuration.
@@ -189,27 +191,23 @@ module.exports = function(grunt) {
 		language: {
 			pot: {
 				options: {
-					dest: 'src/core/i18n/literals.pot',
 					regex: /([>\s:.]t|\$i18n\.get)\(('|")([^'"]+[^\\])('|")(,|\))(\s*{)?\)?/gm
 				},
 				files: [{
-					src: ['src/core/**/*.html', 'src/core/**/*.js']
+					src: ['src/**/*.html', 'src/**/*.js']
 				}]
 			},
 			json: {
-				options: {
-					dest: 'src/core/i18n/literals.json',
-				},
 				files: [{
-					src: ['src/core/i18n/*.po']
+					src: ['src/**/i18n/*.po']
 				}]
 			},
 			build: {
 				options: {
-					dest: 'src/core/i18n/literals.js'
+					dest: 'src/assets/i18n/literals.js'
 				},
 				files: [{
-					src: ['src/core/i18n/literals.json']
+					src: ['src/**/i18n/literals.json']
 				}]
 			}
 		},
@@ -266,9 +264,11 @@ module.exports = function(grunt) {
 		switch(this.target) {
 			case 'pot':
 				
+				let pots = {};
+				
 				this.files.forEach(function(file) {
 					
-					var contents = file.src.filter(function(filepath) {
+					file.src.filter(function(filepath) {
 						if (!grunt.file.exists(filepath)) {
 							grunt.log.warn('Source file "' + filepath + '" not found.');
 							return false;
@@ -277,49 +277,73 @@ module.exports = function(grunt) {
 							return true;
 						}
 					}).map(function(filepath) {
-						return grunt.file.read(filepath);
-					}).join('\n');
-		
-					let literals = [];
-					let matches;
-					while ((matches = config.pot.options.regex.exec(contents)) !== null) {
 						
-						// This is necessary to avoid infinite loops with zero-width matches
-						if (matches.index === config.pot.options.regex.lastIndex) {
-							config.pot.options.regex.lastIndex++;
+						let defaultPot = 'src/core';
+						let potDir = filepath.split("/").slice(0,-1).join("/");
+								
+						if(!grunt.file.isDir(potDir + '/i18n')) {
+							potDir = defaultPot;
 						}
 						
-						let literal = matches[3];
-						if(literals.indexOf(literal) === -1) {
-							literals.push(literal);
+						if(!pots[potDir]) {
+							pots[potDir] = grunt.file.read(filepath);
 						}
-					}
-					
-					literals.sort();
-					grunt.log.ok(literals.length + ' literal(s) found.');
-					
-					let potContents = '';
-					literals.forEach((literal, index) => {
-						potContents += 'msgid "' + literal + '"' + "\r\n";
-						potContents += 'msgstr ""';
+						else {
+							pots[potDir] += "\n" + grunt.file.read(filepath);
+						}
 						
-						if(index < literals.length - 1) {
-							 potContents += "\r\n\r\n";
-						}
+						return;
 					});
-					
-					grunt.file.write(config.pot.options.dest, potContents);
-					grunt.log.writeln('POT file generated: ' + config.pot.options.dest);
+		
+					for(let potDir in pots) {
+		
+						let literals = [];				
+						let contents = pots[potDir];
+						
+						let matches;
+						while ((matches = config.pot.options.regex.exec(contents)) !== null) {
+							
+							// This is necessary to avoid infinite loops with zero-width matches
+							if (matches.index === config.pot.options.regex.lastIndex) {
+								config.pot.options.regex.lastIndex++;
+							}
+							
+							let literal = matches[3];
+							if(literals.indexOf(literal) === -1) {
+								literals.push(literal);
+							}
+						}
+						
+						literals.sort();
+						grunt.log.ok(literals.length + ' literal(s) found.');
+						
+						let potContents = '';
+						literals.forEach((literal, index) => {
+							potContents += 'msgid "' + literal + '"' + "\r\n";
+							potContents += 'msgstr ""';
+							
+							if(index < literals.length - 1) {
+								 potContents += "\r\n\r\n";
+							}
+						});
+						
+						let dest = potDir + '/i18n/literals.pot';
+						grunt.file.write(dest, potContents);
+						grunt.log.writeln('POT file generated: ' + dest);
+					}
 				});
 				
 				break;
 				
 			case 'json':
 				
-				var totalLiterals = 0;
+				let jsons = {};
+				let stats = {};
 				this.files.forEach(function(file) {
 					
-					var literals = file.src.filter(function(filepath) {
+					let totalLiterals = 0;
+					
+					let literals = file.src.filter(function(filepath) {
 						if (!grunt.file.exists(filepath)) {
 							grunt.log.warn('Source file "' + filepath + '" not found.');
 							return false;
@@ -395,21 +419,37 @@ module.exports = function(grunt) {
 							totalLiterals++;
 						}
 						
-						return literals;
+						let defaultPot = 'src/core/i18n';
+						let jsonDir = filepath.split("/").slice(0,-1).join("/");
+								
+						if(!grunt.file.isDir(jsonDir)) {
+							jsonDir = defaultPot;
+						}
+						
+						if(!jsons[jsonDir]) {
+							jsons[jsonDir] = literals;
+							stats[jsonDir] = {
+								totalLanguages: 1,
+								totalLiterals: totalLiterals
+							};
+						}
+						else {
+							jsons[jsonDir] = deepMerge(jsons[jsonDir], literals);
+							stats[jsonDir].totalLanguages++;
+						}
 					});
 					
-					grunt.log.ok(file.src.length + ' languages found.');
-					grunt.log.ok(totalLiterals + ' literals converted.');
+					for(let jsonDir in jsons) {
+						
+						grunt.log.ok(stats[jsonDir].totalLanguages + ' language(s) found.');
+						grunt.log.ok(stats[jsonDir].totalLiterals + ' literal(s) converted.');
+						
+						var jsonContents = JSON.stringify(jsons[jsonDir]);
+						let dest = jsonDir + '/literals.json';
 					
-					var json = {};
-					literals.forEach((literal) => {
-						var keys = Object.keys(literal);
-						json[keys[0]] = literal[keys[0]];
-					});
-					
-					var jsonContents = JSON.stringify(json);
-					grunt.file.write(config.json.options.dest, jsonContents);
-					grunt.log.writeln('JSON file generated: ' + config.json.options.dest);
+						grunt.file.write(dest, jsonContents);
+						grunt.log.writeln('JSON file generated: ' + dest);
+					}
 				});
 				
 				break;
@@ -417,9 +457,10 @@ module.exports = function(grunt) {
 			case 'build':
 				
 				var totalLiterals = 0;
+				var literals = {};
 				this.files.forEach(function(file) {
 					
-					var contents = file.src.filter(function(filepath) {
+					file.src.filter(function(filepath) {
 						if (!grunt.file.exists(filepath)) {
 							grunt.log.warn('Source file "' + filepath + '" not found.');
 							return false;
@@ -428,35 +469,43 @@ module.exports = function(grunt) {
 							return true;
 						}
 					}).map(function(filepath) {
-						return grunt.file.read(filepath);
+						
+						let json = JSON.parse(grunt.file.read(filepath));
+						literals = deepMerge(literals, json);
+						return;
 					});
-					
-					var results = `Zemit.app.run(['$i18n', function($i18n) {`;
-					var literals = JSON.parse(contents);
-					var keys = Object.keys(literals);
-					keys.forEach((lang) => {
-						results += `$i18n.load('` + lang + `', ` + JSON.stringify(literals[lang]) + `);`;
-					});
-					results += `}]);`;
-					
-					grunt.file.write(config.build.options.dest, results);
-					grunt.log.writeln('Literals file cached: ' + config.build.options.dest);
 				});
+				
+				var results = `Zemit.app.run(['$i18n', function($i18n) {`;
+				var keys = Object.keys(literals);
+				keys.forEach((lang) => {
+					results += `$i18n.load('` + lang + `', ` + JSON.stringify(literals[lang]) + `);`;
+				});
+				results += `}]);`;
+				
+				grunt.file.write(config.build.options.dest, results);
+				grunt.log.writeln('Literals file cached: ' + config.build.options.dest);
 				
 				break;
 		}
 	});
 
-	// Default task(s).
+	// Tasks declaration
+	grunt.registerTask('default', ['build']);
+	
 	grunt.registerTask('build', [
 		'copy:gruntPrepare',
-		'assets_inline', 'ngtemplates', 'i18n:build', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
-		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute',
+		
+		'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
+		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute', 'version', 'i18n:build',
+		
 		'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon', 'copy:assets',
-		'embed', 'version', 'clean', 'sw-precache', 'appcache'
+		
+		'embed', 'clean', 'sw-precache', 'appcache'
 	]);
 	
+	grunt.registerTask('i18n', ['language:pot', 'language:json', 'language:build']);
 	grunt.registerTask('i18n:pot', ['language:pot']);
 	grunt.registerTask('i18n:json', ['language:json']);
-	grunt.registerTask('i18n:build', ['language:json', 'language:build']);
+	grunt.registerTask('i18n:build', ['language:build']);
 };

@@ -1,0 +1,2 @@
+msgid "modules.misc.easteregg.modalTitle"
+msgstr ""

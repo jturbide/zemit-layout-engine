@@ -44,6 +44,8 @@
 				var literals = {};
 				literals[lang] = data;
 				angular.merge(this.data, literals);
+				
+				console.log('I18N LOADED', data);
 			},
 			
 			get: function(key, params = {}, lang = factory.language) {

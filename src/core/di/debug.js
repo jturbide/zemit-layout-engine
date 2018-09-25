@@ -5,8 +5,8 @@
 (function() {
 	Zemit.app.factory('$debug', ['$session', '$hook', function($session, $hook) {
 		
-		var settings = $session.get('settings') || {};
-		Object.assign(settings, {
+		var settings = $session.get('settings');
+		$session.prepare('settings', {
 			debug: {
 				activated: false,
 				log: [],

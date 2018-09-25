@@ -11,7 +11,8 @@ var Zemit = {
 (function() {
 	
 	Zemit.app = angular.module('zemit', [
-		'ngSanitize'
+		'ngSanitize',
+		'oc.lazyLoad'
 	]);
 	
 	var onReadyList = [];
