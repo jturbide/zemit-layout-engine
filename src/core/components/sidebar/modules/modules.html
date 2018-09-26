@@ -9,10 +9,10 @@
 		
 		<!-- FILTER -->
 		<div class="zm-flex-minimal zm-p-2">
-			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.modules.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
+			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.modules.filterPlaceholder') }}" ng-model="filters.query" ng-disabled="groups.length === 0" autofocus="on" />
 			
 			<!-- IF NO modules FOUND -->
-			<p ng-if="filteredGroups.length === 0" style="text-align: center">
+			<p ng-if="groups.length > 0 && filteredGroups.length === 0" style="text-align: center">
 				{{ ::t('core.components.sidebar.modules.noModuleFound') }}
 			</p>
 		</div>
@@ -59,6 +59,9 @@
 							<div class="zm-sidebar-modules-item-desc">
 								{{ ::module.desc }}
 							</div>
+						</div>
+						<div class="zm-flex-minimal zm-flex-align-self-center zm-pl-3">
+							<img ng-src="{{ module.thumbnail }}" style="max-height: 3rem" />
 						</div>
 					</div>
 				</div>

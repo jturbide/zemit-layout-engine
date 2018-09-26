@@ -232,7 +232,7 @@ module.exports = function(grunt) {
 		version: {
 			somejs: {
 				src: [
-					'dist/assets/js/zemit.min.js'
+					'src/.grunt-tmp/zemit.js'
 				]
 			},
 		}
@@ -496,7 +496,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [
 		'copy:gruntPrepare',
 		
-		'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
+		'version', 'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
 		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute', 'version', 'i18n:build',
 		
 		'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon', 'copy:assets',

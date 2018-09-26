@@ -28,9 +28,9 @@
 			
 			init: function(namespace, label) {
 				
-				if(!settings) {
-					settings = $session.get('settings');
-				}
+				// if(!settings) {
+				// 	settings = $session.get('settings');
+				// }
 				
 				let structure = settings.debug.log || [];
 				
@@ -44,11 +44,7 @@
 				
 				$session.prepare('settings', {
 					debug: {
-						recent: [],
-						log: structure,
-						settings: {
-							maxLog: this.settings.maxLog
-						}
+						log: structure
 					}
 				});
 				

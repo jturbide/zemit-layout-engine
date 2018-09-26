@@ -20,6 +20,11 @@ var Zemit = {
 		onReadyList.push(args);
 	};
 	
+	var moduleList = [];
+	Zemit.module = (name, group, args) => {
+		moduleList.push([name, group, args]);
+	};
+	
 	/**
 	 * Dynamic directive loader
 	 */
@@ -28,9 +33,14 @@ var Zemit = {
 		Zemit.app.compileProvider = $compileProvider;
 	});
 	
-	Zemit.app.run(['$rootScope', '$i18n', '$injector', '$hook', function($rs, $i18n, $injector, $hook) {
+	Zemit.app.run(['$rootScope', '$i18n', '$injector', '$hook', '$modules', function($rs, $i18n, $injector, $hook, $modules) {
 		
 		$hook.add('onReady', () => {
+			
+			moduleList.forEach((module) => {
+				$modules.config.apply(null, module);
+			});
+			
 			onReadyList.forEach((args) => {
 				let callback = args.splice(args.length - 1, 1)[0];
 				let params = args;
@@ -38,7 +48,10 @@ var Zemit = {
 				params.forEach((param) => {
 					injectors.push($injector.get(param));
 				});
-				callback.apply(null, injectors);
+				
+				if(callback instanceof Function) {
+					callback.apply(null, injectors);
+				}
 			});
 		});
 		

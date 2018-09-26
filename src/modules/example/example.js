@@ -5,7 +5,7 @@
  */
 (function() {
 	
-	angular.module('zemit').run(['$modules', function($modules) {
+	Zemit.app.run(['$modules', function($modules) {
 		
 		$modules.config('example', 'misc', {
 			onConfig: () => {

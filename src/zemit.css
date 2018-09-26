@@ -172,6 +172,9 @@ zm-widget[type="container"] {
 .zm-flex-align-center {
   align-items: center;
 }
+.zm-flex-align-self-center {
+  align-self: center;
+}
 .zm-flex-align-self-stretch {
   align-self: stretch;
 }

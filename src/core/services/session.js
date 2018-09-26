@@ -40,10 +40,11 @@
 					this.data[key] = {};
 				}
 				
-				return key && this.data[key];
+				return this.data[key];
 			},
 			
 			getAll: function() {
+				
 				return this.data;
 			},
 			
@@ -70,11 +71,6 @@
 				
 				return new Promise((resolve, reject) => {
 					$storage.getAll('session').then((models) => {
-						angular.forEach(models, (model) => {
-							var key = model.getKey();
-							var data = model.getData();
-							factory.data[key] = data;
-						});
 						
 						factory.data = angular.extend({
 							content: {
@@ -83,6 +79,12 @@
 							history: {},
 							settings: {}
 						}, factory.data);
+						
+						angular.forEach(models, (model) => {
+							var key = model.getKey();
+							var data = model.getData();
+							factory.set(key, data);
+						});
 						
 						resolve(factory.data);
 					}).catch(reject);

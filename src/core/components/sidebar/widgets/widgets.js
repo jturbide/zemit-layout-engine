@@ -10,6 +10,9 @@
 				var widgets = Zemit.widgets.getAll();
 				var settings = $session.get('settings');
 				
+				$s.noWidgetsFound = true;
+				$s.noWidgetsAvailable = widgets.length === 0;
+				
 				// List of available widgets (items)
 				var sections = {
 					structure: {

@@ -10,16 +10,24 @@
 		
 		<!-- FILTER -->
 		<div class="zm-p-2">
-			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.widgets.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
+			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.widgets.filterPlaceholder') }}" ng-model="filters.query" ng-disbaled="sections.length === 0" autofocus="on" />
 			
 			<!-- IF NO WIDGET FOUND -->
-			<p ng-if="noWidgetsFound" style="text-align: center">
+			<p ng-if="!noWidgetsAvailable && noWidgetsFound" style="text-align: center">
 				{{ ::t('core.components.sidebar.widgets.noWidgetsFound') }}
 			</p>
 		</div>
 	</div>
 	
-	<div class="zm-scrollable-y">
+	<div class="zm-scrollable-y zm-flex-container-column">
+		
+		<!-- EMPTY -->
+        <div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="noWidgetsAvailable">
+            <div>
+                <i class="fa fa-exclamation-circle" style="font-size: 2rem"></i>
+                <br />{{ ::t('core.components.sidebar.media.empty') }}
+            </div>
+        </div>
 		
 		<!-- TABS -->
 		<div class="zm-sidebar-group" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">

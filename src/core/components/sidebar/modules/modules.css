@@ -4,10 +4,3 @@
 .zm-sidebar-modules-item {
   border-bottom: rgba(0, 0, 0, 0.15) solid 1px;
 }
-.zm-sidebar-modules-item {
-  opacity: 0.25;
-}
-.zm-sidebar-modules-item:hover,
-.zm-sidebar-modules-item.activated {
-  opacity: 1;
-}
