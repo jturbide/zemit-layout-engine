@@ -7,6 +7,13 @@
  */
 (function() {
 	
+	Zemit.modules = {};
+	
+	var moduleList = [];
+	Zemit.module = (name, args) => {
+		moduleList.push([name, args]);
+	};
+	
 	Zemit.app.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
 		
 		$ocLazyLoadProvider.config({
@@ -15,7 +22,34 @@
 		});
 	}]);
 	
-	Zemit.app.factory('$modules', ['$ocLazyLoad', '$session', '$hook', '$i18n', function($ocLazyLoad, $session, $hook, $i18n) {
+	Zemit.app.run(['$hook', '$modules', '$util', '$injector', ($hook, $modules, $util, $injector) => {
+		
+		$hook.add('onReady', () => {
+			
+			// Update module function to execute directly onReady
+			Zemit.module = (name, args = {}) => {
+				
+				let callbackParams = args.slice(0, args.length - 1);
+				let callbackFunc = args.slice(args.length - 1, args.length)[0];
+				let injectors = [];
+				callbackParams.forEach((param) => {
+					injectors.push($injector.get(param));
+				});
+				let props = callbackFunc.apply(null, injectors);
+				
+				$modules.config(name, props.group, props);
+			};
+			
+			// Initialize previously added modules
+			if(moduleList.length > 0) {
+				moduleList.forEach((module) => {
+					Zemit.module.apply(null, module);
+				});
+			}
+		});
+	}])
+	
+	Zemit.app.factory('$modules', ['$ocLazyLoad', '$session', '$hook', '$i18n', '$util', function($ocLazyLoad, $session, $hook, $i18n, $util) {
 		
 		var settings = $session.get('settings');
 		$session.prepare('settings', {
@@ -37,17 +71,13 @@
 					
 					console.log(name.toUpperCase() + ' MODULE INIT');
 					
-					let options = {
-						modules: {}
-					};
-					options.modules[name] = {
-						activated: false
-					};
-					$session.prepare('settings', options);
-					
 					if(Zemit.version === 'dev') {
 						
-						$ocLazyLoad.setModuleConfig({
+						// Initialize a new module
+						Zemit.modules[name] = angular.module('zm' + $util.camelize(name, true), []);
+						
+						// Lazy-load the newly created module
+						$ocLazyLoad.load({
 							name: name,
 							rerun: true,
 							reconfig: true,
@@ -56,13 +86,19 @@
 								'./modules/' + name + '/' + name + '.css'
 							]
 						});
-						
-						$ocLazyLoad.inject(name);
 					}
 				});
 			},
 			
-			config: function (name, group, props = {}, isCore) {
+			config: function (name, group = 'misc', props = {}, isCore= false) {
+				
+				let options = {
+					modules: {}
+				};
+				options.modules[name] = {
+					activated: false
+				};
+				$session.prepare('settings', options);
 				
 				let module = {
 					_activated: false,
@@ -108,8 +144,6 @@
 				
 				this.items[group].modules.push(module);
 				this.prepareItemsArray();
-				
-				settings = $session.get('settings');
 				
 				if(props.onConfig instanceof Function) {
 					props.onConfig(module);

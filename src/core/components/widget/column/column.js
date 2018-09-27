@@ -10,6 +10,10 @@
 	 * other widgets.
 	 */
 	Zemit.app.onReady(['$i18n', function($i18n) {
+		
+		// Initialize widget
+		Zemit.widgets.register('core/components/widget/column');
+		
 		Zemit.widgets.init('column', {
 			injectable: {
 				section: 'structure',

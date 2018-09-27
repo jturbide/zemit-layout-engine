@@ -1,0 +1,5 @@
+msgid "widget.partial.desc"
+msgstr ""
+
+msgid "widget.partial.title"
+msgstr ""

@@ -7,6 +7,10 @@
 	 * Container widget
 	 */
 	Zemit.app.run(['$i18n', function($i18n) {
+		
+		// Initialize widget
+		Zemit.widgets.register('core/components/widget/container');
+		
 		Zemit.widgets.init('container', {
 			injectable: false,
 			selectable: false,

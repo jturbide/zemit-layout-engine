@@ -11,6 +11,10 @@
 	 * https://w3c.github.io/editing/contentEditable.html
 	 */
 	Zemit.app.onReady(['$i18n', function($i18n) {
+		
+		// Initialize widget
+		Zemit.widgets.register('core/components/widget/text');
+		
 		Zemit.widgets.init('text', {
 			injectable: {
 				section: 'content',

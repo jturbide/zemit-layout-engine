@@ -52,7 +52,7 @@
 				
 				for(let prop in this.data[key]) {
 					delete this.data[key][prop];
-				} 
+				}
 				
 				angular.merge(this.data[key], values);
 			},

@@ -319,18 +319,6 @@ msgstr ""
 msgid "core.components.toolbar.workspaceSaved"
 msgstr ""
 
-msgid "core.components.widget.code.desc"
-msgstr ""
-
-msgid "core.components.widget.code.editModal.btnCancel"
-msgstr ""
-
-msgid "core.components.widget.code.editModal.btnSave"
-msgstr ""
-
-msgid "core.components.widget.code.title"
-msgstr ""
-
 msgid "core.components.widget.column.desc"
 msgstr ""
 
@@ -382,22 +370,10 @@ msgstr ""
 msgid "core.components.widget.image.title"
 msgstr ""
 
-msgid "core.components.widget.partial.desc"
-msgstr ""
-
-msgid "core.components.widget.partial.title"
-msgstr ""
-
 msgid "core.components.widget.row.desc"
 msgstr ""
 
 msgid "core.components.widget.row.title"
-msgstr ""
-
-msgid "core.components.widget.segment.desc"
-msgstr ""
-
-msgid "core.components.widget.segment.title"
 msgstr ""
 
 msgid "core.components.widget.text.desc"

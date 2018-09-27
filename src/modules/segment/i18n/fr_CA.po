@@ -1,0 +1,5 @@
+msgid "widget.segment.desc"
+msgstr "Lier un autre segment à l'intérieur de votre contenu"
+
+msgid "widget.segment.title"
+msgstr "Segment"

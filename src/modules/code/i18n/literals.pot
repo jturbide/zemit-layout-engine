@@ -1,0 +1,11 @@
+msgid "modules.code.editModal.btnCancel"
+msgstr ""
+
+msgid "modules.code.editModal.btnSave"
+msgstr ""
+
+msgid "widget.code.desc"
+msgstr ""
+
+msgid "widget.code.title"
+msgstr ""

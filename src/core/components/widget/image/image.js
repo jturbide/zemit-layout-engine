@@ -7,6 +7,10 @@
 	 * Image widget settings
 	 */
 	Zemit.app.onReady(['$i18n', function($i18n) {
+		
+		// Initialize widget
+		Zemit.widgets.register('core/components/widget/image');
+		
 		Zemit.widgets.init('image', {
 			injectable: {
 				section: 'content',

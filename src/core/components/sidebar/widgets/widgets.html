@@ -30,7 +30,7 @@
         </div>
 		
 		<!-- TABS -->
-		<div class="zm-sidebar-group" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">
+		<div class="zm-sidebar-group zm-flex-minimal" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">
 			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="$root.settings.sidebar.widgets.tabs[key].visible = !$root.settings.sidebar.widgets.tabs[key].visible">
 				
 				<span class="zm-sidebar-title-text">

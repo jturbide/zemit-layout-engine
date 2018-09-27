@@ -344,12 +344,6 @@ msgstr "Undo"
 msgid "core.components.toolbar.workspaceSaved"
 msgstr "Saved"
 
-msgid "core.components.widget.code.desc"
-msgstr "Hand code a segment yourself"
-
-msgid "core.components.widget.code.title"
-msgstr "Code"
-
 msgid "core.components.widget.column.desc"
 msgstr "Use it to divide your rows in more columns"
 
@@ -406,23 +400,11 @@ msgstr "A picture, icon or drawing"
 msgid "core.components.widget.image.title"
 msgstr "Image"
 
-msgid "core.components.widget.partial.desc"
-msgstr "A local or remote partial to inject within the widget"
-
-msgid "core.components.widget.partial.title"
-msgstr "Partial"
-
 msgid "core.components.widget.row.desc"
 msgstr "An horizontal line that contains columns"
 
 msgid "core.components.widget.row.title"
 msgstr "Row"
-
-msgid "core.components.widget.segment.desc"
-msgstr "Link another segment into your content"
-
-msgid "core.components.widget.segment.title"
-msgstr "Segment"
 
 msgid "core.components.widget.text.desc"
 msgstr "Content with basic formatting"
@@ -536,7 +518,7 @@ msgstr "Unable to connect to the server using the provided credentials."
 msgid "core.modules.misc"
 msgstr "Miscellaneous"
 
-msgid "core.modules.widgets"
+msgid "core.modules.widget"
 msgstr "Widgets"
 
 #~ msgid "core.components.sidebar.workspace.btnEdit"

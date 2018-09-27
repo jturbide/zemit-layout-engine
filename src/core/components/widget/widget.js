@@ -50,6 +50,10 @@
 	Zemit.app.run(['$util', function($util) {
 		Zemit.widgets.init = function(name, params) {
 			
+			if(!Zemit.widgets.data[name]) {
+				throw new ZmError(404, 'Widget "' + name + '" not initiated.');
+			}
+			
 			var dashed = $util.snakeCase(name);
 			Zemit.widgets.extend(name, {
 				dashedType: dashed

@@ -344,12 +344,6 @@ msgstr "Annuler"
 msgid "core.components.toolbar.workspaceSaved"
 msgstr "Sauvergardé"
 
-msgid "core.components.widget.code.desc"
-msgstr "Coder un segment à la main"
-
-msgid "core.components.widget.code.title"
-msgstr "Code"
-
 msgid "core.components.widget.column.desc"
 msgstr "Utilisez-la pour diviser vos rangées en plusieurs colonnes"
 
@@ -408,23 +402,11 @@ msgstr "Une photo, icône ou dessin"
 msgid "core.components.widget.image.title"
 msgstr "Image"
 
-msgid "core.components.widget.partial.desc"
-msgstr "Un partiel locale ou distant à injecter au sein du widget"
-
-msgid "core.components.widget.partial.title"
-msgstr "Partiel"
-
 msgid "core.components.widget.row.desc"
 msgstr "Une ligne horizontale qui contient des colonnes"
 
 msgid "core.components.widget.row.title"
 msgstr "Rangée"
-
-msgid "core.components.widget.segment.desc"
-msgstr "Lier un autre segment à l'intérieur de votre contenu"
-
-msgid "core.components.widget.segment.title"
-msgstr "Segment"
 
 msgid "core.components.widget.text.desc"
 msgstr "Contenu avec formattage de base"

@@ -20,11 +20,6 @@ var Zemit = {
 		onReadyList.push(args);
 	};
 	
-	var moduleList = [];
-	Zemit.module = (name, group, args) => {
-		moduleList.push([name, group, args]);
-	};
-	
 	/**
 	 * Dynamic directive loader
 	 */
@@ -33,17 +28,14 @@ var Zemit = {
 		Zemit.app.compileProvider = $compileProvider;
 	});
 	
-	Zemit.app.run(['$rootScope', '$i18n', '$injector', '$hook', '$modules', function($rs, $i18n, $injector, $hook, $modules) {
+	Zemit.app.run(['$rootScope', '$injector', '$hook', function($rs, $injector, $hook) {
 		
 		$hook.add('onReady', () => {
 			
-			moduleList.forEach((module) => {
-				$modules.config.apply(null, module);
-			});
-			
+			// Run onReady hooks
 			onReadyList.forEach((args) => {
-				let callback = args.splice(args.length - 1, 1)[0];
-				let params = args;
+				let callback = args.slice(args.length - 1, args.length)[0];
+				let params = args.slice(0, args.length - 1);
 				let injectors = [];
 				params.forEach((param) => {
 					injectors.push($injector.get(param));
@@ -54,17 +46,6 @@ var Zemit = {
 				}
 			});
 		});
-		
-		Zemit.widgets.register([
-			'core/components/widget/code',
-			'core/components/widget/column',
-			'core/components/widget/container',
-			'core/components/widget/image',
-			'core/components/widget/partial',
-			'core/components/widget/row',
-			'core/components/widget/segment',
-			'core/components/widget/text'
-		]);
 	}]);
 	
 	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', '$socket', '$i18n', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media, $socket, $i18n) {

@@ -1,0 +1,5 @@
+msgid "widget.segment.desc"
+msgstr ""
+
+msgid "widget.segment.title"
+msgstr ""

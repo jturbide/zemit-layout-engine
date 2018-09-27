@@ -7,6 +7,10 @@
 	 * Row widget
 	 */
 	Zemit.app.onReady(['$i18n', function($i18n) {
+		
+		// Initialize widget
+		Zemit.widgets.register('core/components/widget/row');
+		
 		Zemit.widgets.init('row', {
 			defaultValues: {
 				fullWidth: false

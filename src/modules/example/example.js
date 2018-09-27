@@ -4,10 +4,8 @@
  * Creation date: 2018-09-25
  */
 (function() {
-	
-	Zemit.app.run(['$modules', function($modules) {
-		
-		$modules.config('example', 'misc', {
+	Zemit.module('example', ['$rootScope', '$modal', '$i18n', function($rs, $modal, $i18n) {
+		return {
 			onConfig: () => {
 				
 			},
@@ -20,6 +18,6 @@
 			onInit: () => {
 				
 			}
-		});
+		};
 	}]);
 })();
