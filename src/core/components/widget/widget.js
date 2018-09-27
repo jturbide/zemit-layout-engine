@@ -716,6 +716,9 @@
 				
 				// Create the widget directive
 				var zWidget = Zemit.widgets.get(type);
+				if(!zWidget) {
+					zWidget = Zemit.widgets.get('disabled');
+				}
 				var $zmWidget = (!zWidget.defaultTemplate || attrs.defaultTemplate === 'false')
 					? angular.element('<zm-widget-' + zWidget.dashedType + ' />')
 					: angular.element('<zm-widget-default />');
@@ -788,6 +791,9 @@
 				$s.$element = $e;
 				
 				var zWidget = Zemit.widgets.get($s.widget.type);
+				if(!zWidget) {
+					zWidget = Zemit.widgets.get('disabled');
+				}
 				var $widget = angular.element('<zm-widget-' + zWidget.dashedType + ' />');
 				$e.children('.zm-widget-inner').append($widget);
 				$compile($widget)($s);

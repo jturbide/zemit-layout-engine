@@ -1,0 +1,8 @@
+.zm-widget-disabled-container {
+  text-align: center;
+}
+.zm-widget-disabled-container .fa {
+  color: red;
+  font-size: 2rem;
+  display: block;
+}
