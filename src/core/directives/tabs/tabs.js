@@ -36,7 +36,7 @@
 							if(attrs.zmTabsKeepOpen === undefined) {
 								tabs.close();
 							}
-						}, 250);
+						});
 					}
 				};
 				
