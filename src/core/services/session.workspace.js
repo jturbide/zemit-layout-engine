@@ -25,6 +25,11 @@
 		    	return true;
 		        return false;
 		    },
+		    
+		    getSegment: () => {
+		    	
+		    	return false;
+		    },
 			
 			getBreadcrumbs: () => {
 					

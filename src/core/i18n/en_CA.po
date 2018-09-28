@@ -284,7 +284,7 @@ msgid "core.components.sidebar.workspace.removeWorkspaceModalTitle"
 msgstr "Remove workspace"
 
 msgid "core.components.sidebar.workspace.segment.namePlaceholder"
-msgstr "ex: McGill University"
+msgstr "ex: Footer"
 
 msgid "core.components.sidebar.workspace.segment.nameTitle"
 msgstr "Name:"
@@ -358,6 +358,9 @@ msgstr "Edit"
 
 msgid "core.components.widget.container.actions.remove"
 msgstr "Remove"
+
+msgid "core.components.widget.container.no-segment"
+msgstr "No segment loaded, please select of create a segment from the workspace drawer."
 
 msgid "core.components.widget.container.notices.clickHoldDrag"
 msgstr "Click and hold the selection to drag it around."

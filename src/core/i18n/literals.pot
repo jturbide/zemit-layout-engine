@@ -334,6 +334,9 @@ msgstr ""
 msgid "core.components.widget.container.actions.remove"
 msgstr ""
 
+msgid "core.components.widget.container.no-segment"
+msgstr ""
+
 msgid "core.components.widget.container.notices.clickHoldDrag"
 msgstr ""
 

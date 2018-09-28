@@ -39,6 +39,7 @@
 				$s.zm = $zm;
 				$s.container = $s.widget;
 				$s.$sessionWorkspace = $sessionWorkspace;
+				$s.segment = $sessionWorkspace.getSegment();
 				
 				// Add a placeholder element in the DOM next to the container
 				var placeholder = document.createElement('div');

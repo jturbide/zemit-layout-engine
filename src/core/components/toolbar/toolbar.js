@@ -28,6 +28,7 @@
 					$hook.run('onContextChange', context, oldContext);
 				};
 				
+				$s.segment = $sessionWorkspace.getSegment();
 				$s.breadcrumbs = $sessionWorkspace.getBreadcrumbs();
 				$s.$sessionWorkspace = $sessionWorkspace;
 			}

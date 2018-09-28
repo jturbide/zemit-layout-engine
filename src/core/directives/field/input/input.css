@@ -27,5 +27,5 @@
 .zm-field-input > textarea:focus,
 .zm-field-input > input:not([type="submit"]):focus {
   outline: 0;
-  border-color: #75a9f9;
+  border-color: #75a9f9 !important;
 }

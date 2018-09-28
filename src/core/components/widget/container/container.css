@@ -106,3 +106,8 @@ zm-widget[type="container"] {
 .zm-widget-container:not(.zm-widget-empty) > .zm-container-inner > .zm-widget-child > .zm-widget-add-sep {
   background-color: #f6f6f6;
 }
+
+.zm-container-no-segment {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+}

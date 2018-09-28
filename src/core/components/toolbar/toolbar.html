@@ -56,10 +56,10 @@
 		</div>
 		
 		<div class="zm-toolbar-actions zm-flex-container zm-flex-align-center zm-toolbar-actions-workspace">
-			<div ng-if="breadcrumbs.length === 0" class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
-				<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>
-				<span>{{ ::t('core.components.toolbar.openWorkspaceDrawer') }}</span>
-			</div>
+			<!--<div ng-if="breadcrumbs.length === 0" class="zm-flex-container zm-flex-container-gap zm-flex-align-center">-->
+			<!--	<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>-->
+			<!--	<span>{{ ::t('core.components.toolbar.openWorkspaceDrawer') }}</span>-->
+			<!--</div>-->
 			<div ng-repeat="breadcrumb in breadcrumbs">
 				{{ breadcrumb.label }}
 				<i ng-if="$index < breadcrumbs.length" class="fa fa-angle-right"></i>
@@ -73,19 +73,19 @@
 		<div class="zm-toolbar-actions zm-toolbar-actions-general">
 			
 			<!-- CLEAR -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
 				<i class="fa fa-eraser"></i>
 			</zm-btn>
 			
 			<div class="zm-btn-sep zm-hide-mobile"></div>
 			
 			<!-- IMPORT -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.import') }}" class="zm-hide-mobile" ng-disabled="!$sessionWorkspace.isValid()" ng-click="zm.content.import()">
+			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.import') }}" class="zm-hide-mobile" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">
 				<i class="fa fa-download"></i>
 			</zm-btn>
 			
 			<!-- EXPORT -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.export') }}" class="zm-hide-mobile" ng-disabled="zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.export()">
+			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.export') }}" class="zm-hide-mobile" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.export()">
 				<i class="fa fa-upload"></i>
 			</zm-btn>
 			

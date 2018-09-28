@@ -156,6 +156,9 @@
 						// SEGMENT
 						///////////////////////////////
 						canOpen: true,
+						onOpen: (model, parent, depth) => {
+							console.log(model, parent);
+						},
 						onEdit: (model, parent, depth) => {
 							$s.editSegment(parent, model);
 						},

@@ -1,7 +1,15 @@
 <div class="zm-container zm-flex-container zm-context-{{ settings.context }}" ng-class="{ 'zm-container-show-content': showContent }">
 	<div class="zm-container-inner">
 		<div class="zm-flex-container-column" style="height: 100%">
-			<div class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
+			
+			<div ng-if="!segment" class="zm-container-no-segment zm-flex-container zm-flex-align-center">
+				<span style="text-align: center">
+					<i class="fa fa-exclamation-triangle fa-margin-right"></i>
+					{{ ::t('core.components.widget.container.no-segment') }}
+				</span>
+			</div>
+			
+			<div ng-if="segment" class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
 				
 				<!-- LIST OF CHILD WIDGETS -->
 				<zm-widget-childs type="'row'" childs="container.childs"></zm-widget-childs>
