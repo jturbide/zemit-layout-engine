@@ -2,7 +2,7 @@
 	<div class="zm-container-inner">
 		<div class="zm-flex-container-column" style="height: 100%">
 			
-			<div ng-if="!segment" class="zm-container-no-segment zm-flex-container zm-flex-align-center">
+			<div ng-if="!segment" class="zm-container-no-segment zm-flex-container zm-flex-align-center zm-p-3">
 				<span style="text-align: center">
 					<i class="fa fa-exclamation-triangle fa-margin-right"></i>
 					{{ ::t('core.components.widget.container.no-segment') }}
@@ -30,7 +30,7 @@
 			
 			<!-- QUICK ACTIONS -->
 			<div ng-if="settings.context !== 'preview'" class="zm-quick-actions zm-flex-minimal zm-p-2">
-				<div class="zm-flex-container zm-flex-container-gap">
+				<div class="zm-flex-container zm-flex-container-gap-x">
 					
 					<zm-tabs anchor="bottom-left" ng-disabled="zm.widget.totalSelected === 0" zm-tabs-keep-open>
 						<items>

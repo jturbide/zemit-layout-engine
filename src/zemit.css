@@ -194,6 +194,22 @@ zm-widget[type="container"] {
 .zm-flex-container.zm-flex-container-gap > * {
   margin: 0.25rem;
 }
+.zm-flex-container-column.zm-flex-container-gap-x > *:not(:first-child),
+.zm-flex-container.zm-flex-container-gap-x > *:not(:first-child) {
+  margin-left: 0.25rem;
+}
+.zm-flex-container-column.zm-flex-container-gap-x > *:not(:last-child),
+.zm-flex-container.zm-flex-container-gap-x > *:not(:last-child) {
+  margin-right: 0.25rem;
+}
+.zm-flex-container-column.zm-flex-container-gap-y > *:not(:first-child),
+.zm-flex-container.zm-flex-container-gap-y > *:not(:first-child) {
+  margin-top: 0.25rem;
+}
+.zm-flex-container-column.zm-flex-container-gap-y > *:not(:last-child),
+.zm-flex-container.zm-flex-container-gap-y > *:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
 .zm-flex-minimal {
   flex: 0;
   flex-grow: initial;
