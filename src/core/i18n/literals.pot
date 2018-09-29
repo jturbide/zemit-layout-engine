@@ -286,6 +286,12 @@ msgstr ""
 msgid "core.components.toolbar.doc"
 msgstr ""
 
+msgid "core.components.toolbar.export"
+msgstr ""
+
+msgid "core.components.toolbar.import"
+msgstr ""
+
 msgid "core.components.toolbar.openWorkspaceDrawer"
 msgstr ""
 
@@ -311,6 +317,9 @@ msgid "core.components.toolbar.tooltip.import"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.redo"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.settings"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.undo"

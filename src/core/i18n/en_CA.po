@@ -329,10 +329,10 @@ msgstr "Clear document"
 msgid "core.components.toolbar.tooltip.doc"
 msgstr "Documentation"
 
-msgid "core.components.toolbar.tooltip.export"
+msgid "core.components.toolbar.export"
 msgstr "Export"
 
-msgid "core.components.toolbar.tooltip.import"
+msgid "core.components.toolbar.import"
 msgstr "Import"
 
 msgid "core.components.toolbar.tooltip.redo"
@@ -340,6 +340,9 @@ msgstr "Redo"
 
 msgid "core.components.toolbar.tooltip.undo"
 msgstr "Undo"
+
+msgid "core.components.toolbar.tooltip.settings"
+msgstr "Settings"
 
 msgid "core.components.toolbar.workspaceSaved"
 msgstr "Saved"
@@ -360,7 +363,7 @@ msgid "core.components.widget.container.actions.remove"
 msgstr "Remove"
 
 msgid "core.components.widget.container.no-segment"
-msgstr "No segment loaded, please select of create a segment from the workspace drawer."
+msgstr "No segment loaded, please select or create a segment from the workspace drawer."
 
 msgid "core.components.widget.container.notices.clickHoldDrag"
 msgstr "Click and hold the selection to drag it around."

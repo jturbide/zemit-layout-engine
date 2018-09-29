@@ -6,30 +6,30 @@
  */
 (function() {
 	Zemit.app.factory('$sessionWorkspace', ['$session', '$hook', function($session, $hook) {
-	    
-	    $hook.add('onNewHistory', () => {
-	    	factory.lastUpdate = new Date();
-	    });
-	    
+		
+		$hook.add('onNewHistory', () => {
+			factory.lastUpdate = new Date();
+		});
+		
 		var factory = {
-		    
-		    workspace: null,
-		    lastSave: null,
-		    lastUpdate: null,
-		    
-		    load: (workspace) => {
-		        this.workspace = workspace;
-		    },
-		    
-		    isValid: () => {
-		    	return true;
-		        return false;
-		    },
-		    
-		    getSegment: () => {
-		    	
-		    	return false;
-		    },
+			
+			workspace: null,
+			lastSave: null,
+			lastUpdate: null,
+			
+			load: (workspace) => {
+				this.workspace = workspace;
+			},
+			
+			isValid: () => {
+				return true;
+				return false;
+			},
+			
+			getSegment: () => {
+				
+				return false;
+			},
 			
 			getBreadcrumbs: () => {
 					

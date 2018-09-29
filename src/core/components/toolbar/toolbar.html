@@ -53,6 +53,13 @@
 			<zm-btn ng-disabled="!history.canRedo" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.redo') }}" ng-click="history.redo()">
 				<i class="fa fa-repeat"></i>
 			</zm-btn>
+			
+			<div class="zm-btn-sep zm-hide-mobile"></div>
+			
+			<!-- CLEAR -->
+			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+				<i class="fa fa-eraser"></i>
+			</zm-btn>
 		</div>
 		
 		<div class="zm-toolbar-actions zm-flex-container zm-flex-align-center zm-toolbar-actions-workspace">
@@ -72,30 +79,53 @@
 		
 		<div class="zm-toolbar-actions zm-toolbar-actions-general">
 			
-			<!-- CLEAR -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
-				<i class="fa fa-eraser"></i>
-			</zm-btn>
-			
-			<div class="zm-btn-sep zm-hide-mobile"></div>
+			<!--<div class="zm-btn-sep zm-hide-mobile"></div>-->
 			
 			<!-- IMPORT -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.import') }}" class="zm-hide-mobile" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">
-				<i class="fa fa-download"></i>
-			</zm-btn>
+			<!--<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.import') }}" class="zm-hide-mobile" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">-->
+			<!--	<i class="fa fa-download"></i>-->
+			<!--</zm-btn>-->
 			
 			<!-- EXPORT -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.export') }}" class="zm-hide-mobile" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.export()">
-				<i class="fa fa-upload"></i>
-			</zm-btn>
+			<!--<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.export') }}" class="zm-hide-mobile" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.export()">-->
+			<!--	<i class="fa fa-upload"></i>-->
+			<!--</zm-btn>-->
 			
-			<div class="zm-btn-sep zm-hide-mobile"></div>
+			<!--<div class="zm-btn-sep zm-hide-mobile"></div>-->
 			
 			<!-- DOC -->
 			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.doc') }}" class="zm-hide-mobile" ng-click="$modal.open('doc')">
 				<i class="fa fa-book fa-margin-right"></i>
 				{{ ::t('core.components.toolbar.doc') }}
 			</zm-btn>
+			
+			<!-- TABS: SETTINGS -->
+			<zm-tabs anchor="top-right">
+				<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.settings') }}">
+					
+					<i class="fa fa-gear"></i>
+					
+					<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
+				</toggle>
+				<items>
+					
+					<!-- IMPORT -->
+					<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">
+						<i class="fa fa-download zm-flex-minimal"></i>
+						<span>
+							{{ ::t('core.components.toolbar.import') }}
+						</span>
+					</li>
+					
+					<!-- EXPORT -->
+					<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.export()">
+						<i class="fa fa-upload zm-flex-minimal"></i>
+						<span>
+							{{ ::t('core.components.toolbar.export') }}
+						</span>
+					</li>
+				</items>
+			</zm-tabs>
 		</div>
 	</div>
 </div>

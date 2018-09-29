@@ -329,10 +329,10 @@ msgstr "Nettoyer le document"
 msgid "core.components.toolbar.tooltip.doc"
 msgstr "Documentation"
 
-msgid "core.components.toolbar.tooltip.export"
+msgid "core.components.toolbar.export"
 msgstr "Exporter"
 
-msgid "core.components.toolbar.tooltip.import"
+msgid "core.components.toolbar.import"
 msgstr "Importer"
 
 msgid "core.components.toolbar.tooltip.redo"
@@ -340,6 +340,9 @@ msgstr "Refaire"
 
 msgid "core.components.toolbar.tooltip.undo"
 msgstr "Annuler"
+
+msgid "core.components.toolbar.tooltip.settings"
+msgstr "Paramètres"
 
 msgid "core.components.toolbar.workspaceSaved"
 msgstr "Sauvergardé"
