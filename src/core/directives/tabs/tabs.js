@@ -6,7 +6,7 @@
 	/**
 	 * Creates tabs
 	 */
-	Zemit.app.directive('zmTabs', ['$timeout', function($timeout) {
+	Zemit.app.directive('zmTabs', ['$timeout', '$compile', function($timeout, $compile) {
 		return {
 			restrict: "E",
 			transclude: {
@@ -20,15 +20,22 @@
 			templateUrl: 'core/directives/tabs/tabs.html',
 			link: function($s, $e, attrs, ctrl, transclude) {
 				
+				var $list = $e.find('.zm-tabs-list');
+				
 				var tabs = {
 					visible: false,
 					toggle: function() {
-						this.visible = !this.visible;
+						!this.visible
+							? this.open()
+							: this.close();
 					},
 					open: function() {
+						
+						applyPosition();
 						this.visible = true;
 					},
 					close: function() {
+						
 						this.visible = false;
 					},
 					clickInside: function() {
@@ -42,8 +49,50 @@
 				
 				$s.tabs = tabs;
 				
-				if(attrs.anchor) {
-					$e.addClass('zm-tabs-anchor-' + attrs.anchor);
+				var applyPosition = () => {
+					
+					let anchor = attrs.anchor ? attrs.anchor : 'top-left';
+					let [y, x] = attrs.anchor.split('-');
+					
+					clearAnchors();
+					$e.addClass('zm-tabs-anchor-' + anchor);
+					
+					// setTimeout(() => {
+						let rect = $list[0].getBoundingClientRect();
+						
+						if(rect.right > window.innerWidth && rect.left > 0) {
+							x = 'right';
+						}
+						else if(x === 'right') {
+							// Everything was fine, just skip the condition
+						}
+						else if(rect.left > 0 && rect.right < window.innerWidth) {
+							x = 'left';
+						}
+						
+						if(rect.bottom > window.innerHeight && rect.top > 0) {
+							y = 'bottom';
+						}
+						else if(y === 'bottom') {
+							// Everything was fine, just skip the condition
+						}
+						else if(rect.top > 0 && rect.bottom < window.innerHeight) {
+							y = 'top';
+						}
+						
+						anchor = y + '-' + x;
+						
+						clearAnchors();
+						$e.addClass('zm-tabs-anchor-' + anchor);
+					// })
+				};
+				
+				var clearAnchors = () => {
+					
+					let anchors = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+					anchors.forEach(anchor => {
+						$e.removeClass('zm-tabs-anchor-' + anchor);
+					});
 				}
 				
 				$s.$watch('ngDisabled', (nv, ov) => {

@@ -41,6 +41,7 @@
 }
 .zm-toolbar-actions-context {
   grid-area: context;
+  height: 100%;
 }
 .zm-toolbar-actions-workspace {
   grid-area: workspace;

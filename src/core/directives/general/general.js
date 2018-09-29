@@ -17,6 +17,36 @@
 	}]);
 	
 	/**
+	 * Invisible directives
+	 */
+	Zemit.app.directive('zmInvisible', [function() {
+		return {
+			restrict: 'A',
+			link: function ($s, $e, attrs) {
+				
+				$s.$watch(attrs.zmInvisible, function(bool) {
+					$e.toggleClass('zm-invisible', bool);
+				});
+			}
+		};
+	}]);
+	
+	/**
+	 * Visible directives
+	 */
+	Zemit.app.directive('zmVisible', [function() {
+		return {
+			restrict: 'A',
+			link: function ($s, $e, attrs) {
+				
+				$s.$watch(attrs.zmVisible, function(bool) {
+					$e.toggleClass('zm-invisible', !bool);
+				});
+			}
+		};
+	}]);
+	
+	/**
 	 * This directive solves the Angular other ng-dblclick directive
 	 * for touch-based device only.
 	 */
