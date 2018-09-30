@@ -4,7 +4,13 @@ module.exports = function(grunt) {
 	
 	// Project configuration.
 	grunt.initConfig({
+		
 		pkg: grunt.file.readJSON('package.json'),
+		
+		app: {
+			scripts: [],
+			styles: []
+		},
 		
 		assets_inline: {
 			all: {
@@ -100,7 +106,11 @@ module.exports = function(grunt) {
 			build: {
 				options: {
 					data: {
-						version: '<%= pkg.version %>'
+						version: '<%= pkg.version %>',
+						app: {
+							scripts: ['src/modules/easteregg/easteregg.js'],
+							styles: ['src/modules/easteregg/easteregg.css']
+						}
 					}
 				},
 				files: {
@@ -188,6 +198,14 @@ module.exports = function(grunt) {
 			},
 		},
 		
+		zmModule: {
+			build: {
+				files: [{
+					src: ['src/modules/settings.js']
+				}]
+			}
+		},
+		
 		language: {
 			pot: {
 				options: {
@@ -256,6 +274,50 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-replace');
 	grunt.loadNpmTasks('grunt-replace-attribute');
+	
+	grunt.registerMultiTask('zmModule', 'Module compiler', function(args) {
+		
+		let app = grunt.config('app');
+		let ngtemplates = grunt.config('ngtemplates');
+		
+		switch(this.target) {
+			case 'build':
+				
+				this.files.forEach(function(file) {
+					let contents = file.src.filter(function(filepath) {
+						if (!grunt.file.exists(filepath)) {
+							grunt.log.warn('Source file "' + filepath + '" not found.');
+							return false;
+						}
+						else {
+							return true;
+						}
+					}).map(function(filepath) {
+						return grunt.file.read(filepath);
+					});
+					
+					let regex = /\$modules.bootstrap\(\[([^\]\*]*)\]\)/gim;
+					let matches = regex.exec(contents);
+					let modules = matches[1].replace(/(\s|'|"|\*)/gim,'').split(',');
+					
+					modules.forEach(function(module) {
+						let script = 'modules/' + module + '/**/*.js';
+						let style = 'modules/' + module + '/**/*.css';
+						let template = 'modules/' + module + '/**/*.html';
+						
+						app.scripts.push(script);
+						app.styles.push(style);
+						
+						ngtemplates.zemit.src.push(template);
+						
+						grunt.config.set('app', app);
+						grunt.config.set('ngtemplates', ngtemplates);
+					});
+				});
+				
+				break;
+		}
+	});
 
 	grunt.registerMultiTask('language', 'Pot file generator', function(args) {
 		
@@ -494,15 +556,21 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['build']);
 	
 	grunt.registerTask('build', [
+		'module:build',
+		
 		'copy:gruntPrepare',
 		
 		'version', 'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
 		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute', 'version', 'i18n:build',
+		// 'version', 'assets_inline', 'ngtemplates', 'includeSource', 'replace', 'useminPrepare', 'concat',
+		// 'replace_attribute', 'version', 'i18n:build',
 		
 		'copy:html', 'copy:manifest', 'copy:sw', 'copy:favicon', 'copy:assets',
 		
 		'embed', 'clean', 'sw-precache', 'appcache'
 	]);
+	
+	grunt.registerTask('module:build', ['zmModule:build']);
 	
 	grunt.registerTask('i18n', ['language:pot', 'language:json', 'language:build']);
 	grunt.registerTask('i18n:pot', ['language:pot']);
