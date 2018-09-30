@@ -12,8 +12,23 @@
   border: #ccc solid 1px;
 }
 
+/*.zm-field-treeview-sub-level {*/
+/*  background-color: rgba(0, 0, 0, 0.1);*/
+/*}*/
+.zm-treeview-list-item.first:not(.zm-treeview-list-item-depth0) > .zm-treeview-group > .zm-treeview-group-title {
+  border-top-left-radius: 0.5rem;
+}
+.zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group:not(.zm-treeview-opened) > .zm-treeview-group-title {
+  border-bottom-left-radius: 0.5rem;
+}
+.zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group > .zm-field-treeview-sub-level {
+  border-bottom-left-radius: 0.5rem;
+}
 .zm-field-treeview-sub-level {
-  background-color: rgba(0, 0, 0, 0.1);
+  border-left: #ccc solid 1px;
+}
+.zm-treeview-list-item.last > .zm-treeview-group > .zm-field-treeview-sub-level {
+  border-bottom: #ccc solid 1px;
 }
 
 .zm-treeview-container > div + div,

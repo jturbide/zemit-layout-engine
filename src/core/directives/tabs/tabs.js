@@ -6,7 +6,7 @@
 	/**
 	 * Creates tabs
 	 */
-	Zemit.app.directive('zmTabs', ['$timeout', '$compile', function($timeout, $compile) {
+	Zemit.app.directive('zmTabs', ['$rootScope', '$timeout', '$compile', function($rs, $timeout, $compile) {
 		return {
 			restrict: "E",
 			transclude: {
@@ -30,6 +30,8 @@
 							: this.close();
 					},
 					open: function() {
+						
+						$rs.$broadcast('documentClick');
 						
 						applyPosition();
 						this.visible = true;
@@ -105,10 +107,10 @@
 						return;
 					}
 					
-					var $target = angular.element(event.target);
-					if(!$target.is($e) && $target.closest($e).length === 0) {
+					var $target = event && angular.element(event.target);
+					if(!event || (!$target.is($e) && $target.closest($e).length === 0)) {
 						tabs.close();
-						$s.$digest();
+						event && $s.$digest();
 					};
 				});
 			}

@@ -5,24 +5,21 @@
         'zm-text-danger': node.error
     }"></i>
 </div>
-<div class="zm-flex-minimal" ng-if="node.getData().env === 'browser'">
-    <i class="fa fa-home"></i>
-</div>
+
+<!-- CHEVRON -->
+<i class="fa zm-pull-right zm-flex-minimal" ng-if="node.getData().env === 'browser'" ng-class="{
+    'fa-chevron-down': lvlSettings.viewItems,
+    'fa-chevron-right': !lvlSettings.viewItems
+}"></i>
 
 <span class="zm-sidebar-title-text">
     {{ node.getName() }}
 </span>
-
-<!-- OPTIONS -->
-<div class="zm-flex-minimal" ng-include="defaultLvlOptions"></div>
 
 <!-- TOTAL NODES -->
 <div class="zm-badge zm-flex-minimal" ng-class="{ 'zm-empty': lvlList.length === 0 }">
 	{{ filteredLvlList.length }}
 </div>
 
-<!-- CHEVRON -->
-<i class="fa zm-pull-right zm-flex-minimal" ng-class="{
-    'fa-chevron-down': lvlSettings.viewItems,
-    'fa-chevron-right': !lvlSettings.viewItems
-}"></i>
+<!-- OPTIONS -->
+<div class="zm-flex-minimal" ng-include="defaultLvlOptions"></div>

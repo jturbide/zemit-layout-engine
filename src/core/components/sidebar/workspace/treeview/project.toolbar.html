@@ -1,22 +1,17 @@
-<!-- ICON -->
-<div class="zm-flex-minimal">
-    <i class="fa fa-sitemap"></i>
-</div>
+<!-- CHEVRON -->
+<i class="fa zm-pull-right zm-flex-minimal" ng-class="{
+    'fa-chevron-down': lvlSettings.viewItems,
+    'fa-chevron-right': !lvlSettings.viewItems
+}"></i>
 
 <span class="zm-sidebar-title-text">
     {{ node.getData().name }}
 </span>
-
-<!-- OPTIONS -->
-<div class="zm-flex-minimal" ng-include="defaultLvlOptions"></div>
 
 <!-- TOTAL NODES -->
 <div class="zm-badge zm-flex-minimal" ng-class="{ 'zm-empty': lvlList.length === 0 }">
 	{{ filteredLvlList.length }}
 </div>
 
-<!-- CHEVRON -->
-<i class="fa zm-pull-right zm-flex-minimal" ng-class="{
-    'fa-chevron-down': lvlSettings.viewItems,
-    'fa-chevron-right': !lvlSettings.viewItems
-}"></i>
+<!-- OPTIONS -->
+<div class="zm-flex-minimal" ng-include="defaultLvlOptions"></div>

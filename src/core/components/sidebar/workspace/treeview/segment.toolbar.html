@@ -1,7 +1,8 @@
-<!-- ICON -->
-<div class="zm-flex-minimal">
-    <i class="fa fa-cubes"></i>
-</div>
+<!-- CHEVRON -->
+<i class="fa zm-pull-right zm-flex-minimal" ng-class="{
+    'fa-chevron-down': lvlSettings.viewItems,
+    'fa-chevron-right': !lvlSettings.viewItems
+}"></i>
 
 <span class="zm-sidebar-title-text zm-nowrap">
     {{ node.getData().name }}

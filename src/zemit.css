@@ -326,7 +326,7 @@ zm-widget[type="container"] {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-corner {
