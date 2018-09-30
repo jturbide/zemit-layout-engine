@@ -16,10 +16,10 @@
   -webkit-touch-callout: none !important;
   user-select: none !important;
 }
-.zm-modal iframe {
+.zm-modal:not(.zm-modal-is-top) iframe {
   pointer-events: none;
 }
-.zm-modal:focus-within iframe {
+.zm-modal.zm-modal-is-top iframe {
   pointer-events: all;
 }
 .zm-modal > .zm-modal-inner {

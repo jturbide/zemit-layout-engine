@@ -33,6 +33,8 @@
 				var modal = $modal.instances[id];
 				var hook = new $hook.$new();
 				
+				$s.$modal = $modal;
+				
 				$s.submit = () => {
 					setTimeout(() => {
 						$e.find('.zm-modal-footer-inner .zm-btn-primary:not([disabled])').click();

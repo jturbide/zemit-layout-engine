@@ -5,7 +5,7 @@ msgid "core.components.sidebar.modules.applyTitle"
 msgstr "Apply changes"
 
 msgid "core.components.sidebar.modules.applyContent"
-msgstr "Applying the changes will refresh the application. Do you wish to proceed?"
+msgstr "Applying the changes will alter the behaviour and refresh the application. Do you wish to proceed?"
 
 msgid "core.components.sidebar.modules.applyBtn"
 msgstr "Apply"
