@@ -119,7 +119,7 @@
   .zm-sidebar-title {
     border-left: 0;
   }
-  .zm-container-show-content .zm-container-inner {
+  .zm-container-show-content:not(.zm-context-preview) .zm-container-inner {
     display: none;
   }
   .zm-container-show-content .zm-sidebar .zm-sidebar-inner {
