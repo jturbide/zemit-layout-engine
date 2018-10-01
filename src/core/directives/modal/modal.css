@@ -148,5 +148,7 @@
 }
 .zm-modal.zm-modal-exceed-x .zm-modal-body {
   overflow-x: auto;
+}
+.zm-modal.zm-modal-exceed-x:not(.zm-modal-exceed-y) .zm-modal-body {
   flex: none;
 }
