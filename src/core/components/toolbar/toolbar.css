@@ -102,14 +102,18 @@
     width: 100%;
   }
   .zm-toolbar-inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr;
     grid-template-rows: auto;
-    grid-template-areas: "actions sections";
+    grid-template-areas: "general actions sections";
     grid-column-gap: 0.5rem;
     grid-row-gap: 0;
   }
+  .zm-toolbar-actions-general {
+    width: 100%;
+    height: 100%;
+    justify-self: start;
+  }
   .zm-toolbar-actions-workspace,
-  .zm-toolbar-actions-general,
   .zm-logo {
     display: none !important;
   }

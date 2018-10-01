@@ -8,8 +8,15 @@
 .zm-treeview-group-back,
 .zm-treeview-group-title {
   padding: 0.25rem 1rem;
-  background-color: white;
   border: #ccc solid 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.zm-treeview-group-back:hover,
+.zm-treeview-group-title:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.zm-treeview-group.zm-treeview-opened > .zm-treeview-group-title {
+  background-color: white;
 }
 
 /*.zm-field-treeview-sub-level {*/

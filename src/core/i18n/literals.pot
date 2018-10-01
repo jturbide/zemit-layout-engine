@@ -283,6 +283,9 @@ msgstr ""
 msgid "core.components.sidebar.workspace.updateWorkspaceTitle"
 msgstr ""
 
+msgid "core.components.toolbar.clear"
+msgstr ""
+
 msgid "core.components.toolbar.doc"
 msgstr ""
 

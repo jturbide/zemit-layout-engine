@@ -57,7 +57,7 @@
 			<div class="zm-btn-sep zm-hide-mobile"></div>
 			
 			<!-- CLEAR -->
-			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+			<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
 				<i class="fa fa-eraser"></i>
 			</zm-btn>
 		</div>
@@ -122,6 +122,14 @@
 						<i class="fa fa-upload zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.export') }}
+						</span>
+					</li>
+					
+					<!-- CLEAR -->
+					<li class="zm-show-mobile zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+						<i class="fa fa-eraser zm-flex-minimal"></i>
+						<span>
+							{{ ::t('core.components.toolbar.clear') }}
 						</span>
 					</li>
 				</items>

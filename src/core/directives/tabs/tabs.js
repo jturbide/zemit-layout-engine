@@ -64,6 +64,9 @@
 					if(rect.right > window.innerWidth && rect.left > 0) {
 						x = 'right';
 					}
+					else if(rect.left < 0) {
+						x = 'left';
+					}
 					else if(x === 'right') {
 						// Everything was fine, just skip the condition
 					}
@@ -73,6 +76,9 @@
 					
 					if(rect.bottom > window.innerHeight && rect.top > 0) {
 						y = 'bottom';
+					}
+					else if(rect.top < 0) {
+						y = 'top';
 					}
 					else if(y === 'bottom') {
 						// Everything was fine, just skip the condition

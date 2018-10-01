@@ -310,6 +310,9 @@ msgstr "Connect to workspace"
 msgid "core.components.toolbar.doc"
 msgstr "Doc"
 
+msgid "core.components.toolbar.clear"
+msgstr "Clear"
+
 msgid "core.components.toolbar.openWorkspaceDrawer"
 msgstr ""
 "Open the Workspace drawer and select or create a workspace/project/segment."
