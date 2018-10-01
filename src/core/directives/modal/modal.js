@@ -158,9 +158,20 @@
 					
 					adjustPosition: function(init = false, save = true) {
 						
+						let $container = $e.children();
+						$container.removeClass('zm-modal-exceed-x zm-modal-exceed-y');
+						
 						var params = $s.modal.params;
 						var $inner = $e.find('.zm-modal-inner:eq(0)');
 						var sizing = this.getSizing(init);
+						
+						let fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+						let marginSize = 1 * fontSize;
+							
+						$container.toggleClass('zm-modal-exceed-x', sizing.size.width > window.innerWidth - marginSize);
+						$container.toggleClass('zm-modal-exceed-y', sizing.size.height > window.innerHeight - marginSize);
+						var sizing = this.getSizing(init);
+						
 						this.restraintPosition(sizing.pos, sizing.size);
 						
 						$inner.css('top', '');

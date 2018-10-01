@@ -53,6 +53,8 @@
 }
 .zm-modal > .zm-modal-inner > .zm-modal-header > .zm-modal-close-btn {
   float: right;
+  margin: -1rem -1.5rem;
+  padding: 1rem 1.5rem;
 }
 .zm-modal > .zm-modal-inner > .zm-modal-body {
   background-color: white;
@@ -127,4 +129,24 @@
 }
 .zm-modal:active iframe {
   pointer-events: none;
+}
+
+/**
+ * Exceeding modal
+ */
+.zm-modal.zm-modal-exceed-x {
+  width: 100%;
+}
+.zm-modal.zm-modal-exceed-y {
+  height: 100%;
+}
+.zm-modal.zm-modal-exceed-y .zm-modal-inner {
+  height: calc(100% - 4rem);
+}
+.zm-modal.zm-modal-exceed-y .zm-modal-body {
+  overflow-y: auto;
+}
+.zm-modal.zm-modal-exceed-x .zm-modal-body {
+  overflow-x: auto;
+  flex: none;
 }
