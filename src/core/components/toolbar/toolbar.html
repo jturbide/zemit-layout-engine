@@ -93,6 +93,30 @@
 			
 			<!--<div class="zm-btn-sep zm-hide-mobile"></div>-->
 			
+			<span ng-if="$profile.hasProviders !== false" class="zm-toolbar-profile-container zm-flex-align-center zm-hide-mobile zm-flex-nowrap">
+				
+				<zm-loading visible="$profile.isLoaded === null" style="width: 6rem" />
+			
+				<span class="zm-toolbar-profile-container zm-flex-align-center zm-flex-nowrap" ng-if="$profile.isLoaded === true">
+					<img ng-src="{{ $profile.picture }}" class="zm-profile-pic" />
+					{{ $profile.givenName }}
+				</span>
+				
+				<!-- SIGN-IN -->
+				<zm-btn ng-if="$profile.isSignedIn === false" class="zm-btn-primary" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.signIn') }}" ng-click="$profile.signIn()">
+					<i class="fa fa-sign-in fa-margin-right"></i>
+					{{ ::t('core.components.toolbar.signIn') }}
+				</zm-btn>
+				
+				<!-- SIGN-OUT -->
+				<!--<zm-btn ng-if="$profile.isSignedIn === true" class="zm-btn-warning" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.signOut') }}" ng-click="$profile.signOut()">-->
+				<!--	<i class="fa fa-sign-out fa-margin-right"></i>-->
+				<!--	{{ ::t('core.components.toolbar.signOut') }}-->
+				<!--</zm-btn>-->
+				
+				<div class="zm-btn-sep zm-hide-mobile"></div>
+			</span>
+			
 			<!-- DOC -->
 			<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.doc') }}" class="zm-hide-mobile" ng-click="$modal.open('doc')">
 				<i class="fa fa-book fa-margin-right"></i>

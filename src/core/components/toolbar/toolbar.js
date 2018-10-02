@@ -1,6 +1,6 @@
 (function() {
 	
-	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', '$workspace', '$sessionWorkspace', '$hook', function($history, $zm, $modal, $session, $workspace, $sessionWorkspace, $hook) {
+	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', '$workspace', '$sessionWorkspace', '$hook', '$profile', function($history, $zm, $modal, $session, $workspace, $sessionWorkspace, $hook, $profile) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -16,6 +16,7 @@
 				$s.history = $history;
 				$s.$modal = $modal;
 				$s.session = session;
+				$s.$profile = $profile;
 				
 				$s.setTab = function(context) {
 					

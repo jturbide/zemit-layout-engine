@@ -123,3 +123,16 @@
     justify-content: center;
   }
 }
+
+/**
+ * Profile
+ */
+.zm-toolbar-profile-container {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-auto-flow: column;
+}
+.zm-toolbar-profile-container .zm-profile-pic {
+  max-height: 2rem;
+  border-radius: 3px;
+}

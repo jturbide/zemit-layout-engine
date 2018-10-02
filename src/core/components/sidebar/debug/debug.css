@@ -5,7 +5,7 @@
   overflow: auto;
   padding-left: 0;
   white-space: nowrap;
-  width: calc(33.333vw - 3.75rem);
+  width: calc(33.333vw - 5.25rem);
 }
 @media all and (max-width: 768px) {
   .zm-sidebar-debug-console {

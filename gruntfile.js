@@ -561,7 +561,7 @@ module.exports = function(grunt) {
 		'copy:gruntPrepare',
 		
 		'version', 'assets_inline', 'ngtemplates', 'includeSource', 'babel', 'replace', 'useminPrepare', 'concat',
-		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute', 'version', 'i18n:build',
+		'uglify', 'cssmin', 'usemin', 'template:build', 'replace_attribute', 'version', 'i18n',
 		// 'version', 'assets_inline', 'ngtemplates', 'includeSource', 'replace', 'useminPrepare', 'concat',
 		// 'replace_attribute', 'version', 'i18n:build',
 		

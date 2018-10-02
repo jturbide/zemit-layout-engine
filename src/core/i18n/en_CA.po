@@ -350,6 +350,18 @@ msgstr "Settings"
 msgid "core.components.toolbar.workspaceSaved"
 msgstr "Saved"
 
+msgid "core.components.toolbar.tooltip.signIn"
+msgstr "Sign-in to your account"
+
+msgid "core.components.toolbar.signIn"
+msgstr "Sign-In"
+
+msgid "core.components.toolbar.tooltip.signOut"
+msgstr "Sign-out from your account"
+
+msgid "core.components.toolbar.signOut"
+msgstr "Sign-Out"
+
 msgid "core.components.widget.column.desc"
 msgstr "Use it to divide your rows in more columns"
 
@@ -529,6 +541,9 @@ msgstr "Miscellaneous"
 
 msgid "core.modules.widget"
 msgstr "Widgets"
+
+msgid "core.modules.serviceProvider"
+msgstr "Service providers"
 
 #~ msgid "core.components.sidebar.workspace.btnEdit"
 #~ msgstr "Edit"

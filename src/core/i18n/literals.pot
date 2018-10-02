@@ -301,6 +301,12 @@ msgstr ""
 msgid "core.components.toolbar.preview"
 msgstr ""
 
+msgid "core.components.toolbar.signIn"
+msgstr ""
+
+msgid "core.components.toolbar.signOut"
+msgstr ""
+
 msgid "core.components.toolbar.structure"
 msgstr ""
 
@@ -323,6 +329,12 @@ msgid "core.components.toolbar.tooltip.redo"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.settings"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.signIn"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.signOut"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.undo"

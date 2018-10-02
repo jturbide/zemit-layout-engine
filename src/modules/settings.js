@@ -22,7 +22,8 @@
 			'example',
 			'code',
 			'partial',
-			'segment'
+			'segment',
+			'google'
 		]);
 	}]);
 })();

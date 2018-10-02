@@ -141,13 +141,15 @@
   height: 100%;
 }
 .zm-modal.zm-modal-exceed-y .zm-modal-inner {
-  height: calc(100% - 4rem);
+  height: calc(100% - 2rem);
 }
 .zm-modal.zm-modal-exceed-y .zm-modal-body {
-  overflow-y: auto;
+  overflow-y: auto !important;
+  overflow-x: hidden;
 }
 .zm-modal.zm-modal-exceed-x .zm-modal-body {
-  overflow-x: auto;
+  overflow-x: auto !important;
+  overflow-y: hidden;
 }
 .zm-modal.zm-modal-exceed-x:not(.zm-modal-exceed-y) .zm-modal-body {
   flex: none;

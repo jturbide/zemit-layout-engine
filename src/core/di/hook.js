@@ -16,7 +16,7 @@
 				return angular.copy(defaultStructure);
 			},
 				
-			add: function(name, callback, uniqId = null) {
+			add: function(name, callback, uniqId = null, priority = 0) {
 				
 				var vm = this;
 				
@@ -30,7 +30,8 @@
 					}
 					vm.list[n].push({
 						uniqId: uniqId,
-						callback: callback
+						callback: callback,
+						priority: priority
 					});
 				});
 			},
@@ -40,6 +41,12 @@
 				var vm = this;
 				var hooks = vm.list[name];
 				if(hooks) {
+					
+					// Sort by priority
+					hooks.sort(function(a, b) {
+					    return a.priority - a.priority;
+					});
+					
 					angular.forEach(hooks, function(hook) {
 						hook.callback(...params);
 					});

@@ -80,8 +80,37 @@
 			}
 		</style>
 	</head>
-	<body ng-cloak ng-app="zemit">
-		<zemit></zemit>
+	<body ng-app="zemit">
+		<zemit-loader zm-fade-out-kill="{ timeout: 250, hook: 'onReady' }">
+			<style>
+				zemit-loader {
+				  display: block;
+				  position: absolute;
+				  top: 0;
+				  left: 0;
+				  width: 100%;
+				  height: 100%;
+				  background-color: white;
+				  z-index: 10;
+				  background: white url('assets/img/logo-empty.png') center center no-repeat;
+				  background-repeat: no-repeat;
+				  animation: shrink 0.75s infinite alternate;
+				}
+				@keyframes shrink {
+				  0% {
+				    background-size: 10vmin auto;
+				  }
+				  100% {
+				    background-size: 15vmin auto;
+				  }
+				}
+				zemit-loader.zm-hide {
+					opacity: 0;
+					transition: opacity 0.25s linear;
+				}
+			</style>
+		</zemit-loader>
+		<zemit ng-cloak></zemit>
 		
 		<!-- build:js assets/js/vendors.min.js -->
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -156,6 +185,7 @@
 		<script src="./core/di/i18n.js"></script>
 		<script src="./core/di/modal.js"></script>
 		<script src="./core/di/modules.js"></script>
+		<script src="./core/di/profile.js"></script>
 		<script src="./core/di/socket.js"></script>
 		<script src="./core/di/storage.js"></script>
 		<script src="./core/di/util.js"></script>

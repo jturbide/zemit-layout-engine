@@ -4,6 +4,40 @@
 (function() {
 	
 	/**
+	 * Fade-Out Kill directives
+	 */
+	Zemit.app.directive('zmFadeOutKill', ['$hook', function($hook) {
+		return {
+			restrict: 'A',
+			scope: {
+				configs: '=?zmFadeOutKill'
+			},
+			link: function ($s, $e, attrs) {
+				
+				let configs = $s.configs || {
+					timeout: 250
+				};
+				
+				let callback = () => {
+					
+					let timeout = attrs.zmFadeOutKill;
+					setTimeout(() => {;
+						$e.addClass('zm-hide');
+						setTimeout(() => {
+							$e.remove();
+						}, configs.timeout);
+					}, configs.timeout);
+				}
+				
+				if(configs.hook) {
+					$hook.add(configs.hook, callback);
+				}
+				
+			}
+		};
+	}]);
+	
+	/**
 	 * General directives
 	 */
 	Zemit.app.directive('zmClickable', [function() {

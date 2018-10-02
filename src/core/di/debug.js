@@ -20,7 +20,7 @@
 		
 		var vm = {
 			
-			data: {},
+			data: [],
 			structure: {},
 			settings: {
 				maxLog: 250

@@ -28,7 +28,7 @@
 				$s.filters = {
 					query: ''
 				};
-				$s.groups = $modules.getAllToArray();
+				$s.groups = $modules.items;
 				$s.filteredGroups = [];
 				$s.tabs = settings.sidebar.modules.tabs;
 				$s.settings = angular.copy(settings.modules);
@@ -74,12 +74,17 @@
 				
 				$s.$watch('filters.query', () => {
 					
+					let results = [];
+					for(let group in $s.groups) {
+						results.push($s.groups[group]);
+					}
+					
 					if(!$s.filters.query) {
-						$s.filteredGroups = $s.groups;
+						$s.filteredGroups = results;
 					}
 					
 					let groups = [];
-					let originalGroups = angular.copy($s.groups);
+					let originalGroups = angular.copy(results);
 					originalGroups.forEach((group) => {
 						let found = $filter('search')(group.modules, (module) => {
 							return module.title + ' ' + module.desc + ' ' + group.title;

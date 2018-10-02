@@ -166,10 +166,10 @@
 						var sizing = this.getSizing(init);
 						
 						let fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-						let marginSize = 1 * fontSize;
+						let marginSize = (1 * fontSize);
 							
-						$container.toggleClass('zm-modal-exceed-x', sizing.size.width > window.innerWidth - marginSize);
-						$container.toggleClass('zm-modal-exceed-y', sizing.size.height > window.innerHeight - marginSize);
+						$container.toggleClass('zm-modal-exceed-x', sizing.size.width - marginSize > window.innerWidth);
+						$container.toggleClass('zm-modal-exceed-y', sizing.size.height - marginSize > window.innerHeight);
 						var sizing = this.getSizing(init);
 						
 						this.restraintPosition(sizing.pos, sizing.size);

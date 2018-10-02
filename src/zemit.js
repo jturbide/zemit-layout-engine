@@ -23,12 +23,13 @@ var Zemit = {
 	/**
 	 * Dynamic directive loader
 	 */
-	Zemit.app.config(function($compileProvider) {
+	Zemit.app.config(function($compileProvider, $provide) {
 		$compileProvider.debugInfoEnabled(false);
 		Zemit.app.compileProvider = $compileProvider;
+		Zemit.app.provide = $provide;
 	});
 	
-	Zemit.app.run(['$rootScope', '$injector', '$hook', function($rs, $injector, $hook) {
+	Zemit.app.run(['$rootScope', '$injector', '$hook', '$profile', function($rs, $injector, $hook) {
 		
 		$hook.add('onReady', () => {
 			
@@ -45,6 +46,8 @@ var Zemit = {
 					callback.apply(null, injectors);
 				}
 			});
+			
+			$rs.isReady = true;
 		});
 	}]);
 	
@@ -111,8 +114,13 @@ var Zemit = {
 					$s.$broadcast('documentClick', event);
 				});
 				
-				// OK, everything should be ready now
-				$hook.run('onReady');
+				// Whenever all modules are loaded, run onReady hooks
+				$hook.add('onAllModulesRan', () => {
+					$hook.run('onReady');
+				});
+				
+				// Allow other stuff to execute before the final state
+				$hook.run('onBeforeReady');
 				
 				console.log('ZEMIT INIT');
 			}
