@@ -42,7 +42,7 @@
 				
 				<i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': tabs[group.name].visible, 'fa-chevron-right': !tabs[group.name].visible}"></i>
 			</div>
-			<div class="zm-sidebar-content" ng-show="tabs[group.name].visible">
+			<div class="zm-sidebar-content" zm-slide-y="tabs[group.name].visible">
 				
 				<!-- LIST OF ITEMS (REPEAT) -->
 				<div class="zm-sidebar-modules-item zm-modules-item zm-p-3" ng-repeat="module in group.modules" ng-class="{ activated: settings[module.name].activated }">

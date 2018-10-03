@@ -3,18 +3,20 @@
 	<!-- GROUP TITLE -->
 	<div ng-click="lvlSettings.viewItems = !lvlSettings.viewItems" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': lvlSettings.viewItems }"></div>
 	
-	<div ng-show="lvlSettings.viewItems" class="zm-p-3 zm-pr-0 zm-field-treeview-sub-level">
-		
-		<!-- BEFORE -->
-		<div ng-include="lvlOptions.beforeTemplate || defaultLvlBefore"></div>
-
-		<!-- LIST OF ELEMENTS -->
-		<ol ng-if="depth < options.levels.length">
-			<!--<li ng-class="{ 'zm-mb-3': lvlList.length > 0 }" ng-include="defaultLvlOptions"></li>-->
-			<li ng-class="{ first: $index === 0, last: filteredLvlList.length === ($index + 1) }" ng-init="depth = depth + 1; parentList = lvlList; parent = currentNode;" class="zm-treeview-list-item zm-treeview-list-item-depth{{ depth }}" ng-repeat="node in filteredLvlList = filter(lvlList) track by $index" ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
-		</ol>
-		
-		<!-- AFTER -->
-		<div ng-include="lvlOptions.afterTemplate || defaultLvlAfter"></div>
+	<div class="zm-field-treeview-sub-level" zm-slide-y="lvlSettings.viewItems">
+		<div class="zm-p-3 zm-pr-0">
+			
+			<!-- BEFORE -->
+			<div ng-include="lvlOptions.beforeTemplate || defaultLvlBefore"></div>
+	
+			<!-- LIST OF ELEMENTS -->
+			<ol ng-if="depth < options.levels.length">
+				<!--<li ng-class="{ 'zm-mb-3': lvlList.length > 0 }" ng-include="defaultLvlOptions"></li>-->
+				<li ng-class="{ first: $index === 0, last: filteredLvlList.length === ($index + 1) }" ng-init="depth = depth + 1; parentList = lvlList; parent = currentNode;" class="zm-treeview-list-item zm-treeview-list-item-depth{{ depth }}" ng-repeat="node in filteredLvlList = filter(lvlList) track by $index" ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
+			</ol>
+			
+			<!-- AFTER -->
+			<div ng-include="lvlOptions.afterTemplate || defaultLvlAfter"></div>
+		</div>
 	</div>
 </div>

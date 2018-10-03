@@ -72,31 +72,33 @@
 					});
 				};
 				
-				$s.$watch('filters.query', () => {
-					
-					let results = [];
-					for(let group in $s.groups) {
-						results.push($s.groups[group]);
-					}
-					
-					if(!$s.filters.query) {
-						$s.filteredGroups = results;
-					}
-					
-					let groups = [];
-					let originalGroups = angular.copy(results);
-					originalGroups.forEach((group) => {
-						let found = $filter('search')(group.modules, (module) => {
-							return module.title + ' ' + module.desc + ' ' + group.title;
-						}, $s.filters.query, true);
+				['groups', 'filters.query'].forEach(toWatch => {
+					$s.$watch(toWatch, () => {
 						
-						if(found.length > 0) {
-							group.modules = found
-							groups = groups.concat(group);
+						let results = [];
+						for(let group in $s.groups) {
+							results.push($s.groups[group]);
 						}
+						
+						if(!$s.filters.query) {
+							$s.filteredGroups = results;
+						}
+						
+						let groups = [];
+						let originalGroups = angular.copy(results);
+						originalGroups.forEach((group) => {
+							let found = $filter('search')(group.modules, (module) => {
+								return module.title + ' ' + module.desc + ' ' + group.title;
+							}, $s.filters.query, true);
+							
+							if(found.length > 0) {
+								group.modules = found
+								groups = groups.concat(group);
+							}
+						});
+						
+						$s.filteredGroups = groups;
 					});
-					
-					$s.filteredGroups = groups;
 				});
 			}
 		}

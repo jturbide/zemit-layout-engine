@@ -13,7 +13,9 @@
 			</toggle>
 		</div>
 	</span>
-	<ul ng-click="tabs.clickInside()" class="zm-tabs-list zm-shadow-down" zm-invisible="!tabs.visible" ng-transclude="items">
-		<!-- TRANSCLUDE HERE -->
-	</ul>
+	<div zm-slide-y="tabs.visible" class="zm-tabs-list">
+		<ul class="zm-shadow-down" ng-transclude="items" ng-click="tabs.clickInside()">
+			<!-- TRANSCLUDE HERE -->
+		</ul>
+	</div>
 </div>

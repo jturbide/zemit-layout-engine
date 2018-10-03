@@ -8,6 +8,7 @@
 .zm-treeview-group-back,
 .zm-treeview-group-title {
   padding: 0.25rem 1rem;
+  background-color: white;
   border: #ccc solid 1px;
   background-color: rgba(0, 0, 0, 0.05);
 }

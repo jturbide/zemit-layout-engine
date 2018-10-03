@@ -41,11 +41,7 @@
 						this.visible = false;
 					},
 					clickInside: function() {
-						$timeout(function() {
-							if(attrs.zmTabsKeepOpen === undefined) {
-								tabs.close();
-							}
-						});
+						$rs.$broadcast('documentClick');
 					}
 				};
 				

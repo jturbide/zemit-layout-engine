@@ -47,14 +47,16 @@
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 15;
+  min-width: calc(100% - 2px);
+}
+.zm-tabs-list ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   border: #ccc solid 1px;
   background-color: white;
-  z-index: 15;
   border-radius: 0.25rem;
-  min-width: calc(100% - 2px);
 }
 .zm-tabs-list li:first-child {
   border-radius: 0.2rem 0.2rem 0 0;

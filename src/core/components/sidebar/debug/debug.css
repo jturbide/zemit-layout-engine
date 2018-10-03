@@ -9,7 +9,7 @@
 }
 @media all and (max-width: 768px) {
   .zm-sidebar-debug-console {
-    width: calc(100vw - 3.75rem);
+    width: calc(100vw - 4.5rem);
   }
 }
 .zm-sidebar-debug-console-empty {
