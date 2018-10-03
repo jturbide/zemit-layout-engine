@@ -18,9 +18,10 @@
 				
 				$s.title = attrs.title;
 				
-				$s.toggle = function() {
+				$s.toggle = function(event) {
 					$s.ngModel = !$s.ngModel;
 					$s.ngChange();
+					event.preventDefault();
 				};
 			}
 		}
