@@ -50,6 +50,7 @@
 				};
 				
 				$s.tabs = tabs;
+				$s.style = attrs.style || 'button';
 				
 				var applyPosition = () => {
 					

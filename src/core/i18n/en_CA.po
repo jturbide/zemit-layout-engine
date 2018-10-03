@@ -313,9 +313,9 @@ msgstr "Doc"
 msgid "core.components.toolbar.clear"
 msgstr "Clear"
 
-msgid "core.components.toolbar.openWorkspaceDrawer"
+msgid "core.components.toolbar.notConnectedDataBrowser"
 msgstr ""
-"Open the Workspace drawer and select or create a workspace/project/segment."
+"Data will be saved in your browser session unless you sign-in."
 
 msgid "core.components.toolbar.preview"
 msgstr "Preview"
@@ -331,6 +331,9 @@ msgstr "Clear document"
 
 msgid "core.components.toolbar.tooltip.doc"
 msgstr "Documentation"
+
+msgid "core.components.toolbar.tooltip.myAccount"
+msgstr "My account"
 
 msgid "core.components.toolbar.export"
 msgstr "Export"
@@ -496,6 +499,9 @@ msgstr "The content has been automatically downloaded into your computer."
 
 msgid "core.di.zm.modalExportTitle"
 msgstr "Content exported"
+
+msgid "core.di.profile.debugTitle"
+msgstr "Profile events"
 
 msgid "core.directives.draggable.debugTitle"
 msgstr "Draggable events"

@@ -118,6 +118,9 @@
   height: 100%;
   box-sizing: border-box;
 }
+.zm-tabs-style-flat toggle {
+  padding: 0;
+}
 .zm-tabs toggle > * {
   width: 100%;
 }

@@ -1,7 +1,7 @@
 <div class="zm-toolbar">
 	<div class="zm-toolbar-inner zm-clearfix">
 		
-		<!-- TABS -->
+		<!-- SECTIONS -->
 		<zm-tabs anchor="top-left" ng-disabled="!$sessionWorkspace.isValid()" class="zm-toolbar-sections">
 			<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.changeMode') }}">
 				
@@ -42,6 +42,7 @@
 			</items>
 		</zm-tabs>
 		
+		<!-- CONTEXT -->
 		<div class="zm-toolbar-actions zm-toolbar-actions-context">
 			
 			<!-- UNDO -->
@@ -62,11 +63,15 @@
 			</zm-btn>
 		</div>
 		
+		<!-- ACTIONS -->
 		<div class="zm-toolbar-actions zm-flex-container zm-flex-align-center zm-toolbar-actions-workspace">
-			<!--<div ng-if="breadcrumbs.length === 0" class="zm-flex-container zm-flex-container-gap zm-flex-align-center">-->
-			<!--	<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>-->
-			<!--	<span>{{ ::t('core.components.toolbar.openWorkspaceDrawer') }}</span>-->
-			<!--</div>-->
+			
+			<!-- NOT CONNECTED, DATA SAVED IN BROWSER -->
+			<div ng-if="$profile.isSignedIn === false" class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+				<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>
+				<span>{{ ::t('core.components.toolbar.notConnectedDataBrowser') }}</span>
+			</div>
+			
 			<div ng-repeat="breadcrumb in breadcrumbs">
 				{{ breadcrumb.label }}
 				<i ng-if="$index < breadcrumbs.length" class="fa fa-angle-right"></i>
@@ -77,30 +82,35 @@
 			</span>
 		</div>
 		
+		<!-- GENERAL -->
 		<div class="zm-toolbar-actions zm-toolbar-actions-general">
 			
-			<!--<div class="zm-btn-sep zm-hide-mobile"></div>-->
-			
-			<!-- IMPORT -->
-			<!--<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.import') }}" class="zm-hide-mobile" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">-->
-			<!--	<i class="fa fa-download"></i>-->
-			<!--</zm-btn>-->
-			
-			<!-- EXPORT -->
-			<!--<zm-btn zm-tooltip="{{ ::t('core.components.toolbar.tooltip.export') }}" class="zm-hide-mobile" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.export()">-->
-			<!--	<i class="fa fa-upload"></i>-->
-			<!--</zm-btn>-->
-			
-			<!--<div class="zm-btn-sep zm-hide-mobile"></div>-->
-			
+			<!-- ACCOUNT -->
 			<span ng-if="$profile.hasProviders !== false" class="zm-toolbar-profile-container zm-flex-align-center zm-hide-mobile zm-flex-nowrap">
 				
-				<zm-loading visible="$profile.isLoaded === null" style="width: 6rem" />
+				<!-- LOADING -->
+				<zm-loading ng-if="$profile.isLoaded === null" visible="$profile.isLoaded === null" style="width: 6rem" />
 			
-				<span class="zm-toolbar-profile-container zm-flex-align-center zm-flex-nowrap" ng-if="$profile.isLoaded === true">
-					<img ng-src="{{ $profile.picture }}" class="zm-profile-pic" />
-					{{ $profile.givenName }}
-				</span>
+				<!-- USER INFO -->
+				<zm-tabs ng-if="$profile.isSignedIn === true" anchor="top-left" style="flat">
+					<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.myAccount') }}">
+						
+						<img ng-src="{{ $profile.picture }}" class="zm-profile-pic" />
+						{{ $profile.givenName }}
+						
+						<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
+					</toggle>
+					<items>
+						
+						<!-- SIGN-OUT -->
+						<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-click="$profile.signOut()">
+							<i class="fa fa-sign-out zm-flex-minimal"></i>
+							<span>
+								{{ ::t('core.components.toolbar.signOut') }}
+							</span>
+						</li>
+					</items>
+				</zm-tabs>
 				
 				<!-- SIGN-IN -->
 				<zm-btn ng-if="$profile.isSignedIn === false" class="zm-btn-primary" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.signIn') }}" ng-click="$profile.signIn()">
@@ -108,12 +118,7 @@
 					{{ ::t('core.components.toolbar.signIn') }}
 				</zm-btn>
 				
-				<!-- SIGN-OUT -->
-				<!--<zm-btn ng-if="$profile.isSignedIn === true" class="zm-btn-warning" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.signOut') }}" ng-click="$profile.signOut()">-->
-				<!--	<i class="fa fa-sign-out fa-margin-right"></i>-->
-				<!--	{{ ::t('core.components.toolbar.signOut') }}-->
-				<!--</zm-btn>-->
-				
+				<!-- SEP -->
 				<div class="zm-btn-sep zm-hide-mobile"></div>
 			</span>
 			

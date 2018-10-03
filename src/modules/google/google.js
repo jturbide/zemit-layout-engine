@@ -17,8 +17,6 @@
 						
 						_clientId: '261375955062-oo0ji60ngln7ht9p8pi32rn4ksu7ltp6.apps.googleusercontent.com',
 						
-						isSignedIn: null,
-						
 						init: (clientId, callback) => {
 							
 							gapi.client.init({
@@ -55,18 +53,33 @@
 						
 						handleSignInClick(event) {
 							
-							gapi.auth2.getAuthInstance().signIn();
+							return gapi.auth2.getAuthInstance().signIn();
 						},
 						
 						handleSignOutClick(event) {
 							
-							gapi.auth2.getAuthInstance().signOut();
+							return gapi.auth2.getAuthInstance().signOut();
 						},
 						
 						updateSigninStatus: function(isSignedIn) {
 							
-							this.isSignedIn  = isSignedIn;
-							this.updateProfile();
+							if(isSignedIn) {
+								this.getProfile().then(profile => {
+									
+									$profile.loadProfile({
+										givenName: profile.person.givenName,
+										displayName: profile.person.displayName,
+										picture: profile.picture.url
+									});
+									
+									$rs.$digest();
+								});
+							}
+							else {
+								$profile.clearProfile();
+							}
+							
+							$rs.$digest();
 						},
 						
 						getProfile: () => {
@@ -82,29 +95,6 @@
 									});
 								});
 							});
-						},
-						
-						updateProfile: function() {
-							
-							if(this.isSignedIn) {
-								
-								this.getProfile().then(profile => {
-									
-									$profile.givenName = profile.person.givenName;
-									$profile.displayName = profile.person.displayName;
-									$profile.picture = profile.picture.url;
-									$profile.isLoaded = true;
-									
-									$rs.$digest();
-								});
-							}
-							else {
-								
-								$profile.isLoaded = false;
-							}
-							
-							$profile.isSignedIn = this.isSignedIn;
-							$rs.$digest();
 						},
 						
 						listFiles: () => {
@@ -209,35 +199,41 @@
 			},
 			
 			onInit: ($injector) => {
-				
+					
 				let $google = $injector.get('$google');
 				
 				$profile.addProvider('google', {
 					onSignIn: () => {
-						$google.handleSignInClick();
+						return $google.handleSignInClick();
 					},
 					onSignOut: () => {
-						$google.handleSignOutClick();
+						return $google.handleSignOutClick();
 					},
 					onInit: () => {
 						
-						let tag = document.createElement('script');
-						tag.src = 'https://apis.google.com/js/api.js';
-						tag.setAttribute('async', true);
-						tag.setAttribute('defer', true);
-						tag.onreadystatechange = () => {
+						return new Promise((success, error) => {
 							
-							if(this.readyState === 'complete') {
-								this.onload();
-							}
-						};
-						tag.onload = () => {
+							let tag = document.createElement('script');
+							tag.src = 'https://apis.google.com/js/api.js';
+							tag.setAttribute('async', true);
+							tag.setAttribute('defer', true);
+							tag.onreadystatechange = () => {
+								
+								if(this.readyState === 'complete') {
+									this.onload();
+								}
+							};
+							tag.onload = () => {
+								
+								tag.onload = function() {};
+								$google.handleClientLoad(response => {
+									success(response);
+									$rs.$digest();
+								});
+							};
 							
-							tag.onload = function() {};
-							$google.handleClientLoad();
-						};
-						
-						document.head.appendChild(tag);
+							document.head.appendChild(tag);
+						});
 					},
 					onConnect: () => {
 						

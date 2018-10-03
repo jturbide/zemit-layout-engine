@@ -295,7 +295,7 @@ msgstr ""
 msgid "core.components.toolbar.import"
 msgstr ""
 
-msgid "core.components.toolbar.openWorkspaceDrawer"
+msgid "core.components.toolbar.notConnectedDataBrowser"
 msgstr ""
 
 msgid "core.components.toolbar.preview"
@@ -319,10 +319,7 @@ msgstr ""
 msgid "core.components.toolbar.tooltip.doc"
 msgstr ""
 
-msgid "core.components.toolbar.tooltip.export"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.import"
+msgid "core.components.toolbar.tooltip.myAccount"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.redo"
@@ -332,9 +329,6 @@ msgid "core.components.toolbar.tooltip.settings"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.signIn"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.signOut"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.undo"
@@ -431,6 +425,9 @@ msgid "core.di.modal.infoTitle"
 msgstr ""
 
 msgid "core.di.modal.warningTitle"
+msgstr ""
+
+msgid "core.di.profile.debugTitle"
 msgstr ""
 
 msgid "core.di.storage.errModelNotInitiated"

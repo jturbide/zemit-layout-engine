@@ -309,10 +309,9 @@ msgstr "Mettre à jour un espace"
 msgid "core.components.toolbar.doc"
 msgstr "Doc"
 
-msgid "core.components.toolbar.openWorkspaceDrawer"
+msgid "core.components.toolbar.notConnectedDataBrowser"
 msgstr ""
-"Ouvrez le tirroir à espaces pour sélectionner ou créer un espace/projet/"
-"segment."
+"Vos données seront sauvegardés dans votre session de navigateur à moins que vous vous connectez."
 
 msgid "core.components.toolbar.preview"
 msgstr "Aperçu"

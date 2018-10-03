@@ -1,11 +1,18 @@
-<div class="zm-tabs">
-	<zm-btn class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle();">
+<div class="zm-tabs zm-tabs-style-{{ style }}">
+	<zm-btn ng-if="style === 'button'" class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle();">
 		<div class="zm-tabs-toggle zm-h100" ng-transclude="toggle">
 			<toggle>
 				<i class="fa fa-bars"></i>
 			</toggle>
 		</div>
 	</zm-btn>
+	<span ng-if="style === 'flat'" class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle();">
+		<div class="zm-tabs-toggle zm-h100" ng-transclude="toggle">
+			<toggle>
+				<i class="fa fa-bars"></i>
+			</toggle>
+		</div>
+	</span>
 	<ul ng-click="tabs.clickInside()" class="zm-tabs-list zm-shadow-down" zm-invisible="!tabs.visible" ng-transclude="items">
 		<!-- TRANSCLUDE HERE -->
 	</ul>
