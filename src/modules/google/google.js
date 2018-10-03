@@ -226,10 +226,7 @@
 							tag.onload = () => {
 								
 								tag.onload = function() {};
-								$google.handleClientLoad(response => {
-									success(response);
-									$rs.$digest();
-								});
+								$google.handleClientLoad(success);
 							};
 							
 							document.head.appendChild(tag);

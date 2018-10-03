@@ -44,23 +44,25 @@
 		
 		<!-- CONTEXT -->
 		<div class="zm-toolbar-actions zm-toolbar-actions-context">
-			
-			<!-- UNDO -->
-			<zm-btn ng-disabled="!history.canUndo" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.undo') }}" ng-click="history.undo()">
-				<i class="fa fa-undo"></i>
-			</zm-btn>
-			
-			<!-- REDO -->
-			<zm-btn ng-disabled="!history.canRedo" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.redo') }}" ng-click="history.redo()">
-				<i class="fa fa-repeat"></i>
-			</zm-btn>
-			
-			<div class="zm-btn-sep zm-hide-mobile"></div>
-			
-			<!-- CLEAR -->
-			<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
-				<i class="fa fa-eraser"></i>
-			</zm-btn>
+			<span class="zm-toolbar-items-container zm-flex-align-center zm-hide-mobile zm-flex-nowrap">
+				
+				<!-- UNDO -->
+				<zm-btn ng-disabled="!history.canUndo" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.undo') }}" ng-click="history.undo()">
+					<i class="fa fa-undo"></i>
+				</zm-btn>
+				
+				<!-- REDO -->
+				<zm-btn ng-disabled="!history.canRedo" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.redo') }}" ng-click="history.redo()">
+					<i class="fa fa-repeat"></i>
+				</zm-btn>
+				
+				<div class="zm-btn-sep zm-hide-mobile"></div>
+				
+				<!-- CLEAR -->
+				<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+					<i class="fa fa-eraser"></i>
+				</zm-btn>
+			</span>
 		</div>
 		
 		<!-- ACTIONS -->
@@ -86,7 +88,7 @@
 		<div class="zm-toolbar-actions zm-toolbar-actions-general">
 			
 			<!-- ACCOUNT -->
-			<span ng-if="$profile.hasProviders !== false" class="zm-toolbar-profile-container zm-flex-align-center zm-hide-mobile zm-flex-nowrap">
+			<span ng-if="$profile.hasProviders !== false" class="zm-toolbar-profile-container zm-toolbar-items-container zm-flex-align-center zm-hide-mobile zm-flex-nowrap">
 				
 				<!-- LOADING -->
 				<zm-loading ng-if="$profile.isLoaded === null" visible="$profile.isLoaded === null" style="width: 6rem" />

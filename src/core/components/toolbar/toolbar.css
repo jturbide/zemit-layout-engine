@@ -25,6 +25,9 @@
   border-bottom: 0;
   grid-area: sections;
 }
+.zm-toolbar .zm-btn {
+  min-height: 2.143rem;
+}
 .zm-toolbar-actions {
   display: grid;
   grid-gap: 0.5rem;
@@ -124,14 +127,15 @@
   }
 }
 
-/**
- * Profile
- */
-.zm-toolbar-profile-container {
+.zm-toolbar-items-container {
   display: grid;
   grid-gap: 0.5rem;
   grid-auto-flow: column;
 }
+
+/**
+ * Profile
+ */
 .zm-toolbar-profile-container .zm-profile-pic {
   max-height: 2rem;
   border-radius: 3px;

@@ -3,7 +3,7 @@
  * @author: <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', function($hook, $debug, $i18n) {
+	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', function($hook, $debug, $i18n, $rs) {
 		
 		$hook.add('onReady', () => {
 			$debug.init('profile', $i18n.get('core.di.profile.debugTitle'));
@@ -38,8 +38,8 @@
 						if(provider.props.onInit instanceof Function) {
 							provider.props.onInit().then(response => {
 								factory.isLoaded = true;
-								
 								$debug.log('profile', 'INIT', provider);
+								$rs.$digest();
 							});
 						}
 					});
@@ -55,6 +55,7 @@
 						provider.props.onConnect().then(response => {
 							
 							$debug.log('profile', 'CONNECT', provider);
+							$rs.$digest();
 						});
 					}
 				});
@@ -99,6 +100,7 @@
 							factory.isSignedIn = true;
 							
 							$debug.log('profile', 'SIGNED IN', provider);
+							$rs.$digest();
 						});
 					}
 				});
@@ -113,6 +115,7 @@
 							factory.isSignedIn = false;
 							
 							$debug.log('profile', 'SIGNED OUT', provider);
+							$rs.$digest();
 						});
 					}
 				});
