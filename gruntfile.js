@@ -255,25 +255,6 @@ module.exports = function(grunt) {
 			},
 		}
 	});
-
-	// Load the plugins
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-uglify-es');
-	grunt.loadNpmTasks('grunt-angular-templates');
-	grunt.loadNpmTasks('grunt-usemin');
-	grunt.loadNpmTasks('grunt-include-source');
-	grunt.loadNpmTasks('grunt-embed');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-assets-inline');
-	grunt.loadNpmTasks('grunt-sw-precache');
-	grunt.loadNpmTasks('grunt-appcache');
-	grunt.loadNpmTasks('grunt-version');
-	grunt.loadNpmTasks('grunt-template-render');
-	grunt.loadNpmTasks('grunt-babel');
-	grunt.loadNpmTasks('grunt-replace');
-	grunt.loadNpmTasks('grunt-replace-attribute');
 	
 	grunt.registerMultiTask('zmModule', 'Module compiler', function(args) {
 		
@@ -551,6 +532,27 @@ module.exports = function(grunt) {
 				break;
 		}
 	});
+	
+	
+
+	// Load the plugins
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-uglify-es');
+	grunt.loadNpmTasks('grunt-angular-templates');
+	grunt.loadNpmTasks('grunt-usemin');
+	grunt.loadNpmTasks('grunt-include-source');
+	grunt.loadNpmTasks('grunt-embed');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-assets-inline');
+	grunt.loadNpmTasks('grunt-sw-precache');
+	grunt.loadNpmTasks('grunt-appcache');
+	grunt.loadNpmTasks('grunt-version');
+	grunt.loadNpmTasks('grunt-template-render');
+	grunt.loadNpmTasks('grunt-babel');
+	grunt.loadNpmTasks('grunt-replace');
+	grunt.loadNpmTasks('grunt-replace-attribute');
 
 	// Tasks declaration
 	grunt.registerTask('default', ['build']);

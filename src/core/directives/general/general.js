@@ -133,6 +133,7 @@
 								block = null;
 							}
 						}
+						
 						let timeout = parseInt($s.$eval(attrs.zmIfTimeout)) === 0 ? 0 : 250;
 						timeout > 0 ? setTimeout(callback, timeout) : callback();
 					}
