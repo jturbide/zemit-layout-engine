@@ -163,7 +163,7 @@
     flex-basis: 33.333vw;
   }
   .zm-sidebar-tab > * {
-    min-width: calc(33.333vw - 2.85rem);
+    min-width: calc(33.333vw - 5rem);
   }
 }
 .zm-sidebar-tabs {
