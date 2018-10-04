@@ -4,7 +4,7 @@
 	<div ng-click="lvlSettings.viewItems = !lvlSettings.viewItems" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': lvlSettings.viewItems }"></div>
 	
 	<div class="zm-field-treeview-sub-level" zm-slide-y="lvlSettings.viewItems">
-		<div class="zm-p-3 zm-pr-0">
+		<div class="zm-field-treeview-sub-level-inner zm-p-3 zm-pr-0">
 			
 			<!-- BEFORE -->
 			<div ng-include="lvlOptions.beforeTemplate || defaultLvlBefore"></div>

@@ -129,3 +129,25 @@
     flex: 100%;
   }
 }
+
+/**
+ * Transition
+ */
+.zm-sidebar {
+  transition: flex-basis 0.25s ease-out;
+}
+.zm-sidebar.zm-open {
+  flex-grow: 1;
+  flex-basis: 33.333vw;
+}
+.zm-sidebar-tab {
+  width: 0;
+  overflow: hidden;
+}
+.zm-sidebar-tab > * {
+  min-width: calc(33.333vw - 2.85rem);
+  flex-wrap: nowrap !important;
+}
+.zm-sidebar-tabs {
+  margin-left: auto;
+}

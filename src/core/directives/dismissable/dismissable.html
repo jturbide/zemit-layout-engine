@@ -1,4 +1,4 @@
-<div ng-if="(locked || settings.directives.dismissable.visible) && (!list || getEffectiveList().length > 0)">
+<div zm-slide-y="isVisible" ng-if="!list || getEffectiveList().length > 0">
 	
 	<!-- SINGLE -->
 	<div ng-if="!list" class="zm-dismissable zm-bg-{{ type }}">

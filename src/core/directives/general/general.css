@@ -58,6 +58,10 @@
 /**
  * Slide
  */
+/*.zm-slide {*/
+/*	position: relative;*/
+/*	z-index: 2;*/
+/*}*/
 .zm-slide.zm-slide-restricted {
 	overflow: hidden;
 }

@@ -20,14 +20,15 @@
 				$container.toggleClass('zm-slide-restricted', !$s.visible);
 				
 				$s.styling = {
-					height: null
+					// zIndex: 0,
+					height: !$s.visible ? 0 : null
 				};
 				
 				$timeout(() => {
 					
 					$s.styling = {
 						height: $s.visible
-							? $s.styling.height = $container.children().outerHeight()
+							? null
 							: 0
 					};
 					
@@ -47,6 +48,8 @@
 							$s.styling.height = height;
 						}
 						
+						// $s.styling.zIndex = !nv ? 0 : null;
+						
 						$timeout(() => {
 							$s.styling.height = nv ? height : 0;
 							
@@ -59,6 +62,79 @@
 							}, 250);
 						});
 						
+					}
+				});
+			}
+		};
+	}]);
+	
+	/**
+	 * If condition
+	 */
+	Zemit.app.directive('zmIf', ['$animate', '$compile', function($animate, $compile) {
+		return {
+			multiElement: true,
+			transclude: 'element',
+			priority: 600,
+			terminal: true,
+			restrict: 'A',
+			$$tlb: true,
+			link: function ($s, $e, attrs, ctrl, transclude) {
+				
+				function getBlockNodes(nodes) {
+					// TODO(perf): update `nodes` instead of creating a new object?
+					var node = nodes[0];
+					var endNode = nodes[nodes.length - 1];
+					var blockNodes;
+				
+					for (var i = 1; node !== endNode && (node = node.nextSibling); i++) {
+						if (blockNodes || nodes[i] !== node) {
+							if (!blockNodes) {
+								blockNodes = jqLite(slice.call(nodes, 0, i));
+							}
+							blockNodes.push(node);
+						}
+					}
+				
+					return blockNodes || nodes;
+				}
+				
+				var block, childScope, previousElements;
+				$s.$watch(attrs.zmIf, function ngIfWatchAction(value) {
+					
+					if (value) {
+						if (!childScope) {
+							transclude(function(clone, newScope) {
+								childScope = newScope;
+								clone[clone.length++] =
+									$compile.$$createComment('end ngIf', attrs.zmIf);
+									
+								block = { clone: clone };
+								$animate.enter(clone, $e.parent(), $e);
+							});
+						}
+					}
+					else {
+						
+						let callback = () => {
+							if (previousElements) {
+								previousElements.remove();
+								previousElements = null;
+							}
+							if (childScope) {
+								childScope.$destroy();
+								childScope = null;
+							}
+							if (block) {
+								previousElements = getBlockNodes(block.clone);
+								$animate.leave(previousElements).done(function(response) {
+									if (response !== false) previousElements = null;
+								});
+								block = null;
+							}
+						}
+						let timeout = parseInt($s.$eval(attrs.zmIfTimeout)) === 0 ? 0 : 250;
+						timeout > 0 ? setTimeout(callback, timeout) : callback();
 					}
 				});
 			}

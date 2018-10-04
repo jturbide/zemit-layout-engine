@@ -26,6 +26,15 @@
 				$s.type = attrs.type;
 				$s.locked = attrs.locked !== undefined;
 				$s.index = 0;
+				$s.getIsVisible = () => {
+					return $s.locked || settings.directives.dismissable.visible;
+				};
+				$s.$watch('settings.directives.dismissable.visible', (nv, ov) => {
+					if(nv !== ov) {
+						$s.isVisible = $s.getIsVisible();
+					}
+				});
+				$s.isVisible = $s.getIsVisible();
 				
 				if($s.list) {
 					

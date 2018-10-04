@@ -1,9 +1,9 @@
 <div class="zm-sidebar" ng-class="{'zm-open': tabs.showContent, 'zm-hide-all-tabs': tabs.hidden}">
 	<div class="zm-sidebar-inner zm-clearfix zm-flex-container">
-		<div ng-show="tabs.showContent" class="zm-sidebar-tab zm-flex-container">
+		<div zm-if="tabs.showContent" class="zm-sidebar-tab zm-flex-container">
 			
 			<!-- WORKSPACE -->
-			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.workspace.visible">
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.workspace.visible" zm-if-timeout="tabs.showContent ? 0 : 250">
 				<zm-sidebar-workspace></zm-sidebar-workspace>
 			</div>
 				
@@ -13,22 +13,22 @@
 			<!--</div>-->
 			
 			<!-- WIDGETS -->
-			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.widgets.visible && settings.context === 'structure' && $sessionWorkspace.isValid()">
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.widgets.visible && settings.context === 'structure' && $sessionWorkspace.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250">
 				<zm-sidebar-widgets></zm-sidebar-widgets>
 			</div>
 			
 			<!-- MEDIA -->
-			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.media.visible && settings.context === 'structure' && $sessionWorkspace.isValid()">
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.media.visible && settings.context === 'structure' && $sessionWorkspace.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250">
 				<zm-sidebar-media></zm-sidebar-media>
 			</div>
 			
 			<!-- MODULES -->
-			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.modules.visible && settings.context === 'structure'" class="zm-sidebar-group">
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.modules.visible && settings.context === 'structure'" zm-if-timeout="tabs.showContent ? 0 : 250" class="zm-sidebar-group">
 				<zm-sidebar-modules></zm-sidebar-modules>
 			</div>
 			
 			<!-- DEBUG -->
-			<div class="zm-flex-container" ng-show="settings.sidebar.tabs.debug.visible && settings.context === 'structure'" class="zm-sidebar-group" ng-if="settings.debug.activated">
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.debug.visible && settings.context === 'structure'" class="zm-sidebar-group" zm-if="settings.debug.activated" zm-if-timeout="tabs.showContent ? 0 : 250">
 				<zm-sidebar-debug></zm-sidebar-debug>
 			</div>
 		</div>
