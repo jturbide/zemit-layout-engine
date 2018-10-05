@@ -6,7 +6,7 @@
 	/**
 	 * Switch field
 	 */
-	Zemit.app.directive('zmFieldTreeview', ['$timeout', '$filter', function($timeout, $filter) {
+	Zemit.app.directive('zmFieldTreeview', ['$timeout', '$filter', '$session', function($timeout, $filter, $session) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -18,6 +18,10 @@
 			templateUrl: 'core/directives/field/treeview/treeview.html',
 			link: function ($s, $e, attrs) {
 				
+				$session.prepare('settings', {
+					treeview: {}
+				});
+				
 				$s.depth = 0;
 				$s.visible = true;
 				$s.parent = $s.list;
@@ -27,6 +31,7 @@
 				$s.defaultLvlToolbar = 'core/directives/field/treeview/treeview.toolbar.html';
 				$s.defaultLvlBefore = 'core/directives/field/treeview/treeview.before.html';
 				$s.defaultLvlAfter = 'core/directives/field/treeview/treeview.after.html';
+				$s.settings = $session.get('settings');
 				
 				$s.addCallback = function(list, index) {
 					return function(model) {
@@ -35,9 +40,9 @@
 					};
 				};
 				
-				$s.toggle = function(settings, event) {
+				$s.toggle = function(nodeSettings, node, event) {
 					
-					settings.viewItems = !settings.viewItems;
+					nodeSettings.viewItems = !nodeSettings.viewItems;
 					
 					let $target = angular.element(event.target).parent();
 					let $scrollContainer = $target.parents('.zm-scrollable-y:eq(0)');
@@ -47,8 +52,10 @@
 					
 					let top = ($target.offset().top - $scrollContainer.offset().top);
 					
+					$s.settings.treeview[node.key] = nodeSettings.viewItems;
+					
 					$scrollContainer.animate({
-					 scrollTop: top
+						scrollTop: top
 					}, 250);
 				};
 				

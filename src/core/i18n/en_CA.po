@@ -551,6 +551,9 @@ msgstr "Widgets"
 msgid "core.modules.serviceProvider"
 msgstr "Service providers"
 
+msgid "core.field.treeview.noKey"
+msgstr "This item doesn't have a key property."
+
 #~ msgid "core.components.sidebar.workspace.btnEdit"
 #~ msgstr "Edit"
 

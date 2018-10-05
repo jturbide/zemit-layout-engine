@@ -496,6 +496,9 @@ msgstr ""
 msgid "core.directives.tooltip.debugTitle"
 msgstr ""
 
+msgid "core.field.treeview.noKey"
+msgstr ""
+
 msgid "core.model.notValidate"
 msgstr ""
 
