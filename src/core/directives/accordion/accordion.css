@@ -1,0 +1,27 @@
+.zm-accordion-group + .zm-accordion-group > .zm-accordion-header {
+  border-top: #ccc solid 1px;
+}
+.zm-accordion-group + .zm-accordion-group {
+  margin-top: -1px;
+}
+.zm-accordion-header {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: #ccc solid 1px;
+  border-left: 0;
+  position: relative;
+  z-index: 2;
+  margin-right: -1px;
+}
+.zm-accordion-header:hover {
+  z-index: 3;
+}
+.zm-accordion-header .fa {
+  position: relative;
+  top: 0.05rem;
+  min-width: 1rem;
+  text-align: center;
+}
+.zm-accordion-content content {
+  display: block;
+}

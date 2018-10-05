@@ -27,10 +27,8 @@
 			</div>
 		</div>
 		
-		<!-- DETAILS -->
-		<div class="zm-sidebar-group" ng-if="medias.images.length > 0">
-			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="settings.images.visible = !settings.images.visible">
-				
+		<zm-accordion ng-model="settings.images.visible" ng-if="medias.images.length > 0">
+			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.media.images') }}
 				</span>
@@ -41,8 +39,8 @@
 				</div>
 				
 				<i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': settings.images.visible, 'fa-chevron-right': !tabs.images.visible}"></i>
-			</div>
-			<div class="zm-sidebar-content zm-p-2 zm-mansory-container" ng-show="settings.images.visible">
+			</header>
+			<content>
 				
 				<!-- LIST OF ITEMS (REPEAT) -->
 				<div zm-draggable="draggableOptions" zm-draggable-item="image.media" class="zm-sidebar-media-item zm-media-item" ng-repeat="image in medias.images">
@@ -53,8 +51,8 @@
 						{{ ::image.media.getFile().name }}
 					</div>
 				</div>
-			</div>
-		</div>
+			</content>
+		</zm-accordion>
 	</div>
 	<div class="zm-flex-minimal">
 		

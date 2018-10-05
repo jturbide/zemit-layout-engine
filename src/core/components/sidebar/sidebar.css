@@ -42,30 +42,6 @@
   color: black;
   border-bottom-color: #ccc;
 }
-.zm-sidebar-group + .zm-sidebar-group > .zm-sidebar-title {
-  border-top: #ccc solid 1px;
-}
-.zm-sidebar-group + .zm-sidebar-group {
-  margin-top: -1px;
-}
-.zm-sidebar-title {
-  padding: 0.5rem 1rem;
-  background-color: white;
-  border: #ccc solid 1px;
-  border-left: 0;
-  position: relative;
-  z-index: 2;
-  margin-right: -1px;
-}
-.zm-sidebar-title:hover {
-  z-index: 3;
-}
-.zm-sidebar-title .fa {
-  position: relative;
-  top: 0.05rem;
-  min-width: 1rem;
-  text-align: center;
-}
 .zm-sidebar-tabs .zm-tabs .zm-tab-item.active:not([disabled]) {
   background-color: #000;
   color: white;

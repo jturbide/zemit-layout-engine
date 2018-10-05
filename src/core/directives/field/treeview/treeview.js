@@ -35,6 +35,23 @@
 					};
 				};
 				
+				$s.toggle = function(settings, event) {
+					
+					settings.viewItems = !settings.viewItems;
+					
+					let $target = angular.element(event.target).parent();
+					let $scrollContainer = $target.parents('.zm-scrollable-y:eq(0)');
+					if($scrollContainer.length === 0) {
+						$scrollContainer = angular.element('body');
+					}
+					
+					let top = ($target.offset().top - $scrollContainer.offset().top);
+					
+					$scrollContainer.animate({
+					 scrollTop: top
+					}, 250);
+				};
+				
 				$s.filter = function(list) {
 					
 					return $filter('search')(list, (model) => {

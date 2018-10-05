@@ -27,10 +27,9 @@
 			</div>
 		</div>
 		
-		<!-- DETAILS -->
-		<div class="zm-sidebar-group zm-flex-minimal" ng-repeat="group in filteredGroups">
-			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="tabs[group.name].visible = !tabs[group.name].visible">
-				
+		<!-- MODULES GROUPS -->
+		<zm-accordion ng-model="tabs[group.name].visible" ng-repeat="group in filteredGroups">
+			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::group.title }}
 				</span>
@@ -41,8 +40,8 @@
 				</div>
 				
 				<i class="fa zm-pull-right zm-flex-minimal" ng-class="{'fa-chevron-down': tabs[group.name].visible, 'fa-chevron-right': !tabs[group.name].visible}"></i>
-			</div>
-			<div class="zm-sidebar-content" zm-slide-y="tabs[group.name].visible">
+			</header>
+			<content>
 				
 				<!-- LIST OF ITEMS (REPEAT) -->
 				<div class="zm-sidebar-modules-item zm-modules-item zm-p-3" ng-repeat="module in group.modules" ng-class="{ activated: settings[module.name].activated }">
@@ -65,8 +64,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</content>
+		</zm-accordion>
 	</div>
 	<div class="zm-flex-minimal">
 		

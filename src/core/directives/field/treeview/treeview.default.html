@@ -1,7 +1,7 @@
 <div class="zm-treeview-group" ng-class="{ 'zm-treeview-opened': lvlSettings.viewItems }" ng-init="currentNode = node; lvlSettings = { viewItems: false }; parentOptions = options.levels[depth - 1]; lvlOptions = options.levels[depth]; lvlList = lvlOptions.getList(node)">
 	
 	<!-- GROUP TITLE -->
-	<div ng-click="lvlSettings.viewItems = !lvlSettings.viewItems" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': lvlSettings.viewItems }"></div>
+	<div ng-click="toggle(lvlSettings, $event)" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': lvlSettings.viewItems }"></div>
 	
 	<div class="zm-field-treeview-sub-level" zm-slide-y="lvlSettings.viewItems">
 		<div class="zm-field-treeview-sub-level-inner zm-p-3 zm-pr-0">

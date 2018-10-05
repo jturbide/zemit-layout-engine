@@ -6,65 +6,58 @@
 	<div class="zm-scrollable-y zm-flex-container-column">
 		
 		<!-- DETAILS -->
-		<div class="zm-sidebar-group zm-flex-minimal" style="margin-top: -1px">
-			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="settings.details.visible = !settings.details.visible">
-				
+		<zm-accordion ng-model="settings.details.visible" style="margin-top: -1px">
+			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.detailsTitle') }}
 				</span>
 				
 				<i class="fa zm-flex-minimal" ng-class="{'fa-chevron-down': settings.details.visible, 'fa-chevron-right': !settings.details.visible}"></i>
-			</div>
-			<div class="zm-sidebar-content" zm-slide-y="settings.details.visible">
-				<div class="zm-p-3">
-					<div class="zm-flex-container zm-nowrap">
-						<div>
-							<strong>{{ ::t('core.components.sidebar.debug.version') }}</strong> {{ version }}
-						</div>
-						<div>
-							<strong>{{ ::t('core.components.sidebar.debug.selectedWidgets') }}</strong> {{ zm.widget.totalSelected }}
-						</div>
+			</header>
+			<content class="zm-p-3">
+				<div class="zm-flex-container zm-nowrap">
+					<div>
+						<strong>{{ ::t('core.components.sidebar.debug.version') }}</strong> {{ version }}
 					</div>
-					<div class="zm-flex-container zm-nowrap">
-						<div>
-							<strong>{{ ::t('core.components.sidebar.debug.totalWidgets') }}</strong> {{ zm.widget.total }}
-						</div>
-						<div>
-							<strong>{{ ::t('core.components.sidebar.debug.history') }}</strong> {{ history.position || 0 }} / {{ history.changes.length || 0 }}
-						</div>
+					<div>
+						<strong>{{ ::t('core.components.sidebar.debug.selectedWidgets') }}</strong> {{ zm.widget.totalSelected }}
 					</div>
 				</div>
-			</div>
-		</div>
+				<div class="zm-flex-container zm-nowrap">
+					<div>
+						<strong>{{ ::t('core.components.sidebar.debug.totalWidgets') }}</strong> {{ zm.widget.total }}
+					</div>
+					<div>
+						<strong>{{ ::t('core.components.sidebar.debug.history') }}</strong> {{ history.position || 0 }} / {{ history.changes.length || 0 }}
+					</div>
+				</div>
+			</content>
+		</zm-accordion>
 		
 		<!-- SETTINGS -->
-		<div class="zm-sidebar-group zm-flex-minimal">
-			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="settings.settings.visible = !settings.settings.visible">
-				
+		<zm-accordion ng-model="settings.settings.visible">
+			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.settingsTitle') }}
 				</span>
 				
 				<i class="fa zm-flex-minimal" ng-class="{'fa-chevron-down': settings.settings.visible, 'fa-chevron-right': !settings.settings.visible}"></i>
-			</div>
-			<div class="zm-sidebar-content" zm-slide-y="settings.settings.visible">
-				<div class="zm-p-2">
-					<zm-field-switch title="{{ ::t('core.components.sidebar.debug.settings.showWidgetTokenId') }}" ng-model="$settings.debug.settings.showWidgetTokenId"></zm-field-switch>
-				</div>
-			</div>
-		</div>
+			</header>
+			<content class="zm-p-2">
+				<zm-field-switch title="{{ ::t('core.components.sidebar.debug.settings.showWidgetTokenId') }}" ng-model="$settings.debug.settings.showWidgetTokenId"></zm-field-switch>
+			</content>
+		</zm-accordion>
 		
 		<!-- LOGS -->
-		<div class="zm-sidebar-group zm-flex-minimal">
-			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="settings.logs.visible = !settings.logs.visible">
-				
+		<zm-accordion ng-model="settings.logs.visible">
+			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.logsTitle') }}
 				</span>
 				
 				<i class="fa zm-flex-minimal" ng-class="{'fa-chevron-down': settings.logs.visible, 'fa-chevron-right': !settings.logs.visible}"></i>
-			</div>
-			<div class="zm-sidebar-content" zm-slide-y="settings.logs.visible">
+			</header>
+			<content>
 				<div ng-if="$debug.data" ng-init="groups = ($debug.data | columnize: 2)">
 					<div ng-repeat="group in groups" class="zm-flex-container zm-flex-container-gap zm-flex-equal-size zm-flex-align-center">
 						<div ng-repeat="item in group" class="zm-p-2 zm-pb-0">
@@ -98,21 +91,19 @@
 						</zm-btn>
 					</div>
 				</div>
-			</div>
-		</div>
+			</content>
+		</zm-accordion>
 	
 		<!-- ACTIONS -->
-		<div class="zm-sidebar-group zm-flex-minimal">
-			<div class="zm-sidebar-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-click="settings.actions.visible = !settings.actions.visible">
-				
+		<zm-accordion ng-model="settings.actions.visible">
+			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.actionsTitle') }}
 				</span>
 				
 				<i class="fa zm-flex-minimal" ng-class="{'fa-chevron-down': settings.actions.visible, 'fa-chevron-right': !settings.actions.visible}"></i>
-			</div>
-			<div class="zm-sidebar-content" zm-slide-y="settings.actions.visible">
-				
+			</header>
+			<content>
 				<!-- NOTICE -->
 				<zm-dismissable locked type="warning" key="zm-sidebar-debug-intro">
 					<span ng-bind-html="::t('core.components.sidebar.debug.actionsWarning') | trustHtml"></span>
@@ -129,8 +120,8 @@
 						{{ ::t('core.components.sidebar.debug.actionsBtnFlushMemory') }}
 					</zm-btn>
 				</div>
-			</div>
-		</div>
+			</content>
+		</zm-accordion>
 	</div>
 	<div class="zm-flex-minimal">
 		
