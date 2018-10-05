@@ -53,7 +53,7 @@
 				this.settings = settings.debug.settings;
 			},
 			
-			log: function(namespace, name, value) {
+			log: function(namespace, name, value = null) {
 				
 				let log = this.data.find((item) => item.namespace === namespace);
 				
@@ -63,7 +63,7 @@
 						datetime: new Date(),
 						namespace: namespace,
 						name: name,
-						value: value.toString()
+						value: (value || '').toString()
 					};
 					
 					this.recent.push(log);

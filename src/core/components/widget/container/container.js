@@ -60,7 +60,7 @@
 				}, {
 					label: $i18n.get('core.components.widget.container.notices.startAddingRow'),
 					condition: () => {
-						return $sessionWorkspace.isValid() && $s.container.childs.length === 0;
+						return $s.segment && $sessionWorkspace.isValid() && $s.container.childs.length === 0;
 					}
 				}, {
 					label: () => {

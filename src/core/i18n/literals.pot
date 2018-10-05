@@ -406,6 +406,9 @@ msgstr ""
 msgid "core.components.widget.text.title"
 msgstr ""
 
+msgid "core.debugTitle"
+msgstr ""
+
 msgid "core.di.cache.debugTitle"
 msgstr ""
 

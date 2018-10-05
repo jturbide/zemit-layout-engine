@@ -216,6 +216,7 @@
 						if($s.modal.backdrop) {
 							$s.modal.$backdrop = angular.element('<div class="zm-modal-backdrop" style="z-index: ' + ($s.modal.zIndex - 1) + '"></div>');
 							angular.element($s.$root.$zemit).append($s.modal.$backdrop);
+							setTimeout(() => $s.modal.$backdrop.addClass('zm-loaded'));
 						}
 						
 						this.adjustPosition(true);
@@ -305,7 +306,8 @@
 						$s.modal.backdrop = false;
 						
 						if($s.modal.$backdrop) {
-							$s.modal.$backdrop.remove();
+							$s.modal.$backdrop.removeClass('zm-loaded');
+							setTimeout(() => $s.modal.$backdrop.remove(), 250);
 						}
 						
 						$timeout(function() {

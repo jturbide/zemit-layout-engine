@@ -92,7 +92,14 @@
 							moduleLoadCount++;
 							
 							if(moduleLoadCount === modules.length) {
-								$hook.run('onAllModulesLoaded');
+								
+								$hook.add('onBeforeReady', () => {
+									$hook.run('onAllModulesLoaded');
+								});
+								
+								if($hook.hasRan('onBeforeReady')) {
+									$hook.run('onAllModulesLoaded');
+								}
 							}
 						});
 					}
@@ -101,9 +108,14 @@
 						moduleLoadCount++;
 						
 						if(moduleLoadCount === modules.length) {
+							
 							$hook.add('onBeforeReady', () => {
 								$hook.run('onAllModulesLoaded');
 							});
+							
+							if($hook.hasRan('onBeforeReady')) {
+								$hook.run('onAllModulesLoaded');
+							}
 						}
 					}
 				});

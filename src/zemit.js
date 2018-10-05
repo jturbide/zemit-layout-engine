@@ -51,7 +51,7 @@ var Zemit = {
 		});
 	}]);
 	
-	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', '$socket', '$i18n', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media, $socket, $i18n) {
+	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', '$socket', '$i18n', '$debug', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media, $socket, $i18n, $debug) {
 		return {
 			restrict: 'E',
 			link: async function ($s, $e, attrs) {
@@ -60,6 +60,8 @@ var Zemit = {
 				await $session.load();
 				await $workspace.init();
 				await $i18n.init();
+				
+				$debug.init('zemit', $i18n.get('core.debugTitle'));
 				
 				var session = await $session.getAll();		
 				$session.prepare('settings', {
@@ -94,13 +96,16 @@ var Zemit = {
 				
 				// Prepare template
 				var template = '<div tabindex="0" class="zemit-container">';
-					
+				
 				if(!$device.isSupported()) {
 					template += '<zm-unsupported-device></zm-unsupported-device>';
 				}
 				else {
 					template += '<zm-toolbar></zm-toolbar>'
-							  + '<zm-widget type="container"></zm-widget>';
+							  + '<div class="zm-flex-container" style="flex-wrap: nowrap;">'
+								+ '<zm-widget type="container"></zm-widget>'
+								+ '<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== \'preview\'" />'
+							  + '</div>';
 				}
 				
 				template += '</div>';
@@ -116,13 +121,16 @@ var Zemit = {
 				
 				// Whenever all modules are loaded, run onReady hooks
 				$hook.add('onAllModulesRan', () => {
+					
 					$hook.run('onReady');
+					
+					$debug.log('zemit', 'ONREADY');
 				});
 				
 				// Allow other stuff to execute before the final state
 				$hook.run('onBeforeReady');
 				
-				console.log('ZEMIT INIT');
+				$debug.log('zemit', 'ONBEFOREREADY');
 			}
 		};
 	}]);

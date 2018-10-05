@@ -6,11 +6,6 @@
 			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.workspace.visible" zm-if-timeout="tabs.showContent ? 0 : 250">
 				<zm-sidebar-workspace></zm-sidebar-workspace>
 			</div>
-				
-			<!-- ADVANCED -->
-			<!--<div class="zm-flex-container" ng-disabled="!$sessionWorkspace.isValid()" ng-show="settings.sidebar.tabs.advanced.visible">-->
-			<!--	<zm-sidebar-advanced></zm-sidebar-advanced>-->
-			<!--</div>-->
 			
 			<!-- WIDGETS -->
 			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.widgets.visible && settings.context === 'structure' && $sessionWorkspace.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250">

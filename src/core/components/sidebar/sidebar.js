@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebar', ['$session', '$device', '$sessionWorkspace', '$timeout', '$hook', function($session, $device, $sessionWorkspace, $timeout, $hook) {
+	Zemit.app.directive('zmSidebar', ['$session', '$device', '$sessionWorkspace', '$timeout', '$hook', '$zm', function($session, $device, $sessionWorkspace, $timeout, $hook, $zm) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -14,12 +14,12 @@
 				$session.prepare('settings', {
 					sidebar: {
 						tabs: {
+							global: {
+								visible: false
+							},
 							workspace: {
 								visible: $device.isLargeEnough()
 							},
-							// advanced: {
-							// 	visible: false
-							// },
 							widgets: {
 								visible: false
 							},
@@ -74,7 +74,7 @@
 					hideAll: function() {
 						
 						if(this.showContent) {
-							$s.container.getScope().showContent = false;
+							$zm.getBaseScope().showContent = false;
 						}
 						
 						this.hidden = true;
@@ -83,7 +83,7 @@
 					unhideAll: function() {
 						
 						if(this.showContent) {
-							$s.container.getScope().showContent = true;
+							$zm.getBaseScope().showContent = true;
 						}
 						
 						this.hidden = false;
@@ -113,18 +113,20 @@
 						if(show) {
 							this.unhideAll();
 						}
+						
+						settings.sidebar.tabs.global.visible = show;
 					},
 					
 					show: function() {
 						
 						this.showContent = true;
-						$s.container.getScope().showContent = true;
+						$zm.getBaseScope().showContent = true;
 					},
 					
 					hide: function() {
 						
 						this.showContent = false;
-						$s.container.getScope().showContent = false;
+						$zm.getBaseScope().showContent = false;
 					},
 					
 					toggle: function(name) {

@@ -20,7 +20,7 @@
 				<!--</div>-->
 			</div>
 			
-			<div class="zm-container-notices zm-flex-minimal" ng-if="settings.directives.dismissable.visible">
+			<div class="zm-container-notices zm-flex-minimal" ng-slide-y="settings.directives.dismissable.visible">
 				<div class="zm-container-notices-scrollable">
 					
 					<!-- NOTICES -->
@@ -73,7 +73,4 @@
 		</div>
 		<div class="zm-container-overlays"></div>
 	</div>
-	
-	<!-- SIDEBAR -->
-	<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'"></zm-sidebar>
 </div>

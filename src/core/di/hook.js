@@ -15,7 +15,7 @@
 			$new: function() {
 				return angular.copy(defaultStructure);
 			},
-				
+			
 			add: function(name, callback, uniqId = null, priority = 0) {
 				
 				var vm = this;

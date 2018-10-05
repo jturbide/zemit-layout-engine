@@ -40,6 +40,9 @@ zm-widget[type="container"] {
   z-index: 2;
   /*overflow: hidden;*/
 }
+zm-widget[type="container"] {
+  width: 0;
+}
 .zm-container-add-row,
 .zm-container,
 .zm-advanced-inner,
@@ -57,6 +60,7 @@ zm-widget[type="container"] {
   border: 0;
   height: 100%;
   flex-wrap: nowrap;
+  max-width: 100vw;
   
   -moz-user-select: none;
   -khtml-user-select: none;
