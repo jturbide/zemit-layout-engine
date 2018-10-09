@@ -21,11 +21,6 @@
 				var filters = {
 					query: ''
 				};
-				var stats = {
-					countNodes: function(node, parent, depth) {
-						return $s.treeviewOptions.levels[0].getList(node).length;
-					}
-				};
 				
 				var prepareSettings = () => {
 					
@@ -89,16 +84,6 @@
 								}
 							});
 						},
-						getList: (model) => {
-							
-							var projects = [];
-							model.getAllProjects().then((results) => {
-								projects.push.apply(projects, results);
-								$s.$digest();
-							});
-							
-							return projects;
-						},
 						toolbarTemplate: 'core/components/sidebar/workspace/treeview/workspace.toolbar.html',
 						beforeTemplate: 'core/components/sidebar/workspace/treeview/workspace.before.html'
 					}, {
@@ -108,15 +93,6 @@
 						canAdd: true,
 						addLabel: $i18n.get('core.components.sidebar.workspace.addSegmentLabel'),
 						emptyLabel: $i18n.get('core.components.sidebar.workspace.emptySegmentLabel'),
-						getList: (model) => {
-							
-							var segments = [];
-							model.getAllSegments().then((results) => {
-								segments.push.apply(segments, results);
-								$s.$digest();
-							});
-							return segments;
-						},
 						onEdit: (model, parent, depth) => {
 							$s.editProject(parent, model);
 						},
@@ -348,8 +324,59 @@
 				
 				$s.settings = settings.sidebar.workspace;
 				$s.workspaces = workspaces;
+				$s.treeviewWorkspaces = [];
 				$s.filters = filters;
-				$s.stats = stats;
+				
+				var fetchItems = (workspaces, depth = 0) => {
+					
+					let items = [];
+					
+					workspaces.forEach(workspace => {
+						
+						let workspaceItem = {
+							key: workspace.getKey(),
+							title: workspace.getName(),
+							data: workspace,
+							childs: []
+						};
+						
+						workspace.getAllProjects().then(projects => {
+							projects.forEach(project => {
+								
+								let projectItem = {
+									key: project.getKey(),
+									title: project.getName(),
+									data: project,
+									childs: []
+								};
+								
+								project.getAllSegments().then(segments => {
+									segments.forEach(segment => {
+										
+										let segmentItem = {
+											key: segment.getKey(),
+											title: segment.getName(),
+											data: segment,
+											childs: []
+										};
+										
+										projectItem.childs.push(segmentItem);
+									});
+								});
+								
+								workspaceItem.childs.push(projectItem);
+							});
+						});
+						
+						items.push(workspaceItem);
+					});
+					
+					return items;
+				};
+				
+				$s.$watch('workspaces', (nv, ov) => {
+					$s.treeviewWorkspaces = fetchItems(nv);
+				});
 			}
 		}
 	}]);

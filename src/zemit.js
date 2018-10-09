@@ -61,7 +61,7 @@ var Zemit = {
 				await $workspace.init();
 				await $i18n.init();
 				
-				$debug.init('zemit', $i18n.get('core.debugTitle'));
+				$debug.init('core', $i18n.get('core.debugTitle'));
 				
 				var session = await $session.getAll();		
 				$session.prepare('settings', {
@@ -124,13 +124,13 @@ var Zemit = {
 					
 					$hook.run('onReady');
 					
-					$debug.log('zemit', 'ONREADY');
+					$debug.log('core', 'ONREADY');
 				});
 				
 				// Allow other stuff to execute before the final state
 				$hook.run('onBeforeReady');
 				
-				$debug.log('zemit', 'ONBEFOREREADY');
+				$debug.log('core', 'ONBEFOREREADY');
 			}
 		};
 	}]);

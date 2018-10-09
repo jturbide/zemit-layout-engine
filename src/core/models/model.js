@@ -42,7 +42,7 @@ class ZmModel {
 	}
 	
 	getName() {
-		return this.getKey();
+		return this.data.name || this.getKey();
 	}
 	
 	setData(data) {

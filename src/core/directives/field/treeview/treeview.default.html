@@ -1,15 +1,38 @@
-<div class="zm-treeview-group" ng-class="{ 'zm-treeview-opened': settings.treeview[currentNode.key] }" ng-init="currentNode = node; lvlSettings = { viewItems: false }; parentOptions = options.levels[depth - 1]; lvlOptions = options.levels[depth]; lvlList = lvlOptions.getList(node)">
+<div class="zm-treeview-group" ng-class="{ 'zm-treeview-opened': settings.treeview[currentNode.key] }" ng-init="currentNode = node; lvlSettings = { viewItems: settings.treeview[currentNode.key] || false }; parentOptions = options.levels[depth - 1]; lvlOptions = options.levels[depth];">
 	
 	<!-- GROUP TITLE -->
-	<div ng-click="toggle(lvlSettings, currentNode, $event)" ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar" class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{ 'zm-shadow-down': settings.treeview[currentNode.key] }"></div>
+	<div ng-click="toggle(lvlSettings, currentNode, $event)"
+		 ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar"
+		 class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center"
+		 ng-class="{ 'zm-shadow-down': settings.treeview[currentNode.key] }"></div>
 	
 	<div class="zm-field-treeview-sub-level" zm-slide-y="settings.treeview[currentNode.key]">
 		<div class="zm-field-treeview-sub-level-inner zm-p-3 zm-pr-0">
 			
 			<!-- NO KEY PROPERTY WARNING -->
-			<zm-dismissable type="warning" ng-if="!currentNode.key">
+			<zm-dismissable class="zm-mr-3" type="warning" ng-if="!currentNode.key">
 				{{ ::$root.t('core.field.treeview.noKey') }}
 			</zm-dismissable>
+			
+			<!-- NO CHILD -->
+			<div class="zm-mr-3" ng-if="depth < options.levels.length - 1 && node.childs.length === 0">
+				
+				<!-- EMPTY, CAN'T ADD -->
+				<div ng-if="!lvlOptions.canAdd">
+					{{ ::(lvlOptions.emptyLabel || $root.t('core.field.treeview.emptyLabel')) }}
+				</div>
+				
+				<!-- EMPTY, CAN ADD -->
+				<zm-btn ng-if="lvlOptions.canAdd" class="zm-btn-default" ng-click="lvlOptions.onAdd(node, parent, addCallback(lvlList, $index), depth)">
+					<i class="fa fa-plus fa-margin-right"></i>
+					{{ ::(lvlOptions.addLabel || $root.t('core.field.treeview.addChild')) }}
+				</zm-btn>
+			</div>
+			
+			<!-- NO CHILD (FILTERED) -->
+			<div class="zm-mr-3" ng-if="depth < options.levels.length - 1 && filter(node.childs).length === 0 && node.childs.length > 0">
+				{{ ::$root.t('core.field.treeview.noChildFiltered') }}
+			</div>
 			
 			<!-- HAS KEY PROPERTY -->
 			<div ng-if="currentNode.key">
@@ -19,8 +42,11 @@
 		
 				<!-- LIST OF ELEMENTS -->
 				<ol ng-if="depth < options.levels.length">
-					<!--<li ng-class="{ 'zm-mb-3': lvlList.length > 0 }" ng-include="defaultLvlOptions"></li>-->
-					<li ng-class="{ first: $index === 0, last: filteredLvlList.length === ($index + 1) }" ng-init="depth = depth + 1; parentList = lvlList; parent = currentNode;" class="zm-treeview-list-item zm-treeview-list-item-depth{{ depth }}" ng-repeat="node in filteredLvlList = filter(lvlList) track by $index" ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
+					<li ng-class="{ first: $index === 0, last: filteredLvlList.length === ($index + 1) }"
+						class="zm-treeview-list-item zm-treeview-list-item-depth{{ depth }}"
+						ng-repeat="node in filteredLvlList = filter(node.childs) track by $index"
+						ng-init="depth = depth + 1; parentList = node.childs; parent = currentNode;"
+						ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
 				</ol>
 				
 				<!-- AFTER -->

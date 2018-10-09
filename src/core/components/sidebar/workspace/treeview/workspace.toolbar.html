@@ -1,24 +1,24 @@
 <!-- STATUS -->
-<div class="zm-flex-minimal" ng-if="node.getData().env === 'remote'">
+<div class="zm-flex-minimal" ng-if="node.data.getData().env === 'remote'">
     <i class="fa fa-circle" ng-class="{
-        'zm-text-success': node.connected,
-        'zm-text-danger': node.error
+        'zm-text-success': node.data.connected,
+        'zm-text-danger': node.data.error
     }"></i>
 </div>
 
 <!-- CHEVRON -->
-<i class="fa zm-pull-right zm-flex-minimal" ng-if="node.getData().env === 'browser'" ng-class="{
+<i class="fa zm-pull-right zm-flex-minimal" ng-if="node.data.getData().env === 'browser'" ng-class="{
     'fa-chevron-down': lvlSettings.viewItems,
     'fa-chevron-right': !lvlSettings.viewItems
 }"></i>
 
 <span class="zm-sidebar-title-text">
-    {{ node.getName() }}
+    {{ node.title }}
 </span>
 
 <!-- TOTAL NODES -->
-<div class="zm-badge zm-flex-minimal" ng-class="{ 'zm-empty': lvlList.length === 0 }">
-	{{ lvlList.length }}
+<div class="zm-badge zm-flex-minimal" ng-class="{ 'zm-empty': filter(node.childs).length === 0 }">
+	{{ filter(node.childs).length }}
 </div>
 
 <!-- OPTIONS -->

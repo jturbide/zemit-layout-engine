@@ -6,6 +6,44 @@
 	/**
 	 * Slide Down
 	 */
+	Zemit.app.directive('zmScrollable', ['$session', '$timeout', function($session, $timeout) {
+		return {
+			restrict: 'A',
+			link: function ($s, $e, attrs) {
+				
+				let options = $s.$eval(attrs.zmScrollable);
+				let settings = $session.get('settings');
+				
+				let settingsOpts = {};
+				settingsOpts[options.key] = {
+					y: 0,
+					x: 0
+				};
+				$session.prepare('settings', {
+					zmScrollable: settingsOpts
+				});
+				
+				$e[0].addEventListener('scroll', (event) => {
+					
+					console.log($e[0].scrollTop);
+					
+					settings.zmScrollable[options.key].x = $e[0].scrollLeft;
+					settings.zmScrollable[options.key].y = $e[0].scrollTop;
+				});
+				
+				$timeout(() => {
+					$e[0].scrollLeft = settings.zmScrollable[options.key].x;
+					$e[0].scrollTop = settings.zmScrollable[options.key].y;
+				});
+				
+				$e.addClass('zm-scrollable-' + options.direction);
+			}
+		};
+	}]);
+	
+	/**
+	 * Slide Down
+	 */
 	Zemit.app.directive('zmSlideY', ['$timeout', function($timeout) {
 		return {
 			restrict: 'A',

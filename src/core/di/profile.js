@@ -10,12 +10,17 @@
 			factory.init();
 		}, undefined, 5);
 		
+		$hook.add('onStorageSet', (table, model) => {
+			factory.saveData(table + '.' + model.getKey() + '.json', model.getData());
+		});
+		
 		var factory = {
 			
 			hasProviders: null,
 			isLoaded: null,
 			isSignedIn: null,
 			providers: [],
+			currentProvider: null,
 			
 			givenName: null,
 			displayName: null,
@@ -37,6 +42,8 @@
 					this.providers.forEach(provider => {
 						if(provider.props.onInit instanceof Function) {
 							provider.props.onInit().then(response => {
+								
+								factory.currentProvider = provider;
 								factory.isLoaded = true;
 								$debug.log('profile', 'INIT', provider);
 								$rs.$digest();
@@ -50,15 +57,13 @@
 			
 			connect: function() {
 				
-				this.providers.forEach(provider => {
-					if(provider.props.onConnect instanceof Function) {
-						provider.props.onConnect().then(response => {
-							
-							$debug.log('profile', 'CONNECT', provider);
-							$rs.$digest();
-						});
-					}
-				});
+				if(factory.currentProvider.props.onConnect instanceof Function) {
+					factory.currentProvider.props.onConnect().then(response => {
+						
+						$debug.log('profile', 'CONNECT', factory.currentProvider);
+						$rs.$digest();
+					});
+				}
 			},
 			
 			clearProfile: function() {
@@ -87,38 +92,45 @@
 				
 			},
 			
-			saveData: (fileName, data) => {
+			saveData: (filename, data) => {
 				
+				if(factory.currentProvider.props.onSave instanceof Function) {
+					factory.currentProvider.props.onSave(filename, data).then(response => {
+						
+						$debug.log('profile', 'PROFILE SAVE DATA', {
+							filename: filename,
+							data: data,
+							provider: factory.currentProvider
+						});
+						$rs.$digest();
+					});
+				}
 			},
 			
 			signIn: function() {
 				
-				this.providers.forEach(provider => {
-					if(provider.props.onSignIn instanceof Function) {
-						provider.props.onSignIn().then(response => {
-							
-							factory.isSignedIn = true;
-							
-							$debug.log('profile', 'SIGNED IN', provider);
-							$rs.$digest();
-						});
-					}
-				});
+				if(factory.currentProvider.props.onSignIn instanceof Function) {
+					factory.currentProvider.props.onSignIn().then(response => {
+						
+						factory.isSignedIn = true;
+						
+						$debug.log('profile', 'SIGNED IN', factory.currentProvider);
+						$rs.$digest();
+					});
+				}
 			},
 			
 			signOut: function() {
 				
-				this.providers.forEach(provider => {
-					if(provider.props.onSignOut instanceof Function) {
-						provider.props.onSignOut().then(response => {
-							
-							factory.isSignedIn = false;
-							
-							$debug.log('profile', 'SIGNED OUT', provider);
-							$rs.$digest();
-						});
-					}
-				});
+				if(factory.currentProvider.props.onSignOut instanceof Function) {
+					factory.currentProvider.props.onSignOut().then(response => {
+						
+						factory.isSignedIn = false;
+						
+						$debug.log('profile', 'SIGNED OUT', factory.currentProvider);
+						$rs.$digest();
+					});
+				}
 			}
 		};
 		

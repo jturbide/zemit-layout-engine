@@ -32,6 +32,7 @@
 				$s.defaultLvlBefore = 'core/directives/field/treeview/treeview.before.html';
 				$s.defaultLvlAfter = 'core/directives/field/treeview/treeview.after.html';
 				$s.settings = $session.get('settings');
+				$s.filteredList = [];
 				
 				$s.addCallback = function(list, index) {
 					return function(model) {
@@ -59,10 +60,13 @@
 					}, 250);
 				};
 				
-				$s.filter = function(list) {
+				$s.filter = function(nodes) {
 					
-					return $filter('search')(list, (model) => {
-						return model.data.name;
+					return $filter('search')(nodes, (model) => {
+						return {
+							value: model.title,
+							childs: model.childs
+						};
 					}, $s.filterScope, true);
 				};
 				

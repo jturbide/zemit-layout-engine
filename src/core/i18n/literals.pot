@@ -496,6 +496,15 @@ msgstr ""
 msgid "core.directives.tooltip.debugTitle"
 msgstr ""
 
+msgid "core.field.treeview.addChild"
+msgstr ""
+
+msgid "core.field.treeview.emptyLabel"
+msgstr ""
+
+msgid "core.field.treeview.noChildFiltered"
+msgstr ""
+
 msgid "core.field.treeview.noKey"
 msgstr ""
 

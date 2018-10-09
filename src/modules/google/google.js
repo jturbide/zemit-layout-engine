@@ -64,6 +64,11 @@
 						updateSigninStatus: function(isSignedIn) {
 							
 							if(isSignedIn) {
+								
+								this.listFiles().then(files => {
+									console.log('GOOGLE FILES', files);
+								});
+								
 								this.getProfile().then(profile => {
 									
 									$profile.loadProfile({
@@ -234,6 +239,9 @@
 					},
 					onConnect: () => {
 						
+					},
+					onSave: (filename, data) => {
+						return $google.saveFile(filename, data);
 					}
 				});
 			}

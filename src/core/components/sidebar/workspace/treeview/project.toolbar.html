@@ -5,12 +5,12 @@
 }"></i>
 
 <span class="zm-sidebar-title-text">
-    {{ node.getData().name }}
+    {{ node.title }}
 </span>
 
 <!-- TOTAL NODES -->
-<div class="zm-badge zm-flex-minimal" ng-class="{ 'zm-empty': lvlList.length === 0 }">
-	{{ lvlList.length }}
+<div class="zm-badge zm-flex-minimal" ng-class="{ 'zm-empty': filter(node.childs).length === 0 }">
+	{{ filter(node.childs).length }}
 </div>
 
 <!-- OPTIONS -->

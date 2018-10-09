@@ -12,7 +12,7 @@
             <zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.workspace.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
         </div>
     </div>
-    <div class="zm-scrollable-y zm-flex-container-column">
+    <div class="zm-flex-container-column" zm-scrollable="{ direction: 'y', key: 'workspace' }">
         
         <!-- EMPTY -->
         <div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="workspaces.length === 0">
@@ -23,7 +23,7 @@
         </div>
         
         <!-- TREEVIEW -->
-    	<zm-field-treeview ng-if="workspaces.length > 0" filter="filters.query" list="workspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
+    	<zm-field-treeview ng-if="workspaces.length > 0" filter="filters.query" list="treeviewWorkspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
     </div>
     <div class="zm-flex-minimal">
         

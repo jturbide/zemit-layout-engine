@@ -6,7 +6,7 @@
 	/**
 	 * Accordion directive
 	 */
-	Zemit.app.directive('zmAccordion', [function() {
+	Zemit.app.directive('zmAccordion', ['$timeout', function($timeout) {
 		return {
 			restrict: "E",
 			templateUrl: 'core/directives/accordion/accordion.html',
@@ -29,11 +29,14 @@
 						$scrollContainer = angular.element('body');
 					}
 					
-					let top = ($e.offset().top - $scrollContainer.offset().top);
-					
-					$scrollContainer.animate({
-						scrollTop: top
-					}, 250);
+					// Let zmSlide push the scrollable area first, then
+					// animate..
+					let top = ($e.offset().top - $scrollContainer.offset().top + $scrollContainer.scrollTop());
+					// setTimeout(() => {
+						$scrollContainer.animate({
+							scrollTop: top
+						}, 250);
+					// }, 250);
 				};
 			}
 		};

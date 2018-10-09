@@ -6,12 +6,12 @@
 
 <!-- TITLE -->
 <span>
-	{{ parentOptions.getTitle(node) }}
+	{{ node.title }}
 </span>
 
 <!-- TOTAL NODES -->
-<div ng-if="depth < options.levels.length" class="zm-badge" ng-class="{ 'zm-empty': lvlList.length === 0 }">
-	{{ lvlList.length }}
+<div ng-if="depth < options.levels.length" class="zm-badge" ng-class="{ 'zm-empty': filter(node.childs).length === 0 }">
+	{{ filter(node.childs).length }}
 </div>
 
 <!-- OPTIONS -->

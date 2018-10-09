@@ -73,6 +73,7 @@
 					localStorage.setItem(table + '_' + key, angular.toJson(values));
 					
 					request.onsuccess = (event) =>  {
+						$hook.run('onStorageSet', table, model);
 						$hook.run('onStorageSet' + $util.camelize(table, true), [model]);
 						$hook.run('onStorageSet' + $util.camelize(table, true) + '_' + key, model);
 						localStorage.removeItem(table + '_' + key);
@@ -262,6 +263,27 @@
 					var transaction = this.db.transaction([table], 'readwrite');
 					var request = transaction.objectStore(table).clear();
 				}
+			},
+			
+			import: function() {
+				
+				
+			},
+			
+			export: function() {
+				
+				let results = [];
+				let promises = [];
+				
+				this.objectStores.forEach(objectStore => {
+					promises.push(factory.getAll(objectStore));
+				});
+				
+				return Promise.all(promises).then(responses => {
+					responses.forEach(response => {
+						results.push(response);
+					});
+				});
 			}
 		};
 		

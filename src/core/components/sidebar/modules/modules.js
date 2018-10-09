@@ -73,7 +73,7 @@
 				};
 				
 				['groups', 'filters.query'].forEach(toWatch => {
-					$s.$watch(toWatch, () => {
+					$s.$watch(toWatch, (nv, ov) => {
 						
 						let results = [];
 						for(let group in $s.groups) {
@@ -97,7 +97,10 @@
 							}
 						});
 						
-						$s.filteredGroups = groups;
+						// Prevent ng-repeat reconstruction..
+						if(JSON.stringify(groups) !== JSON.stringify($s.filteredGroups)) {
+							$s.filteredGroups = groups;
+						}
 					});
 				});
 			}

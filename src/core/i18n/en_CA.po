@@ -439,6 +439,9 @@ msgstr "Edit text content"
 msgid "core.components.widget.text.title"
 msgstr "Text"
 
+msgid "core.debugTitle"
+msgstr "Zemit Core"
+
 msgid "core.di.cache.debugTitle"
 msgstr "Cache events"
 
@@ -553,6 +556,15 @@ msgstr "Service providers"
 
 msgid "core.field.treeview.noKey"
 msgstr "This item doesn't have a key property."
+
+msgid "core.field.treeview.addChild"
+msgstr "Add a new child"
+
+msgid "core.field.treeview.emptyLabel"
+msgstr "No child available yet"
+
+msgid "core.field.treeview.noChildFiltered"
+msgstr "No child found based on your search criteria"
 
 #~ msgid "core.components.sidebar.workspace.btnEdit"
 #~ msgstr "Edit"

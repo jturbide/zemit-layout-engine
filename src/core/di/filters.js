@@ -101,43 +101,65 @@
 			
 			// Convert the query in a clean array of keywords
 			var keywords = query.trim().replace(/\s+/g,' ').replace(/^\s+|\s+$/,'').toLowerCase().split(' ');
-			var results = [];
 			
-			angular.forEach(data, function(model, mKey) {
+			var searchFor = (item, depth = 0) => {
 				
-				var found = [];
+				var results = [];
 				
-				// Loop through all the keywords/keys
-				keywordsLoop: for(var z = 0; z < keywords.length; z++) {
-					keysLoop: for(var y = 0; y < keys.length; y++) {
-						
-						if(keys[y] instanceof Function) {
-							found[z] = keys[y](model).toLowerCase().trim().indexOf(keywords[z]) !== -1;
-						}
-						else {
-							found[z] = (model.hasOwnProperty(keys[y])
-								&& model[keys[y]].toLowerCase().trim().indexOf(keywords[z]) !== -1);
-						}
-						
-						if(found[z] && strict) {
-							break keysLoop;
-						}
-						else if(found[z] && !strict) {
-							break keywordsLoop;
+				angular.forEach(item, function(model, mKey) {
+					
+					var found = [];
+					
+					// Loop through all the keywords/keys
+					keywordsLoop: for(var z = 0; z < keywords.length; z++) {
+						keysLoop: for(var y = 0; y < keys.length; y++) {
+							
+							if(keys[y] instanceof Function) {
+								
+								let keyResult = keys[y](model, depth);
+								if(typeof keyResult === 'string') {
+									found[z] = keyResult.toLowerCase().trim().indexOf(keywords[z]) !== -1;
+								}
+								else if(keyResult instanceof Object && keyResult.childs instanceof Array) {
+									
+									let childs = searchFor(keyResult.childs, depth + 1);
+									if(childs.length > 0) {
+										return results.push(model);
+									}
+									else {
+										found[z] = keyResult.value.toLowerCase().trim().indexOf(keywords[z]) !== -1;
+									}
+								}
+							}
+							else {
+								found[z] = (model.hasOwnProperty(keys[y])
+									&& model[keys[y]].toLowerCase().trim().indexOf(keywords[z]) !== -1);
+							}
+							
+							if(found[z] && strict) {
+								break keysLoop;
+							}
+							else if(found[z] && !strict) {
+								break keywordsLoop;
+							}
 						}
 					}
-				}
-				
-				// Verify if all items are of the same value
-				var allEquals = found.every(function(value, index, array){
-					return value === array[0];
+					
+					// Verify if all items are of the same value
+					var allEquals = found.every(function(value, index, array){
+						return value === array[0];
+					});
+					
+					// If all true
+					if(allEquals && found[0]) {
+						results.push(model);
+					}
 				});
 				
-				// If all true
-				if(allEquals && found[0]) {
-					results.push(model);
-				}
-			});
+				return results;
+			};
+			
+			results = searchFor(data);
 			
 			return results;
 		}
