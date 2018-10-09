@@ -23,7 +23,7 @@
 				</div>
 				
 				<!-- EMPTY, CAN ADD -->
-				<zm-btn ng-if="lvlOptions.canAdd" class="zm-btn-default" ng-click="lvlOptions.onAdd(node, parent, addCallback(lvlList, $index), depth)">
+				<zm-btn ng-if="lvlOptions.canAdd" class="zm-btn-default" ng-click="lvlOptions.onAdd(node.data, parent.data, addCallback(node.childs, $index), depth)">
 					<i class="fa fa-plus fa-margin-right"></i>
 					{{ ::(lvlOptions.addLabel || $root.t('core.field.treeview.addChild')) }}
 				</zm-btn>
@@ -45,7 +45,7 @@
 					<li ng-class="{ first: $index === 0, last: filteredLvlList.length === ($index + 1) }"
 						class="zm-treeview-list-item zm-treeview-list-item-depth{{ depth }}"
 						ng-repeat="node in filteredLvlList = filter(node.childs) track by $index"
-						ng-init="depth = depth + 1; parentList = node.childs; parent = currentNode;"
+						ng-init="depth = depth + 1; parentList = currentNode.childs; parent = currentNode;"
 						ng-include="lvlOptions.itemTemplate || defaultTemplate"></li>
 				</ol>
 				

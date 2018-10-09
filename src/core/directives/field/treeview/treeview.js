@@ -32,11 +32,27 @@
 				$s.defaultLvlBefore = 'core/directives/field/treeview/treeview.before.html';
 				$s.defaultLvlAfter = 'core/directives/field/treeview/treeview.after.html';
 				$s.settings = $session.get('settings');
-				$s.filteredList = [];
 				
 				$s.addCallback = function(list, index) {
-					return function(model) {
-						list.splice(index, 0, model);
+					return function(key, title, data, childs = []) {
+						list.splice(index, 0, {
+							key: key,
+							title: title,
+							data: data,
+							childs: childs
+						});
+						$s.$digest();
+					};
+				};
+				
+				$s.editCallback = function(node) {
+					return function(key, title, data, childs) {
+						angular.extend(node, {
+							key: key || node.key,
+							title: title || node.title,
+							data: data || node.data,
+							childs: childs || node.childs
+						});
 						$s.$digest();
 					};
 				};

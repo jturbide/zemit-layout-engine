@@ -43,6 +43,11 @@
 				
 				var $console = $e.find('.zm-sidebar-debug-console');
 				$hook.add('onDebugLog', (log) => {
+					
+					if($console.length === 0) {
+						$console = $e.find('.zm-sidebar-debug-console');
+					}
+					
 					$timeout(() => $timeout(() => $console.scrollTop(1e10)));
 				});
 				

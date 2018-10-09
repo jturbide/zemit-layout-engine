@@ -29,7 +29,7 @@
 .zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group:not(.zm-treeview-opened) > .zm-treeview-group-title {
   border-bottom-left-radius: 0.5rem;
 }
-.zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group > .zm-field-treeview-sub-level .zm-field-treeview-sub-level-inner {
+.zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group > .zm-field-treeview-sub-level > * > * > .zm-field-treeview-sub-level-inner {
   border-bottom-left-radius: 0.5rem;
 }
 .zm-field-treeview-sub-level-inner {

@@ -21,6 +21,8 @@
 		var vm = {
 			
 			data: [],
+			recent: [],
+			namespaces: [],
 			structure: {},
 			settings: {
 				maxLog: 250
@@ -33,13 +35,14 @@
 				// }
 				
 				let structure = settings.debug.log || [];
+				let item = {
+					namespace: namespace,
+					active: false,
+					label: label
+				};
 				
 				if(!settings.debug.log.find((item) => item.namespace === namespace)) {
-					structure.push({
-						namespace: namespace,
-						active: false,
-						label: label
-					});
+					structure.push(item);
 				}
 				
 				$session.prepare('settings', {
@@ -48,9 +51,23 @@
 					}
 				});
 				
+				this.namespaces.push(namespace);
+				
 				this.data = settings.debug.log;
 				this.recent = settings.debug.recent;
 				this.settings = settings.debug.settings;
+			},
+			
+			getActiveNamespaces: function(namespace) {
+				
+				let results = [];
+				this.data.forEach(item => {
+					if(this.namespaces.indexOf(item.namespace) !== -1) {
+						results.push(item);
+					}
+				});
+				
+				return results;
 			},
 			
 			log: function(namespace, name, value = null) {
@@ -76,6 +93,12 @@
 					
 					$hook.run('onDebugLog', log);
 				}
+			},
+			
+			clearLogs: function() {
+				
+				this.recent = [];
+				settings.debug.recent = [];
 			}
 		};
 		

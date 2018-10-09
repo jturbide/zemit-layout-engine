@@ -9,13 +9,13 @@
     	
     	<!-- FILTER -->
         <div class="zm-p-2 zm-flex-minimal">
-            <zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.workspace.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
+            <zm-field-input type="text" icon="search" ng-disabled="treeviewWorkspaces.length === 0" placeholder="{{ ::t('core.components.sidebar.workspace.filterPlaceholder') }}" ng-model="filters.query" autofocus="on" />
         </div>
     </div>
     <div class="zm-flex-container-column" zm-scrollable="{ direction: 'y', key: 'workspace' }">
         
         <!-- EMPTY -->
-        <div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="workspaces.length === 0">
+        <div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="treeviewWorkspaces.length === 0">
             <div>
                 <i class="fa fa-exclamation-circle" style="font-size: 2rem"></i>
                 <br />{{ ::t('core.components.sidebar.workspace.noWorkspaceJoined') }}
@@ -23,7 +23,7 @@
         </div>
         
         <!-- TREEVIEW -->
-    	<zm-field-treeview ng-if="workspaces.length > 0" filter="filters.query" list="treeviewWorkspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
+    	<zm-field-treeview ng-if="treeviewWorkspaces.length > 0" filter="filters.query" list="treeviewWorkspaces" scope="this" depth=2 options="treeviewOptions"></zm-field-treeview>
     </div>
     <div class="zm-flex-minimal">
         

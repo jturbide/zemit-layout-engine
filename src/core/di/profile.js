@@ -39,12 +39,22 @@
 					this.isLoaded = true;
 				}
 				else {
+					
+					let providerLoaded = 0;
 					this.providers.forEach(provider => {
 						if(provider.props.onInit instanceof Function) {
-							provider.props.onInit().then(response => {
+							provider.props.onInit().then(isSignedIn => {
 								
-								factory.currentProvider = provider;
-								factory.isLoaded = true;
+								providerLoaded++;
+								if(providerLoaded === this.providers.length) {
+									factory.isLoaded = true;
+									factory.currentProvider = provider;
+									
+									if(provider.props.onConnect instanceof Function) {
+										provider.props.onConnect().then(factory.onConnect);
+									}
+								}
+								
 								$debug.log('profile', 'INIT', provider);
 								$rs.$digest();
 							});
@@ -55,15 +65,16 @@
 				this.hasProviders = this.providers.length > 0;
 			},
 			
-			connect: function() {
+			onConnect: function(isSignedIn) {
 				
-				if(factory.currentProvider.props.onConnect instanceof Function) {
-					factory.currentProvider.props.onConnect().then(response => {
-						
-						$debug.log('profile', 'CONNECT', factory.currentProvider);
-						$rs.$digest();
-					});
+				factory.isSignedIn = isSignedIn;
+				
+				if(isSignedIn) {
+					factory.loadProfile();
 				}
+				
+				$debug.log('profile', 'CONNECT', factory.currentProvider);
+				$rs.$digest();
 			},
 			
 			clearProfile: function() {
@@ -74,18 +85,19 @@
 					picture: null
 				});
 				
-				this.isSignedIn = false;
-				
 				$debug.log('profile', 'CLEAR PROFILE');
 			},
 			
-			loadProfile: function(profile = {}) {
+			loadProfile: function() {
 				
-				angular.extend(this, profile);
-				
-				this.isSignedIn = true;
-				
-				$debug.log('profile', 'LOAD PROFILE', profile);
+				if(factory.isSignedIn && factory.currentProvider.props.onGetProfile instanceof Function) {
+					factory.currentProvider.props.onGetProfile().then(profile => {
+						
+						angular.extend(factory, profile);
+						$debug.log('profile', 'LOAD PROFILE', profile);
+						$rs.$digest();
+					});
+				}
 			},
 			
 			loadData: () => {
@@ -94,7 +106,7 @@
 			
 			saveData: (filename, data) => {
 				
-				if(factory.currentProvider.props.onSave instanceof Function) {
+				if(factory.isSignedIn && factory.currentProvider.props.onSave instanceof Function) {
 					factory.currentProvider.props.onSave(filename, data).then(response => {
 						
 						$debug.log('profile', 'PROFILE SAVE DATA', {
@@ -109,7 +121,7 @@
 			
 			signIn: function() {
 				
-				if(factory.currentProvider.props.onSignIn instanceof Function) {
+				if(!factory.isSignedIn && factory.currentProvider.props.onSignIn instanceof Function) {
 					factory.currentProvider.props.onSignIn().then(response => {
 						
 						factory.isSignedIn = true;
@@ -122,7 +134,7 @@
 			
 			signOut: function() {
 				
-				if(factory.currentProvider.props.onSignOut instanceof Function) {
+				if(factory.isSignedIn && factory.currentProvider.props.onSignOut instanceof Function) {
 					factory.currentProvider.props.onSignOut().then(response => {
 						
 						factory.isSignedIn = false;

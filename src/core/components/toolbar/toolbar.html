@@ -131,7 +131,7 @@
 			</zm-btn>
 			
 			<!-- TABS: SETTINGS -->
-			<zm-tabs anchor="top-right">
+			<zm-tabs ng-disabled="!$sessionWorkspace.isValid()" anchor="top-right">
 				<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.settings') }}">
 					
 					<i class="fa fa-gear"></i>

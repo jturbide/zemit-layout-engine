@@ -19,7 +19,7 @@
 		 */
 		$modules.bootstrap([
 			'easteregg',
-			'example',
+			//'example',
 			'code',
 			'partial',
 			'segment',

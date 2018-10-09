@@ -30,15 +30,15 @@
 									'https://www.googleapis.com/auth/drive.appdata',
 									'https://www.googleapis.com/auth/drive.file'
 								].join(' ')
-							}).then(() => {
-								
+							}).then(response => {
 								gapi.auth2.getAuthInstance().isSignedIn.listen(function(isSignedIn) {
-									factory.updateSigninStatus(isSignedIn);
+									factory.updateSigninStatus(isSignedIn, () => {
+										$profile.onConnect(isSignedIn);
+									});
 								});
-								factory.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 								
 								if(callback instanceof Function) {
-									callback(factory.isSignedIn);
+									callback(response);
 								}
 							});
 						},
@@ -51,6 +51,20 @@
 							));
 						},
 						
+						updateSigninStatus(isSignedIn, callback) {
+							
+							if(callback instanceof Function) {
+								callback(isSignedIn);
+							}
+						},
+						
+						handleConnect() {
+							
+							return new Promise((success, error) => {
+								factory.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get(), success);
+							});
+						},
+						
 						handleSignInClick(event) {
 							
 							return gapi.auth2.getAuthInstance().signIn();
@@ -61,32 +75,6 @@
 							return gapi.auth2.getAuthInstance().signOut();
 						},
 						
-						updateSigninStatus: function(isSignedIn) {
-							
-							if(isSignedIn) {
-								
-								this.listFiles().then(files => {
-									console.log('GOOGLE FILES', files);
-								});
-								
-								this.getProfile().then(profile => {
-									
-									$profile.loadProfile({
-										givenName: profile.person.givenName,
-										displayName: profile.person.displayName,
-										picture: profile.picture.url
-									});
-									
-									$rs.$digest();
-								});
-							}
-							else {
-								$profile.clearProfile();
-							}
-							
-							$rs.$digest();
-						},
-						
 						getProfile: () => {
 							
 							return new Promise((success, error) => {
@@ -95,8 +83,9 @@
 									'requestMask.includeField': 'person.names,person.photos'
 								}).then(response => {
 									success({
-										person: response.result.names[0],
-										picture: response.result.photos[0]
+										givenName: response.result.names[0].givenName,
+										displayName: response.result.names[0].displayName,
+										picture: response.result.photos[0].url
 									});
 								});
 							});
@@ -238,10 +227,13 @@
 						});
 					},
 					onConnect: () => {
-						
+						return $google.handleConnect();
 					},
 					onSave: (filename, data) => {
 						return $google.saveFile(filename, data);
+					},
+					onGetProfile: () => {
+						return $google.getProfile();
 					}
 				});
 			}

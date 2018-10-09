@@ -58,9 +58,9 @@
 				<i class="fa zm-flex-minimal" ng-class="{'fa-chevron-down': settings.logs.visible, 'fa-chevron-right': !settings.logs.visible}"></i>
 			</header>
 			<content>
-				<div ng-if="$debug.data" ng-init="groups = ($debug.data | columnize: 2)">
+				<div class="zm-pt-1" ng-init="groups = ($debug.getActiveNamespaces() | columnize: 2)">
 					<div ng-repeat="group in groups" class="zm-flex-container zm-flex-container-gap zm-flex-equal-size zm-flex-align-center">
-						<div ng-repeat="item in group" class="zm-p-2 zm-pb-0">
+						<div ng-repeat="item in group" class="zm-px-1">
 							<zm-field-switch title="{{ item.label }}" ng-model="item.active"></zm-field-switch>
 						</div>
 					</div>
@@ -86,7 +86,7 @@
 						<zm-field-number ng-model="$settings.debug.settings.maxLog"></zm-field-number>
 					</div>
 					<div class="zm-flex-align-self-stretch">
-						<zm-btn ng-disabled="$debug.recent.length === 0" class="zm-w100 zm-h100" ng-click="$debug.recent = []">
+						<zm-btn ng-disabled="$debug.recent.length === 0" class="zm-w100 zm-h100" ng-click="$debug.clearLogs()">
 							{{ ::t('core.components.sidebar.debug.clearConsole') }}
 						</zm-btn>
 					</div>
