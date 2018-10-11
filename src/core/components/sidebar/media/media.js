@@ -59,6 +59,7 @@
 						$s.medias = {
 							images: images
 						};
+						$s.$digest();
 					});
 				};
 				

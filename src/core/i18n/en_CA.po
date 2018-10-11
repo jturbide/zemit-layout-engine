@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "core.classes.errAlreadyConn"
@@ -113,6 +113,9 @@ msgstr "Debug"
 msgid "core.components.sidebar.tabs.media"
 msgstr "Media"
 
+msgid "core.components.sidebar.tabs.modules"
+msgstr "Modules"
+
 msgid "core.components.sidebar.tabs.widgets"
 msgstr "Widgets"
 
@@ -161,11 +164,11 @@ msgstr "Add new segment"
 msgid "core.components.sidebar.workspace.btnAddNewWorkspace"
 msgstr "Add a new workspace"
 
-msgid "core.components.sidebar.workspace.connect.browser"
-msgstr "Browser"
+msgid "core.components.sidebar.workspace.connect.local"
+msgstr "Local"
 
-msgid "core.components.sidebar.workspace.connect.browserTooltip"
-msgstr "Data will be saved in your browser session"
+msgid "core.components.sidebar.workspace.connect.localTooltip"
+msgstr "If not connected to an external service, your data will be saved in your browser session"
 
 msgid "core.components.sidebar.workspace.connect.envTitle"
 msgstr "Environment:"
@@ -214,9 +217,6 @@ msgstr "No segment available yet."
 
 msgid "core.components.sidebar.workspace.filterPlaceholder"
 msgstr "Search in all workspaces..."
-
-msgid "core.components.sidebar.workspace.noProjectAdd"
-msgstr "No project yet, add one:"
 
 msgid "core.components.sidebar.workspace.noWorkspaceJoined"
 msgstr "No workspace joined yet."
@@ -307,18 +307,32 @@ msgstr "Update"
 msgid "core.components.sidebar.workspace.updateWorkspaceTitle"
 msgstr "Connect to workspace"
 
-msgid "core.components.toolbar.doc"
-msgstr "Doc"
+msgid "core.components.sidebar.workspace.segmentOpen"
+msgstr "Load"
 
 msgid "core.components.toolbar.clear"
 msgstr "Clear"
 
+msgid "core.components.toolbar.doc"
+msgstr "Doc"
+
+msgid "core.components.toolbar.export"
+msgstr "Export"
+
+msgid "core.components.toolbar.import"
+msgstr "Import"
+
 msgid "core.components.toolbar.notConnectedDataBrowser"
-msgstr ""
-"Data will be saved in your browser session unless you sign-in."
+msgstr "Data will be saved in your browser session unless you sign-in."
 
 msgid "core.components.toolbar.preview"
 msgstr "Preview"
+
+msgid "core.components.toolbar.signIn"
+msgstr "Sign-In"
+
+msgid "core.components.toolbar.signOut"
+msgstr "Sign-Out"
 
 msgid "core.components.toolbar.structure"
 msgstr "Structure"
@@ -335,35 +349,26 @@ msgstr "Documentation"
 msgid "core.components.toolbar.tooltip.myAccount"
 msgstr "My account"
 
-msgid "core.components.toolbar.export"
-msgstr "Export"
-
-msgid "core.components.toolbar.import"
-msgstr "Import"
-
 msgid "core.components.toolbar.tooltip.redo"
 msgstr "Redo"
-
-msgid "core.components.toolbar.tooltip.undo"
-msgstr "Undo"
 
 msgid "core.components.toolbar.tooltip.settings"
 msgstr "Settings"
 
-msgid "core.components.toolbar.workspaceSaved"
-msgstr "Saved"
-
 msgid "core.components.toolbar.tooltip.signIn"
 msgstr "Sign-in to your account"
 
-msgid "core.components.toolbar.signIn"
-msgstr "Sign-In"
+msgid "core.components.toolbar.tooltip.segment"
+msgstr "Manage current segment"
 
-msgid "core.components.toolbar.tooltip.signOut"
-msgstr "Sign-out from your account"
+msgid "core.components.toolbar.tooltip.undo"
+msgstr "Undo"
 
-msgid "core.components.toolbar.signOut"
-msgstr "Sign-Out"
+msgid "core.components.toolbar.workspaceSaved"
+msgstr "Saved"
+
+msgid "core.components.toolbar.closeSegment"
+msgstr "Close"
 
 msgid "core.components.widget.column.desc"
 msgstr "Use it to divide your rows in more columns"
@@ -381,7 +386,9 @@ msgid "core.components.widget.container.actions.remove"
 msgstr "Remove"
 
 msgid "core.components.widget.container.no-segment"
-msgstr "No segment loaded, please select or create a segment from the workspace drawer."
+msgstr ""
+"No segment loaded, please select or create a segment from the workspace "
+"drawer."
 
 msgid "core.components.widget.container.notices.clickHoldDrag"
 msgstr "Click and hold the selection to drag it around."
@@ -440,7 +447,7 @@ msgid "core.components.widget.text.title"
 msgstr "Text"
 
 msgid "core.debugTitle"
-msgstr "Zemit Core"
+msgstr "Zemit Core events"
 
 msgid "core.di.cache.debugTitle"
 msgstr "Cache events"
@@ -462,6 +469,21 @@ msgstr "Info"
 
 msgid "core.di.modal.warningTitle"
 msgstr "Warning"
+
+msgid "core.di.profile.debugTitle"
+msgstr "Profile events"
+
+msgid "modules.debugTitle"
+msgstr "Modules events"
+
+msgid "core.di.profile.modalSignOutBtnConfirm"
+msgstr "Sign-Out"
+
+msgid "core.di.profile.modalSignOutContent"
+msgstr "Are you sure you wish to sign-out from the application?"
+
+msgid "core.di.profile.modalSignOutTitle"
+msgstr "Sign-Out"
 
 msgid "core.di.storage.errModelNotInitiated"
 msgstr "Model :name: not initiated."
@@ -503,9 +525,6 @@ msgstr "The content has been automatically downloaded into your computer."
 msgid "core.di.zm.modalExportTitle"
 msgstr "Content exported"
 
-msgid "core.di.profile.debugTitle"
-msgstr "Profile events"
-
 msgid "core.directives.draggable.debugTitle"
 msgstr "Draggable events"
 
@@ -533,6 +552,21 @@ msgstr "Modal events"
 msgid "core.directives.tooltip.debugTitle"
 msgstr "Tooltip events"
 
+msgid "core.field.treeview.addChild"
+msgstr "Add a new child"
+
+msgid "core.field.treeview.emptyLabel"
+msgstr "No child available yet"
+
+msgid "core.field.treeview.noChildFiltered"
+msgstr "No child found based on your search criteria"
+
+msgid "core.field.treeview.noItemFound"
+msgstr "No item found based on your search criteria"
+
+msgid "core.field.treeview.noKey"
+msgstr "This item doesn't have a key property."
+
 msgid "core.model.notValidate"
 msgstr "Model does not validate."
 
@@ -545,26 +579,20 @@ msgstr "Workspace already exists."
 msgid "core.services.workspace.errUnableConnectCred"
 msgstr "Unable to connect to the server using the provided credentials."
 
-msgid "core.modules.misc"
-msgstr "Miscellaneous"
+#~ msgid "core.components.sidebar.workspace.noProjectAdd"
+#~ msgstr "No project yet, add one:"
 
-msgid "core.modules.widget"
-msgstr "Widgets"
+#~ msgid "core.components.toolbar.tooltip.signOut"
+#~ msgstr "Sign-out from your account"
 
-msgid "core.modules.serviceProvider"
-msgstr "Service providers"
+#~ msgid "core.modules.misc"
+#~ msgstr "Miscellaneous"
 
-msgid "core.field.treeview.noKey"
-msgstr "This item doesn't have a key property."
+#~ msgid "core.modules.widget"
+#~ msgstr "Widgets"
 
-msgid "core.field.treeview.addChild"
-msgstr "Add a new child"
-
-msgid "core.field.treeview.emptyLabel"
-msgstr "No child available yet"
-
-msgid "core.field.treeview.noChildFiltered"
-msgstr "No child found based on your search criteria"
+#~ msgid "core.modules.serviceProvider"
+#~ msgstr "Service providers"
 
 #~ msgid "core.components.sidebar.workspace.btnEdit"
 #~ msgstr "Edit"

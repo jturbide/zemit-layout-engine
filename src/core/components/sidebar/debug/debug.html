@@ -7,7 +7,7 @@
 		
 		<!-- DETAILS -->
 		<zm-accordion ng-model="settings.details.visible" style="margin-top: -1px">
-			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+			<header class="zm-flex-container zm-flex-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.detailsTitle') }}
 				</span>
@@ -36,7 +36,7 @@
 		
 		<!-- SETTINGS -->
 		<zm-accordion ng-model="settings.settings.visible">
-			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+			<header class="zm-flex-container zm-flex-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.settingsTitle') }}
 				</span>
@@ -50,7 +50,7 @@
 		
 		<!-- LOGS -->
 		<zm-accordion ng-model="settings.logs.visible">
-			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+			<header class="zm-flex-container zm-flex-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.logsTitle') }}
 				</span>
@@ -59,7 +59,7 @@
 			</header>
 			<content>
 				<div class="zm-pt-1" ng-init="groups = ($debug.getActiveNamespaces() | columnize: 2)">
-					<div ng-repeat="group in groups" class="zm-flex-container zm-flex-container-gap zm-flex-equal-size zm-flex-align-center">
+					<div ng-repeat="group in groups" class="zm-flex-container zm-flex-gap zm-flex-equal-size zm-flex-align-center">
 						<div ng-repeat="item in group" class="zm-px-1">
 							<zm-field-switch title="{{ item.label }}" ng-model="item.active"></zm-field-switch>
 						</div>
@@ -96,7 +96,7 @@
 	
 		<!-- ACTIONS -->
 		<zm-accordion ng-model="settings.actions.visible">
-			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+			<header class="zm-flex-container zm-flex-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::t('core.components.sidebar.debug.actionsTitle') }}
 				</span>

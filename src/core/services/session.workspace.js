@@ -5,71 +5,128 @@
  * Get and set workspace session
  */
 (function() {
-	Zemit.app.factory('$sessionWorkspace', ['$session', '$hook', function($session, $hook) {
+	Zemit.app.factory('$sessionWorkspace', ['$session', '$hook', '$rootScope', '$storage', function($session, $hook, $rs, $storage) {
 		
 		$hook.add('onNewHistory', () => {
 			factory.lastUpdate = new Date();
 		});
 		
+		$hook.add('onReady', () => {
+			
+			var segmentKey = $session.get('segment');
+			
+			if(segmentKey) {
+				let segment = $storage.get('segment', segmentKey).then(segment => {
+					if(segment) {
+						factory.setSegment(segment);
+					}
+				});
+			}
+		})
+		
+		$hook.add('onBeforeUnload', function() {
+			if(factory.segment.getKey()) {
+				factory.segment.cleanContent();
+				factory.segment.save();
+			}
+		});
+		
+		$hook.add('onStorageRemoveSegment', keys => {
+			keys.forEach(key => {
+				if(key === factory.segment.getKey()) {
+					factory.closeSegment();
+				}
+			});
+		});
+		
 		var factory = {
 			
+			breadcrumbs: [],
+			
+			segment: null,
+			project: null,
 			workspace: null,
-			lastSave: null,
-			lastUpdate: null,
 			
-			load: (workspace) => {
-				this.workspace = workspace;
+			init: function() {
+				this.segment = new ZmSegment();
 			},
 			
-			isValid: () => {
-				return true;
-				return false;
-			},
-			
-			getSegment: () => {
+			isValid: function() {
 				
-				return false;
+				return this.segment.getKey()
+					&& this.project
+					&& this.workspace;
 			},
 			
-			getBreadcrumbs: () => {
-					
-				let breadcrumbs = [];
-				let workspaceKey = $session.workspace;
-				let projectKey = $session.project;
-				let segmentKey = $session.segment;
+			closeSegment: function() {
 				
-				if(workspaceKey) {
-					
-					let workspace = $workspace.get(workspaceKey);
-					if(workspace) {
+				this.segment.setKey(null);
+				this.segment.setContent({
+					childs: []
+				});
+				this.project = null;
+				this.workspace = null;
+				
+				this.updateBreadcrumbs();
+				
+				$session.set('segment', null);
+			},
+			
+			setSegment: (segment) => {
+				
+				if(factory.segment.getKey()) {
+					factory.segment.cleanContent();
+					factory.segment.save();
+				}
+				
+				segment.getProject().then(project => {
+					project.getWorkspace().then(workspace => {
 						
-						breadcrumbs.push({
-							label: workspace.getName()
+						factory.segment.setKey(segment.getKey());
+						factory.segment.setData(segment.getData());
+						factory.segment.setContent(segment.getContent());
+						factory.project = project;
+						factory.workspace = workspace;
+						factory.updateBreadcrumbs();
+						
+						$session.set('segment', segment.getKey());
+						
+						$hook.run('onSegmentLoad', factory.segment);
+						
+						$rs.$digest();
+					});
+				});
+			},
+			
+			updateBreadcrumbs: function() {
+				
+				this.breadcrumbs.splice(0, this.breadcrumbs.length);
+				
+				if(this.workspace) {
+					
+					this.breadcrumbs.push({
+						label: this.workspace.getName()
+					});
+					
+					if(this.project) {
+						
+						this.breadcrumbs.push({
+							label: this.project.getName()
 						});
 						
-						if(projectKey) {
+						if(this.segment) {
 							
-							let project = $workspace.getProject(projectKey);
-							if(project) {
-								breadcrumbs.push({
-									label: project.getName()
-								});
-								
-								if(segmentKey) {
-									
-									let segment = $workspace.getProject(segmentKey);
-									if(segment) {
-										breadcrumbs.push({
-											label: segment.getName()
-										});
-									}
-								}
-							}
+							this.breadcrumbs.push({
+								label: this.segment.getName()
+							});
 						}
 					}
 				}
+			},
+			
+			getBreadcrumbs: function() {
 				
-				return breadcrumbs;
+				return this.breadcrumbs;
 			}
 		};
 		

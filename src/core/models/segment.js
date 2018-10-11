@@ -4,7 +4,9 @@ class ZmSegment extends ZmModel {
 		
 		super(key, data, {
 			name: null,
-			content: null
+			content: {
+				childs: []
+			}
 		});
 		
 		this.setJoins([{
@@ -25,11 +27,15 @@ class ZmSegment extends ZmModel {
 	}
 	
 	getContent() {
-		return this.content;
+		return this.data.content;
 	}
 	
 	setContent(content) {
-		this.content = content;
+		this.data.content = content;
 		return this;
+	}
+	
+	cleanContent() {
+		this.data.content = angular.fromJson(angular.toJson(this.data.content));
 	}
 };

@@ -6,7 +6,7 @@
  */
 (function() {
 	Zemit.app.factory('$util', [function() {
-	    
+		
 		var factory = {
 			
 			/**
@@ -48,6 +48,20 @@
 			
 			isValidHost: function(string) {
 				return string && (/^([a-z0-9-.]*)?[a-z0-9](:[0-9]+)?$/.test(string));
+			},
+			
+			getUrlParam: function(param) {
+				
+				var result = null, tmp = [];
+				
+				location.search.substr(1).split("&").forEach(function (item) {
+					tmp = item.split("=");
+					if (tmp[0] === param) {
+						result = decodeURIComponent(tmp[1]);
+					}
+				});
+				
+				return result;
 			}
 			
 		};

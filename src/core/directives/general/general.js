@@ -25,8 +25,6 @@
 				
 				$e[0].addEventListener('scroll', (event) => {
 					
-					console.log($e[0].scrollTop);
-					
 					settings.zmScrollable[options.key].x = $e[0].scrollLeft;
 					settings.zmScrollable[options.key].y = $e[0].scrollTop;
 				});

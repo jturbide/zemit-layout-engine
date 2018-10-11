@@ -31,7 +31,7 @@
 		
 		<!-- TABS -->
 		<zm-accordion ng-model="$root.settings.sidebar.widgets.tabs[key].visible" ng-if="section.widgets.length > 0" ng-repeat="(key, section) in sections">
-			<header class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+			<header class="zm-flex-container zm-flex-gap zm-flex-align-center">
 				<span class="zm-sidebar-title-text">
 					{{ ::section.title }}
 				</span>
@@ -46,7 +46,7 @@
 			</header>
 			<content>
 				<zm-field class="zm-p-2">
-					<div ng-if="section.widgets.length > 0" class="zm-flex-container zm-flex-container-gap zm-flex-equal-size">
+					<div ng-if="section.widgets.length > 0" class="zm-flex-container zm-flex-gap zm-flex-equal-size">
 						
 						<!-- LIST OF ITEMS (REPEAT) -->
 						<div zm-draggable="draggableOptions" zm-draggable-item="dragWidget" ng-init="dragWidget = { type: widget.type }" class="zm-sidebar-widgets-item zm-widget-item" ng-repeat="widget in section.widgets">
@@ -63,7 +63,7 @@
 								</h4>
 								
 								<!-- DESCRIPTION -->
-								<p ng-if="settings.directives.dismissable.visible" class="zm-sidebar-widgets-item-desc" ng-if="widget.desc">
+								<p class="zm-sidebar-widgets-item-desc" ng-if="widget.desc">
 									{{ widget.desc }}
 								</p>
 							</div>

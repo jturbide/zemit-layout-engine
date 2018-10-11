@@ -169,11 +169,23 @@ zm-widget[type="container"] {
 .zm-flex-nowrap {
   flex-wrap: nowrap;
 }
+.zm-flex-align-left {
+  justify-content: start;
+}
+.zm-flex-align-right {
+  justify-content: end;
+}
 .zm-flex-align-center {
   align-items: center;
 }
+.zm-flex-align-self-left {
+  align-self: start;
+}
 .zm-flex-align-self-center {
   align-self: center;
+}
+.zm-flex-align-self-right {
+  align-self: end;
 }
 .zm-flex-align-self-stretch {
   align-self: stretch;
@@ -186,28 +198,28 @@ zm-widget[type="container"] {
   flex-grow: 1;
   flex-basis: 0;
 }
-.zm-flex-container-column.zm-flex-container-gap,
-.zm-flex-container.zm-flex-container-gap {
+.zm-flex-container-column.zm-flex-gap,
+.zm-flex-container.zm-flex-gap {
   /*margin: -0.125rem -0.25rem;*/
 }
-.zm-flex-container-column.zm-flex-container-gap > *,
-.zm-flex-container.zm-flex-container-gap > * {
+.zm-flex-container-column.zm-flex-gap > *,
+.zm-flex-container.zm-flex-gap > * {
   margin: 0.25rem;
 }
-.zm-flex-container-column.zm-flex-container-gap-x > *:not(:first-child),
-.zm-flex-container.zm-flex-container-gap-x > *:not(:first-child) {
+.zm-flex-container-column.zm-flex-gap-x > *:not(:first-child),
+.zm-flex-container.zm-flex-gap-x > *:not(:first-child) {
   margin-left: 0.25rem;
 }
-.zm-flex-container-column.zm-flex-container-gap-x > *:not(:last-child),
-.zm-flex-container.zm-flex-container-gap-x > *:not(:last-child) {
+.zm-flex-container-column.zm-flex-gap-x > *:not(:last-child),
+.zm-flex-container.zm-flex-gap-x > *:not(:last-child) {
   margin-right: 0.25rem;
 }
-.zm-flex-container-column.zm-flex-container-gap-y > *:not(:first-child),
-.zm-flex-container.zm-flex-container-gap-y > *:not(:first-child) {
+.zm-flex-container-column.zm-flex-gap-y > *:not(:first-child),
+.zm-flex-container.zm-flex-gap-y > *:not(:first-child) {
   margin-top: 0.25rem;
 }
-.zm-flex-container-column.zm-flex-container-gap-y > *:not(:last-child),
-.zm-flex-container.zm-flex-container-gap-y > *:not(:last-child) {
+.zm-flex-container-column.zm-flex-gap-y > *:not(:last-child),
+.zm-flex-container.zm-flex-gap-y > *:not(:last-child) {
   margin-bottom: 0.25rem;
 }
 .zm-flex-minimal {
@@ -311,8 +323,9 @@ zm-widget[type="container"] {
  * Scrollbars
  */
 ::-webkit-scrollbar {
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #f6f6f6;
 }
 
 ::-webkit-scrollbar-track {
@@ -321,14 +334,15 @@ zm-widget[type="container"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 0;
-  background: rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: #f6f6f6 solid 0.25rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 ::-webkit-scrollbar-corner {
-  background: rgba(0, 0, 0, 0);
+  background: #f6f6f6;
 }

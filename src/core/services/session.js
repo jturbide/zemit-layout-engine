@@ -50,11 +50,27 @@
 			
 			set: function(key, values) {
 				
-				for(let prop in this.data[key]) {
-					delete this.data[key][prop];
+				if(this.data[key] === undefined) {
+					return;
 				}
 				
-				angular.merge(this.data[key], values);
+				if(this.data[key] instanceof Array) {
+					this.data[key].splice(0, this.data[key].length);
+					values.forEach(value => {
+						this.data[key].push(value);
+					});
+				}
+				else if(this.data[key] instanceof Object) {
+				
+					for(let prop in this.data[key]) {
+						delete this.data[key][prop];
+					}
+					
+					angular.merge(this.data[key], values);
+				}
+				else {
+					this.data[key] = values;
+				}
 			},
 			
 			prepare: function(key, values) {
@@ -73,9 +89,7 @@
 					$storage.getAll('session').then((models) => {
 						
 						factory.data = angular.extend({
-							content: {
-								childs: []
-							},
+							segment: null,
 							history: {},
 							settings: {}
 						}, factory.data);

@@ -275,9 +275,9 @@
 					this.total = this.count();
 				},
 				
-				count: function() {
+				count: function(widget = factory.baseScope.widget) {
 					var total = 0;
-					factory.baseScope.widget.forEachChilds(function(widget) {
+					widget.forEachChilds(function(widget) {
 						total++;
 					});
 					return total;

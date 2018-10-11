@@ -7,6 +7,7 @@
   text-align: center;
   border-radius: 0.25rem;
   background-color: rgba(255, 255, 255, 0.5);
+  min-width: 25%;
   
   -webkit-touch-action: none;
      -moz-touch-action: none;

@@ -3,7 +3,7 @@
 	<!-- GROUP TITLE -->
 	<div ng-click="toggle(lvlSettings, currentNode, $event)"
 		 ng-include="lvlOptions.toolbarTemplate || defaultLvlToolbar"
-		 class="zm-treeview-group-title zm-flex-container zm-flex-container-gap zm-flex-align-center"
+		 class="zm-treeview-group-title zm-flex-container zm-flex-gap zm-flex-align-center"
 		 ng-class="{ 'zm-shadow-down': settings.treeview[currentNode.key] }"></div>
 	
 	<div class="zm-field-treeview-sub-level" zm-slide-y="settings.treeview[currentNode.key]">

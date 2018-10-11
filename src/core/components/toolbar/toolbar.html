@@ -23,7 +23,7 @@
 			<items>
 				
 				<!-- STRUCTURE -->
-				<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-class="{active: settings.context === 'structure'}" ng-click="setTab('structure')">
+				<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-class="{active: settings.context === 'structure'}" ng-click="setTab('structure')">
 					<i class="fa fa-cubes zm-flex-minimal"></i>
 					<span>
 						{{ ::t('core.components.toolbar.structure') }}
@@ -32,7 +32,7 @@
 				</li>
 				
 				<!-- PREVIEW -->
-				<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center" ng-class="{active: settings.context === 'preview'}" ng-click="setTab('preview')">
+				<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center" ng-class="{active: settings.context === 'preview'}" ng-click="setTab('preview')">
 					<i class="fa fa-eye zm-flex-minimal"></i>
 					<span>
 						{{ ::t('core.components.toolbar.preview') }}
@@ -59,26 +59,55 @@
 				<div class="zm-btn-sep zm-hide-mobile"></div>
 				
 				<!-- CLEAR -->
-				<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+				<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!$sessionWorkspace.isValid() || $sessionWorkspace.segment.data.content.childs.length === 0" ng-click="zm.content.clear()">
 					<i class="fa fa-eraser"></i>
 				</zm-btn>
 			</span>
 		</div>
 		
 		<!-- ACTIONS -->
-		<div class="zm-toolbar-actions zm-flex-container zm-flex-align-center zm-toolbar-actions-workspace">
+		<div class="zm-toolbar-actions zm-flex-container zm-flex-align-left zm-toolbar-actions-workspace">
+			
+			<!-- BREADCRUMBS -->
+			<div ng-if="breadcrumbs.length > 0 && $device.isLargeEnough()" class="zm-breadcrumbs zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap zm-flex-minimal" ng-class="{ 'zm-mr-3': $profile.isSignedIn === false }">
+				
+				<i class="fa fa-cubes fa-margin-right zm-flex-minimal"></i>
+				
+				<div class="zm-breadcrumb zm-flex-container zm-flex-gap-x zm-flex-nowrap zm-flex-align-center"
+					 ng-repeat="breadcrumb in breadcrumbs"
+					 ng-class="{ first: $index === 0, last: $index === breadcrumbs.length - 1 }">
+					<span ng-if="$index < breadcrumbs.length - 1">
+						{{ breadcrumb.label }}
+					</span>
+					<zm-tabs ng-if="$index === breadcrumbs.length - 1" anchor="top-left" style="flat">
+						<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.segment') }}">
+							
+							{{ breadcrumb.label }}
+							
+							<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
+						</toggle>
+						<items>
+							
+							<!-- CLOSE -->
+							<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-click="closeSegment()">
+								<i class="fa fa-window-close zm-flex-minimal"></i>
+								<span>
+									{{ ::t('core.components.toolbar.closeSegment') }}
+								</span>
+							</li>
+						</items>
+					</zm-tabs>
+					<i ng-if="$index < breadcrumbs.length - 1" class="fa fa-angle-right zm-flex-minimal"></i>
+				</div>
+			</div>
 			
 			<!-- NOT CONNECTED, DATA SAVED IN BROWSER -->
-			<div ng-if="$profile.isSignedIn === false" class="zm-flex-container zm-flex-container-gap zm-flex-align-center">
+			<div ng-if="$profile.isSignedIn === false" class="zm-toolbar-not-connected-data zm-flex-container zm-flex-gap-x zm-flex-align-center">
 				<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>
 				<span>{{ ::t('core.components.toolbar.notConnectedDataBrowser') }}</span>
 			</div>
 			
-			<div ng-repeat="breadcrumb in breadcrumbs">
-				{{ breadcrumb.label }}
-				<i ng-if="$index < breadcrumbs.length" class="fa fa-angle-right"></i>
-			</div>
-			
+			<!-- WORKSPACE SAVED -->
 			<span ng-if="$sessionWorkspace.lastSave > $sessionWorkspace.lastUpdate" class="zm-badge zm-bg-success">
 				{{ ::t('core.components.toolbar.workspaceSaved') }}
 			</span>
@@ -105,7 +134,7 @@
 					<items>
 						
 						<!-- SIGN-OUT -->
-						<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-click="$profile.signOut()">
+						<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-click="$profile.signOut()">
 							<i class="fa fa-sign-out zm-flex-minimal"></i>
 							<span>
 								{{ ::t('core.components.toolbar.signOut') }}
@@ -141,7 +170,7 @@
 				<items>
 					
 					<!-- IMPORT -->
-					<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">
+					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$sessionWorkspace.isValid() || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">
 						<i class="fa fa-download zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.import') }}
@@ -149,7 +178,7 @@
 					</li>
 					
 					<!-- EXPORT -->
-					<li class="zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-disabled="!segment || !$sessionWorkspace.isValid()" ng-click="zm.content.export()">
+					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$sessionWorkspace.isValid() || !$sessionWorkspace.isValid()" ng-click="zm.content.export()">
 						<i class="fa fa-upload zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.export') }}
@@ -157,10 +186,82 @@
 					</li>
 					
 					<!-- CLEAR -->
-					<li class="zm-show-mobile zm-tab-item zm-flex-container zm-flex-container-gap zm-flex-align-center zm-flex-nowrap" ng-disabled="!segment || zm.getBaseScope().widget.childs.length === 0" ng-click="zm.content.clear()">
+					<li class="zm-show-mobile zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$sessionWorkspace.isValid() || $sessionWorkspace.segment.data.content.childs.length === 0" ng-click="zm.content.clear()">
 						<i class="fa fa-eraser zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.clear') }}
+						</span>
+					</li>
+				</items>
+			</zm-tabs>
+		</div>
+	</div>
+	<div ng-if="!$device.isLargeEnough() && (breadcrumbs.length > 0 || $profile.isSignedIn === false)" class="zm-toolbar-inner-bottom zm-clearfix zm-flex-container zm-flex-align-center zm-flex-gap-x">
+		<div class="zm-flex-container zm-flex-align-center zm-flex-align-center">
+			
+			<!-- BREADCRUMBS -->
+			<div ng-if="breadcrumbs.length > 0" class="zm-breadcrumbs zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap zm-flex-minimal">
+				
+				<i class="fa fa-cubes fa-margin-right zm-flex-minimal"></i>
+				
+				<div class="zm-breadcrumb zm-flex-container zm-flex-minimal zm-flex-gap-x zm-flex-nowrap zm-flex-align-center"
+					 ng-repeat="breadcrumb in breadcrumbs"
+					 ng-class="{ first: $index === 0, last: $index === breadcrumbs.length - 1 }">
+					<span ng-if="$index < breadcrumbs.length - 1">
+						{{ breadcrumb.label }}
+					</span>
+					<zm-tabs ng-if="$index === breadcrumbs.length - 1" anchor="top-left" style="flat">
+						<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.segment') }}">
+							
+							{{ breadcrumb.label }}
+							
+							<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
+						</toggle>
+						<items>
+							
+							<!-- CLOSE -->
+							<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-click="closeSegment()">
+								<i class="fa fa-window-close zm-flex-minimal"></i>
+								<span>
+									{{ ::t('core.components.toolbar.closeSegment') }}
+								</span>
+							</li>
+						</items>
+					</zm-tabs>
+					<i ng-if="$index < breadcrumbs.length - 1" class="fa fa-angle-right zm-flex-minimal"></i>
+				</div>
+			</div>
+			
+			<!-- NOT CONNECTED, DATA SAVED IN BROWSER -->
+			<!--<div ng-if="$profile.isSignedIn === false" class="zm-toolbar-not-connected-data zm-flex-container zm-flex-gap-x zm-flex-align-center">-->
+			<!--	<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>-->
+			<!--	<span>{{ ::t('core.components.toolbar.notConnectedDataBrowser') }}</span>-->
+			<!--</div>-->
+		</div>
+		
+		<!-- SIGN-IN -->
+		<div class="zm-flex-minimal">
+			<zm-btn ng-if="$device.isSmall() && $profile.isSignedIn === false" class="zm-btn-primary zm-nowrap" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.signIn') }}" ng-click="$profile.signIn()">
+				<i class="fa fa-sign-in fa-margin-right"></i>
+				{{ ::t('core.components.toolbar.signIn') }}
+			</zm-btn>
+			
+			<!-- USER INFO -->
+			<zm-tabs ng-if="$profile.isSignedIn === true && $device.isSmall()" class="zm-toolbar-profile-container" anchor="top-left" style="flat">
+				<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.myAccount') }}">
+					
+					<img ng-src="{{ $profile.picture }}" class="zm-profile-pic" />
+					<span>{{ $profile.givenName }}</span>
+					
+					<i style="font-size: 0.5rem;" class="fa fa-chevron-down"></i>
+				</toggle>
+				<items>
+					
+					<!-- SIGN-OUT -->
+					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-click="$profile.signOut()">
+						<i class="fa fa-sign-out zm-flex-minimal"></i>
+						<span>
+							{{ ::t('core.components.toolbar.signOut') }}
 						</span>
 					</li>
 				</items>

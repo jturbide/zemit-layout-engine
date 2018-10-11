@@ -32,14 +32,18 @@
 				
 				var $zm = $di.get('$zm');
 				var $device = $di.get('$device');
+				var $hook = $di.get('$hook');
 				var $sessionWorkspace = $di.get('$sessionWorkspace');
 				var $i18n = $di.get('$i18n');
 				
 				// Set container scopes
 				$s.zm = $zm;
 				$s.container = $s.widget;
-				$s.$sessionWorkspace = $sessionWorkspace;
-				$s.segment = $sessionWorkspace.getSegment();
+				$s.segment = null;
+				
+				$hook.add('onSegmentLoad', segment => {
+					$s.widget.childs = segment.data.content.childs;
+				});
 				
 				// Add a placeholder element in the DOM next to the container
 				var placeholder = document.createElement('div');
@@ -60,7 +64,7 @@
 				}, {
 					label: $i18n.get('core.components.widget.container.notices.startAddingRow'),
 					condition: () => {
-						return $s.segment && $sessionWorkspace.isValid() && $s.container.childs.length === 0;
+						return $sessionWorkspace.isValid() && $sessionWorkspace.isValid() && $s.container.childs.length === 0;
 					}
 				}, {
 					label: () => {

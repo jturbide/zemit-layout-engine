@@ -3,7 +3,7 @@
  * @author: <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', function($hook, $debug, $i18n, $rs) {
+	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', '$modal', function($hook, $debug, $i18n, $rs, $modal) {
 		
 		$hook.add('onReady', () => {
 			$debug.init('profile', $i18n.get('core.di.profile.debugTitle'));
@@ -134,15 +134,32 @@
 			
 			signOut: function() {
 				
-				if(factory.isSignedIn && factory.currentProvider.props.onSignOut instanceof Function) {
-					factory.currentProvider.props.onSignOut().then(response => {
-						
-						factory.isSignedIn = false;
-						
-						$debug.log('profile', 'SIGNED OUT', factory.currentProvider);
-						$rs.$digest();
-					});
-				}
+				$modal.dialog('profileSignOut', {
+					backdrop: true,
+					title: $i18n.get('core.di.profile.modalSignOutTitle'),
+					content: $i18n.get('core.di.profile.modalSignOutContent'),
+					buttons: [{
+						label: $i18n.get('core.di.profile.modalSignOutBtnConfirm'),
+						warning: true,
+						callback: (event, modal) => {
+							
+							if(factory.isSignedIn && factory.currentProvider.props.onSignOut instanceof Function) {
+								factory.currentProvider.props.onSignOut().then(response => {
+									
+									factory.isSignedIn = false;
+									
+									$debug.log('profile', 'SIGNED OUT', factory.currentProvider);
+									$rs.$digest();
+								});
+							}
+							
+							modal.close();
+						}
+					}, {
+						label: $i18n.get('core.di.modal.btnCancel'),
+						default: true
+					}, ]
+				});
 			}
 		};
 		

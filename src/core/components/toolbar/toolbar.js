@@ -1,6 +1,6 @@
 (function() {
 	
-	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', '$workspace', '$sessionWorkspace', '$hook', '$profile', function($history, $zm, $modal, $session, $workspace, $sessionWorkspace, $hook, $profile) {
+	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', '$workspace', '$sessionWorkspace', '$hook', '$profile', '$device', function($history, $zm, $modal, $session, $workspace, $sessionWorkspace, $hook, $profile, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -11,12 +11,16 @@
 				// Set container scopes
 				var session = $session.getAll();
 				var settings = session.settings;
-				$s.container = session.content;
 				$s.zm = $zm;
 				$s.history = $history;
 				$s.$modal = $modal;
 				$s.session = session;
 				$s.$profile = $profile;
+				$s.$device = $device;
+				
+				$s.closeSegment = () => {
+					$sessionWorkspace.closeSegment();
+				};
 				
 				$s.setTab = function(context) {
 					
@@ -29,7 +33,7 @@
 					$hook.run('onContextChange', context, oldContext);
 				};
 				
-				$s.segment = $sessionWorkspace.getSegment();
+				$s.segment = $sessionWorkspace.segment;
 				$s.breadcrumbs = $sessionWorkspace.getBreadcrumbs();
 				$s.$sessionWorkspace = $sessionWorkspace;
 			}

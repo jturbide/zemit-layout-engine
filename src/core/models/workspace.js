@@ -27,7 +27,7 @@ class ZmWorkspace extends ZmModel {
 	
 	isValid() {
 		var data = this.getData();
-		return (data.env === 'browser' && data.name !== null && data.name.trim() !== '')
+		return (data.env === 'local' && data.name !== null && data.name.trim() !== '')
 			|| (data.env === 'remote' && this.$util.isValidHost(data.host));
 	}
 	

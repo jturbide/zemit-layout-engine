@@ -35,24 +35,31 @@
 				
 				$s.addCallback = function(list, index) {
 					return function(key, title, data, childs = []) {
+						
 						list.splice(index, 0, {
 							key: key,
 							title: title,
 							data: data,
 							childs: childs
 						});
+						
+						// Open by default
+						$s.settings.treeview[key] = true;
+						
 						$s.$digest();
 					};
 				};
 				
 				$s.editCallback = function(node) {
 					return function(key, title, data, childs) {
+						
 						angular.extend(node, {
 							key: key || node.key,
 							title: title || node.title,
 							data: data || node.data,
 							childs: childs || node.childs
 						});
+						
 						$s.$digest();
 					};
 				};

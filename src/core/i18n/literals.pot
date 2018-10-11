@@ -148,12 +148,6 @@ msgstr ""
 msgid "core.components.sidebar.workspace.btnAddNewWorkspace"
 msgstr ""
 
-msgid "core.components.sidebar.workspace.connect.browser"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.browserTooltip"
-msgstr ""
-
 msgid "core.components.sidebar.workspace.connect.envTitle"
 msgstr ""
 
@@ -161,6 +155,12 @@ msgid "core.components.sidebar.workspace.connect.hostPlaceholder"
 msgstr ""
 
 msgid "core.components.sidebar.workspace.connect.hostTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.local"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.localTooltip"
 msgstr ""
 
 msgid "core.components.sidebar.workspace.connect.namePlaceholder"
@@ -265,6 +265,9 @@ msgstr ""
 msgid "core.components.sidebar.workspace.segment.nameTitle"
 msgstr ""
 
+msgid "core.components.sidebar.workspace.segmentOpen"
+msgstr ""
+
 msgid "core.components.sidebar.workspace.treeview.segmentTotalWidgets"
 msgstr ""
 
@@ -284,6 +287,9 @@ msgid "core.components.sidebar.workspace.updateWorkspaceTitle"
 msgstr ""
 
 msgid "core.components.toolbar.clear"
+msgstr ""
+
+msgid "core.components.toolbar.closeSegment"
 msgstr ""
 
 msgid "core.components.toolbar.doc"
@@ -323,6 +329,9 @@ msgid "core.components.toolbar.tooltip.myAccount"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.redo"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.segment"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.settings"
@@ -433,6 +442,15 @@ msgstr ""
 msgid "core.di.profile.debugTitle"
 msgstr ""
 
+msgid "core.di.profile.modalSignOutBtnConfirm"
+msgstr ""
+
+msgid "core.di.profile.modalSignOutContent"
+msgstr ""
+
+msgid "core.di.profile.modalSignOutTitle"
+msgstr ""
+
 msgid "core.di.storage.errModelNotInitiated"
 msgstr ""
 
@@ -505,6 +523,9 @@ msgstr ""
 msgid "core.field.treeview.noChildFiltered"
 msgstr ""
 
+msgid "core.field.treeview.noItemFound"
+msgstr ""
+
 msgid "core.field.treeview.noKey"
 msgstr ""
 
@@ -518,4 +539,7 @@ msgid "core.services.workspace.errAlreadyExists"
 msgstr ""
 
 msgid "core.services.workspace.errUnableConnectCred"
+msgstr ""
+
+msgid "modules.debugTitle"
 msgstr ""

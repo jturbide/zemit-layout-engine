@@ -77,11 +77,11 @@
 				
 				$s.dump = () => {
 					
-					var content = $session.get('content');
+					var segment = $session.get('settings').segment;
 					var history = $history.dump();
 					var data = {
 						history: history,
-						content: angular.fromJson(angular.toJson(content)),
+						content: angular.fromJson(angular.toJson(segment.getContent())),
 						version: Zemit.version
 					};
 					

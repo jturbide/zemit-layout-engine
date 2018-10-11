@@ -123,8 +123,10 @@
 					$clone.css({
 						'top': $e.offset().top + 'px',
 						'left': $e.offset().left + 'px',
-						'width': $e.width(),
-						'height': $e.height()
+						'width': $e.width() + 'px',
+						'height': $e.height() + 'px',
+						'min-width': 'auto',
+						'min-height': 'auto'
 					});
 					
 					event.interaction.draggedItem = angular.copy($s.item);

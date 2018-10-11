@@ -3,7 +3,7 @@ class ZmProject extends ZmModel {
 	constructor(key = null, data = null) {
 		
 		super(key, data, {
-			name: null,
+			name: null
 		});
 		
 		this.setJoins([{

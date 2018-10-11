@@ -51,7 +51,7 @@ var Zemit = {
 		});
 	}]);
 	
-	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', '$socket', '$i18n', '$debug', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media, $socket, $i18n, $debug) {
+	Zemit.app.directive('zemit', ['$zm', '$compile', '$session', '$window', '$hook', '$device', '$storage', '$workspace', '$media', '$socket', '$i18n', '$debug', '$sessionWorkspace', function($zm, $compile, $session, $window, $hook, $device, $storage, $workspace, $media, $socket, $i18n, $debug, $sessionWorkspace) {
 		return {
 			restrict: 'E',
 			link: async function ($s, $e, attrs) {
@@ -69,12 +69,15 @@ var Zemit = {
 				});
 				
 				$zm.setBaseScope($s);
-				$s.zemit = session.content;
-				$s.widget = $s.zemit;
+				$s.$sessionWorkspace = $sessionWorkspace;
 				$s.settings = session.settings;
 				$s.device = $device;
 				$s.t = $i18n.get;
 				$s.$zemit = $e;
+				
+				$sessionWorkspace.init();
+				$s.container = $sessionWorkspace.segment.data.content;
+				$s.widget = $s.container;
 				
 				// Prevent mobile contextual menu
 				$e.on('contextmenu', function(event) {

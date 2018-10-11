@@ -2,9 +2,9 @@
 	<div class="zm-form-group zm-row zm-flex-align-center">
 		<label class="zm-col-12 zm-col-sm-4 zm-mb-2 zm-mb-sm-0">{{ ::t('core.components.sidebar.workspace.connect.envTitle') }}</label>
 		<div class="zm-col-12 zm-col-sm-8">
-			<label zm-tooltip="{{ ::t('core.components.sidebar.workspace.connect.browserTooltip') }}">
-				<input ng-disabled="!workspace.isNew()" type="radio" ng-model="workspace.data.env" value="browser" />
-				{{ ::t('core.components.sidebar.workspace.connect.browser') }}
+			<label zm-tooltip="{{ ::t('core.components.sidebar.workspace.connect.localTooltip') }}">
+				<input ng-disabled="!workspace.isNew()" type="radio" ng-model="workspace.data.env" value="local" />
+				{{ ::t('core.components.sidebar.workspace.connect.local') }}
 			</label>
 			<label class="zm-ml-3">
 				<input ng-disabled="!workspace.isNew()" type="radio" ng-model="workspace.data.env" value="remote" />

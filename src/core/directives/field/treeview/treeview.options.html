@@ -1,11 +1,11 @@
-<div ng-click="$event.stopPropagation()" class="zm-flex-container zm-flex-container-gap-x zm-flex-nowrap">
+<div ng-click="$event.stopPropagation()" class="zm-flex-container zm-flex-gap-x zm-flex-nowrap">
 	
 	<!-- MORE OPTIONS -->
 	<zm-tabs anchor="top-right">
 		<items>
 			
 			<!-- EDIT -->
-			<li ng-click="lvlOptions.onEdit(node.data, parent.data, editCallback(node), depth)" class="zm-tab-item zm-flex-container zm-flex-container-gap-x zm-flex-align-center zm-flex-nowrap">
+			<li ng-click="lvlOptions.onEdit(node.data, parent.data, editCallback(node), depth)" class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap">
 				<i class="fa fa-pencil zm-flex-minimal"></i>
 				<span>
 					{{ ::$root.t('core.directives.field.treeview.btnEdit') }}
@@ -13,7 +13,7 @@
 			</li>
 			
 			<!-- ADD -->
-			<li ng-if="lvlOptions.canAdd" ng-click="lvlOptions.onAdd(node.data, parent.data, addCallback(node.childs, $index), depth)" class="zm-tab-item zm-flex-container zm-flex-container-gap-x zm-flex-align-center zm-flex-nowrap">
+			<li ng-if="lvlOptions.canAdd" ng-click="lvlOptions.onAdd(node.data, parent.data, addCallback(node.childs, $index), depth)" class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap">
 				<i class="fa fa-plus zm-flex-minimal"></i>
 				<span>
 					{{ ::$root.t('core.directives.field.treeview.btnAdd') }}
@@ -21,7 +21,7 @@
 			</li>
 			
 			<!-- OPEN -->
-			<li ng-if="lvlOptions.canOpen" ng-click="lvlOptions.onOpen(node.data, parent.data, depth)" class="zm-tab-item zm-flex-container zm-flex-container-gap-x zm-flex-align-center zm-flex-nowrap">
+			<li ng-if="lvlOptions.canOpen" ng-click="lvlOptions.onOpen(node.data, parent.data, depth)" class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap">
 				<i class="fa fa-folder-open-o zm-flex-minimal"></i>
 				<span>
 					{{ ::$root.t('core.directives.field.treeview.btnOpen') }}
@@ -29,7 +29,7 @@
 			</li>
 			
 			<!-- REMOVE -->
-			<li ng-click="lvlOptions.onRemove(node.data, parent.data, removeCallback(parentList, $index), depth)" class="zm-tab-item zm-flex-container zm-flex-container-gap-x zm-flex-align-center zm-flex-nowrap">
+			<li ng-click="lvlOptions.onRemove(node.data, parent.data, removeCallback(parentList, $index), depth)" class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap">
 				<i class="fa fa-trash-o zm-flex-minimal"></i>
 				<span>
 					{{ ::$root.t('core.directives.field.treeview.btnRemove') }}

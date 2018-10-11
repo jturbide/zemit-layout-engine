@@ -8,7 +8,7 @@
 			link: function ($s, $e, attrs) {
 				
 				$s.sidebar = $s;
-				$s.segment = $sessionWorkspace.getSegment();
+				$s.segment = $sessionWorkspace.segment;
 				
 				var settings = $session.get('settings');
 				$session.prepare('settings', {

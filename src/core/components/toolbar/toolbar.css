@@ -68,6 +68,21 @@
 .zm-toolbar-actions .zm-btn {
   text-align: center;
 }
+.zm-breadcrumb {
+  white-space: nowrap;
+}
+.zm-toolbar-inner-bottom {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #f6f6f6;
+  box-shadow: inset 0 1rem 1rem -1rem rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.5);
+}
+.zm-toolbar-profile-container .zm-profile-pic {
+  max-height: 2rem;
+  border-radius: 3px;
+  width: auto;
+}
 
 @media all and (pointer: coarse) {
   .zm-logo {
@@ -78,6 +93,10 @@
 @media all and (min-width: 768px) {
   .zm-toolbar .zm-toolbar-sections {
     margin-left: -0.5rem;
+    min-width: 12rem;
+  }
+  .zm-toolbar-not-connected-data {
+    min-width: 18rem;
   }
 }
 @media all and (max-width: 767px) {
@@ -125,19 +144,13 @@
     flex: 1;
     justify-content: center;
   }
+  .zm-toolbar-profile-container .zm-profile-pic {
+    max-height: 1.5rem;
+  }
 }
 
 .zm-toolbar-items-container {
   display: grid;
   grid-gap: 0.5rem;
   grid-auto-flow: column;
-}
-
-/**
- * Profile
- */
-.zm-toolbar-profile-container .zm-profile-pic {
-  max-height: 2rem;
-  border-radius: 3px;
-  width: auto;
 }

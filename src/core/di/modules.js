@@ -17,12 +17,14 @@
 	Zemit.app.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
 		
 		$ocLazyLoadProvider.config({
-			debug: Zemit.version === 'dev',
+			// debug: Zemit.version === 'dev',
 			events: true
 		});
 	}]);
 	
-	Zemit.app.run(['$hook', '$modules', '$util', '$injector', ($hook, $modules, $util, $injector) => {
+	Zemit.app.run(['$hook', '$modules', '$util', '$injector', '$debug', '$i18n', ($hook, $modules, $util, $injector, $debug, $i18n) => {
+		
+		$hook.add('onReady', () => $debug.init('module', $i18n.get('modules.debugTitle')));
 		
 		$hook.add('onAllModulesLoaded', () => {
 			
@@ -51,7 +53,7 @@
 		});
 	}])
 	
-	Zemit.app.factory('$modules', ['$ocLazyLoad', '$session', '$hook', '$i18n', '$util', '$injector', '$rootScope', function($ocLazyLoad, $session, $hook, $i18n, $util, $injector, $rs) {
+	Zemit.app.factory('$modules', ['$ocLazyLoad', '$session', '$hook', '$i18n', '$util', '$injector', '$rootScope', '$debug', function($ocLazyLoad, $session, $hook, $i18n, $util, $injector, $rs, $debug) {
 		
 		var settings = $session.get('settings');
 		$session.prepare('settings', {
@@ -71,7 +73,7 @@
 				var moduleLoadCount = 0;
 				modules.forEach((name) => {
 					
-					console.log(name.toUpperCase() + ' MODULE INIT');
+					$debug.log('module', 'INIT', name.toUpperCase());
 					
 					if(Zemit.version === 'dev') {
 						

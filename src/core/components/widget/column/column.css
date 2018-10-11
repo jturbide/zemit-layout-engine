@@ -191,9 +191,9 @@
   opacity: 0 !important;
 }
 .zm-widget-column > .zm-widget-inner > .zm-widget-column-size {
-    font-size: 2rem;
+    font-size: 1.5rem;
     position: absolute;
-    top: calc(50% - 2rem);
+    top: calc(50% - 1.5rem);
     left: calc(50% - 1.5rem);
     z-index: 10;
 }

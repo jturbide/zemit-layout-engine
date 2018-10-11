@@ -3,7 +3,15 @@
  * @author: <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.app.factory('$device', [function() {
+	Zemit.app.factory('$device', ['$hook', '$rootScope', function($hook, $rs) {
+		
+		let timeout;
+		$hook.add('onWindowResize', () => {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				$rs.$apply();
+			}, 500);
+		});
 		
 		var factory = {
 			

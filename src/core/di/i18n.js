@@ -5,15 +5,7 @@
  * Print and update app's language.
  */
 (function() {
-	
-	/**
-	 * I18n initialization
-	 */
-	// Zemit.app.run(['$debug', '$hook', function($debug, $hook) {
-	// 	$hook.add('onReady', () => $debug.init('i18n', 'i18n events'));
-	// }]);
-	
-	Zemit.app.factory('$i18n', ['$q', '$http', function($q, $http) {
+	Zemit.app.factory('$i18n', ['$q', '$http', '$util', function($q, $http, $util) {
 		
 		var factory = {
 			
@@ -21,9 +13,10 @@
 				'en_CA': {},
 				'fr_CA': {}
 			},
-			language: 'en_CA',
+			language: $util.getUrlParam('lang') || 'en_CA',
 			
 			init: function() {
+				
 				return new Promise((resolve, reject) => {
 					
 					let lang = navigator.language.substring(0, 5);
@@ -44,8 +37,6 @@
 				var literals = {};
 				literals[lang] = data;
 				angular.merge(this.data, literals);
-				
-				console.log('I18N LOADED', data);
 			},
 			
 			get: function(key, params = {}, lang = factory.language) {

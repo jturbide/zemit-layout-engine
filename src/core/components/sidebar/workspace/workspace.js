@@ -6,7 +6,7 @@
 	/**
 	 * Workspace sidebar
 	 */
-	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', '$modal', '$workspace', '$util', '$i18n', function($zm, $history, $session, $modal, $workspace, $util, $i18n) {
+	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', '$modal', '$workspace', '$util', '$i18n', '$sessionWorkspace', function($zm, $history, $session, $modal, $workspace, $util, $i18n, $sessionWorkspace) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -133,8 +133,44 @@
 						// SEGMENT
 						///////////////////////////////
 						canOpen: true,
+						isCurrentSegment: model => {
+							return model.getKey() === $sessionWorkspace.segment.getKey();
+						},
+						getTotalWidgets: model => {
+							
+							function count(item, callback, recursive) {
+								
+								recursive = recursive === undefined ? true : recursive;
+								
+								var found = [];
+								var getChilds = function(widget) {
+									angular.forEach(widget.childs, function(child, ckey) {
+										
+										if(child.getScope instanceof Function) {
+											found.push(child);
+										}
+										
+										if(recursive) {
+											getChilds(child);
+										}
+									});
+								};
+								getChilds(item);
+								
+								// Execute callback function on all widgets found
+								angular.forEach(found, function(widget) {
+									callback(widget);
+								});
+							};
+							
+							var total = 0;
+							count(model.getContent(), function(widget) {
+								total++;
+							});
+							return total;
+						},
 						onOpen: (model, parent, depth) => {
-							console.log(model, parent);
+							$sessionWorkspace.setSegment(model);
 						},
 						onEdit: (model, parent, editCallback, depth) => {
 							$s.editSegment(parent, model, editCallback);
@@ -264,7 +300,7 @@
 				};
 				
 				$s.connect = (workspace = new ZmWorkspace(null, {
-					env: 'browser'
+					env: 'local'
 				}), callback = () => {}) => {
 					
 					var wasNew = workspace.getKey() === null;
@@ -303,7 +339,7 @@
 											&& workspace.getData().user === data.user
 											&& workspace.getData().pass === data.pass)
 										) || (
-											data.env === 'browser'
+											data.env === 'local'
 											&& workspace.getData().name === data.name
 										)
 								},
@@ -329,6 +365,7 @@
 					});
 				};
 				
+				$s.$sessionWorkspace = $sessionWorkspace;
 				$s.settings = settings.sidebar.workspace;
 				$s.workspaces = workspaces;
 				$s.treeviewWorkspaces = [];

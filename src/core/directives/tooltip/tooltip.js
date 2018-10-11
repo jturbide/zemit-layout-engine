@@ -129,6 +129,12 @@
 							return;
 						}
 						
+						// If a button or tab is active, it's not necessary to show
+						// the tooltip..
+						if($e.parents('.active:eq(0)').length > 0) {
+							return;
+						}
+						
 						tooltipOpenTimeout = setTimeout(() => {
 							
 							tooltipCloseTimeoutReady = false;
