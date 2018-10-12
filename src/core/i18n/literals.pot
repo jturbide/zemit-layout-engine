@@ -439,6 +439,9 @@ msgstr ""
 msgid "core.di.modal.warningTitle"
 msgstr ""
 
+msgid "core.di.profile.debugActionSaveStateTitle"
+msgstr ""
+
 msgid "core.di.profile.debugTitle"
 msgstr ""
 

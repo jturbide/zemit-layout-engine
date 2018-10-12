@@ -4,7 +4,7 @@
  * Creation date: 2018-10-02
  */
 (function() {
-	Zemit.module('google', ['$rootScope', '$profile', function($rs, $profile) {
+	Zemit.module('google', ['$rootScope', '$profile', '$debug', '$i18n', '$modal', function($rs, $profile, $debug, $i18n, $modal) {
 		return {
 			
 			priority: 0,
@@ -121,7 +121,7 @@
 						/**
 						 * Mostly for debugging purposes..
 						 */
-						cleanUntitledFiles: () => {
+						cleanUntitledFiles: function() {
 							
 							this.listFiles().then(files => {
 								files.forEach(file => {
@@ -136,6 +136,8 @@
 							
 							return gapi.client.drive.files.delete({
 								'fileId': fileId
+							}).execute(response => {
+								console.log(response);
 							});
 						},
 						
@@ -152,7 +154,7 @@
 										return success(response.result.files[0].id);
 									}
 									
-									return success(factory.createFile());
+									return success(factory.createFile(name));
 								}, error);
 							});
 						},
@@ -187,6 +189,15 @@
 							});
 						}
 					};
+					
+					$debug.addAction($i18n.get('modules.google.debugCleanUntitledFiles'), () => {
+						factory.cleanUntitledFiles();
+					});
+					$debug.addAction($i18n.get('modules.google.debugListFiles'), () => {
+						factory.listFiles().then(files => {
+							console.log('GOOGLE', files);
+						});
+					});
 					
 					return factory;
 				}]

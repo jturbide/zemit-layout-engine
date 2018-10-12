@@ -2,7 +2,7 @@
 	<div class="zm-flex-container zm-flex-align-center zm-flex-gap-x">
 		<div>
 			<strong>{{ ::$root.t('core.components.sidebar.workspace.treeview.segmentTotalWidgets') }}</strong>
-			{{ lvlOptions.getTotalWidgets(node.data) }}
+			{{ node.data.getTotalWidgets() }}
 		</div>
 		<zm-field>
 			<zm-btn ng-disabled="lvlOptions.isCurrentSegment(node.data)" class="zm-btn-default" ng-click="lvlOptions.onOpen(node.data, parent.data, depth)">

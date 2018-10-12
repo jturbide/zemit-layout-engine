@@ -87,6 +87,10 @@
 					
 					console.log('DEBUG', data);
 				};
+				
+				$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnDump'), $s.dump);
+				$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnFlushHistory'), $s.flushHistory);
+				$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnFlushMemory'), $s.flushAll, true);
 			}
 		}
 	}]);

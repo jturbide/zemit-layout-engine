@@ -25,7 +25,7 @@
 				</div>
 				<div class="zm-flex-container zm-nowrap">
 					<div>
-						<strong>{{ ::t('core.components.sidebar.debug.totalWidgets') }}</strong> {{ zm.widget.total }}
+						<strong>{{ ::t('core.components.sidebar.debug.totalWidgets') }}</strong> {{ $sessionWorkspace.segment.getTotalWidgets() }}
 					</div>
 					<div>
 						<strong>{{ ::t('core.components.sidebar.debug.history') }}</strong> {{ history.position || 0 }} / {{ history.changes.length || 0 }}
@@ -109,15 +109,10 @@
 					<span ng-bind-html="::t('core.components.sidebar.debug.actionsWarning') | trustHtml"></span>
 				</zm-dismissable>
 				
+				<!-- ACTIONS -->
 				<div class="zm-p-2">
-					<zm-btn class="zm-w100" ng-click="dump()">
-						{{ ::t('core.components.sidebar.debug.actionsBtnDump') }}
-					</zm-btn>
-					<zm-btn class="zm-w100 zm-mt-1" ng-click="flushHistory()">
-						{{ ::t('core.components.sidebar.debug.actionsBtnFlushHistory') }}
-					</zm-btn>
-					<zm-btn class="zm-w100 zm-mt-1 zm-btn-warning" ng-click="flushAll()">
-						{{ ::t('core.components.sidebar.debug.actionsBtnFlushMemory') }}
+					<zm-btn class="zm-w100" ng-class="{ 'zm-mt-1': $index > 0, 'zm-btn-warning': action.warning }" ng-click="action.callback()" ng-repeat="action in $debug.actions">
+						{{ ::action.title }}
 					</zm-btn>
 				</div>
 			</content>

@@ -24,6 +24,7 @@
 			recent: [],
 			namespaces: [],
 			structure: {},
+			actions: [],
 			settings: {
 				maxLog: 250
 			},
@@ -99,6 +100,15 @@
 				
 				this.recent = [];
 				settings.debug.recent = [];
+			},
+			
+			addAction: function(title, callback, warning = false) {
+				
+				this.actions.push({
+					title: title,
+					callback: callback,
+					warning: warning
+				});
 			}
 		};
 		

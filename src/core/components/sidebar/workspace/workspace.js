@@ -136,39 +136,6 @@
 						isCurrentSegment: model => {
 							return model.getKey() === $sessionWorkspace.segment.getKey();
 						},
-						getTotalWidgets: model => {
-							
-							function count(item, callback, recursive) {
-								
-								recursive = recursive === undefined ? true : recursive;
-								
-								var found = [];
-								var getChilds = function(widget) {
-									angular.forEach(widget.childs, function(child, ckey) {
-										
-										if(child.getScope instanceof Function) {
-											found.push(child);
-										}
-										
-										if(recursive) {
-											getChilds(child);
-										}
-									});
-								};
-								getChilds(item);
-								
-								// Execute callback function on all widgets found
-								angular.forEach(found, function(widget) {
-									callback(widget);
-								});
-							};
-							
-							var total = 0;
-							count(model.getContent(), function(widget) {
-								total++;
-							});
-							return total;
-						},
 						onOpen: (model, parent, depth) => {
 							$sessionWorkspace.setSegment(model);
 						},

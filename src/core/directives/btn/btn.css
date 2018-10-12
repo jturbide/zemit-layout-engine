@@ -33,12 +33,15 @@
 }
 .zm-btn.zm-btn-warning:not([disabled]) {
   background: #ffa66a; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffa66a 0%, #ff9047 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #ffa66a 0%,#ff9047 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #ffa66a 0%,#ff9047 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa66a', endColorstr='#ff9047',GradientType=0 ); /* IE6-9 */
   color: white;
   border-color: #DD833E;
+}
+.zm-btn.zm-btn-warning:not([disabled]).active,
+.zm-btn.zm-btn-warning:not([disabled]):focus,
+.zm-btn.zm-btn-warning:not([disabled]):active {
+  background: #ff9047; /* Old browsers */
+  background: linear-gradient(to bottom, #ff9047 0%,#ffa66a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .zm-btn.zm-btn-warning:active:not([disabled]),
 .zm-btn.zm-btn-warning:focus:not([disabled]),
@@ -50,13 +53,14 @@
   border-color: #0096E8;
   color: white;
 }
+.zm-btn.zm-btn-primary.active:not([disabled])
 .zm-btn.zm-btn-primary:active:not([disabled]),
 .zm-btn.zm-btn-primary:focus:not([disabled]),
 .zm-btn.zm-btn-primary:hover:not([disabled]) {
   border-color: #0047AA;
 }
-/*@media all and (pointer: coarse) {*/
-/*  .zm-btn {*/
-/*    padding: 0.5rem 0.75rem;*/
-/*  }*/
-/*}*/
+.zm-btn.zm-btn-primary.active:not([disabled]),
+.zm-btn.zm-btn-primary:active:not([disabled]),
+.zm-btn.zm-btn-primary:focus:not([disabled]) {
+  background: linear-gradient(to bottom, #00b7ef 0%, #00e5ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}

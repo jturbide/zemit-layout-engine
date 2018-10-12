@@ -473,6 +473,9 @@ msgstr "Warning"
 msgid "core.di.profile.debugTitle"
 msgstr "Profile events"
 
+msgid "core.di.profile.debugActionSaveStateTitle"
+msgstr "Save state"
+
 msgid "modules.debugTitle"
 msgstr "Modules events"
 

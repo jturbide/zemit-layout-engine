@@ -53,7 +53,8 @@
 			
 			isValid: function() {
 				
-				return this.segment.getKey()
+				return this.segment
+					&& this.segment.getKey()
 					&& this.project
 					&& this.workspace;
 			},
@@ -74,7 +75,7 @@
 			
 			setSegment: (segment) => {
 				
-				if(factory.segment.getKey()) {
+				if(factory.isValid()) {
 					factory.segment.cleanContent();
 					factory.segment.save();
 				}

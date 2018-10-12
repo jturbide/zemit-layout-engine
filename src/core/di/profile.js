@@ -7,6 +7,10 @@
 		
 		$hook.add('onReady', () => {
 			$debug.init('profile', $i18n.get('core.di.profile.debugTitle'));
+			$debug.addAction(
+				$i18n.get('core.di.profile.debugActionSaveStateTitle'),
+				factory.saveState
+			);
 			factory.init();
 		}, undefined, 5);
 		
@@ -104,10 +108,16 @@
 				
 			},
 			
+			saveState: () => {
+				
+			},
+			
 			saveData: (filename, data) => {
 				
 				if(factory.isSignedIn && factory.currentProvider.props.onSave instanceof Function) {
 					factory.currentProvider.props.onSave(filename, data).then(response => {
+						
+						console.log(filename, data);
 						
 						$debug.log('profile', 'PROFILE SAVE DATA', {
 							filename: filename,
