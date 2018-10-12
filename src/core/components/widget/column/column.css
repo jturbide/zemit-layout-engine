@@ -169,8 +169,11 @@
   opacity: 1 !important;
 }
 @media all and (pointer: coarse) {
+  .zm-widget-column-resize-handler-bar {
+    width: 0.5rem;
+  }
   .zm-widget-column .zm-widget-column-resize-handler {
-    right: -0.45rem;
+    right: -0.75rem;
   }
   .zm-widget-column-resize-handler-bar .zm-bar:first-child,
   .zm-widget-column-resize-handler-bar .zm-bar:last-child {

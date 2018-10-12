@@ -2,11 +2,54 @@
  * @author <contact@dannycoulombe.com>
  */
 (function() {
+	Zemit.app.run(['$i18n', '$session', '$history', '$debug', '$modal', '$zm', function($i18n, $session, $history, $debug, $modal, $zm) {
+		
+		let flushHistory = () => {
+			$zm.session.flushHistory();
+		};
+		
+		let flushAll = () => {
+			
+			$modal.dialog('debug_flush_all', {
+				backdrop: true,
+				title: $i18n.get('core.components.sidebar.debug.flushTitle'),
+				content: $i18n.get('core.components.sidebar.debug.flushContent'),
+				buttons: [{
+					label: $i18n.get('core.components.sidebar.debug.flushBtn'),
+					warning: true,
+					callback: (event, modal) => {
+						$zm.session.flushAll();
+						modal.close();
+					}
+				}, {
+					label: $i18n.get('core.di.modal.btnCancel'),
+					default: true
+				}, ]
+			});
+		};
+		
+		let dump = () => {
+			
+			var segment = $session.get('settings').segment;
+			var history = $history.dump();
+			var data = {
+				history: history,
+				content: angular.fromJson(angular.toJson(segment.getContent())),
+				version: Zemit.version
+			};
+			
+			console.log('DEBUG', data);
+		};
+		
+		$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnDump'), dump);
+		$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnFlushHistory'), flushHistory);
+		$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnFlushMemory'), flushAll, true);
+	}]);
 	
 	/**
 	 * Debug sidebar
 	 */
-	Zemit.app.directive('zmSidebarDebug', ['$zm', '$history', '$session', '$modal', '$debug', '$hook', '$timeout', '$i18n', function($zm, $history, $session, $modal, $debug, $hook, $timeout, $i18n) {
+	Zemit.app.directive('zmSidebarDebug', ['$zm', '$history', '$session', '$debug', '$hook', '$timeout', function($zm, $history, $session, $debug, $hook, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -50,47 +93,6 @@
 					
 					$timeout(() => $timeout(() => $console.scrollTop(1e10)));
 				});
-				
-				$s.flushHistory = () => {
-					$s.zm.session.flushHistory();
-				};
-				
-				$s.flushAll = () => {
-					
-					$modal.dialog('debug_flush_all', {
-						backdrop: true,
-						title: $i18n.get('core.components.sidebar.debug.flushTitle'),
-						content: $i18n.get('core.components.sidebar.debug.flushContent'),
-						buttons: [{
-							label: $i18n.get('core.components.sidebar.debug.flushBtn'),
-							warning: true,
-							callback: (event, modal) => {
-								$s.zm.session.flushAll();
-								modal.close();
-							}
-						}, {
-							label: $i18n.get('core.di.modal.btnCancel'),
-							default: true
-						}, ]
-					});
-				};
-				
-				$s.dump = () => {
-					
-					var segment = $session.get('settings').segment;
-					var history = $history.dump();
-					var data = {
-						history: history,
-						content: angular.fromJson(angular.toJson(segment.getContent())),
-						version: Zemit.version
-					};
-					
-					console.log('DEBUG', data);
-				};
-				
-				$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnDump'), $s.dump);
-				$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnFlushHistory'), $s.flushHistory);
-				$debug.addAction($i18n.get('core.components.sidebar.debug.actionsBtnFlushMemory'), $s.flushAll, true);
 			}
 		}
 	}]);

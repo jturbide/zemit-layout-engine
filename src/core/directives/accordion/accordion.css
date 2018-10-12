@@ -13,9 +13,9 @@
   z-index: 2;
   margin-right: -1px;
 }
-.zm-accordion-header:hover {
-  z-index: 3;
-}
+/*.zm-accordion-header:hover {*/
+/*  z-index: 3;*/
+/*}*/
 .zm-accordion-header .fa {
   position: relative;
   top: 0.05rem;

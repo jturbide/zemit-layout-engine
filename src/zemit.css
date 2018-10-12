@@ -228,6 +228,29 @@ zm-widget[type="container"] {
 }
 
 /**
+ * Transitions
+ */
+.zm-transition-opacity {
+  transition: opacity 0.25s ease-out;
+}
+.zm-transition-background {
+  transition: background 0.25s ease-out,
+              background-color 0.25s ease-out;
+}
+.zm-transition-color {
+  transition: color 0.25s ease-out;
+}
+.zm-transition-margin {
+  transition: margin 0.25s ease-out;
+}
+.zm-transition-padding {
+  transition: padding 0.25s ease-out;
+}
+.zm-transition-all {
+  transition: all 0.25s ease-out;
+}
+
+/**
  * Zoom-in
  */
 .zoom-container {

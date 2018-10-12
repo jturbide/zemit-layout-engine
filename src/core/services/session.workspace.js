@@ -73,30 +73,41 @@
 				$session.set('segment', null);
 			},
 			
+			setContent: (content) => {
+				
+				factory.segment.setContent(content);
+				$hook.run('onSegmentLoad', factory.segment);
+			},
+			
 			setSegment: (segment) => {
+				
+				let callback = () => {
+					segment.getProject().then(project => {
+						project.getWorkspace().then(workspace => {
+							
+							factory.segment.setKey(segment.getKey());
+							factory.segment.setData(segment.getData());
+							factory.segment.setContent(segment.getContent());
+							factory.project = project;
+							factory.workspace = workspace;
+							factory.updateBreadcrumbs();
+							
+							$session.set('segment', segment.getKey());
+							
+							$hook.run('onSegmentLoad', factory.segment);
+							
+							$rs.$digest();
+						});
+					});
+				};
 				
 				if(factory.isValid()) {
 					factory.segment.cleanContent();
-					factory.segment.save();
+					factory.segment.save().then(callback);
 				}
-				
-				segment.getProject().then(project => {
-					project.getWorkspace().then(workspace => {
-						
-						factory.segment.setKey(segment.getKey());
-						factory.segment.setData(segment.getData());
-						factory.segment.setContent(segment.getContent());
-						factory.project = project;
-						factory.workspace = workspace;
-						factory.updateBreadcrumbs();
-						
-						$session.set('segment', segment.getKey());
-						
-						$hook.run('onSegmentLoad', factory.segment);
-						
-						$rs.$digest();
-					});
-				});
+				else {
+					callback();
+				}
 			},
 			
 			updateBreadcrumbs: function() {

@@ -82,10 +82,16 @@
 .zm-sidebar-tab .zm-field-treeview {
   margin: 0 -1px;
 }
-
-/*.zm-sidebar-help {*/
-/*  color: #B1A2FC;*/
-/*}*/
+.zm-sidebar-help.active .fa {
+  color: #B1A2FC;
+}
+.zm-tab-item-debug,
+.zm-sidebar-debug.active .fa {
+  color: #ff8077;
+}
+.zm-sidebar-tabs .zm-tabs .zm-tab-item-debug.active:not([disabled]) {
+  background-color: #ff8077;
+}
 @media all and (min-width: 768px) {
   .zm-sidebar.zm-open {
     flex-basis: 33.333vw;

@@ -6,7 +6,7 @@
 	/**
 	 * Workspace sidebar
 	 */
-	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', '$modal', '$workspace', '$util', '$i18n', '$sessionWorkspace', function($zm, $history, $session, $modal, $workspace, $util, $i18n, $sessionWorkspace) {
+	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', '$modal', '$workspace', '$util', '$i18n', '$sessionWorkspace', '$device', function($zm, $history, $session, $modal, $workspace, $util, $i18n, $sessionWorkspace, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -138,6 +138,11 @@
 						},
 						onOpen: (model, parent, depth) => {
 							$sessionWorkspace.setSegment(model);
+							
+							// If in portrait mode, close all sidebar tabs
+							if($device.isSmall()) {
+								$s.sidebar.tabs.closeAll();
+							}
 						},
 						onEdit: (model, parent, editCallback, depth) => {
 							$s.editSegment(parent, model, editCallback);

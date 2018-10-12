@@ -5,7 +5,7 @@
  * Print and update app's language.
  */
 (function() {
-	Zemit.app.factory('$i18n', ['$q', '$http', '$util', function($q, $http, $util) {
+	Zemit.app.factory('$i18n', ['$q', '$http', '$util', '$device', function($q, $http, $util, $device) {
 		
 		var factory = {
 			
@@ -13,7 +13,8 @@
 				'en_CA': {},
 				'fr_CA': {}
 			},
-			language: $util.getUrlParam('lang') || 'en_CA',
+			
+			language: 'en_CA',
 			
 			init: function() {
 				
@@ -30,6 +31,15 @@
 					
 					resolve();
 				});
+			},
+			
+			setLang: function(lang) {
+				
+				if(!this.data[lang]) {
+					lang = Object.keys(this.data)[0];
+				}
+				
+				this.language = lang;
 			},
 			
 			load: function(lang, data = {}) {
@@ -75,6 +85,14 @@
 				return label;
 			}
 		};
+		
+		let langParam = $util.getUrlParam('lang');
+		if(langParam) {
+			factory.setLang(langParam);
+		}
+		else {
+			factory.setLang($device.getBestLang());
+		}
 		
 		return factory;
 	}]);

@@ -292,6 +292,18 @@ msgstr ""
 msgid "core.components.toolbar.closeSegment"
 msgstr ""
 
+msgid "core.components.toolbar.dataHasLoaded"
+msgstr ""
+
+msgid "core.components.toolbar.dataHasSaved"
+msgstr ""
+
+msgid "core.components.toolbar.dataIsLoading"
+msgstr ""
+
+msgid "core.components.toolbar.dataIsSaving"
+msgstr ""
+
 msgid "core.components.toolbar.doc"
 msgstr ""
 
@@ -299,6 +311,9 @@ msgid "core.components.toolbar.export"
 msgstr ""
 
 msgid "core.components.toolbar.import"
+msgstr ""
+
+msgid "core.components.toolbar.noSegmentLoaded"
 msgstr ""
 
 msgid "core.components.toolbar.notConnectedDataBrowser"
@@ -437,6 +452,9 @@ msgid "core.di.modal.infoTitle"
 msgstr ""
 
 msgid "core.di.modal.warningTitle"
+msgstr ""
+
+msgid "core.di.profile.debugActionLoadAllDataTitle"
 msgstr ""
 
 msgid "core.di.profile.debugActionSaveStateTitle"

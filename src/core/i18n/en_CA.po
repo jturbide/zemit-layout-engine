@@ -334,8 +334,23 @@ msgstr "Sign-In"
 msgid "core.components.toolbar.signOut"
 msgstr "Sign-Out"
 
+msgid "core.components.toolbar.dataIsLoading"
+msgstr "Loading"
+
+msgid "core.components.toolbar.dataHasLoaded"
+msgstr "Loaded"
+
+msgid "core.components.toolbar.dataIsSaving"
+msgstr "Saving"
+
+msgid "core.components.toolbar.dataHasSaved"
+msgstr "Saved"
+
 msgid "core.components.toolbar.structure"
 msgstr "Structure"
+
+msgid "core.components.toolbar.noSegmentLoaded"
+msgstr "No segment loaded yet."
 
 msgid "core.components.toolbar.tooltip.changeMode"
 msgstr "Change edition mode"
@@ -474,7 +489,10 @@ msgid "core.di.profile.debugTitle"
 msgstr "Profile events"
 
 msgid "core.di.profile.debugActionSaveStateTitle"
-msgstr "Save state"
+msgstr "Profile: Save state"
+
+msgid "core.di.profile.debugActionLoadAllDataTitle"
+msgstr "Profile: Load All Data"
 
 msgid "modules.debugTitle"
 msgstr "Modules events"

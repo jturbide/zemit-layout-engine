@@ -3,7 +3,7 @@
  * @author: <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', '$modal', function($hook, $debug, $i18n, $rs, $modal) {
+	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', '$modal', '$sessionWorkspace', function($hook, $debug, $i18n, $rs, $modal, $sessionWorkspace) {
 		
 		$hook.add('onReady', () => {
 			$debug.init('profile', $i18n.get('core.di.profile.debugTitle'));
@@ -11,11 +11,23 @@
 				$i18n.get('core.di.profile.debugActionSaveStateTitle'),
 				factory.saveState
 			);
+			$debug.addAction(
+				$i18n.get('core.di.profile.debugActionLoadAllDataTitle'),
+				factory.loadAllData
+			);
 			factory.init();
 		}, undefined, 5);
 		
+		$hook.add('onNewHistory', () => {
+			factory.isLoading = false;
+			factory.hasLoaded = false;
+			factory.isSaving = false;
+			factory.hasSaved = false;
+		});
+		
 		$hook.add('onStorageSet', (table, model) => {
 			factory.saveData(table + '.' + model.getKey() + '.json', model.getData());
+			$rs.$digest();
 		});
 		
 		var factory = {
@@ -23,6 +35,10 @@
 			hasProviders: null,
 			isLoaded: null,
 			isSignedIn: null,
+			isLoading: false,
+			hasLoaded: false,
+			isSaving: false,
+			hasSaved: false,
 			providers: [],
 			currentProvider: null,
 			
@@ -75,6 +91,7 @@
 				
 				if(isSignedIn) {
 					factory.loadProfile();
+					// factory.loadAllData();
 				}
 				
 				$debug.log('profile', 'CONNECT', factory.currentProvider);
@@ -104,20 +121,52 @@
 				}
 			},
 			
-			loadData: () => {
+			loadAllData: () => {
 				
-			},
-			
-			saveState: () => {
-				
+				if(factory.isSignedIn && factory.currentProvider.props.onLoadData instanceof Function) {
+					
+					this.isLoading = true;
+					this.hasLoaded = false;
+					
+					let segmentKeyFilename = 'session.segment.json';
+					factory.currentProvider.props.onLoadData(segmentKeyFilename).then(response => {
+						
+						$debug.log('profile', 'PROFILE LOAD DATA', {
+							filename: segmentKeyFilename,
+							data: response,
+							provider: factory.currentProvider
+						});
+						
+						let segmentFilename = 'segment.' + response + '.json';
+						factory.currentProvider.props.onLoadData(segmentFilename).then(response => {
+							
+							$debug.log('profile', 'PROFILE LOAD DATA', {
+								filename: segmentFilename,
+								data: response,
+								provider: factory.currentProvider
+							});
+							
+							$sessionWorkspace.setContent(response.content);
+							
+							factory.isLoading = false;
+							factory.hasLoaded = true;
+							
+							$rs.$digest();
+						});
+					});
+				}
 			},
 			
 			saveData: (filename, data) => {
+							
+				this.isSaving = true;
+				this.hasSaved = false;
 				
 				if(factory.isSignedIn && factory.currentProvider.props.onSave instanceof Function) {
 					factory.currentProvider.props.onSave(filename, data).then(response => {
-						
-						console.log(filename, data);
+							
+						factory.isSaving = false;
+						factory.hasSaved = true;
 						
 						$debug.log('profile', 'PROFILE SAVE DATA', {
 							filename: filename,

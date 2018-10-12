@@ -243,6 +243,9 @@
 					onSave: (filename, data) => {
 						return $google.saveFile(filename, data);
 					},
+					onLoadData: (filename) => {
+						return $google.readFile(filename);
+					},
 					onGetProfile: () => {
 						return $google.getProfile();
 					}

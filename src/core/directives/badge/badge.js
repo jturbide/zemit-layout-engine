@@ -8,7 +8,7 @@
 	 */
 	Zemit.app.directive('zmBadge', [function() {
 		return {
-			restrict: 'A',
+			restrict: 'AE',
 			link: function ($s, $e, attrs) {
 				
 				$e.addClass('zm-badge');

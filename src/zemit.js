@@ -94,10 +94,7 @@ var Zemit = {
 					$window.onpagehide = () => $hook.run('onBeforeUnload');
 				}
 				else {
-					$window.onbeforeunload = () => {
-						$hook.run('onBeforeUnload');
-						return null;
-					};
+					$window.onbeforeunload = () => $hook.run('onBeforeUnload');
 				}
 				
 				// Prepare template

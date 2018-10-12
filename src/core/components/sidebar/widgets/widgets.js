@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebarWidgets', ['$session', '$filter', '$device', function($session, $filter, $device) {
+	Zemit.app.directive('zmSidebarWidgets', ['$session', '$filter', '$device', '$timeout', function($session, $filter, $device, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -78,14 +78,18 @@
 						
 						// If in portrait mode, close all sidebar tabs
 						if($device.isSmall()) {
-							$s.sidebar.tabs.hideAll();
+							
+							// Hack.. I don't know why yet but a $timeout is required
+							$timeout(() => {
+								$s.sidebar.tabs.hideAll();
+							});
 						}
 					},
 					onEnd: () => {
+						
 						if($device.isSmall()) {
-							$s.$apply(function() {
+							$timeout(() => {
 								$s.sidebar.tabs.unhideAll();
-								$s.sidebar.tabs.closeAll();
 							});
 						}
 					}

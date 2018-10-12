@@ -27,16 +27,26 @@ class ZmSegment extends ZmModel {
 	}
 	
 	getContent() {
+		
 		return this.data.content;
 	}
 	
+	hasBeenModified() {
+		
+		return angular.toJson(this.data.content) !== angular.toJson(this.originalData);
+	}
+	
 	setContent(content) {
+		
+		this.originalData = angular.fromJson(angular.toJson(content));
 		this.data.content = content;
+		
 		return this;
 	}
 	
 	cleanContent() {
 		this.data.content = angular.fromJson(angular.toJson(this.data.content));
+		this.originalData = angular.fromJson(angular.toJson(this.data.content));
 	}
 	
 	getTotalWidgets() {

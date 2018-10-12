@@ -31,9 +31,12 @@
 				safari: 11
 			},
 			
-			vibrate: function(delay = 100) {
+			getBestLang: function() {
 				
-				console.log('VIBRATE', delay);
+				return window.navigator.userLanguage || window.navigator.language;
+			},
+			
+			vibrate: function(delay = 100) {
 				
 				if(navigator.vibrate) {
 					navigator.vibrate(delay);
