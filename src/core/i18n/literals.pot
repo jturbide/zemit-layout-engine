@@ -535,6 +535,15 @@ msgstr ""
 msgid "core.directives.tooltip.debugTitle"
 msgstr ""
 
+msgid "core.directives.unsupported-device.desc"
+msgstr ""
+
+msgid "core.directives.unsupported-device.notes"
+msgstr ""
+
+msgid "core.directives.unsupported-device.title"
+msgstr ""
+
 msgid "core.field.treeview.addChild"
 msgstr ""
 

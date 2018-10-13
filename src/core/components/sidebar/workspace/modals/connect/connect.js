@@ -6,7 +6,7 @@
 	/**
 	 * Workspace connect modal
 	 */
-	Zemit.app.directive('zmWorkspaceConnect', ['$workspace', '$modal', function($workspace, $modal) {
+	Zemit.app.directive('zmWorkspaceConnect', ['$segment', '$modal', function($segment, $modal) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -20,8 +20,8 @@
 					return new Promise((resolve, reject) => {
 						
 						var promise = $s.workspace.getKey()
-							? $workspace.update($s.workspace)
-							: $workspace.add($s.workspace);
+							? $segment.update($s.workspace)
+							: $segment.add($s.workspace);
 						
 						promise.then(resolve)
 							   .catch(err => $modal.error(err));

@@ -1,6 +1,6 @@
 (function() {
 	
-	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', '$workspace', '$sessionWorkspace', '$hook', '$profile', '$device', function($history, $zm, $modal, $session, $workspace, $sessionWorkspace, $hook, $profile, $device) {
+	Zemit.app.directive('zmToolbar', ['$history', '$zm', '$modal', '$session', '$segment', '$segment', '$hook', '$profile', '$device', function($history, $zm, $modal, $session, $segment, $segment, $hook, $profile, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,7 +19,7 @@
 				$s.$device = $device;
 				
 				$s.closeSegment = () => {
-					$sessionWorkspace.closeSegment();
+					$segment.closeSegment();
 				};
 				
 				$s.setTab = function(context) {
@@ -33,9 +33,9 @@
 					$hook.run('onContextChange', context, oldContext);
 				};
 				
-				$s.segment = $sessionWorkspace.segment;
-				$s.breadcrumbs = $sessionWorkspace.getBreadcrumbs();
-				$s.$sessionWorkspace = $sessionWorkspace;
+				$s.segment = $segment.segment;
+				$s.breadcrumbs = $segment.getBreadcrumbs();
+				$s.$segment = $segment;
 			}
 		};
 	}]);

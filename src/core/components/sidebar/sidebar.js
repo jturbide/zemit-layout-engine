@@ -1,5 +1,5 @@
 (function() {
-	Zemit.app.directive('zmSidebar', ['$session', '$device', '$sessionWorkspace', '$timeout', '$hook', '$zm', function($session, $device, $sessionWorkspace, $timeout, $hook, $zm) {
+	Zemit.app.directive('zmSidebar', ['$session', '$device', '$segment', '$timeout', '$hook', '$zm', function($session, $device, $segment, $timeout, $hook, $zm) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -8,7 +8,7 @@
 			link: function ($s, $e, attrs) {
 				
 				$s.sidebar = $s;
-				$s.segment = $sessionWorkspace.segment;
+				$s.segment = $segment.segment;
 				
 				var settings = $session.get('settings');
 				$session.prepare('settings', {
@@ -155,7 +155,7 @@
 				$s.sidebar.tabs = $s.tabs;
 				$s.$session = $session;
 				$s.settings = settings;
-				$s.$sessionWorkspace = $sessionWorkspace;
+				$s.$segment = $segment;
 			}
 		};
 	}]);

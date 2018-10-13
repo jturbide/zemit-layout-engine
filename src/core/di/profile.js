@@ -3,7 +3,7 @@
  * @author: <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', '$modal', '$sessionWorkspace', function($hook, $debug, $i18n, $rs, $modal, $sessionWorkspace) {
+	Zemit.app.factory('$profile', ['$hook', '$debug', '$i18n', '$rootScope', '$modal', '$segment', function($hook, $debug, $i18n, $rs, $modal, $segment) {
 		
 		$hook.add('onReady', () => {
 			$debug.init('profile', $i18n.get('core.di.profile.debugTitle'));
@@ -146,7 +146,7 @@
 								provider: factory.currentProvider
 							});
 							
-							$sessionWorkspace.setContent(response.content);
+							$segment.setContent(response.content);
 							
 							factory.isLoading = false;
 							factory.hasLoaded = true;

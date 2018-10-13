@@ -8,12 +8,12 @@
 			</div>
 			
 			<!-- WIDGETS -->
-			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.widgets.visible && settings.context === 'structure' && $sessionWorkspace.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250" zm-if-keep>
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.widgets.visible && settings.context === 'structure' && $segment.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250" zm-if-keep>
 				<zm-sidebar-widgets></zm-sidebar-widgets>
 			</div>
 			
 			<!-- MEDIA -->
-			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.media.visible && settings.context === 'structure' && $sessionWorkspace.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250" zm-if-keep>
+			<div class="zm-flex-container" zm-if="settings.sidebar.tabs.media.visible && settings.context === 'structure' && $segment.isValid()" zm-if-timeout="tabs.showContent ? 0 : 250" zm-if-keep>
 				<zm-sidebar-media></zm-sidebar-media>
 			</div>
 			
@@ -33,13 +33,13 @@
 					<li ng-class="{'active': settings.sidebar.tabs.workspace.visible}" ng-click="tabs.toggle('workspace')" class="zm-tab-item zm-tab-item-workspace zm-transition-all">
 						{{ ::t('core.components.sidebar.tabs.workspace') }}
 					</li>
-					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.segment || !$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item zm-tab-item-widgets zm-transition-all">
+					<li ng-show="settings.context === 'structure'" ng-disabled="!$segment.segment || !$segment.isValid()" ng-class="{'active': settings.sidebar.tabs.widgets.visible}" ng-click="tabs.toggle('widgets')" class="zm-tab-item zm-tab-item-widgets zm-transition-all">
 						{{ ::t('core.components.sidebar.tabs.widgets') }}
 					</li>
-					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.segment || !$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.media.visible}" ng-click="tabs.toggle('media')" class="zm-tab-item zm-tab-item-media zm-transition-all">
+					<li ng-show="settings.context === 'structure'" ng-disabled="!$segment.segment || !$segment.isValid()" ng-class="{'active': settings.sidebar.tabs.media.visible}" ng-click="tabs.toggle('media')" class="zm-tab-item zm-tab-item-media zm-transition-all">
 						{{ ::t('core.components.sidebar.tabs.media') }}
 					</li>
-					<li ng-show="settings.context === 'structure'" ng-disabled="!$sessionWorkspace.isValid()" ng-class="{'active': settings.sidebar.tabs.modules.visible}" ng-click="tabs.toggle('modules')" class="zm-tab-item zm-tab-item-modules zm-transition-all">
+					<li ng-show="settings.context === 'structure'" ng-disabled="!$segment.segment" ng-class="{'active': settings.sidebar.tabs.modules.visible}" ng-click="tabs.toggle('modules')" class="zm-tab-item zm-tab-item-modules zm-transition-all">
 						{{ ::t('core.components.sidebar.tabs.modules') }}
 					</li>
 					<li ng-if="settings.debug.activated" ng-show="settings.context === 'structure'" ng-class="{'active': settings.sidebar.tabs.debug.visible}" ng-click="tabs.toggle('debug')" class="zm-tab-item zm-tab-item-debug zm-transition-all">

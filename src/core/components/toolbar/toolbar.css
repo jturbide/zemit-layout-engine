@@ -125,7 +125,7 @@
     width: 100%;
   }
   .zm-toolbar-inner {
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 2fr 4fr;
     grid-template-rows: auto;
     grid-template-areas: "general actions sections";
     grid-column-gap: 0.5rem;
@@ -147,6 +147,10 @@
   }
   .zm-toolbar-profile-container .zm-profile-pic {
     max-height: 1.5rem;
+  }
+  .zm-toolbar-inner-bottom .zm-btn {
+    padding: 0 0.75rem;
+    min-height: auto;
   }
 }
 

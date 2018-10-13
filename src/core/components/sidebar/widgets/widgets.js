@@ -90,6 +90,7 @@
 						if($device.isSmall()) {
 							$timeout(() => {
 								$s.sidebar.tabs.unhideAll();
+								$s.sidebar.tabs.closeAll();
 							});
 						}
 					}

@@ -6,7 +6,7 @@
 	/**
 	 * Workspace sidebar
 	 */
-	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', '$modal', '$workspace', '$util', '$i18n', '$sessionWorkspace', '$device', function($zm, $history, $session, $modal, $workspace, $util, $i18n, $sessionWorkspace, $device) {
+	Zemit.app.directive('zmSidebarWorkspace', ['$zm', '$history', '$session', '$modal', '$workspace', '$util', '$i18n', '$segment', '$device', function($zm, $history, $session, $modal, $workspace, $util, $i18n, $segment, $device) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -134,10 +134,10 @@
 						///////////////////////////////
 						canOpen: true,
 						isCurrentSegment: model => {
-							return model.getKey() === $sessionWorkspace.segment.getKey();
+							return model.getKey() === $segment.segment.getKey();
 						},
 						onOpen: (model, parent, depth) => {
-							$sessionWorkspace.setSegment(model);
+							$segment.setSegment(model);
 							
 							// If in portrait mode, close all sidebar tabs
 							if($device.isSmall()) {
@@ -271,6 +271,12 @@
 					});
 				};
 				
+				$s.onAddConnection = function(key, name, item) {
+					
+					// Open by default
+					settings.treeview[key] = true;
+				};
+				
 				$s.connect = (workspace = new ZmWorkspace(null, {
 					env: 'local'
 				}), callback = () => {}) => {
@@ -337,11 +343,12 @@
 					});
 				};
 				
-				$s.$sessionWorkspace = $sessionWorkspace;
+				$s.$segment = $segment;
 				$s.settings = settings.sidebar.workspace;
 				$s.workspaces = workspaces;
 				$s.treeviewWorkspaces = [];
 				$s.filters = filters;
+				$s.$settings = settings;
 				
 				var fetchItems = (workspaces, depth = 0) => {
 					

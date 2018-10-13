@@ -35,8 +35,10 @@
   position: relative;
   padding: 0;
 }
-.zm-widget-container:not(.zm-context-preview) .zm-widget-column > .zm-widget-inner {
-  border: transparent solid 1rem;
+@media (pointer: fine) {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget-column > .zm-widget-inner {
+    border: transparent solid 1rem;
+  }
 }
 @media (pointer: coarse) {
   .zm-widget-container:not(.zm-context-preview) .zm-widget-column .zm-widget-inner .zm-widget-inner:not(.zmAcceptWidgetInside) {
@@ -169,8 +171,9 @@
   opacity: 1 !important;
 }
 @media all and (pointer: coarse) {
+  .zm-widget-column .zm-widget-column-resize-handler,
   .zm-widget-column-resize-handler-bar {
-    width: 0.5rem;
+    width: 1.5rem;
   }
   .zm-widget-column .zm-widget-column-resize-handler {
     right: -0.75rem;

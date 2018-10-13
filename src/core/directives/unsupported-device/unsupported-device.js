@@ -11,7 +11,7 @@
 			link: function ($s, $e, attrs) {
 				
 				$s.device = $device;
-				$e.parents('zemit').eq(0).addClass('zm-dark');
+				// $e.parents('zemit').eq(0).addClass('zm-dark');
 			}
 		};
 	}]);

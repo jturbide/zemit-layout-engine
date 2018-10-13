@@ -2,7 +2,7 @@
 	<div class="zm-toolbar-inner zm-clearfix">
 		
 		<!-- SECTIONS -->
-		<zm-tabs anchor="top-left" ng-disabled="!$sessionWorkspace.isValid()" class="zm-toolbar-sections">
+		<zm-tabs anchor="top-left" class="zm-toolbar-sections">
 			<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.changeMode') }}">
 				
 				<i class="fa" ng-class="{
@@ -57,7 +57,7 @@
 				</zm-btn>
 				
 				<!-- CLEAR -->
-				<!--<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!$sessionWorkspace.isValid() || $sessionWorkspace.segment.data.content.childs.length === 0" ng-click="zm.content.clear()">-->
+				<!--<zm-btn class="zm-hide-mobile" zm-tooltip="{{ ::t('core.components.toolbar.tooltip.clearDoc') }}" ng-disabled="!$segment.isValid() || $segment.segment.data.content.childs.length === 0" ng-click="zm.content.clear()">-->
 				<!--	<i class="fa fa-eraser"></i>-->
 				<!--</zm-btn>-->
 			</span>
@@ -122,7 +122,7 @@
 			</div>
 			
 			<!-- WORKSPACE SAVED -->
-			<span ng-if="$sessionWorkspace.lastSave > $sessionWorkspace.lastUpdate" class="zm-badge zm-bg-success">
+			<span ng-if="$segment.lastSave > $segment.lastUpdate" class="zm-badge zm-bg-success">
 				{{ ::t('core.components.toolbar.workspaceSaved') }}
 			</span>
 		</div>
@@ -174,7 +174,7 @@
 			</zm-btn>
 			
 			<!-- TABS: SETTINGS -->
-			<zm-tabs ng-disabled="!$sessionWorkspace.isValid()" anchor="top-right">
+			<zm-tabs ng-disabled="!$segment.isValid()" anchor="top-right">
 				<toggle zm-tooltip="{{ ::t('core.components.toolbar.tooltip.settings') }}">
 					
 					<i class="fa fa-gear"></i>
@@ -184,7 +184,7 @@
 				<items>
 					
 					<!-- IMPORT -->
-					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$sessionWorkspace.isValid() || !$sessionWorkspace.isValid()" ng-click="zm.content.import()">
+					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$segment.isValid() || !$segment.isValid()" ng-click="$segment.import()">
 						<i class="fa fa-download zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.import') }}
@@ -192,7 +192,7 @@
 					</li>
 					
 					<!-- EXPORT -->
-					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$sessionWorkspace.isValid() || !$sessionWorkspace.isValid()" ng-click="zm.content.export()">
+					<li class="zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$segment.isValid() || !$segment.isValid()" ng-click="$segment.export()">
 						<i class="fa fa-upload zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.export') }}
@@ -200,7 +200,7 @@
 					</li>
 					
 					<!-- CLEAR -->
-					<li class="zm-show-mobile zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$sessionWorkspace.isValid() || $sessionWorkspace.segment.data.content.childs.length === 0" ng-click="zm.content.clear()">
+					<li class="zm-show-mobile zm-tab-item zm-flex-container zm-flex-gap-x zm-flex-align-center zm-flex-nowrap" ng-disabled="!$segment.isValid() || $segment.segment.data.content.childs.length === 0" ng-click="zm.content.clear()">
 						<i class="fa fa-eraser zm-flex-minimal"></i>
 						<span>
 							{{ ::t('core.components.toolbar.clear') }}
@@ -216,7 +216,7 @@
 			<!-- NOT CONNECTED, DATA SAVED IN BROWSER -->
 			<div ng-if="breadcrumbs.length === 0 && $profile.isSignedIn === false" class="zm-toolbar-not-connected-data zm-flex-container zm-flex-gap-x zm-flex-align-center">
 				<i class="fa fa-exclamation-circle zm-flex-minimal zm-text-primary"></i>
-				<span>{{ ::t('core.components.toolbar.notConnectedDataBrowser') }}</span>
+				<span class="zm-ellipsis">{{ ::t('core.components.toolbar.notConnectedDataBrowser') }}</span>
 			</div>
 			
 			<!-- CONNECTED, NO SEGMENT -->

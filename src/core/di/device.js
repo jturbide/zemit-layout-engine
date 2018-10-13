@@ -107,6 +107,9 @@
 			
 			isSupported: function() {
 				
+				return this.supportsFlexbox()
+					&& this.supportsGrid();
+				
 				var browser = this.getBrowser();
 				
 				switch(browser.name) {
@@ -128,7 +131,7 @@
 			supportsFlexbox: () => {
 				var el = document.createElement('div');
 				el.style.display = 'flex';
-				return typeof el.style.display === 'flex';
+				return typeof el.style.display === 'string';
 			}
 		};
 		

@@ -5,6 +5,10 @@ class ZmModel {
 		this.key = key;
 		this.is_deleted = false;
 		this.data = extendData || null;
+		this.isLoading = false;
+		this.isLoaded = false;
+		this.isSaving = false;
+		this.isSaved = false;
 		this.joins = [];
 		this.joinRelation = {
 			single: 1,
@@ -254,7 +258,11 @@ class ZmModel {
 		}
 		
 		this.generateKey();
+		this.isSaving = true;
 		
 		await this.$storage.set(this.className, this);
+		
+		this.isSaving = false;
+		this.isSaved = true;
 	}
 };

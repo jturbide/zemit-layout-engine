@@ -25,7 +25,7 @@
 				</div>
 				<div class="zm-flex-container zm-nowrap">
 					<div>
-						<strong>{{ ::t('core.components.sidebar.debug.totalWidgets') }}</strong> {{ $sessionWorkspace.segment.getTotalWidgets() }}
+						<strong>{{ ::t('core.components.sidebar.debug.totalWidgets') }}</strong> {{ $segment.segment.getTotalWidgets() }}
 					</div>
 					<div>
 						<strong>{{ ::t('core.components.sidebar.debug.history') }}</strong> {{ history.position || 0 }} / {{ history.changes.length || 0 }}

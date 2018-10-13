@@ -600,6 +600,15 @@ msgstr "Workspace already exists."
 msgid "core.services.workspace.errUnableConnectCred"
 msgstr "Unable to connect to the server using the provided credentials."
 
+msgid "core.directives.unsupported-device.title"
+msgstr "Browser not supported"
+
+msgid "core.directives.unsupported-device.desc"
+msgstr "Unfortunately, the Zemit Layout Engine does not support your browser <strong class='uppercase'>:browser:</strong> (<strong>v:version:</strong>) yet. Please use any of the following instead:"
+
+msgid "core.directives.unsupported-device.notes"
+msgstr "* If you are using one of these browser, please <u>update it</u> to the latest version."
+
 #~ msgid "core.components.sidebar.workspace.noProjectAdd"
 #~ msgstr "No project yet, add one:"
 

@@ -571,6 +571,16 @@ msgstr ""
 "Impossible de se connecter au serveur en utilisant les informations "
 "d'identification fournis."
 
+msgid "core.directives.unsupported-device.title"
+msgstr "Navigateur non supporté"
+
+msgid "core.directives.unsupported-device.desc"
+msgstr "Malheureusement, l'engin de mise en page Zemit ne fonctionne pas encore avec votre navigateur <strong class='uppercase'>:browser:</strong> (<strong>v:version:</strong>). Veuillez s'il-vous-plait utiliser un des navigateurs suivants:"
+
+msgid "core.directives.unsupported-device.notes"
+msgstr "* Si vous utilisez un de ces navigateurs, veuillez s'il-vous-plait le <u>mettre à jour</u>."
+
+
 #~ msgid "core.components.sidebar.workspace.noProjectAdd"
 #~ msgstr "Aucun projet pour le moment, ajoutez-en un :"
 

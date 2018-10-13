@@ -19,8 +19,12 @@
     z-index: 2;
   }
 }
+@media all and (pointer: fine) {
+  .zm-widget-container:not(.zm-context-preview) .zm-widget-inner {
+    border: transparent solid 1rem;
+  }
+}
 .zm-widget-container:not(.zm-context-preview) .zm-widget-inner {
-  border: transparent solid 1rem;
   box-sizing: border-box;
   background-color: #f1fcfd;
 }

@@ -369,3 +369,16 @@ zm-widget[type="container"] {
 ::-webkit-scrollbar-corner {
   background: #f6f6f6;
 }
+
+/**
+ * Ellipsis
+ */
+.zm-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+span.zm-ellipsis {
+  width: 1rem;
+  display: inline-block;
+}

@@ -5,7 +5,7 @@
  * Get and set workspace session
  */
 (function() {
-	Zemit.app.factory('$sessionWorkspace', ['$session', '$hook', '$rootScope', '$storage', function($session, $hook, $rs, $storage) {
+	Zemit.app.factory('$segment', ['$session', '$hook', '$rootScope', '$storage', '$modal', '$file', '$history', '$i18n', function($session, $hook, $rs, $storage, $modal, $file, $history, $i18n) {
 		
 		$hook.add('onNewHistory', () => {
 			factory.lastUpdate = new Date();
@@ -61,16 +61,27 @@
 			
 			closeSegment: function() {
 				
-				this.segment.setKey(null);
-				this.segment.setContent({
-					childs: []
-				});
-				this.project = null;
-				this.workspace = null;
+				let callback = () => {
+					
+					factory.segment.setKey(null);
+					factory.segment.setContent({
+						childs: []
+					});
+					factory.project = null;
+					factory.workspace = null;
+					
+					factory.updateBreadcrumbs();
+					
+					$session.set('segment', null);
+				};
 				
-				this.updateBreadcrumbs();
-				
-				$session.set('segment', null);
+				if(factory.isValid()) {
+					factory.segment.cleanContent();
+					factory.segment.save().then(callback);
+				}
+				else {
+					callback();
+				}
 			},
 			
 			setContent: (content) => {
@@ -139,6 +150,72 @@
 			getBreadcrumbs: function() {
 				
 				return this.breadcrumbs;
+			},
+			
+			export: function(filename) {
+				
+				if(!filename) {
+					filename = 'zmle-export.' + new Date().toISOString();
+				}
+				
+				var history = $history.dump();
+				var content = this.segment.getContent();
+				var data = angular.toJson({
+					history: history,
+					content: content,
+					version: Zemit.version
+				});
+				
+				$file.downloadAs('text/json', filename + '.json', data);
+				
+				$modal.info({
+					title: $i18n.get('core.di.zm.modalExportTitle'),
+					content: $i18n.get('core.di.zm.modalExportContent')
+				});
+			},
+			
+			import: function() {
+				
+				$file.promptFileDialog(function(file) {
+					
+					var reader = new FileReader();
+					reader.onload = function(event) {
+						
+						try {
+							var json = event.target.result;
+							var data = angular.fromJson(json);
+							
+							if(data.version !== Zemit.version) {
+								
+								$modal.warning({
+									title: $i18n.get('core.di.zm.importVerMismatchTitle'),
+									content: $i18n.get('core.di.zm.importVerMismatchContent', {
+										currentVersion: Zemit.version,
+										importedVersion: data.version
+									})
+								});
+							}
+							else {
+								// factory.session.flushAll();
+								$history.load(data.history);
+								factory.setContent(data.content);
+								
+								$modal.info({
+									title: $i18n.get('core.di.zm.importCompleteTitle'),
+									content: $i18n.get('core.di.zm.importCompleteContent')
+								});
+							}
+						}
+						catch(e) {
+							
+							$modal.error({
+								title: $i18n.get('core.di.zm.errImportWrongFormatTitle'),
+								content: $i18n.get('core.di.zm.errImportWrongFormatContent')
+							});
+						}
+					}
+					reader.readAsText(file);
+				});
 			}
 		};
 		

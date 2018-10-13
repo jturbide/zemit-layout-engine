@@ -33,7 +33,7 @@
 				var $zm = $di.get('$zm');
 				var $device = $di.get('$device');
 				var $hook = $di.get('$hook');
-				var $sessionWorkspace = $di.get('$sessionWorkspace');
+				var $segment = $di.get('$segment');
 				var $i18n = $di.get('$i18n');
 				
 				// Set container scopes
@@ -59,12 +59,12 @@
 				}, {
 					label: $i18n.get('core.components.widget.container.notices.openWidget'),
 					condition: () => {
-						return !$sessionWorkspace.isValid();
+						return !$segment.isValid();
 					}
 				}, {
 					label: $i18n.get('core.components.widget.container.notices.startAddingRow'),
 					condition: () => {
-						return $sessionWorkspace.isValid() && $sessionWorkspace.isValid() && $s.container.childs.length === 0;
+						return $segment.isValid() && $segment.isValid() && $s.container.childs.length === 0;
 					}
 				}, {
 					label: () => {

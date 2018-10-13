@@ -3,20 +3,20 @@
 		<div class="zm-flex-container-column" style="height: 100%">
 			
 			<!-- NO SEGMENT -->
-			<div ng-if="!$sessionWorkspace.isValid()" class="zm-container-no-segment zm-flex-container zm-flex-align-center zm-p-3">
+			<div ng-if="!$segment.isValid()" class="zm-container-no-segment zm-flex-container zm-flex-align-center zm-p-3">
 				<span style="text-align: center">
 					<i class="fa fa-exclamation-triangle fa-margin-right"></i>
 					{{ ::t('core.components.widget.container.no-segment') }}
 				</span>
 			</div>
 			
-			<div ng-show="$sessionWorkspace.isValid()" class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
+			<div ng-show="$segment.isValid()" class="zm-container-scrollable" ng-click="zm.widget.unselectAll()" zm-accept-widget-inside>
 				
 				<!-- LIST OF CHILD WIDGETS -->
 				<zm-widget-childs type="'row'" childs="container.childs"></zm-widget-childs>
 				
 				<!-- ADD ROW -->
-				<!--<div class="zm-container-add-row" ng-if="$sessionWorkspace.segment.data.content.childs.length === 0">-->
+				<!--<div class="zm-container-add-row" ng-if="$segment.segment.data.content.childs.length === 0">-->
 				<!--	<i class="fa fa-plus-circle" zm-clickable zm-zoomable ng-click="container.addChild('row')"></i>-->
 				<!--</div>-->
 			</div>

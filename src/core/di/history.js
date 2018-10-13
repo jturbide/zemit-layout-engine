@@ -5,7 +5,7 @@
  * Keeps track of every changes. Undo/redo capabilities
  */
 (function() {
-	Zemit.app.factory('$history', ['$diff', '$session', '$hook', '$injector', '$timeout', '$storage', '$sessionWorkspace', function($diff, $session, $hook, $injector, $timeout, $storage, $sessionWorkspace) {
+	Zemit.app.factory('$history', ['$diff', '$session', '$hook', '$injector', '$timeout', '$storage', function($diff, $session, $hook, $injector, $timeout, $storage) {
 	    
 	    $hook.add('onSegmentLoad', function() {
 	    	var changes = $session.get('history');
@@ -167,7 +167,8 @@
 			load: function(data) {
 				
 				var $zm = $injector.get('$zm');
-				var scope = $sessionWorkspace.segment.data.content;
+				var $segment = $injector.get('$segment');
+				var scope = $segment.segment.data.content;
 				var changes = [];
 				angular.forEach(data.changes, function(change) {
 					

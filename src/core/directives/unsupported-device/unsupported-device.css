@@ -4,6 +4,9 @@
     transform: translateY(-50%);
     width: 100%;
 }
+.zm-unsupported-device img {
+    max-height: 5rem;
+}
 .zm-unsupported-device a {
     color: #aa8fd8;
     text-decoration: none;
@@ -16,6 +19,7 @@
 }
 .zm-unsupported-device h1 {
   margin-top: 0;
+  line-height: 2rem;
 }
 .zm-unsupported-device-icon {
     padding-right: 2rem;
@@ -36,9 +40,7 @@
   vertical-align: top;
 }
 .zm-unsupported-device-inner {
-    background-color: black;
     padding: 2rem;
-    color: white;
     box-shadow: 0 1rem 0.5rem -0.5rem rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     max-width: 600px;
