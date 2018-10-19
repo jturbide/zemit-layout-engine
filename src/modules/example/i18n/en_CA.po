@@ -1,5 +1,0 @@
-msgid "modules.misc.example.title"
-msgstr "Example"
-
-msgid "modules.misc.example.desc"
-msgstr "Inspect the code of this module to understand how you can develop new ones."
