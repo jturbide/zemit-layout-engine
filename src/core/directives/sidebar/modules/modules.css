@@ -1,0 +1,21 @@
+.zm-sidebar-modules-item:last-child {
+  border-bottom: 0;
+}
+.zm-sidebar-modules-item {
+  border-bottom: rgba(0, 0, 0, 0.15) solid 1px;
+}
+.zm-sidebar-modules-item-dependency-item {
+  text-transform: uppercase;
+}
+.zm-sidebar-modules-item-dependencies {
+  color: rgba(0, 0, 0, 0.5);
+  display: block;
+}
+.zm-sidebar-modules-item.zm-has-error {
+  background-color: rgba(255, 165, 0, 0.15);
+}
+.zm-sidebar-modules-item.zm-has-error .fa,
+.zm-sidebar-modules-item.zm-has-error .zm-sidebar-modules-item-dependency-item {
+  color: rgba(255, 165, 0, 1);
+  font-weight: bold;
+}

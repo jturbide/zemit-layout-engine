@@ -1,0 +1,26 @@
+msgid "core.components.sidebar.tabs.modules"
+msgstr "Modules"
+
+msgid "core.components.sidebar.modules.applyTitle"
+msgstr "Apply changes"
+
+msgid "core.components.sidebar.modules.applyContent"
+msgstr "Applying the changes will alter the behaviour and refresh the application. Do you wish to proceed?"
+
+msgid "core.components.sidebar.modules.applyBtn"
+msgstr "Apply"
+
+msgid "core.components.sidebar.modules.filterPlaceholder"
+msgstr "Filter the list of modules..."
+
+msgid "core.components.sidebar.modules.noticeIntro"
+msgstr "If you don't see your module here, make sure you added it in 'modules/settings.js'."
+
+msgid "core.components.sidebar.modules.noModulesFound"
+msgstr "No module has been found based on your search query."
+
+msgid "core.components.sidebar.modules.empty"
+msgstr "Sorry, no module available yet."
+
+msgid "core.components.sidebar.modules.noModuleFound"
+msgstr "No module found based on your search query."

@@ -1,0 +1,26 @@
+msgid "core.components.sidebar.modules.applyBtn"
+msgstr ""
+
+msgid "core.components.sidebar.modules.applyContent"
+msgstr ""
+
+msgid "core.components.sidebar.modules.applyTitle"
+msgstr ""
+
+msgid "core.components.sidebar.modules.dependencies"
+msgstr ""
+
+msgid "core.components.sidebar.modules.empty"
+msgstr ""
+
+msgid "core.components.sidebar.modules.filterPlaceholder"
+msgstr ""
+
+msgid "core.components.sidebar.modules.noModuleFound"
+msgstr ""
+
+msgid "core.components.sidebar.modules.noticeIntro"
+msgstr ""
+
+msgid "core.di.modal.btnCancel"
+msgstr ""

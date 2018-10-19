@@ -4,6 +4,5 @@ node_modules
 dist
 src/cache
 .c9
-assets/literals.js
-modules
-!modules/example
+src/assets/literals.js
+src/modules/settings.js
