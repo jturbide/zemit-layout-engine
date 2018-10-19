@@ -1,4 +1,4 @@
-<div class="zm-sidebar" ng-class="{'zm-open': tabs.showContent && !tabs.hidden }">
+<div class="zm-sidebar" ng-if="$sidebar.tabs.length > 0" ng-class="{'zm-open': tabs.showContent && !tabs.hidden }">
 	<div class="zm-sidebar-inner zm-clearfix zm-flex-container">
 		<div zm-if="tabs.showContent" class="zm-sidebar-tab zm-flex-container">
 			

@@ -1,54 +1,3 @@
-msgid "core.components.sidebar.tabs.modules"
-msgstr ""
-
-msgid "core.components.toolbar.clear"
-msgstr ""
-
-msgid "core.components.toolbar.closeSegment"
-msgstr ""
-
-msgid "core.components.toolbar.dataHasLoaded"
-msgstr ""
-
-msgid "core.components.toolbar.dataHasSaved"
-msgstr ""
-
-msgid "core.components.toolbar.dataIsLoading"
-msgstr ""
-
-msgid "core.components.toolbar.dataIsSaving"
-msgstr ""
-
-msgid "core.components.toolbar.export"
-msgstr ""
-
-msgid "core.components.toolbar.import"
-msgstr ""
-
-msgid "core.components.toolbar.noSegmentLoaded"
-msgstr ""
-
-msgid "core.components.toolbar.notConnectedDataBrowser"
-msgstr ""
-
-msgid "core.components.toolbar.signIn"
-msgstr ""
-
-msgid "core.components.toolbar.signOut"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.myAccount"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.segment"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.settings"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.signIn"
-msgstr ""
-
 msgid "core.components.widget.column.desc"
 msgstr ""
 
@@ -173,6 +122,9 @@ msgid "core.directives.modal.btnClose"
 msgstr ""
 
 msgid "core.directives.modal.debugTitle"
+msgstr ""
+
+msgid "core.directives.sidebar.tabs.modules"
 msgstr ""
 
 msgid "core.directives.tooltip.debugTitle"

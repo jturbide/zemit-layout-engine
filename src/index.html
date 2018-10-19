@@ -4,21 +4,21 @@
 		<title>Zemit Layout Engine</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<link rel="icon" type="image/png" href="favicon.png?v=<%= version %>" />
+		<link rel="icon" type="image/png" href="app/assets/img/favicon.png?v=<%= version %>" />
 		
 		<!-- PWA Settings -->
 		<meta name="apple-mobile-web-app-title" content="Zemit" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="256x256" href="assets/img/logo-mobile-icon.png?v=<%= version %>" />
-		<link rel="apple-touch-icon-precomposed" sizes="256x256" href="assets/img/logo-mobile-icon.png?v=<%= version %>" />
-		<!--<link rel="apple-touch-startup-image" href="/assets/img/splash-screen.png">-->
+		<link rel="apple-touch-icon" sizes="256x256" href="app/assets/img/logo-mobile-ios.png?v=<%= version %>" />
+		<link rel="apple-touch-icon-precomposed" sizes="256x256" href="app/assets/img/logo-mobile-ios.png?v=<%= version %>" />
+		<link rel="apple-touch-startup-image" href="/app/assets/img/splash-screen-ios.png">
 		<link rel="manifest" href="./manifest.json?v=<%= version %>">
 		
 		<!-- build:css assets/css/vendors.min.css -->
 		<link rel="stylesheet" href="../node_modules/font-awesome-base64/index.css" />
-		<link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
+		<!--<link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />-->
 		<!-- endbuild -->
 		<!-- build:css assets/css/zemit.min.css -->
 		<link rel="stylesheet" href="./core/zemit.css" />
@@ -45,6 +45,7 @@
 		<link rel="stylesheet" href="./core/directives/tooltip/tooltip.css" />
 		<link rel="stylesheet" href="./core/directives/unsupported-device/unsupported-device.css" />
 		<!-- include: "type": "css", "files": "<%= app.styles %>" -->
+		<link rel="stylesheet" href="./app/app.css" />
 		<!-- endbuild -->
 		<style>
 			html,
@@ -75,7 +76,7 @@
 				  height: 100%;
 				  background-color: white;
 				  z-index: 10;
-				  background: white url('assets/img/logo-empty.png') center center no-repeat;
+				  background: white url('app/assets/img/logo-dark.png') center center no-repeat;
 				  background-repeat: no-repeat;
 				  animation: shrink 0.75s infinite alternate;
 				}
@@ -97,17 +98,11 @@
 		<!-- ZEMIT INITIALIZATION -->
 		<zemit ng-cloak>
 			
-			<!-- UNSUPPORTED -->
+			<!-- DEVICE NOT UNSUPPORTED -->
 			<zm-unsupported-device ng-if="!$device.isSupported()"></zm-unsupported-device>
 			
-			<!-- SUPPORTED -->
-			<div ng-if="$device.isSupported()" tabindex="0" class="zm-flex-container-column zm-h100">
-				<zm-toolbar class="zm-flex-minimal"></zm-toolbar>
-				<div class="zm-flex-container" style="flex-wrap: nowrap;">
-					<zm-widget type="container"></zm-widget>
-					<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'" />
-				</div>
-			</div>
+			<!-- APP SUPPORTED -->
+			<zm-app ng-if="$device.isSupported()"></zm-app>
 		</zemit>
 		
 		<!-- build:js assets/js/vendors.min.js -->
@@ -128,9 +123,9 @@
 		<!-- endbuild -->
 		<!-- build:js assets/js/zemit.min.js -->
 		<script src="./core/zemit.js"></script>
+		<script src="./app/assets/literals.js"></script>
 		<!-- include: "type": "js", "files": "templates.js" -->
 		<!-- include: "type": "js", "files": "service-worker.js" -->
-		<script src="./assets/literals.js"></script>
 		<script src="./core/error.js"></script>
 		<script src="./core/interceptor.js"></script>
 		<script src="./core/directives/accordion/accordion.js"></script>
@@ -174,10 +169,11 @@
 		<script src="./core/di/zm.js"></script>
 		<script src="./core/model.js"></script>
 		<script src="./core/session.model.js"></script>
-		<script src="./modules/settings.js"></script>
+		<script src="./app/modules/settings.js"></script>
 		<!-- include: "type": "js", "files": "<%= app.scripts %>" -->
 		    <!-- Files willbe added here by includeSource-->
 		<!-- /include -->
+		<script src="./app/app.js"></script>
 		<!-- endbuild -->
 	</body>
 </html>

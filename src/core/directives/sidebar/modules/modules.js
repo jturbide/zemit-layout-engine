@@ -54,10 +54,10 @@
 					
 					$modal.dialog('modules_apply', {
 						backdrop: true,
-						title: $i18n.get('core.components.sidebar.modules.applyTitle'),
-						content: $i18n.get('core.components.sidebar.modules.applyContent'),
+						title: $i18n.get('core.directives.sidebar.modules.applyTitle'),
+						content: $i18n.get('core.directives.sidebar.modules.applyContent'),
 						buttons: [{
-							label: $i18n.get('core.components.sidebar.modules.applyBtn'),
+							label: $i18n.get('core.directives.sidebar.modules.applyBtn'),
 							warning: true,
 							callback: (event, modal) => {
 								

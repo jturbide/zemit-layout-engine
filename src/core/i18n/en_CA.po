@@ -12,61 +12,43 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "core.components.sidebar.tabs.modules"
+msgid "core.directives.sidebar.tabs.modules"
 msgstr "Modules"
 
-msgid "core.components.toolbar.clear"
+msgid "core.directives.toolbar.clear"
 msgstr "Clear"
 
-msgid "core.components.toolbar.export"
+msgid "core.directives.toolbar.export"
 msgstr "Export"
 
-msgid "core.components.toolbar.import"
+msgid "core.directives.toolbar.import"
 msgstr "Import"
 
-msgid "core.components.toolbar.notConnectedDataBrowser"
+msgid "core.directives.toolbar.notConnectedDataBrowser"
 msgstr "Data will be saved in your browser session unless you sign-in."
 
-msgid "core.components.toolbar.dataIsLoading"
-msgstr "Loading"
-
-msgid "core.components.toolbar.dataHasLoaded"
-msgstr "Loaded"
-
-msgid "core.components.toolbar.dataIsSaving"
-msgstr "Saving"
-
-msgid "core.components.toolbar.dataHasSaved"
-msgstr "Saved"
-
-msgid "core.components.toolbar.noSegmentLoaded"
-msgstr "No segment loaded yet."
-
-msgid "core.components.toolbar.tooltip.changeMode"
-msgstr "Change edition mode"
-
-msgid "core.components.toolbar.tooltip.clearDoc"
+msgid "core.directives.toolbar.tooltip.clearDoc"
 msgstr "Clear document"
 
-msgid "core.components.toolbar.tooltip.myAccount"
+msgid "core.directives.toolbar.tooltip.myAccount"
 msgstr "My account"
 
-msgid "core.components.toolbar.tooltip.redo"
+msgid "core.directives.toolbar.tooltip.redo"
 msgstr "Redo"
 
-msgid "core.components.toolbar.tooltip.settings"
+msgid "core.directives.toolbar.tooltip.settings"
 msgstr "Settings"
 
-msgid "core.components.toolbar.tooltip.signIn"
+msgid "core.directives.toolbar.tooltip.signIn"
 msgstr "Sign-in to your account"
 
-msgid "core.components.toolbar.tooltip.segment"
+msgid "core.directives.toolbar.tooltip.segment"
 msgstr "Manage current segment"
 
-msgid "core.components.toolbar.tooltip.undo"
+msgid "core.directives.toolbar.tooltip.undo"
 msgstr "Undo"
 
-msgid "core.components.toolbar.closeSegment"
+msgid "core.directives.toolbar.closeSegment"
 msgstr "Close"
 
 msgid "core.di.modal.btnCancel"
@@ -181,11 +163,8 @@ msgstr "Unfortunately, the Zemit Layout Engine does not support your browser <st
 msgid "core.directives.unsupported-device.notes"
 msgstr "* If you are using one of these browser, please <u>update it</u> to the latest version."
 
-msgid "core.components.sidebar.modules.dependencies"
+msgid "core.directives.sidebar.modules.dependencies"
 msgstr "Dependencies:"
-
-#~ msgid "core.components.toolbar.tooltip.signOut"
-#~ msgstr "Sign-out from your account"
 
 #~ msgid "core.modules.misc"
 #~ msgstr "Miscellaneous"

@@ -54,10 +54,10 @@ var Zemit = {
 	Zemit.app.directive('zemit', ['$zm', '$session', '$window', '$hook', '$device', '$database', '$i18n', '$debug', function($zm, $session, $window, $hook, $device, $database, $i18n, $debug) {
 		return {
 			restrict: 'E',
+			replace: true,
 			link: async function ($s, $e, attrs) {
 				
 				await $session.load();
-				// await $workspace.init();
 				await $i18n.init();
 				
 				$debug.init('core', $i18n.get('core.debugTitle'));
@@ -68,15 +68,10 @@ var Zemit = {
 				});
 				
 				$zm.setBaseScope($s);
-				// $s.$segment = $segment;
 				$s.settings = session.settings;
 				$s.$device = $device;
 				$s.t = $i18n.get;
 				$s.$zemit = $e;
-				
-				// $segment.init();
-				// $s.container = $segment.segment.data.content;
-				// $s.widget = $s.container;
 				
 				// Prevent mobile contextual menu
 				$e.on('contextmenu', function(event) {
@@ -112,6 +107,17 @@ var Zemit = {
 				$hook.run('onBeforeReady');
 				
 				$debug.log('core', 'ONBEFOREREADY');
+			}
+		};
+	}]);
+	
+	Zemit.app.directive('zmApp', [function() {
+		return {
+			restrict: 'E',
+			replace: true,
+			templateUrl: 'app/app.html',
+			link: async function ($s, $e, attrs) {
+				
 			}
 		};
 	}]);

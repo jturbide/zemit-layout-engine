@@ -24,7 +24,7 @@
 		 * ])
 		 */
 		$modules.bootstrap([
-			'example'
+			'/app/modules/misc/example'
 		]);
 	}]);
 })();

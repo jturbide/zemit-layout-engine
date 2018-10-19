@@ -4,8 +4,8 @@ node_modules
 dist
 src/cache
 .c9
-src/assets/literals.js
-!src/modules/
-src/modules/*
-!src/modules/example
-!src/modules/settings.example.js
+src/app/assets/literals.js
+!src/app/modules/
+src/app/modules/*
+!src/app/modules/example
+!src/app/modules/settings.example.js

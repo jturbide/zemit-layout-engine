@@ -55,7 +55,7 @@
 				
 				moduleList.forEach(module => {
 					let props = module[1];
-					module[1].dependencies = $modules.getLowestPriority(props.priority, props.dependencies);
+					module[1].priority = $modules.getLowestPriority(props.priority, props.dependencies);
 				})
 				moduleList.sort((a, b) => {
 					return a[1].priority - b[1].priority;
@@ -75,16 +75,6 @@
 			
 			$hook.run('onAllModulesRan');
 		});
-		
-		let settings = $session.get('settings');
-		$sidebar.addTab('modules', {
-			priority: 100,
-			title: $i18n.get('core.components.sidebar.tabs.modules'),
-			directive: 'zm-sidebar-modules',
-			isVisible: () => {
-				return settings.context === 'structure';
-			}
-		})
 	}])
 	
 	Zemit.app.factory('$modules', ['$ocLazyLoad', '$session', '$hook', '$i18n', '$util', '$injector', '$rootScope', '$debug', '$sidebar', '$toolbar', '$shortcut', function($ocLazyLoad, $session, $hook, $i18n, $util, $injector, $rs, $debug, $sidebar, $toolbar, $shortcut) {
@@ -97,6 +87,7 @@
 		var factory = {
 			
 			items: {},
+			modulesPaths: {},
 			
 			bootstrap: (modules = []) => {
 				
@@ -105,7 +96,12 @@
 				}
 				
 				var moduleLoadCount = 0;
-				modules.forEach((name) => {
+				modules.forEach((modulePath) => {
+					
+					let modulePathSplitted = modulePath.split('/');
+					let name = modulePathSplitted[modulePathSplitted.length - 1];
+					
+					factory.modulesPaths[name] = modulePath;
 					
 					$debug.log('module', 'INIT', name.toUpperCase());
 					
@@ -120,8 +116,8 @@
 							rerun: true,
 							reconfig: true,
 							files: [
-								'./modules/' + name + '/' + name + '.js',
-								'./modules/' + name + '/' + name + '.css'
+								modulePath + '/' + name + '.js',
+								modulePath + '/' + name + '.css'
 							]
 						}).then(response => {
 							
@@ -157,7 +153,9 @@
 				});
 			},
 			
-			addModule: function(name, group = 'misc', props = {}, isCore = false) {
+			addModule: function(name, group = 'misc', props = {}) {
+				
+				let modulePath = factory.modulesPaths[name];
 				
 				let options = {
 					modules: {}
@@ -188,13 +186,19 @@
 					modules: settingsDefault
 				});
 				
+				// Adjust directives templateUrls
+				if(props.directives instanceof Object) {
+					for(let directiveName in props.directives) {
+						let directive = props.directives[directiveName];
+						if(directive.templateUrl) {
+							directive.templateUrl = modulePath + '/' + directive.templateUrl;
+						}
+					}
+				}
+				
 				let module = {
 					_activated: settings.modules[name].activated,
-					_isCore: isCore,
 					
-					isCore: function() {
-						return this._isCore;
-					},
 					isActivated: function() {
 						return this._activated;
 					},
@@ -208,15 +212,15 @@
 					name: name,
 					priority: props.priority || 0,
 					dependencies: props.dependencies || [],
-					title: $i18n.get((isCore ? 'core.' : '') + 'modules.' + group + '.' + name + '.title'),
-					desc: $i18n.get((isCore ? 'core.' : '') + 'modules.' + group + '.' + name + '.desc'),
+					title: $i18n.get('modules.' + name + '.title'),
+					desc: $i18n.get('modules.' +  name + '.desc'),
 					group: group,
 					props: props || {},
 					thumbnail: defaultThumbnail,
 					settings: settings.modules[name]
 				}
 				
-				let thumbnail = './' + (isCore ? 'core/' : '') + 'modules/' + name + '/' + name + '.png';
+				let thumbnail = modulePath + '/' + name + '.png';
 				let image = new Image();
 				image.src = thumbnail;
 				image.onload = () => {
@@ -237,9 +241,9 @@
 				return module;
 			},
 			
-			config: function(name, group = 'misc', props = {}, isCore = false) {
+			config: function(name, group = 'misc', props = {}) {
 				
-				let module = this.addModule(name, group, props, isCore);
+				let module = this.addModule(name, group, props);
 				
 				if(props.onConfig instanceof Function) {
 					props.onConfig(module);

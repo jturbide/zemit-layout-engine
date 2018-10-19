@@ -12,39 +12,39 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "core.components.sidebar.tabs.modules"
+msgid "core.directives.sidebar.tabs.modules"
 msgstr "Modules"
 
-msgid "core.components.toolbar.clear"
+msgid "core.directives.toolbar.clear"
 msgstr "Nettoyez"
 
-msgid "core.components.toolbar.export"
+msgid "core.directives.toolbar.export"
 msgstr "Exporter"
 
-msgid "core.components.toolbar.import"
+msgid "core.directives.toolbar.import"
 msgstr "Importer"
 
-msgid "core.components.toolbar.notConnectedDataBrowser"
+msgid "core.directives.toolbar.notConnectedDataBrowser"
 msgstr ""
 "Vos données seront sauvegardés dans votre session de navigateur à moins que "
 "vous vous connectez."
 
-msgid "core.components.toolbar.tooltip.clearDoc"
+msgid "core.directives.toolbar.tooltip.clearDoc"
 msgstr "Nettoyer le document"
 
-msgid "core.components.toolbar.tooltip.myAccount"
+msgid "core.directives.toolbar.tooltip.myAccount"
 msgstr "Mon compte"
 
-msgid "core.components.toolbar.tooltip.redo"
+msgid "core.directives.toolbar.tooltip.redo"
 msgstr "Refaire"
 
-msgid "core.components.toolbar.tooltip.settings"
+msgid "core.directives.toolbar.tooltip.settings"
 msgstr "Paramètres"
 
-msgid "core.components.toolbar.tooltip.signIn"
+msgid "core.directives.toolbar.tooltip.signIn"
 msgstr "Connectez-vous à votre compte"
 
-msgid "core.components.toolbar.tooltip.undo"
+msgid "core.directives.toolbar.tooltip.undo"
 msgstr "Annuler"
 
 msgid "core.di.modal.btnCancel"

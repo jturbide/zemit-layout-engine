@@ -1,7 +1,11 @@
-<div ng-if="$device.isSupported()" tabindex="0" class="zm-flex-container-column zm-h100">
+<!-- APP INITIALIZATION -->
+<div ng-controller="app" tabindex="0" class="zm-flex-container-column zm-h100">
 	<zm-toolbar class="zm-flex-minimal"></zm-toolbar>
 	<div class="zm-flex-container" style="flex-wrap: nowrap;">
-		<zm-widget type="container"></zm-widget>
+		<div class="zm-text-center zm-flex-align-self-center">
+			<i class="fa fa-thumbs-o-up" style="font-size: 3rem"></i>
+			<br />IT'S WORKING
+		</div>
 		<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'" />
 	</div>
 </div>

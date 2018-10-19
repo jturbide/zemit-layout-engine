@@ -4,16 +4,16 @@
 		
 		<!-- NOTICE -->
 		<zm-dismissable class="zm-flex-minimal" type="info" key="zm-sidebar-modules-intro">
-			{{ ::t('core.components.sidebar.modules.noticeIntro') }}
+			{{ ::t('core.directives.sidebar.modules.noticeIntro') }}
 		</zm-dismissable>
 		
 		<!-- FILTER -->
 		<div class="zm-flex-minimal zm-p-2">
-			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.components.sidebar.modules.filterPlaceholder') }}" ng-model="filters.query" ng-disabled="Object.keys(groups).length === 0" autofocus="on" />
+			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.directives.sidebar.modules.filterPlaceholder') }}" ng-model="filters.query" ng-disabled="Object.keys(groups).length === 0" autofocus="on" />
 			
 			<!-- IF NO modules FOUND -->
 			<p ng-if="Object.keys(groups).length > 0 && filteredGroups.length === 0" style="text-align: center">
-				{{ ::t('core.components.sidebar.modules.noModuleFound') }}
+				{{ ::t('core.directives.sidebar.modules.noModuleFound') }}
 			</p>
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 		<div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="Object.keys(groups).length === 0">
 			<div>
 				<i class="fa fa-exclamation-circle" style="font-size: 2rem"></i>
-				<br />{{ ::t('core.components.sidebar.modules.empty') }}
+				<br />{{ ::t('core.directives.sidebar.modules.empty') }}
 			</div>
 		</div>
 		
@@ -59,7 +59,7 @@
 								{{ ::module.desc }}
 							</div>
 							<small class="zm-sidebar-modules-item-dependencies zm-mt-2" ng-if="module.dependencies.length > 0">
-								<em>{{ ::t('core.components.sidebar.modules.dependencies') }}</em>
+								<em>{{ ::t('core.directives.sidebar.modules.dependencies') }}</em>
 								<em class="zm-sidebar-modules-item-dependency-item" ng-repeat="dependency in module.dependencies | orderBy: 'dependency'">
 									<span>{{ ::dependency }}</span>
 									<span ng-if="$index < module.dependencies.length - 1">, </span>
@@ -80,7 +80,7 @@
 		<div class="zm-p-2 zm-flex-minimal">
 			<zm-btn ng-disabled="!hasDifferences()" class="zm-w100 zm-btn-warning" ng-click="apply()">
 				<i class="fa fa-check fa-margin-right"></i>
-				{{ ::t('core.components.sidebar.modules.applyBtn') }}
+				{{ ::t('core.directives.sidebar.modules.applyBtn') }}
 			</zm-btn>
 		</div>
 	</div>

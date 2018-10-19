@@ -222,7 +222,7 @@ module.exports = function(grunt) {
 			},
 			build: {
 				options: {
-					dest: 'src/assets/literals.js'
+					dest: 'src/app/assets/literals.js'
 				},
 				files: [{
 					src: ['src/**/i18n/literals.json']
