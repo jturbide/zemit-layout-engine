@@ -1,0 +1,5 @@
+msgid "modules.misc.example.sidebarIconTooltip"
+msgstr ""
+
+msgid "modules.misc.example.toolbarBtnTooltip"
+msgstr ""
