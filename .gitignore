@@ -7,4 +7,3 @@ src/cache
 assets/literals.js
 modules
 !modules/example
-!modules/settings.js
