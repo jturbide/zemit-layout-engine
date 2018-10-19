@@ -1,5 +1,0 @@
-msgid "widget.code.desc"
-msgstr "Coder un segment à la main"
-
-msgid "widget.code.title"
-msgstr "Code"

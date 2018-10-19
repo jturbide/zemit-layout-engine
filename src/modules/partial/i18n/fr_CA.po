@@ -1,5 +1,0 @@
-msgid "widget.partial.desc"
-msgstr "Un partiel locale ou distant à injecter au sein du widget"
-
-msgid "widget.partial.title"
-msgstr "Partiel"

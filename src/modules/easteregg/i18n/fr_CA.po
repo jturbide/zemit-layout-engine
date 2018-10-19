@@ -1,8 +1,0 @@
-msgid "modules.misc.easteregg.title"
-msgstr "Oeuf de Pâques"
-
-msgid "modules.misc.easteregg.modalTitle"
-msgstr "Il était une fois en 2014"
-
-msgid "modules.misc.easteregg.desc"
-msgstr "Ce module cache un petit secrèt à l'intérieur de l'engin de disposition. Le trouverez-vous? :-)"
