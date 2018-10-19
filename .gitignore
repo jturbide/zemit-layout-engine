@@ -7,5 +7,7 @@ src/cache
 src/app/assets/literals.js
 !src/app/modules/
 src/app/modules/*
-!src/app/modules/example
+!src/app/modules/misc/
+src/app/modules/misc/*
+!src/app/modules/misc/example/
 !src/app/modules/settings.example.js
