@@ -4,9 +4,11 @@
  * Creation date: 2018-01-14
  */
 (function() {
-	Zemit.module('easteregg', ['$rootScope', '$modules', '$modal', '$i18n', function($rs, $modules, $modal, $i18n) {
+	Zemit.module('easteregg', {
+		group: 'misc',
+		dependencies: [],
+	}, ['$rootScope', '$modules', '$modal', '$i18n', function($rs, $modules, $modal, $i18n) {
 		return {
-			group: 'misc',
 			directives: {
 				zmEastereggModal: {
 					restrict: 'E',

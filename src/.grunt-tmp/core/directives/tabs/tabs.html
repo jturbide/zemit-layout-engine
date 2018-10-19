@@ -1,0 +1,21 @@
+<div class="zm-tabs zm-tabs-style-{{ style }}">
+	<zm-btn ng-if="style === 'button'" class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle();">
+		<div class="zm-tabs-toggle zm-h100" ng-transclude="toggle">
+			<toggle>
+				<i class="fa fa-bars"></i>
+			</toggle>
+		</div>
+	</zm-btn>
+	<span ng-if="style === 'flat'" class="zm-tabs-handler zm-show-mobile" ng-class="{active: tabs.visible}" ng-disabled="ngDisabled" ng-click="tabs.toggle();">
+		<div class="zm-tabs-toggle zm-h100" ng-transclude="toggle">
+			<toggle>
+				<i class="fa fa-bars"></i>
+			</toggle>
+		</div>
+	</span>
+	<div zm-slide-y="tabs.visible" class="zm-tabs-list">
+		<ul class="zm-shadow-down" ng-transclude="items" ng-click="tabs.clickInside()">
+			<!-- TRANSCLUDE HERE -->
+		</ul>
+	</div>
+</div>

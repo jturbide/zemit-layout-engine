@@ -1,0 +1,64 @@
+.zm-treeview-container,
+.zm-treeview-container ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.zm-treeview-group-back,
+.zm-treeview-group-title {
+  padding: 0.25rem 1rem;
+  background-color: white;
+  border: #ccc solid 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.zm-treeview-group-back:hover,
+.zm-treeview-group-title:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.zm-treeview-group.zm-treeview-opened > .zm-treeview-group-title {
+  background-color: white;
+}
+
+/*.zm-field-treeview-sub-level {*/
+/*  background-color: rgba(0, 0, 0, 0.1);*/
+/*}*/
+.zm-treeview-list-item.first:not(.zm-treeview-list-item-depth0) > .zm-treeview-group > .zm-treeview-group-title {
+  border-top-left-radius: 0.5rem;
+}
+.zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group:not(.zm-treeview-opened) > .zm-treeview-group-title {
+  border-bottom-left-radius: 0.5rem;
+}
+.zm-treeview-list-item.last:not(.zm-treeview-list-item-depth0) > .zm-treeview-group > .zm-field-treeview-sub-level > * > * > .zm-field-treeview-sub-level-inner {
+  border-bottom-left-radius: 0.5rem;
+}
+.zm-field-treeview-sub-level-inner {
+  border-left: #ccc solid 1px;
+}
+.zm-treeview-list-item.last > .zm-treeview-group > .zm-field-treeview-sub-level .zm-field-treeview-sub-level-inner {
+  border-bottom: #ccc solid 1px;
+}
+
+.zm-treeview-container > div + div,
+.zm-field-treeview-sub-level ol>li+li {
+  margin-top: -1px;
+}
+
+.zm-field-treeview-sub-level ol>li,
+.zm-treeview-container ol>li {
+  position: relative;
+}
+
+.zm-field-treeview-sub-level ol>li:hover,
+.zm-treeview-container ol>li:hover {
+  z-index: 1;
+}
+
+.zm-treeview-container .zm-badge.zm-empty {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.zm-treeview-group-title .fa {
+  min-width: 1rem;
+  text-align: center;
+}

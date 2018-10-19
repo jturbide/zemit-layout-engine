@@ -222,7 +222,7 @@ module.exports = function(grunt) {
 			},
 			build: {
 				options: {
-					dest: 'src/assets/i18n/literals.js'
+					dest: 'src/assets/literals.js'
 				},
 				files: [{
 					src: ['src/**/i18n/literals.json']
@@ -384,8 +384,6 @@ module.exports = function(grunt) {
 				let stats = {};
 				this.files.forEach(function(file) {
 					
-					let totalLiterals = 0;
-					
 					let literals = file.src.filter(function(filepath) {
 						if (!grunt.file.exists(filepath)) {
 							grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -395,6 +393,8 @@ module.exports = function(grunt) {
 							return true;
 						}
 					}).map(function(filepath) {
+						
+						let totalLiterals = 0;
 						
 						let buildPath = ((data, parts, value) => {
 							
@@ -528,6 +528,13 @@ module.exports = function(grunt) {
 				
 				grunt.file.write(config.build.options.dest, results);
 				grunt.log.writeln('Literals file cached: ' + config.build.options.dest);
+				
+				// Remove "literals.json"
+				this.files.forEach(file => {
+					file.src.filter(function(filepath) {
+						grunt.file.delete(filepath);
+					});
+				});
 				
 				break;
 		}

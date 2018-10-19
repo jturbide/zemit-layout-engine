@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Zemit Layout Engine</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<link rel="icon" type="image/png" href="favicon.png?v=<%= version %>" />
+		
+		<!-- PWA Settings -->
+		<meta name="apple-mobile-web-app-title" content="Zemit" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="256x256" href="assets/img/logo-mobile-icon.png?v=<%= version %>" />
+		<link rel="apple-touch-icon-precomposed" sizes="256x256" href="assets/img/logo-mobile-icon.png?v=<%= version %>" />
+		<!--<link rel="apple-touch-startup-image" href="/assets/img/splash-screen.png">-->
+		<link rel="manifest" href="./manifest.json?v=<%= version %>">
+		
+		<!-- build:css assets/css/vendors.min.css -->
+		<link rel="stylesheet" href="../node_modules/font-awesome-base64/index.css" />
+		<link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
+		<!-- endbuild -->
+		<!-- build:css assets/css/zemit.min.css -->
+		<link rel="stylesheet" href="./zemit.css" />
+		<link rel="stylesheet" href="./core/directives/general/general.css" />
+		<link rel="stylesheet" href="./core/directives/accordion/accordion.css" />
+		<link rel="stylesheet" href="./core/directives/badge/badge.css" />
+		<link rel="stylesheet" href="./core/directives/btn/btn.css" />
+		<link rel="stylesheet" href="./core/directives/dismissable/dismissable.css" />
+		<link rel="stylesheet" href="./core/directives/draggable/draggable.css" />
+		<link rel="stylesheet" href="./core/directives/field/code/code.css" />
+		<link rel="stylesheet" href="./core/directives/field/default/default.css" />
+		<link rel="stylesheet" href="./core/directives/field/input/input.css" />
+		<link rel="stylesheet" href="./core/directives/field/switch/switch.css" />
+		<link rel="stylesheet" href="./core/directives/field/treeview/treeview.css" />
+		<link rel="stylesheet" href="./core/directives/iframe/iframe.css" />
+		<link rel="stylesheet" href="./core/directives/loading/loading.css" />
+		<link rel="stylesheet" href="./core/directives/modal/modal.css" />
+		<link rel="stylesheet" href="./core/directives/overlay/overlay.css" />
+		<link rel="stylesheet" href="./core/directives/sizing/sizing.css" />
+		<link rel="stylesheet" href="./core/directives/sidebar/sidebar.css" />
+		<link rel="stylesheet" href="./core/directives/sidebar/modules/modules.css" />
+		<link rel="stylesheet" href="./core/directives/tabs/tabs.css" />
+		<link rel="stylesheet" href="./core/directives/toolbar/toolbar.css" />
+		<link rel="stylesheet" href="./core/directives/tooltip/tooltip.css" />
+		<link rel="stylesheet" href="./core/directives/unsupported-device/unsupported-device.css" />
+		<link href="modules/zemit/zemit.css" rel="stylesheet" type="text/css">
+		<link href="modules/context/context.css" rel="stylesheet" type="text/css">
+		<link href="modules/media/media.css" rel="stylesheet" type="text/css">
+		<link href="modules/settings/settings.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/debug/debug.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/default/add/add.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/default/childs/childs.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/column/column.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/container/container.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/disabled/disabled.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/image/image.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/row/row.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/text/text.css" rel="stylesheet" type="text/css">
+		<link href="modules/widget/widget/widget.css" rel="stylesheet" type="text/css">
+		<link href="modules/workspace/modals/connect/connect.css" rel="stylesheet" type="text/css">
+		<link href="modules/workspace/modals/project/project.css" rel="stylesheet" type="text/css">
+		<link href="modules/workspace/modals/segment/segment.css" rel="stylesheet" type="text/css">
+		<link href="modules/workspace/workspace.css" rel="stylesheet" type="text/css">
+		<link href="modules/profile/profile.css" rel="stylesheet" type="text/css">
+		<link href="modules/doc/doc.css" rel="stylesheet" type="text/css">
+		<link href="modules/help/help.css" rel="stylesheet" type="text/css">
+		<link href="modules/easteregg/easteregg.css" rel="stylesheet" type="text/css">
+		<link href="modules/code/code.css" rel="stylesheet" type="text/css">
+		<link href="modules/partial/partial.css" rel="stylesheet" type="text/css">
+		<link href="modules/segment/segment.css" rel="stylesheet" type="text/css">
+		<link href="modules/google/google.css" rel="stylesheet" type="text/css">
+		<link href="modules/debug/debug.css" rel="stylesheet" type="text/css">
+		<!-- endbuild -->
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			html {
+				font-size: 14px;
+				font-family: Avenir,Open Sans,Helvetica,Arial,sans-serif;
+			}
+			body {
+				margin: 0;
+				background-color: white;
+			}
+		</style>
+	</head>
+	<body ng-app="zemit">
+		<zemit-loader zm-fade-out-kill="{ timeout: 250, hook: 'onReady' }">
+			<style>
+				zemit-loader {
+				  display: block;
+				  position: absolute;
+				  top: 0;
+				  left: 0;
+				  width: 100%;
+				  height: 100%;
+				  background-color: white;
+				  z-index: 10;
+				  background: white url('assets/img/logo-empty.png') center center no-repeat;
+				  background-repeat: no-repeat;
+				  animation: shrink 0.75s infinite alternate;
+				}
+				@keyframes shrink {
+				  0% {
+				    background-size: 10vmin auto;
+				  }
+				  100% {
+				    background-size: 15vmin auto;
+				  }
+				}
+				zemit-loader.zm-hide {
+					opacity: 0;
+					transition: opacity 0.25s linear;
+				}
+			</style>
+		</zemit-loader>
+		
+		<!-- ZEMIT INITIALIZATION -->
+		<zemit ng-cloak>
+			
+			<!-- UNSUPPORTED -->
+			<zm-unsupported-device ng-if="!$device.isSupported()"></zm-unsupported-device>
+			
+			<!-- SUPPORTED -->
+			<div ng-if="$device.isSupported()" tabindex="0" class="zm-flex-container-column zm-h100">
+				<zm-toolbar class="zm-flex-minimal"></zm-toolbar>
+				<div class="zm-flex-container" style="flex-wrap: nowrap;">
+					<zm-widget type="container"></zm-widget>
+					<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'" />
+				</div>
+			</div>
+		</zemit>
+		
+		<!-- build:js assets/js/vendors.min.js -->
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../node_modules/angular/angular.min.js"></script>
+		<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+		<script src="../node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
+		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
+		<script src="../node_modules/interactjs/dist/interact.js"></script>
+		<!--<script src="../node_modules/codemirror/lib/codemirror.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/css/css.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/xml/xml.js"></script>-->
+		<!--<script src="../node_modules/codemirror/addon/edit/closetag.js"></script>-->
+		<script src="../node_modules/babel-polyfill/dist/polyfill.min.js"></script>
+		<script src="../node_modules/pouchdb/dist/pouchdb.min.js"></script>
+		<!-- endbuild -->
+		<!-- build:js assets/js/zemit.min.js -->
+		<script src="./zemit.js"></script>
+		<script src="templates.js"></script>
+		<script src="service-worker.js"></script>
+		<script src="./assets/i18n/literals.js"></script>
+		<script src="./core/error.js"></script>
+		<script src="./core/interceptor.js"></script>
+		<script src="./core/directives/accordion/accordion.js"></script>
+		<script src="./core/directives/badge/badge.js"></script>
+		<script src="./core/directives/btn/btn.js"></script>
+		<script src="./core/directives/dismissable/dismissable.js"></script>
+		<script src="./core/directives/draggable/draggable.js"></script>
+		<script src="./core/directives/dropzone/dropzone.js"></script>
+		<script src="./core/directives/field/code/code.js"></script>
+		<script src="./core/directives/field/default/default.js"></script>
+		<script src="./core/directives/field/input/input.js"></script>
+		<script src="./core/directives/field/switch/switch.js"></script>
+		<script src="./core/directives/field/treeview/treeview.js"></script>
+		<script src="./core/directives/general/general.js"></script>
+		<script src="./core/directives/iframe/iframe.js"></script>
+		<script src="./core/directives/loading/loading.js"></script>
+		<script src="./core/directives/modal/modal.js"></script>
+		<script src="./core/directives/overlay/overlay.js"></script>
+		<script src="./core/directives/sidebar/sidebar.js"></script>
+		<script src="./core/directives/sidebar/modules/modules.js"></script>
+		<script src="./core/directives/tabs/tabs.js"></script>
+		<script src="./core/directives/toolbar/toolbar.js"></script>
+		<script src="./core/directives/tooltip/tooltip.js"></script>
+		<script src="./core/directives/unsupported-device/unsupported-device.js"></script>
+		<script src="./core/di/database.js"></script>
+		<script src="./core/di/debug.js"></script>
+		<script src="./core/di/device.js"></script>
+		<script src="./core/di/diff.js"></script>
+		<script src="./core/di/file.js"></script>
+		<script src="./core/di/filters.js"></script>
+		<script src="./core/di/history.js"></script>
+		<script src="./core/di/hook.js"></script>
+		<script src="./core/di/i18n.js"></script>
+		<script src="./core/di/modal.js"></script>
+		<script src="./core/di/modules.js"></script>
+		<script src="./core/di/session.js"></script>
+		<script src="./core/di/shortcut.js"></script>
+		<script src="./core/di/sidebar.js"></script>
+		<script src="./core/di/toolbar.js"></script>
+		<script src="./core/di/util.js"></script>
+		<script src="./core/di/zm.js"></script>
+		<script src="./core/model.js"></script>
+		<script src="./core/session.model.js"></script>
+		<script src="./modules/settings.js"></script>
+		<!-- include: "type": "js", "files": "<%= app.scripts %>" -->
+		<script src="modules/zemit/zemit.js"></script>
+		<script src="modules/context/context.js"></script>
+		<script src="modules/media/media.class.js"></script>
+		<script src="modules/media/media.js"></script>
+		<script src="modules/media/media.model.js"></script>
+		<script src="modules/settings/settings.js"></script>
+		<script src="modules/widget/default/add/add.js"></script>
+		<script src="modules/widget/default/childs/childs.js"></script>
+		<script src="modules/widget/default/toolbar/toolbar.js"></script>
+		<script src="modules/widget/widget.js"></script>
+		<script src="modules/widget/widget/column/column.js"></script>
+		<script src="modules/widget/widget/container/container.js"></script>
+		<script src="modules/widget/widget/disabled/disabled.js"></script>
+		<script src="modules/widget/widget/image/image.js"></script>
+		<script src="modules/widget/widget/row/row.js"></script>
+		<script src="modules/widget/widget/text/text.js"></script>
+		<script src="modules/widget/widget/widget.js"></script>
+		<script src="modules/widget/widget/widget.onLoad.js"></script>
+		<script src="modules/workspace/modals/connect/connect.js"></script>
+		<script src="modules/workspace/modals/project/project.js"></script>
+		<script src="modules/workspace/modals/segment/segment.js"></script>
+		<script src="modules/workspace/project.js"></script>
+		<script src="modules/workspace/project.model.js"></script>
+		<script src="modules/workspace/segment.js"></script>
+		<script src="modules/workspace/segment.model.js"></script>
+		<script src="modules/workspace/workspace.js"></script>
+		<script src="modules/workspace/workspace.model.js"></script>
+		<script src="modules/profile/profile.js"></script>
+		<script src="modules/doc/doc.js"></script>
+		<script src="modules/help/help.js"></script>
+		<script src="modules/easteregg/easteregg.js"></script>
+		<script src="modules/code/code.js"></script>
+		<script src="modules/partial/partial.js"></script>
+		<script src="modules/segment/segment.js"></script>
+		<script src="modules/google/google.js"></script>
+		<script src="modules/debug/debug.js"></script>
+		<!-- /include -->
+		<!-- endbuild -->
+	</body>
+</html>

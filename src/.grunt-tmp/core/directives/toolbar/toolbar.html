@@ -1,0 +1,25 @@
+<div class="zm-toolbar" ng-if="$toolbar.hasItems()">
+	<div class="zm-toolbar-inner zm-clearfix">
+		
+		<!-- SECTIONS -->
+		<div class="zm-toolbar-section-{{ section }} zm-flex-container zm-flex-gap-x zm-flex-align-center" ng-repeat="section in sections">
+			<div class="zm-toolbar-item" ng-repeat="item in $toolbar[section] | orderBy: 'priority'">
+				
+				<!-- DIRECTIVE -->
+				<zm-directive ng-if="item.type === 'directive'" name="item.directive"></zm-directive>
+				
+				<!-- SEP -->
+				<div class="zm-btn-sep" ng-if="item.type === 'sep'"></div>
+				
+				<!-- BUTTON -->
+				<zm-btn ng-if="item.type === 'button' && item.isVisible()" ng-disabled="!item.canAccess()" zm-tooltip="{{ ::item.tooltip }}" class="zm-toolbar-item-{{ ::item.name }}" ng-click="item.events.click($event, this)">
+					<i ng-if="item.icon" class="fa fa-{{ ::item.icon }}" ng-class="{ 'fa-margin-right': item.title }"></i>
+					<span ng-if="item.title">{{ ::item.title }}</span>
+				</zm-btn>
+			</div>
+		</div>
+	</div>
+	<!--<div ng-if="!$device.isLargeEnough()" class="zm-toolbar-inner-bottom zm-clearfix zm-flex-container zm-flex-align-center zm-flex-gap-x">-->
+		
+	<!--</div>-->
+</div>

@@ -1,0 +1,4 @@
+class ZmSession extends ZmModel {
+	
+	
+};

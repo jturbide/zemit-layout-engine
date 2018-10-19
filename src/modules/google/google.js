@@ -4,12 +4,12 @@
  * Creation date: 2018-10-02
  */
 (function() {
-	Zemit.module('google', ['$rootScope', '$profile', '$debug', '$i18n', '$modal', function($rs, $profile, $debug, $i18n, $modal) {
+	Zemit.module('google', {
+		group: 'serviceProvider',
+		dependencies: ['profile'],
+		priority: 10
+	}, ['$rootScope', '$profile', '$debug', '$i18n', '$modal', function($rs, $profile, $debug, $i18n, $modal) {
 		return {
-			
-			priority: 0,
-			group: 'serviceProvider',
-			
 			factories: {
 				$google: [function() {
 					

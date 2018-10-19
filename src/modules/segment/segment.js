@@ -2,9 +2,11 @@
  * @author <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.module('segment', ['$i18n', function($i18n) {
+	Zemit.module('segment', {
+		group: 'widget',
+		dependencies: ['widget'],
+	}, ['$i18n', function($i18n) {
 		return {
-			group: 'widget',
 			onInit: () => {
 				
 				Zemit.widgets.register('modules/segment');

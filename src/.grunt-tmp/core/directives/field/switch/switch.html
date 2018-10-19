@@ -1,0 +1,8 @@
+<zm-field class="zm-field zm-field-switch zm-flex-container zm-flex-gap zm-flex-align-center" ng-click="toggle($event)">
+	<div class="zm-field-switch-toggle zm-flex-minimal">
+		<i class="fa" ng-class="{'fa-toggle-on': ngModel, 'fa-toggle-off': !ngModel}"></i>
+	</div>
+	<div ng-if="title" class="zm-field-switch-title">
+		{{ ::title }}
+	</div>
+</zm-field>

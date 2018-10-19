@@ -1,0 +1,266 @@
+msgid "core.components.sidebar.tabs.modules"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.envTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.hostPlaceholder"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.hostTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.local"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.localTooltip"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.namePlaceholder"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.nameTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.passTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.remote"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.userPlaceholder"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.connect.userTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.emptyProjectLabel"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.project.namePlaceholder"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.project.nameTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.segment.namePlaceholder"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.segment.nameTitle"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.segmentOpen"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.treeview.segmentTotalWidgets"
+msgstr ""
+
+msgid "core.components.sidebar.workspace.tryAgain"
+msgstr ""
+
+msgid "core.components.toolbar.clear"
+msgstr ""
+
+msgid "core.components.toolbar.closeSegment"
+msgstr ""
+
+msgid "core.components.toolbar.dataHasLoaded"
+msgstr ""
+
+msgid "core.components.toolbar.dataHasSaved"
+msgstr ""
+
+msgid "core.components.toolbar.dataIsLoading"
+msgstr ""
+
+msgid "core.components.toolbar.dataIsSaving"
+msgstr ""
+
+msgid "core.components.toolbar.export"
+msgstr ""
+
+msgid "core.components.toolbar.import"
+msgstr ""
+
+msgid "core.components.toolbar.noSegmentLoaded"
+msgstr ""
+
+msgid "core.components.toolbar.notConnectedDataBrowser"
+msgstr ""
+
+msgid "core.components.toolbar.signIn"
+msgstr ""
+
+msgid "core.components.toolbar.signOut"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.myAccount"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.segment"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.settings"
+msgstr ""
+
+msgid "core.components.toolbar.tooltip.signIn"
+msgstr ""
+
+msgid "core.components.widget.column.desc"
+msgstr ""
+
+msgid "core.components.widget.column.title"
+msgstr ""
+
+msgid "core.components.widget.container.actions.duplicate"
+msgstr ""
+
+msgid "core.components.widget.container.actions.edit"
+msgstr ""
+
+msgid "core.components.widget.container.actions.remove"
+msgstr ""
+
+msgid "core.components.widget.container.no-segment"
+msgstr ""
+
+msgid "core.components.widget.container.notices.clickHoldDrag"
+msgstr ""
+
+msgid "core.components.widget.container.notices.numberColumn"
+msgstr ""
+
+msgid "core.components.widget.container.notices.openWidget"
+msgstr ""
+
+msgid "core.components.widget.container.notices.standalone"
+msgstr ""
+
+msgid "core.components.widget.container.notices.startAddingRow"
+msgstr ""
+
+msgid "core.components.widget.container.notices.taploopParent"
+msgstr ""
+
+msgid "core.components.widget.default.add.content"
+msgstr ""
+
+msgid "core.components.widget.default.add.customizable"
+msgstr ""
+
+msgid "core.components.widget.default.add.modalAddTitle"
+msgstr ""
+
+msgid "core.components.widget.default.add.structure"
+msgstr ""
+
+msgid "core.components.widget.image.desc"
+msgstr ""
+
+msgid "core.components.widget.image.title"
+msgstr ""
+
+msgid "core.components.widget.row.desc"
+msgstr ""
+
+msgid "core.components.widget.row.title"
+msgstr ""
+
+msgid "core.components.widget.text.desc"
+msgstr ""
+
+msgid "core.components.widget.text.overlay.title"
+msgstr ""
+
+msgid "core.components.widget.text.title"
+msgstr ""
+
+msgid "core.debugTitle"
+msgstr ""
+
+msgid "core.di.modal.btnCancel"
+msgstr ""
+
+msgid "core.di.modal.btnOk"
+msgstr ""
+
+msgid "core.di.modal.errNotFound"
+msgstr ""
+
+msgid "core.di.modal.errorTitle"
+msgstr ""
+
+msgid "core.di.modal.infoTitle"
+msgstr ""
+
+msgid "core.di.modal.warningTitle"
+msgstr ""
+
+msgid "core.di.storage.errModelNotInitiated"
+msgstr ""
+
+msgid "core.di.zm.clearContentBtn"
+msgstr ""
+
+msgid "core.di.zm.clearContentContent"
+msgstr ""
+
+msgid "core.di.zm.clearContentTitle"
+msgstr ""
+
+msgid "core.directives.draggable.debugTitle"
+msgstr ""
+
+msgid "core.directives.field.treeview.btnAdd"
+msgstr ""
+
+msgid "core.directives.field.treeview.btnEdit"
+msgstr ""
+
+msgid "core.directives.field.treeview.btnOpen"
+msgstr ""
+
+msgid "core.directives.field.treeview.btnRemove"
+msgstr ""
+
+msgid "core.directives.field.treeview.listEmpty"
+msgstr ""
+
+msgid "core.directives.modal.btnClose"
+msgstr ""
+
+msgid "core.directives.modal.debugTitle"
+msgstr ""
+
+msgid "core.directives.tooltip.debugTitle"
+msgstr ""
+
+msgid "core.directives.unsupported-device.desc"
+msgstr ""
+
+msgid "core.directives.unsupported-device.notes"
+msgstr ""
+
+msgid "core.directives.unsupported-device.title"
+msgstr ""
+
+msgid "core.field.treeview.addChild"
+msgstr ""
+
+msgid "core.field.treeview.emptyLabel"
+msgstr ""
+
+msgid "core.field.treeview.noChildFiltered"
+msgstr ""
+
+msgid "core.field.treeview.noItemFound"
+msgstr ""
+
+msgid "core.field.treeview.noKey"
+msgstr ""
+
+msgid "core.model.notValidate"
+msgstr ""
+
+msgid "modules.debugTitle"
+msgstr ""

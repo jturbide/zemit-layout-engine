@@ -1,289 +1,4 @@
-msgid "core.classes.errAlreadyConn"
-msgstr ""
-
-msgid "core.classes.errConnLost"
-msgstr ""
-
-msgid "core.classes.errConnTimeout"
-msgstr ""
-
-msgid "core.classes.errNotResponding"
-msgstr ""
-
-msgid "core.classes.errUserPassIncorrect"
-msgstr ""
-
-msgid "core.components.doc.title"
-msgstr ""
-
-msgid "core.components.sidebar.debug.actionsBtnDump"
-msgstr ""
-
-msgid "core.components.sidebar.debug.actionsBtnFlushHistory"
-msgstr ""
-
-msgid "core.components.sidebar.debug.actionsBtnFlushMemory"
-msgstr ""
-
-msgid "core.components.sidebar.debug.actionsTitle"
-msgstr ""
-
-msgid "core.components.sidebar.debug.actionsWarning"
-msgstr ""
-
-msgid "core.components.sidebar.debug.clearConsole"
-msgstr ""
-
-msgid "core.components.sidebar.debug.detailsTitle"
-msgstr ""
-
-msgid "core.components.sidebar.debug.flushBtn"
-msgstr ""
-
-msgid "core.components.sidebar.debug.flushContent"
-msgstr ""
-
-msgid "core.components.sidebar.debug.flushTitle"
-msgstr ""
-
-msgid "core.components.sidebar.debug.history"
-msgstr ""
-
-msgid "core.components.sidebar.debug.logsEmpty"
-msgstr ""
-
-msgid "core.components.sidebar.debug.logsTitle"
-msgstr ""
-
-msgid "core.components.sidebar.debug.maxLogs"
-msgstr ""
-
-msgid "core.components.sidebar.debug.selectedWidgets"
-msgstr ""
-
-msgid "core.components.sidebar.debug.settings.showWidgetTokenId"
-msgstr ""
-
-msgid "core.components.sidebar.debug.settingsTitle"
-msgstr ""
-
-msgid "core.components.sidebar.debug.totalWidgets"
-msgstr ""
-
-msgid "core.components.sidebar.debug.version"
-msgstr ""
-
-msgid "core.components.sidebar.media.btnAddMedia"
-msgstr ""
-
-msgid "core.components.sidebar.media.empty"
-msgstr ""
-
-msgid "core.components.sidebar.media.filterPlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.media.images"
-msgstr ""
-
-msgid "core.components.sidebar.media.noMediaFound"
-msgstr ""
-
-msgid "core.components.sidebar.media.noticeIntro"
-msgstr ""
-
-msgid "core.components.sidebar.tabs.debug"
-msgstr ""
-
-msgid "core.components.sidebar.tabs.media"
-msgstr ""
-
 msgid "core.components.sidebar.tabs.modules"
-msgstr ""
-
-msgid "core.components.sidebar.tabs.widgets"
-msgstr ""
-
-msgid "core.components.sidebar.tabs.workspace"
-msgstr ""
-
-msgid "core.components.sidebar.tooltips.debug"
-msgstr ""
-
-msgid "core.components.sidebar.tooltips.help"
-msgstr ""
-
-msgid "core.components.sidebar.tooltips.zemit"
-msgstr ""
-
-msgid "core.components.sidebar.widgets.filterPlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.widgets.noWidgetsFound"
-msgstr ""
-
-msgid "core.components.sidebar.widgets.noticesDesktopDrag"
-msgstr ""
-
-msgid "core.components.sidebar.widgets.noticesMobileDrag"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.addProjectLabel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.addProjectTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.addSegmentLabel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.addSegmentModalBtnCancel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.addSegmentModalBtnCreate"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.addSegmentModalTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.btnAddNewWorkspace"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.envTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.hostPlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.hostTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.local"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.localTooltip"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.namePlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.nameTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.passTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.remote"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.userPlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connect.userTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.connectWorkspaceTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.editProjectTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.editSegmentModalBtnUpdate"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.editSegmentModalTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.emptyProjectLabel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.emptySegmentLabel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.filterPlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.noWorkspaceJoined"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.noticeExplanation"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.project.namePlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.project.nameTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectBtnCancel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectBtnCreate"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectBtnUpdate"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectRemoveBtnCancel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectRemoveBtnRemove"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectRemoveContent"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.projectRemoveTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeSegmentModalBtnCancel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeSegmentModalBtnRemove"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeSegmentModalContent"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeSegmentModalTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeWorkspaceModalBtnCancel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeWorkspaceModalBtnRemove"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeWorkspaceModalContent"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.removeWorkspaceModalTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.segment.namePlaceholder"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.segment.nameTitle"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.segmentOpen"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.treeview.segmentTotalWidgets"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.tryAgain"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.updateWorkspaceBtnCancel"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.updateWorkspaceBtnConnect"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.updateWorkspaceBtnUpdate"
-msgstr ""
-
-msgid "core.components.sidebar.workspace.updateWorkspaceTitle"
 msgstr ""
 
 msgid "core.components.toolbar.clear"
@@ -304,9 +19,6 @@ msgstr ""
 msgid "core.components.toolbar.dataIsSaving"
 msgstr ""
 
-msgid "core.components.toolbar.doc"
-msgstr ""
-
 msgid "core.components.toolbar.export"
 msgstr ""
 
@@ -319,31 +31,13 @@ msgstr ""
 msgid "core.components.toolbar.notConnectedDataBrowser"
 msgstr ""
 
-msgid "core.components.toolbar.preview"
-msgstr ""
-
 msgid "core.components.toolbar.signIn"
 msgstr ""
 
 msgid "core.components.toolbar.signOut"
 msgstr ""
 
-msgid "core.components.toolbar.structure"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.changeMode"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.clearDoc"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.doc"
-msgstr ""
-
 msgid "core.components.toolbar.tooltip.myAccount"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.redo"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.segment"
@@ -353,12 +47,6 @@ msgid "core.components.toolbar.tooltip.settings"
 msgstr ""
 
 msgid "core.components.toolbar.tooltip.signIn"
-msgstr ""
-
-msgid "core.components.toolbar.tooltip.undo"
-msgstr ""
-
-msgid "core.components.toolbar.workspaceSaved"
 msgstr ""
 
 msgid "core.components.widget.column.desc"
@@ -433,9 +121,6 @@ msgstr ""
 msgid "core.debugTitle"
 msgstr ""
 
-msgid "core.di.cache.debugTitle"
-msgstr ""
-
 msgid "core.di.modal.btnCancel"
 msgstr ""
 
@@ -454,24 +139,6 @@ msgstr ""
 msgid "core.di.modal.warningTitle"
 msgstr ""
 
-msgid "core.di.profile.debugActionLoadAllDataTitle"
-msgstr ""
-
-msgid "core.di.profile.debugActionSaveStateTitle"
-msgstr ""
-
-msgid "core.di.profile.debugTitle"
-msgstr ""
-
-msgid "core.di.profile.modalSignOutBtnConfirm"
-msgstr ""
-
-msgid "core.di.profile.modalSignOutContent"
-msgstr ""
-
-msgid "core.di.profile.modalSignOutTitle"
-msgstr ""
-
 msgid "core.di.storage.errModelNotInitiated"
 msgstr ""
 
@@ -482,30 +149,6 @@ msgid "core.di.zm.clearContentContent"
 msgstr ""
 
 msgid "core.di.zm.clearContentTitle"
-msgstr ""
-
-msgid "core.di.zm.errImportWrongFormatContent"
-msgstr ""
-
-msgid "core.di.zm.errImportWrongFormatTitle"
-msgstr ""
-
-msgid "core.di.zm.importCompleteContent"
-msgstr ""
-
-msgid "core.di.zm.importCompleteTitle"
-msgstr ""
-
-msgid "core.di.zm.importVerMismatchContent"
-msgstr ""
-
-msgid "core.di.zm.importVerMismatchTitle"
-msgstr ""
-
-msgid "core.di.zm.modalExportContent"
-msgstr ""
-
-msgid "core.di.zm.modalExportTitle"
 msgstr ""
 
 msgid "core.directives.draggable.debugTitle"
@@ -562,14 +205,62 @@ msgstr ""
 msgid "core.model.notValidate"
 msgstr ""
 
-msgid "core.services.media.errResizeNoWidthHeight"
-msgstr ""
-
-msgid "core.services.workspace.errAlreadyExists"
-msgstr ""
-
-msgid "core.services.workspace.errUnableConnectCred"
-msgstr ""
-
 msgid "modules.debugTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.envTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.hostPlaceholder"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.hostTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.local"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.localTooltip"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.namePlaceholder"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.nameTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.passTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.remote"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.userPlaceholder"
+msgstr ""
+
+msgid "modules.workspace.sidebar.connect.userTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.emptyProjectLabel"
+msgstr ""
+
+msgid "modules.workspace.sidebar.project.namePlaceholder"
+msgstr ""
+
+msgid "modules.workspace.sidebar.project.nameTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.segment.namePlaceholder"
+msgstr ""
+
+msgid "modules.workspace.sidebar.segment.nameTitle"
+msgstr ""
+
+msgid "modules.workspace.sidebar.segmentOpen"
+msgstr ""
+
+msgid "modules.workspace.sidebar.treeview.segmentTotalWidgets"
+msgstr ""
+
+msgid "modules.workspace.sidebar.tryAgain"
 msgstr ""

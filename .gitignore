@@ -3,3 +3,7 @@ node_modules
 dist
 src/cache
 .c9
+assets/literals.js
+modules
+!modules/example
+!modules/settings.js

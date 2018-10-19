@@ -1,0 +1,161 @@
+.zm-modal-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  transition: opacity 0.25s ease-out;
+}
+.zm-modal-backdrop.zm-loaded {
+  opacity: 1;
+}
+.zm-modal {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+  -webkit-touch-callout: none !important;
+  user-select: none !important;
+}
+.zm-modal:not(.zm-modal-is-top) iframe {
+  pointer-events: none;
+}
+.zm-modal.zm-modal-is-top iframe {
+  pointer-events: all;
+}
+.zm-modal > .zm-modal-inner {
+  float: left;
+  margin: 0 auto;
+  position: absolute;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  z-index: 1;
+}
+.zm-modal.zm-modal-hidden {
+  pointer-events: none;
+  z-index: -1;
+  
+}
+.zm-modal > .zm-modal-inner > .zm-modal-header > .zm-modal-header-inner {
+  float: left;
+  cursor: default;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-header,
+.zm-modal > .zm-modal-inner > .zm-modal-footer {
+  padding: 0.75rem 1rem;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-body {
+  padding: 1.5rem 1rem;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-header {
+  background-color: #eee;
+  border-radius: 3px 3px 0 0;
+  border: #ccc solid 1px;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-header > .zm-modal-close-btn {
+  float: right;
+  margin: -1rem -1.5rem;
+  padding: 1rem 1.5rem;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-body {
+  background-color: white;
+  border: #ccc solid 1px;
+  border-top: 0;
+  border-bottom: 0;
+}
+.zm-modal-body-inner {
+  height: 100%;
+  position: relative;
+}
+.zm-modal-body-inner,
+.zm-modal-body-inner input,
+.zm-modal-body-inner textarea,
+.zm-modal-body-inner [contenteditable] {
+  user-select: text !important;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-footer {
+  background-color: #eee;
+  border-radius: 0 0 3px 3px;
+  border: #ccc solid 1px;
+  text-align: right;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-footer .zm-btn .fa {
+  margin-right: 0.5rem;
+}
+.zm-modal > .zm-modal-inner > .zm-modal-footer .zm-btn + .zm-btn {
+  margin-left: 0.5rem;
+}
+.zm-modal:not(.zm-fullscreen) .zm-modal-inner {
+  margin: 1rem;
+}
+.zm-modal.zm-fullscreen {
+  width: 100%;
+  height: 100%;
+}
+.zm-modal.zm-fullscreen .zm-modal-inner {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100%;
+  height: 100%;
+}
+.zm-modal.zm-fullscreen .zm-modal-inner .zm-modal-body,
+.zm-modal.zm-fullscreen .zm-modal-inner .zm-modal-footer,
+.zm-modal.zm-fullscreen .zm-modal-inner .zm-modal-header {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.zm-modal.zm-fullscreen .zm-modal-inner .zm-modal-header {
+  border-top: 0;
+}
+.zm-modal.zm-fullscreen .zm-modal-inner .zm-modal-footer {
+  border-bottom: 0;
+}
+
+
+/**
+ * Default modals
+ */
+#zm_modal_warning .zm-modal-inner,
+#zm_modal_errpr .zm-modal-inner,
+#zm_modal_success .zm-modal-inner {
+  max-width: 50vw;
+}
+
+/**
+ * Focus modal
+ */
+.zm-modal:focus-within > .zm-modal-inner {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.25);
+}
+.zm-modal:active iframe {
+  pointer-events: none;
+}
+
+/**
+ * Exceeding modal
+ */
+.zm-modal.zm-modal-exceed-x {
+  width: 100%;
+}
+.zm-modal.zm-modal-exceed-y {
+  height: 100%;
+}
+.zm-modal.zm-modal-exceed-y .zm-modal-inner {
+  height: calc(100% - 2rem);
+}
+.zm-modal.zm-modal-exceed-y .zm-modal-body {
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+.zm-modal.zm-modal-exceed-x .zm-modal-body {
+  overflow-x: auto !important;
+  overflow-y: hidden;
+}
+.zm-modal.zm-modal-exceed-x:not(.zm-modal-exceed-y) .zm-modal-body {
+  flex: none;
+}

@@ -21,28 +21,7 @@
 		<link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
 		<!-- endbuild -->
 		<!-- build:css assets/css/zemit.min.css -->
-		<link rel="stylesheet" href="./zemit.css" />
-		<link rel="stylesheet" href="./core/components/toolbar/toolbar.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/sidebar.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/debug/debug.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/media/media.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/modules/modules.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/widgets/widgets.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/workspace/workspace.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/connect/connect.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/project/project.css" />
-		<link rel="stylesheet" href="./core/components/sidebar/workspace/modals/segment/segment.css" />
-		<link rel="stylesheet" href="./core/components/doc/doc.css" />
-		<link rel="stylesheet" href="./core/components/widget/widget.css" />
-		<link rel="stylesheet" href="./core/components/widget/container/container.css" />
-		<link rel="stylesheet" href="./core/components/widget/column/column.css" />
-		<link rel="stylesheet" href="./core/components/widget/debug/debug.css" />
-		<link rel="stylesheet" href="./core/components/widget/default/add/add.css" />
-		<link rel="stylesheet" href="./core/components/widget/default/childs/childs.css" />
-		<link rel="stylesheet" href="./core/components/widget/disabled/disabled.css" />
-		<link rel="stylesheet" href="./core/components/widget/image/image.css" />
-		<link rel="stylesheet" href="./core/components/widget/row/row.css" />
-		<link rel="stylesheet" href="./core/components/widget/text/text.css" />
+		<link rel="stylesheet" href="./core/zemit.css" />
 		<link rel="stylesheet" href="./core/directives/general/general.css" />
 		<link rel="stylesheet" href="./core/directives/accordion/accordion.css" />
 		<link rel="stylesheet" href="./core/directives/badge/badge.css" />
@@ -59,7 +38,10 @@
 		<link rel="stylesheet" href="./core/directives/modal/modal.css" />
 		<link rel="stylesheet" href="./core/directives/overlay/overlay.css" />
 		<link rel="stylesheet" href="./core/directives/sizing/sizing.css" />
+		<link rel="stylesheet" href="./core/directives/sidebar/sidebar.css" />
+		<link rel="stylesheet" href="./core/directives/sidebar/modules/modules.css" />
 		<link rel="stylesheet" href="./core/directives/tabs/tabs.css" />
+		<link rel="stylesheet" href="./core/directives/toolbar/toolbar.css" />
 		<link rel="stylesheet" href="./core/directives/tooltip/tooltip.css" />
 		<link rel="stylesheet" href="./core/directives/unsupported-device/unsupported-device.css" />
 		<!-- include: "type": "css", "files": "<%= app.styles %>" -->
@@ -111,7 +93,22 @@
 				}
 			</style>
 		</zemit-loader>
-		<zemit ng-cloak></zemit>
+		
+		<!-- ZEMIT INITIALIZATION -->
+		<zemit ng-cloak>
+			
+			<!-- UNSUPPORTED -->
+			<zm-unsupported-device ng-if="!$device.isSupported()"></zm-unsupported-device>
+			
+			<!-- SUPPORTED -->
+			<div ng-if="$device.isSupported()" tabindex="0" class="zm-flex-container-column zm-h100">
+				<zm-toolbar class="zm-flex-minimal"></zm-toolbar>
+				<div class="zm-flex-container" style="flex-wrap: nowrap;">
+					<zm-widget type="container"></zm-widget>
+					<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'" />
+				</div>
+			</div>
+		</zemit>
 		
 		<!-- build:js assets/js/vendors.min.js -->
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -120,44 +117,22 @@
 		<script src="../node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
-		<script src="../node_modules/feathers-client/dist/feathers.min.js"></script>
-		<script src="../node_modules/codemirror/lib/codemirror.js"></script>
-		<script src="../node_modules/codemirror/mode/css/css.js"></script>
-		<script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>
-		<script src="../node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-		<script src="../node_modules/codemirror/mode/xml/xml.js"></script>
-		<script src="../node_modules/codemirror/addon/edit/closetag.js"></script>
+		<!--<script src="../node_modules/codemirror/lib/codemirror.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/css/css.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>-->
+		<!--<script src="../node_modules/codemirror/mode/xml/xml.js"></script>-->
+		<!--<script src="../node_modules/codemirror/addon/edit/closetag.js"></script>-->
 		<script src="../node_modules/babel-polyfill/dist/polyfill.min.js"></script>
+		<script src="../node_modules/pouchdb/dist/pouchdb.min.js"></script>
 		<!-- endbuild -->
 		<!-- build:js assets/js/zemit.min.js -->
-		<script src="./zemit.js"></script>
+		<script src="./core/zemit.js"></script>
 		<!-- include: "type": "js", "files": "templates.js" -->
 		<!-- include: "type": "js", "files": "service-worker.js" -->
-		<script src="./assets/i18n/literals.js"></script>
+		<script src="./assets/literals.js"></script>
 		<script src="./core/error.js"></script>
-		<script src="./core/socket.js"></script>
-		<script src="./core/components/toolbar/toolbar.js"></script>
-		<script src="./core/components/sidebar/sidebar.js"></script>
-		<script src="./core/components/sidebar/debug/debug.js"></script>
-		<script src="./core/components/sidebar/media/media.js"></script>
-		<script src="./core/components/sidebar/modules/modules.js"></script>
-		<script src="./core/components/sidebar/widgets/widgets.js"></script>
-		<script src="./core/components/sidebar/workspace/workspace.js"></script>
-		<script src="./core/components/sidebar/workspace/modals/connect/connect.js"></script>
-		<script src="./core/components/sidebar/workspace/modals/project/project.js"></script>
-		<script src="./core/components/sidebar/workspace/modals/segment/segment.js"></script>
-		<script src="./core/components/doc/doc.js"></script>
-		<script src="./core/components/widget/widget.js"></script>
-		<script src="./core/components/widget/widget.onLoad.js"></script>
-		<script src="./core/components/widget/column/column.js"></script>
-		<script src="./core/components/widget/container/container.js"></script>
-		<script src="./core/components/widget/default/add/add.js"></script>
-		<script src="./core/components/widget/default/childs/childs.js"></script>
-		<script src="./core/components/widget/default/toolbar/toolbar.js"></script>
-		<script src="./core/components/widget/disabled/disabled.js"></script>
-		<script src="./core/components/widget/image/image.js"></script>
-		<script src="./core/components/widget/row/row.js"></script>
-		<script src="./core/components/widget/text/text.js"></script>
+		<script src="./core/interceptor.js"></script>
 		<script src="./core/directives/accordion/accordion.js"></script>
 		<script src="./core/directives/badge/badge.js"></script>
 		<script src="./core/directives/btn/btn.js"></script>
@@ -174,10 +149,13 @@
 		<script src="./core/directives/loading/loading.js"></script>
 		<script src="./core/directives/modal/modal.js"></script>
 		<script src="./core/directives/overlay/overlay.js"></script>
+		<script src="./core/directives/sidebar/sidebar.js"></script>
+		<script src="./core/directives/sidebar/modules/modules.js"></script>
 		<script src="./core/directives/tabs/tabs.js"></script>
+		<script src="./core/directives/toolbar/toolbar.js"></script>
 		<script src="./core/directives/tooltip/tooltip.js"></script>
 		<script src="./core/directives/unsupported-device/unsupported-device.js"></script>
-		<script src="./core/di/cache.js"></script>
+		<script src="./core/di/database.js"></script>
 		<script src="./core/di/debug.js"></script>
 		<script src="./core/di/device.js"></script>
 		<script src="./core/di/diff.js"></script>
@@ -188,26 +166,14 @@
 		<script src="./core/di/i18n.js"></script>
 		<script src="./core/di/modal.js"></script>
 		<script src="./core/di/modules.js"></script>
-		<script src="./core/di/profile.js"></script>
-		<script src="./core/di/segment.js"></script>
-		<script src="./core/di/socket.js"></script>
-		<script src="./core/di/storage.js"></script>
+		<script src="./core/di/session.js"></script>
+		<script src="./core/di/shortcut.js"></script>
+		<script src="./core/di/sidebar.js"></script>
+		<script src="./core/di/toolbar.js"></script>
 		<script src="./core/di/util.js"></script>
 		<script src="./core/di/zm.js"></script>
-		<script src="./core/models/model.js"></script>
-		<script src="./core/models/media.js"></script>
-		<script src="./core/models/project.js"></script>
-		<script src="./core/models/segment.js"></script>
-		<script src="./core/models/session.js"></script>
-		<script src="./core/models/user.js"></script>
-		<script src="./core/models/workspace.js"></script>
-		<script src="./core/modules/interceptor/interceptor.js"></script>
-		<script src="./core/modules/shortcut/shortcut.js"></script>
-		<script src="./core/services/media.js"></script>
-		<!--<script src="./core/services/project.js"></script>-->
-		<!--<script src="./core/services/segment.js"></script>-->
-		<script src="./core/services/session.js"></script>
-		<script src="./core/services/workspace.js"></script>
+		<script src="./core/model.js"></script>
+		<script src="./core/session.model.js"></script>
 		<script src="./modules/settings.js"></script>
 		<!-- include: "type": "js", "files": "<%= app.scripts %>" -->
 		    <!-- Files willbe added here by includeSource-->

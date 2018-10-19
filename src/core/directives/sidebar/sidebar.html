@@ -1,0 +1,34 @@
+<div class="zm-sidebar" ng-class="{'zm-open': tabs.showContent && !tabs.hidden }">
+	<div class="zm-sidebar-inner zm-clearfix zm-flex-container">
+		<div zm-if="tabs.showContent" class="zm-sidebar-tab zm-flex-container">
+			
+			<!-- DYNAMIC TABS CONTENT -->
+			<div class="zm-flex-container" ng-repeat="tab in $sidebar.tabs | orderBy: 'priority'" ng-if="settings.sidebar.tabs[tab.key].visible && tab.isVisible()" class="zm-sidebar-group zm-sidebar-{{ tab.key }}" zm-if-timeout="tabs.showContent ? 0 : 250" zm-if-keep>
+				<zm-directive name="tab.directive"></zm-directive>
+			</div>
+		</div>
+		<div class="zm-sidebar-tabs zm-flex-minimal zm-flex-container-column">
+			<div class="zm-sidebar-tabs-inner zm-flex-container-column">
+				<ul class="zm-tabs zm-tabs-vertical-right zm-flex-minimal">
+					
+					<!-- DYNAMIC TABS -->
+					<li ng-repeat="tab in $sidebar.tabs | orderBy: 'priority'" ng-if="tab.isVisible()" ng-disabled="!tab.canAccess()" ng-class="{'active': settings.sidebar.tabs[tab.key].visible}" ng-click="tabs.toggle(tab.key)" class="zm-tab-item zm-tab-item-{{ ::tab.key }} zm-transition-all">
+						{{ ::tab.title }}
+					</li>
+				</ul>
+				
+				<!-- DYNAMIC ICONS (TOP) -->
+				<a ng-repeat="icon in $sidebar.icons | filter: { position: 'top' } | orderBy: 'priority'" ng-if="icon.isVisible()" ng-disabled="!icon.canAccess()" zm-tooltip="{{ ::icon.tooltip }}" zm-tooltip-options="tooltip.options" class="zm-sidebar-icon zm-sidebar-icon-top zm-flex-minimal zm-sidebar-{{ icon.key }} zm-transition-color" ng-click="icon.events.click($event, this)" ng-class="{ active: settings[icon.key].activated }">
+					<i class="fa fa-{{ icon.icon }}"></i>
+				</a>
+				
+				<div></div>
+				
+				<!-- DYNAMIC ICONS (BOTTOM) -->
+				<a ng-repeat="icon in $sidebar.icons | filter: { position: 'bottom' } | orderBy: 'priority'" ng-if="icon.isVisible()" ng-disabled="!icon.canAccess()" zm-tooltip="{{ ::icon.tooltip }}" zm-tooltip-options="tooltip.options" class="zm-sidebar-icon zm-sidebar-icon-bottom zm-sidebar-{{ icon.key }} {{ ::icon.className }} zm-flex-minimal zm-transition-opacity" ng-attr-href="{{ ::icon.href }}" ng-attr-target="{{ ::icon.target }}">
+					<img ng-if="icon.src" ng-src="{{ ::icon.src }}" />
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

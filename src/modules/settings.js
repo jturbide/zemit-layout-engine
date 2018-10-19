@@ -18,12 +18,21 @@
 		 * ])
 		 */
 		$modules.bootstrap([
+			'zemit',
+			'context',
+			'workspace',
+			'widget',
+			'media',
+			'settings',
+			'profile',
+			'doc',
+			'help',
 			'easteregg',
-			//'example',
 			'code',
 			'partial',
 			'segment',
-			'google'
+			'google',
+			'debug'
 		]);
 	}]);
 })();

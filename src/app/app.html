@@ -1,0 +1,7 @@
+<div ng-if="$device.isSupported()" tabindex="0" class="zm-flex-container-column zm-h100">
+	<zm-toolbar class="zm-flex-minimal"></zm-toolbar>
+	<div class="zm-flex-container" style="flex-wrap: nowrap;">
+		<zm-widget type="container"></zm-widget>
+		<zm-sidebar class="zm-flex-minimal zm-flex-container-column" ng-show="settings.context !== 'preview'" />
+	</div>
+</div>

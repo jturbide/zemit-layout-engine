@@ -1,0 +1,11 @@
+<div class="zm-field zm-field-treeview zm-treeview-container" ng-if="visible">
+	<div ng-class="{ first: $index === 0, last: filteredChilds.length === ($index + 1) }"
+		 class="zm-treeview-list-item zm-treeview-list-item-depth0"
+		 ng-init="container = node; filteredChilds = filter(node.childs)"
+		 ng-repeat="node in filteredLvlList = filter(list) track by $index"
+		 ng-include="lvlOptions.itemTemplate || defaultTemplate"></div>
+		 
+	<div class="zm-p-2 zm-text-center" ng-if="filteredLvlList.length === 0">
+		{{ ::$root.t('core.field.treeview.noItemFound') }}
+	</div>
+</div>

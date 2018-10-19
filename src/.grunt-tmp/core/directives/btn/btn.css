@@ -1,0 +1,66 @@
+.zm-btn {
+	background: #fafafa;
+  background-image: linear-gradient(to bottom, #fafafa, #f2f2f2);
+  border-radius: 3px;
+  color: inherit;
+  padding: 0.25rem 0.75rem;
+  border: solid #ccc 1px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: default;
+  align-items: center;
+  line-height: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.zm-btn:focus,
+.zm-btn:hover {
+	border-color: #999;
+}
+.zm-btn.active {
+	color: #75a9f9;
+}
+.zm-btn.active,
+.zm-btn:focus,
+.zm-btn:active {
+	background: #f2f2f2;
+  background-image: linear-gradient(to bottom, #f2f2f2, #fafafa);
+}
+.zm-btn[disabled] {
+  opacity: 0.333;
+  pointer-events: none;
+}
+.zm-btn.zm-btn-warning:not([disabled]) {
+  background: #ffa66a; /* Old browsers */
+  background: linear-gradient(to bottom, #ffa66a 0%,#ff9047 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  color: white;
+  border-color: #DD833E;
+}
+.zm-btn.zm-btn-warning:not([disabled]).active,
+.zm-btn.zm-btn-warning:not([disabled]):focus,
+.zm-btn.zm-btn-warning:not([disabled]):active {
+  background: #ff9047; /* Old browsers */
+  background: linear-gradient(to bottom, #ff9047 0%,#ffa66a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.zm-btn.zm-btn-warning:active:not([disabled]),
+.zm-btn.zm-btn-warning:focus:not([disabled]),
+.zm-btn.zm-btn-warning:hover:not([disabled]) {
+  border-color: #962D00;
+}
+.zm-btn.zm-btn-primary:not([disabled]) {
+  background: linear-gradient(to bottom, #00e5ff 0%,#00b7ef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  border-color: #0096E8;
+  color: white;
+}
+.zm-btn.zm-btn-primary.active:not([disabled])
+.zm-btn.zm-btn-primary:active:not([disabled]),
+.zm-btn.zm-btn-primary:focus:not([disabled]),
+.zm-btn.zm-btn-primary:hover:not([disabled]) {
+  border-color: #0047AA;
+}
+.zm-btn.zm-btn-primary.active:not([disabled]),
+.zm-btn.zm-btn-primary:active:not([disabled]),
+.zm-btn.zm-btn-primary:focus:not([disabled]) {
+  background: linear-gradient(to bottom, #00b7ef 0%, #00e5ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}

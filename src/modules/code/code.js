@@ -2,9 +2,11 @@
  * @author <contact@dannycoulombe.com>
  */
 (function() {
-	Zemit.module('code', ['$i18n', '$modal', function($i18n, $modal) {
+	Zemit.module('code', {
+		group: 'widget',
+		dependencies: ['widget'],
+	}, ['$i18n', '$modal', function($i18n, $modal) {
 		return {
-			group: 'widget',
 			directives: {
 				zmWidgetCodeEdit: {
 					restrict: 'E',
