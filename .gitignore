@@ -5,4 +5,7 @@ dist
 src/cache
 .c9
 src/assets/literals.js
-src/modules/settings.js
+!src/modules/
+src/modules/*
+!src/modules/example
+!src/modules/settings.example.js

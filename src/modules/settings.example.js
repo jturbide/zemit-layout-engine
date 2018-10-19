@@ -1,5 +1,11 @@
 (function() {
 	
+	/**
+	 *************************************
+	 ** Rename this file to settings.js **
+	 *************************************
+	 */
+	
 	Zemit.app.run(['$modules', function($modules) {
 		
 		/**
