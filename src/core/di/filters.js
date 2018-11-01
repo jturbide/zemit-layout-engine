@@ -159,9 +159,9 @@
 				return results;
 			};
 			
-			results = searchFor(data);
+			let results = searchFor(data);
 			
-			return results;
+			return results || [];
 		}
 	});
 	

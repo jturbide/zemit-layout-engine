@@ -1,3 +1,27 @@
+msgid "app.error.code"
+msgstr ""
+
+msgid "app.error.desc"
+msgstr ""
+
+msgid "app.error.title"
+msgstr ""
+
+msgid "app.welcomeGetStarted"
+msgstr ""
+
+msgid "app.welcomeHasSidebar"
+msgstr ""
+
+msgid "app.welcomeReadBlog"
+msgstr ""
+
+msgid "app.welcomeReportIssue"
+msgstr ""
+
+msgid "app.welcomeTitle"
+msgstr ""
+
 msgid "core.components.widget.column.desc"
 msgstr ""
 
@@ -88,9 +112,6 @@ msgstr ""
 msgid "core.di.modal.warningTitle"
 msgstr ""
 
-msgid "core.di.storage.errModelNotInitiated"
-msgstr ""
-
 msgid "core.di.zm.clearContentBtn"
 msgstr ""
 
@@ -98,6 +119,30 @@ msgid "core.di.zm.clearContentContent"
 msgstr ""
 
 msgid "core.di.zm.clearContentTitle"
+msgstr ""
+
+msgid "core.di.zm.errImportWrongFormatContent"
+msgstr ""
+
+msgid "core.di.zm.errImportWrongFormatTitle"
+msgstr ""
+
+msgid "core.di.zm.importCompleteContent"
+msgstr ""
+
+msgid "core.di.zm.importCompleteTitle"
+msgstr ""
+
+msgid "core.di.zm.importVerMismatchContent"
+msgstr ""
+
+msgid "core.di.zm.importVerMismatchTitle"
+msgstr ""
+
+msgid "core.di.zm.modalExportContent"
+msgstr ""
+
+msgid "core.di.zm.modalExportTitle"
 msgstr ""
 
 msgid "core.directives.draggable.debugTitle"
@@ -124,7 +169,28 @@ msgstr ""
 msgid "core.directives.modal.debugTitle"
 msgstr ""
 
-msgid "core.directives.sidebar.tabs.modules"
+msgid "core.directives.sidebar.modules.applyBtn"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.applyContent"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.applyTitle"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.dependencies"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.empty"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.filterPlaceholder"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.noModuleFound"
+msgstr ""
+
+msgid "core.directives.sidebar.modules.noticeIntro"
 msgstr ""
 
 msgid "core.directives.tooltip.debugTitle"

@@ -1,0 +1,5 @@
+msgid "app.homeBtnTooltip"
+msgstr ""
+
+msgid "core.directives.sidebar.tabs.modules"
+msgstr ""

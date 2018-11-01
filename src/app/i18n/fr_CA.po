@@ -1,0 +1,15 @@
+msgid "app.welcomeTitle"
+msgstr "Ça marche!"
+
+msgid "app.welcomeDesc"
+msgstr "Commence par activer des modules dans la barre latéral à ta droite."
+
+msgid "app.welcomeGetStarted"
+msgstr "Comment faire"
+
+msgid "app.welcomeReadBlog"
+msgstr "Lire notre blogue"
+
+msgid "app.welcomeReportIssue"
+msgstr "Signalez un problème"
+

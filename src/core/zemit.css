@@ -69,6 +69,12 @@ zm-widget[type="container"] {
   overflow-x: auto;
   overflow-y: hidden;
 }
+.zm-text-opacity25 {
+  color: rgba(0, 0, 0, 0.25);
+}
+.zm-text-opacity50 {
+  color: rgba(0, 0, 0, 0.5);
+}
 
 /**
  * Shadows
@@ -103,6 +109,9 @@ zm-widget[type="container"] {
 }
 .zm-content {
   padding: 1rem;
+}
+.zm-border-box {
+  box-sizing: border-box;
 }
 
 .zm-cursor-drag {
@@ -147,6 +156,7 @@ zm-widget[type="container"] {
 .zm-mansory-container {
     column-gap: 0.5rem;
     column-count: 3;
+    grid-auto-flow: dense;
 }
 .zm-mansory-container > * {
     display: inline-block;
@@ -156,6 +166,7 @@ zm-widget[type="container"] {
 /**
  * Flex containers
  */
+ 
 .zm-flex-container {
   display: flex !important;
   flex-direction: row;
@@ -251,6 +262,9 @@ zm-widget[type="container"] {
 .zm-transition-all {
   transition: all 0.25s ease-out;
 }
+.zm-transition-transform {
+  transition: transform 0.25s ease-out;
+}
 
 /**
  * Zoom-in
@@ -267,19 +281,10 @@ zm-widget[type="container"] {
   transition-duration: .15s;
   transition-property: opacity, transform;
   transition-timing-function: ease-out;
-
-  -webkit-transform: scale(0.85);
-  -moz-transform: scale(0.85);
-  -msie-transform: scale(0.85);
-  -o-transform: scale(0.85);
   transform: scale(0.85);
   opacity: 0;
 }
 .zoom-container.zm-visible > .zoom-item {
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -msie-transform: scale(1);
-  -o-transform: scale(1);
   transform: scale(1);
   opacity: 1;
 }

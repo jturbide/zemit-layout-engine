@@ -1,0 +1,30 @@
+<zm-page type="stretch" align="center">
+	<div class="zm-text-center" style="max-width: 600px; display: inline-block">
+		<i class="fa fa-thumbs-o-up" style="font-size: 3rem"></i>
+		<br /><h1>{{ ::t('app.welcomeTitle') }}</h1>
+		<span ng-if="$sidebar.tabs.length > 0">
+			<br />{{ ::t('app.welcomeHasSidebar') }}
+		</span>
+		<hr />
+		<ul class="app-home-links">
+			<li>
+				<a href="https://github.com/zemit-official/layout-engine/wiki" target="_blank"><!--
+					--><i class="fa fa-rocket fa-margin-right"></i><!--
+					-->{{ ::t('app.welcomeGetStarted') }}<!--
+				--></a>
+			</li>
+			<li>
+				<a href="https://github.com/zemit-official/layout-engine/issues" target="_blank"><!--
+					--><i class="fa fa-bug fa-margin-right"></i><!--
+					-->{{ ::t('app.welcomeReportIssue') }}<!--
+				--></a>
+			</li>
+			<li>
+				<a href="https://blog.zemit.com" target="_blank"><!--
+					--><i class="fa fa-pencil-square fa-margin-right"></i><!--
+					-->{{ ::t('app.welcomeReadBlog') }}<!--
+				--></a>
+			</li>
+		</u>
+	</div>
+</zm-page>

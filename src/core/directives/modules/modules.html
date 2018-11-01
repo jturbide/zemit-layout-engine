@@ -9,10 +9,10 @@
 		
 		<!-- FILTER -->
 		<div class="zm-flex-minimal zm-p-2">
-			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.directives.sidebar.modules.filterPlaceholder') }}" ng-model="filters.query" ng-disabled="Object.keys(groups).length === 0" autofocus="on" />
+			<zm-field-input type="text" icon="search" placeholder="{{ ::t('core.directives.sidebar.modules.filterPlaceholder') }}" ng-model="filters.query" ng-disabled="$modules.getTotal() === 0" autofocus="on" />
 			
 			<!-- IF NO modules FOUND -->
-			<p ng-if="Object.keys(groups).length > 0 && filteredGroups.length === 0" style="text-align: center">
+			<p ng-if="$modules.getTotal() > 0 && filteredGroups.length === 0" style="text-align: center">
 				{{ ::t('core.directives.sidebar.modules.noModuleFound') }}
 			</p>
 		</div>
@@ -20,7 +20,7 @@
 	<div zm-scrollable="{ direction: 'y', key: 'modules' }" class="zm-flex-container-column">
 		
 		<!-- EMPTY -->
-		<div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="Object.keys(groups).length === 0">
+		<div class="zm-p-2 zm-text-center zm-flex-container zm-flex-align-center" ng-if="$modules.getTotal() === 0">
 			<div>
 				<i class="fa fa-exclamation-circle" style="font-size: 2rem"></i>
 				<br />{{ ::t('core.directives.sidebar.modules.empty') }}

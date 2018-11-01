@@ -1,0 +1,32 @@
+msgid "app.welcomeTitle"
+msgstr "It's working!"
+
+msgid "app.welcomeHasSidebar"
+msgstr "Start enabling modules using the sidebar at the right-end side."
+
+msgid "app.welcomeGetStarted"
+msgstr "Get started"
+
+msgid "app.welcomeReadBlog"
+msgstr "Read our blog"
+
+msgid "app.welcomeReportIssue"
+msgstr "Report an issue"
+
+msgid "app.error.title"
+msgstr "Oops!"
+
+msgid "app.error.desc"
+msgstr "We can't seem to find the page you're looking for."
+
+msgid "app.error.code"
+msgstr "Error code:"
+
+msgid "route.home.title"
+msgstr "Welcome"
+
+msgid "route.error.title"
+msgstr "Error"
+
+msgid "app.homeBtnTooltip"
+msgstr "Go back to home page"

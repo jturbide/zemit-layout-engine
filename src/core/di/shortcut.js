@@ -112,7 +112,42 @@
 				return reorderedKeys;
 			},
 			
-			add: function(keys, title, callback) {
+			get: function(name) {
+				
+				let listKeys = Object.keys(this.list);
+				for(let i = 0; i < listKeys.length; i++) {
+					let keys = this.list[listKeys[i]];
+					for(let y = 0; y < keys.length; y++) {
+						if(keys[y].name === name) {
+							return keys[y];
+						}
+					}
+				}
+				
+				return null;
+			},
+			
+			getKeysByName: function(name, prettify = false) {
+				
+				let shortcut = this.get(name);
+				if(shortcut) {
+					
+					let keys = shortcut.originalKeys;
+					if(prettify) {
+						
+						keys = keys.toUpperCase();
+						keys = keys.replace('+', ' + ');
+					}
+					
+					return keys;
+				}
+				
+				return null;
+			},
+			
+			add: function(name, keys, title, callback) {
+				
+				let originalKeys = keys;
 				
 				keys = keys.toLowerCase();
 				keys = this.reorderKeys(keys);
@@ -122,7 +157,9 @@
 				}
 				
 				this.list[keys].push({
+					name: name,
 					keys: keys,
+					originalKeys: originalKeys,
 					title: title,
 					callback: callback
 				});

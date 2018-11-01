@@ -21,7 +21,15 @@
 				
 				on: function(eventName, callback = () => {}) {
 					
-					this.db.on(eventName, callback);
+					this.db.changes({
+						since: 'now',
+						live: true,
+						include_docs: true
+					}).on(eventName, change => {
+						
+						change = eval('new Zm' + $util.camelize(factory.name, true) + '("' + change.id + '", change.doc)');
+						callback(change);
+					});
 				},
 				
 				syncWith: function(db) {

@@ -3,26 +3,30 @@
  */
 (function() {
 	
+	Zemit.app.run(['$object', function($object) {
+		$object.register('dropdown', 'zm-dropdown');
+	}]);
+	
 	/**
-	 * Creates tabs
+	 * Creates dropdown
 	 */
-	Zemit.app.directive('zmTabs', ['$rootScope', '$timeout', '$compile', function($rs, $timeout, $compile) {
+	Zemit.app.directive('zmDropdown', ['$rootScope', '$timeout', '$compile', function($rs, $timeout, $compile) {
 		return {
 			restrict: "E",
 			transclude: {
 				toggle: '?toggle',
-				items: 'items'
+				content: 'content'
 			},
 			replace: true,
 			scope: {
 				ngDisabled: '='
 			},
-			templateUrl: 'core/directives/tabs/tabs.html',
+			templateUrl: 'core/directives/dropdown/dropdown.html',
 			link: function($s, $e, attrs, ctrl, transclude) {
 				
-				var $list = $e.find('.zm-tabs-list');
+				var $content = $e.find('.zm-dropdown-content');
 				
-				var tabs = {
+				var dropdown = {
 					visible: false,
 					toggle: function() {
 						!this.visible
@@ -45,18 +49,21 @@
 					}
 				};
 				
-				$s.tabs = tabs;
+				$s.dropdown = dropdown;
 				$s.style = attrs.style || 'button';
+				$s.tooltip = attrs.tooltip;
 				
 				var applyPosition = () => {
 					
 					let anchor = attrs.anchor ? attrs.anchor : 'top-left';
 					let [y, x] = attrs.anchor.split('-');
 					
-					clearAnchors();
-					$e.addClass('zm-tabs-anchor-' + anchor);
+					if(!$e.hasClass('zm-dropdown-anchor-' + anchor)) {
+						clearAnchors();
+						$e.addClass('zm-dropdown-anchor-' + anchor);
+					}
 					
-					let rect = $list[0].getBoundingClientRect();
+					let rect = $content[0].getBoundingClientRect();
 					
 					if(rect.right > window.innerWidth && rect.left > 0) {
 						x = 'right';
@@ -86,37 +93,64 @@
 					
 					anchor = y + '-' + x;
 					
-					clearAnchors();
-					$e.addClass('zm-tabs-anchor-' + anchor);
+					if(!$e.hasClass('zm-dropdown-anchor-' + anchor)) {
+						clearAnchors();
+						$e.addClass('zm-dropdown-anchor-' + anchor);
+					}
 				};
 				
 				var clearAnchors = () => {
 					
 					let anchors = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 					anchors.forEach(anchor => {
-						$e.removeClass('zm-tabs-anchor-' + anchor);
+						$e.removeClass('zm-dropdown-anchor-' + anchor);
 					});
 				}
 				
 				$s.$watch('ngDisabled', (nv, ov) => {
 					if(nv !== ov && nv) {
-						tabs.close();
+						dropdown.close();
 					}
 				});
 				
 				$s.$on('documentClick', (scope, event) => {
 					
-					if(!tabs.visible) {
+					if(!dropdown.visible) {
 						return;
 					}
 					
 					var $target = event && angular.element(event.target);
 					if(!event || (!$target.is($e) && $target.closest($e).length === 0)) {
-						tabs.close();
+						dropdown.close();
 						event && $s.$digest();
 					};
 				});
 			}
 		};
+	}]);
+	
+	/**
+	 * Dropdown link item
+	 */
+	Zemit.app.directive('zmDropdownLinkItem', ['$device', '$shortcut', function($device, $shortcut) {
+		return {
+			restrict: "E",
+			replace: true,
+			scope: {
+				active: '=?',
+				ngDisabled: '=?'
+			},
+			templateUrl: 'core/directives/dropdown/dropdown.link-item.html',
+			link: function($s, $e, attrs) {
+				
+				$s.title = attrs.title;
+				$s.icon = attrs.icon;
+				$s.shortcut = attrs.shortcut;
+				$s.href = attrs.href;
+				
+				$s.$device = $device;
+				$s.$shortcut = $shortcut;
+			}
+		}
 	}]);
 })();

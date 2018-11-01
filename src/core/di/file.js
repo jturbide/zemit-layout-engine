@@ -11,26 +11,68 @@
 		
 		var factory = {
 			
-			toBase64: (file) => {
+			mimeTypes: {
+				image: [
+					'image/bmp',
+					'image/gif',
+					'image/jpeg',
+					'image/png',
+					'image/svg+xml',
+					'image/tiff',
+					'image/vnd.wap.wbmp',
+					'image/webp',
+					'image/x-jng',
+					'image/x-icon'
+				],
+				video: [
+					'audio/midi',
+					'audio/mp4',
+					'audio/mpeg',
+					'audio/ogg',
+					'audio/x-realaudio',
+					'audio/x-wav'
+				],
+				audio: [
+					'application/vnd.apple.mpegurl',
+					'application/x-mpegurl',
+					'video/3gpp',
+					'video/mp4',
+					'video/mpeg',
+					'video/ogg',
+					'video/quicktime',
+					'video/webm',
+					'video/x-m4v',
+					'video/ms-asf',
+					'video/x-ms-wmv',
+					'video/x-msvideo'
+				]
+			},
+			
+			toBase64: function(file) {
 				
 				return new Promise((resolve, reject) => {
 					
 					var reader = new FileReader();
 					reader.onload = function(event) {
-					    resolve(event);
+						resolve(event);
 					};
 					reader.onerror = reject;
 					reader.readAsDataURL(file);
 				});
 			},
 			
-			base64toFile: (base64, mimeType) => {
+			base64toFile: function(base64, mimeType) {
 				
 				var data = base64.split(',')[1];
 				return new Blob([window.atob(data)],  {type: mimeType, encoding: 'utf-8'});
 			},
 			
-			getChecksum: (file) => {
+			getMimeTypes: function(type) {
+				
+				return this.mimeTypes[type];
+			},
+			
+			getChecksum: function(file) {
 				
 				return new Promise((resolve, reject) => {
 					
@@ -38,13 +80,13 @@
 						var string = event.target.result;
 						
 						let index;
-					    let checksum = 0x12345678;
-					
-					    for (index = 0; index < string.length; index++) {
-					        checksum += (string.charCodeAt(index) * (index + 1));
-					    }
-					
-					    resolve(checksum);
+						let checksum = 0x12345678;
+						
+						for (index = 0; index < string.length; index++) {
+							checksum += (string.charCodeAt(index) * (index + 1));
+						}
+						
+						resolve(checksum);
 					});
 				});
 			},
@@ -53,7 +95,7 @@
 				
 				var data = 'data:' + mimeType + 'charset=utf-8,' + content;
 				data = encodeURI(data);
-		
+				
 				var link = document.createElement('a');
 				link.setAttribute('href', data);
 				link.setAttribute('download', fileName);
@@ -61,21 +103,25 @@
 				link.remove();
 			},
 			
-			promptFileDialog: function(callback, accept) {
+			promptFileDialog: function(callback, accept, multiple = false) {
 				
 				var input = document.createElement('input');
 				input.type = 'file';
 				input.accept = accept;
+				
+				if(multiple) {
+					input.multiple = true;
+				}
+				
 				angular.element('body').append(input);
 				input.click();
 				
 				input.onchange = function(event) {
 					
-					var files = event.target.files;
-					var file = files[0];
+					let files = Array.from(event.target.files);
 					input.remove();
 					
-					callback(file);
+					callback(files);
 				};
 			},
 			

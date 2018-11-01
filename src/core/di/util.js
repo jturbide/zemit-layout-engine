@@ -62,8 +62,47 @@
 				});
 				
 				return result;
-			}
+			},
 			
+			/**
+			 * Sort directed acyclic graphs
+			 * https://gist.github.com/RubyTuesdayDONO/5006455
+			 */
+			topologicalSorting: function(graph) {
+				
+				var sorted = [], // sorted list of IDs ( returned value )
+					visited = {}; // hash: id of already visited node => true
+				
+				 // 2. topological sort
+				 Object.keys(graph).forEach(function visit(name, ancestors) {
+				 	
+					if (!Array.isArray(ancestors)) {
+						ancestors = [];
+					}
+					
+					ancestors.push(name);
+					visited[name] = true;
+				
+					graph[name].forEach(function(dep) {
+						if (ancestors.indexOf(dep) >= 0) { // if already in ancestors, a closed chain exists.
+							throw new ZmError(0, 'Circular dependency "' + dep + '" is required by "' + name + '": ' + ancestors.join(' -> '));
+						}
+				
+						// if already exists, do nothing
+						if (visited[dep]) {
+							return;
+						}
+						
+						visit(dep, ancestors.slice(0)); // recursive call
+					});
+				
+					if(sorted.indexOf(name) < 0) {
+						sorted.push(name);
+					}
+				});
+				
+				return sorted;
+			}
 		};
 		
 		return factory;

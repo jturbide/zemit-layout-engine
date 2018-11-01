@@ -1,5 +1,7 @@
 .zm-tooltip {
   position: absolute;
+  left: 0;
+  top: 0;
   opacity: 0;
   z-index: 11000;
   pointer-events: none !important;
@@ -21,6 +23,7 @@
   height: 0;
   z-index: 2;
   position: absolute;
+  transform: translateX(0px) translateY(0px);
 }
 .zm-tooltip.zm-tooltip-has-pointer.zm-tooltip-top {
   margin-bottom: 0.5rem

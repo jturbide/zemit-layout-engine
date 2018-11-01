@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="zemit">
 	<head>
 		<title>Zemit Layout Engine</title>
 		<meta charset="utf-8" />
@@ -26,23 +26,27 @@
 		<link rel="stylesheet" href="./core/directives/accordion/accordion.css" />
 		<link rel="stylesheet" href="./core/directives/badge/badge.css" />
 		<link rel="stylesheet" href="./core/directives/btn/btn.css" />
+		<link rel="stylesheet" href="./core/directives/container/container.css" />
 		<link rel="stylesheet" href="./core/directives/dismissable/dismissable.css" />
 		<link rel="stylesheet" href="./core/directives/draggable/draggable.css" />
+		<link rel="stylesheet" href="./core/directives/dropdown/dropdown.css" />
 		<link rel="stylesheet" href="./core/directives/field/code/code.css" />
 		<link rel="stylesheet" href="./core/directives/field/default/default.css" />
 		<link rel="stylesheet" href="./core/directives/field/input/input.css" />
 		<link rel="stylesheet" href="./core/directives/field/switch/switch.css" />
-		<link rel="stylesheet" href="./core/directives/field/treeview/treeview.css" />
 		<link rel="stylesheet" href="./core/directives/iframe/iframe.css" />
 		<link rel="stylesheet" href="./core/directives/loading/loading.css" />
 		<link rel="stylesheet" href="./core/directives/modal/modal.css" />
+		<link rel="stylesheet" href="./core/directives/modules/modules.css" />
+		<link rel="stylesheet" href="./core/directives/object/object.css" />
 		<link rel="stylesheet" href="./core/directives/overlay/overlay.css" />
-		<link rel="stylesheet" href="./core/directives/sizing/sizing.css" />
+		<link rel="stylesheet" href="./core/directives/route/route.css" />
 		<link rel="stylesheet" href="./core/directives/sidebar/sidebar.css" />
-		<link rel="stylesheet" href="./core/directives/sidebar/modules/modules.css" />
-		<link rel="stylesheet" href="./core/directives/tabs/tabs.css" />
+		<link rel="stylesheet" href="./core/directives/sizing/sizing.css" />
+		<link rel="stylesheet" href="./core/directives/slide/slide.css" />
 		<link rel="stylesheet" href="./core/directives/toolbar/toolbar.css" />
 		<link rel="stylesheet" href="./core/directives/tooltip/tooltip.css" />
+		<link rel="stylesheet" href="./core/directives/treeview/treeview.css" />
 		<link rel="stylesheet" href="./core/directives/unsupported-device/unsupported-device.css" />
 		<!-- include: "type": "css", "files": "<%= app.styles %>" -->
 		<link rel="stylesheet" href="./app/app.css" />
@@ -64,7 +68,7 @@
 			}
 		</style>
 	</head>
-	<body ng-app="zemit">
+	<body>
 		<zemit-loader zm-fade-out-kill="{ timeout: 250, hook: 'onReady' }">
 			<style>
 				zemit-loader {
@@ -96,19 +100,21 @@
 		</zemit-loader>
 		
 		<!-- ZEMIT INITIALIZATION -->
-		<zemit ng-cloak>
+		<zemit ng-cloak tabindex="0">
 			
 			<!-- DEVICE NOT UNSUPPORTED -->
 			<zm-unsupported-device ng-if="!$device.isSupported()"></zm-unsupported-device>
 			
 			<!-- APP SUPPORTED -->
-			<zm-app ng-if="$device.isSupported()"></zm-app>
+			<zm-app ng-controller="app" ng-if="$device.isSupported() && isReady"></zm-app>
 		</zemit>
 		
 		<!-- build:js assets/js/vendors.min.js -->
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="../node_modules/angular/angular.min.js"></script>
 		<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+		<script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+		<script src="../node_modules/angular-route/angular-route.min.js"></script>
 		<script src="../node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
 		<script src="../node_modules/jsondiffpatch/public/build/jsondiffpatch.min.js"></script>
 		<script src="../node_modules/interactjs/dist/interact.js"></script>
@@ -123,6 +129,7 @@
 		<!-- endbuild -->
 		<!-- build:js assets/js/zemit.min.js -->
 		<script src="./core/zemit.js"></script>
+		<script src="./core/model.js"></script>
 		<script src="./app/assets/literals.js"></script>
 		<!-- include: "type": "js", "files": "templates.js" -->
 		<!-- include: "type": "js", "files": "service-worker.js" -->
@@ -131,24 +138,29 @@
 		<script src="./core/directives/accordion/accordion.js"></script>
 		<script src="./core/directives/badge/badge.js"></script>
 		<script src="./core/directives/btn/btn.js"></script>
+		<script src="./core/directives/container/container.js"></script>
 		<script src="./core/directives/dismissable/dismissable.js"></script>
 		<script src="./core/directives/draggable/draggable.js"></script>
+		<script src="./core/directives/dropdown/dropdown.js"></script>
 		<script src="./core/directives/dropzone/dropzone.js"></script>
 		<script src="./core/directives/field/code/code.js"></script>
 		<script src="./core/directives/field/default/default.js"></script>
 		<script src="./core/directives/field/input/input.js"></script>
 		<script src="./core/directives/field/switch/switch.js"></script>
-		<script src="./core/directives/field/treeview/treeview.js"></script>
 		<script src="./core/directives/general/general.js"></script>
 		<script src="./core/directives/iframe/iframe.js"></script>
 		<script src="./core/directives/loading/loading.js"></script>
 		<script src="./core/directives/modal/modal.js"></script>
+		<script src="./core/directives/modules/modules.js"></script>
+		<script src="./core/directives/object/object.js"></script>
 		<script src="./core/directives/overlay/overlay.js"></script>
+		<script src="./core/directives/route/route.js"></script>
+		<script src="./core/directives/separator/separator.js"></script>
 		<script src="./core/directives/sidebar/sidebar.js"></script>
-		<script src="./core/directives/sidebar/modules/modules.js"></script>
-		<script src="./core/directives/tabs/tabs.js"></script>
+		<script src="./core/directives/slide/slide.js"></script>
 		<script src="./core/directives/toolbar/toolbar.js"></script>
 		<script src="./core/directives/tooltip/tooltip.js"></script>
+		<script src="./core/directives/treeview/treeview.js"></script>
 		<script src="./core/directives/unsupported-device/unsupported-device.js"></script>
 		<script src="./core/di/database.js"></script>
 		<script src="./core/di/debug.js"></script>
@@ -161,14 +173,15 @@
 		<script src="./core/di/i18n.js"></script>
 		<script src="./core/di/modal.js"></script>
 		<script src="./core/di/modules.js"></script>
+		<script src="./core/di/object.js"></script>
+		<script src="./core/di/route.js"></script>
 		<script src="./core/di/session.js"></script>
 		<script src="./core/di/shortcut.js"></script>
 		<script src="./core/di/sidebar.js"></script>
+		<script src="./core/di/sound.js"></script>
 		<script src="./core/di/toolbar.js"></script>
 		<script src="./core/di/util.js"></script>
 		<script src="./core/di/zm.js"></script>
-		<script src="./core/model.js"></script>
-		<script src="./core/session.model.js"></script>
 		<script src="./app/modules/settings.js"></script>
 		<!-- include: "type": "js", "files": "<%= app.scripts %>" -->
 		    <!-- Files willbe added here by includeSource-->

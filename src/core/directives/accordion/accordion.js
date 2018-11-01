@@ -3,6 +3,10 @@
  */
 (function() {
 	
+	Zemit.app.run(['$object', function($object) {
+		$object.register('accordion', 'zm-accordion');
+	}]);
+	
 	/**
 	 * Accordion directive
 	 */

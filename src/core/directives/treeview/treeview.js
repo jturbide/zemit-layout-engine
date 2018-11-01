@@ -3,7 +3,10 @@
  */
 (function() {
 	
-	Zemit.app.run(['$session', function($session) {
+	Zemit.app.run(['$session', '$object', function($session, $object) {
+		
+		$object.register('treeview', 'zm-treeview');
+		
 		$session.prepare('settings', {
 			treeview: {}
 		});
@@ -12,7 +15,7 @@
 	/**
 	 * Switch field
 	 */
-	Zemit.app.directive('zmFieldTreeview', ['$timeout', '$filter', '$session', function($timeout, $filter, $session) {
+	Zemit.app.directive('zmTreeview', ['$timeout', '$filter', '$session', function($timeout, $filter, $session) {
 		return {
 			restrict: 'E',
 			scope: {

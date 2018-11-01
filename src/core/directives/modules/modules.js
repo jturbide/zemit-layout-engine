@@ -11,7 +11,7 @@
 			restrict: 'E',
 			replace: true,
 			scope: true,
-			templateUrl: 'core/directives/sidebar/modules/modules.html',
+			templateUrl: 'core/directives/modules/modules.html',
 			link: function ($s, $e, attrs) {
 				
 				let settings = $session.get('settings');
@@ -47,7 +47,18 @@
 				};
 				
 				$s.hasDifferences = () => {
-					return angular.toJson($s.settings) !== angular.toJson(settings.modules);
+					
+					let keys = Object.keys($s.settings);
+					for(let i = 0; i < keys.length; i++) {
+						
+						let module = $s.settings[keys[i]];
+						
+						if(module.activated !== settings.modules[keys[i]].activated) {
+							return true;
+						}
+					}
+					
+					return false;
 				};
 				
 				$s.apply = () => {
@@ -62,8 +73,12 @@
 							callback: (event, modal) => {
 								
 								settings.modules = angular.copy($s.settings);
+								$session.save();
 								
-								window.location.reload();
+								setTimeout(() => {
+									window.location.reload();
+								}, 250);
+								
 								modal.close();
 							}
 						}, {
@@ -98,7 +113,7 @@
 					});
 					
 					// Prevent ng-repeat reconstruction..
-					if(angular.toJson(groups) !== angular.toJson($s.filteredGroups)) {
+					if(Object.keys($s.filteredGroups).length !== Object.keys(groups).length) {
 						$s.filteredGroups = groups;
 					}
 				};

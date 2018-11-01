@@ -56,12 +56,13 @@
 				
 				let $oriTooltip = angular.element('<div />');
 				let $oriTooltipInner = angular.element('<div />');
+				let $oriTooltipPointer;
 				$oriTooltip.addClass('zm-tooltip');
 				$oriTooltipInner.addClass('zm-tooltip-inner');
 				$oriTooltip.append($oriTooltipInner);
 				
 				if(options.pointer) {
-					let $oriTooltipPointer = angular.element('<div />');
+					$oriTooltipPointer = angular.element('<div />');
 					$oriTooltipPointer.addClass('zm-tooltip-pointer');
 					$oriTooltip.append($oriTooltipPointer);
 					$oriTooltip.addClass('zm-tooltip-has-pointer')
@@ -93,7 +94,7 @@
 						}, timeout);
 					};
 					
-					var updatePos = (top, left, $scrollContainer = false) => {
+					var updatePos = (top, left, $scrollContainer = false, $element = false) => {
 						
 						let minTop = ($scrollContainer && $scrollContainer.offset().top) || 0;
 						let minLeft = ($scrollContainer && $scrollContainer.offset().left) || 0;
@@ -113,13 +114,44 @@
 							newLeft = newLeft < minLeft ? minLeft : newLeft;
 						}
 						
+						if(attrs.tooltipDistance) {
+							newTop += parseInt(attrs.tooltipDistance);
+							newLeft += parseInt(attrs.tooltipDistance);
+						}
+						
 						$tooltip.toggleClass('zm-tooltip-affix-top', newTop === minTop);
 						$tooltip.toggleClass('zm-tooltip-affix-bottom', newTop === maxTop);
 						$tooltip.toggleClass('zm-tooltip-affix-left', newLeft === minLeft);
 						$tooltip.toggleClass('zm-tooltip-affix-right', newLeft === maxLeft);
 						
-						$tooltip.css('top', newTop).attr('data-top', top);
-						$tooltip.css('left', newLeft).attr('data-left', left);
+						$tooltip[0].style.transform = 'translateX(' + newLeft + 'px) translateY(' + newTop + 'px)';
+						$tooltip.attr('data-top', top);
+						$tooltip.attr('data-left', left);
+						
+						// Update pointer position
+						if(options.pointer) {
+							
+							let $pointer = $tooltip.find('.zm-tooltip-pointer');
+							
+							let pointerNewMarginLeft = 0;
+							let pointerNewMarginTop = 0;
+							let eleOffset = $e.offset();
+							
+							if((newLeft <= minLeft) && (options.direction === 'top' || options.direction === 'bottom')) {
+								pointerNewMarginLeft = left;
+							}
+							else if((newLeft >= maxLeft) && (options.direction === 'top' || options.direction === 'bottom')) {
+								pointerNewMarginLeft = left;
+							}
+							if((newTop <= minTop) && (options.direction === 'left' || options.direction === 'right')) {
+								pointerNewMarginTop = -(minTop - eleOffset.top - ($pointer.outerHeight() / 4));
+							}
+							else if((newTop >= maxTop) && (options.direction === 'left' || options.direction === 'right')) {
+								pointerNewMarginTop = -(maxTop - eleOffset.top - ($pointer.outerHeight() / 4));
+							}
+							
+							$pointer[0].style.transform = 'translateX(' + pointerNewMarginLeft + 'px) translateY(' + pointerNewMarginTop + 'px)';
+						}
 					}
 					
 					// Creates tooltip when mouse enter the element
@@ -131,7 +163,7 @@
 						
 						// If a button or tab is active, it's not necessary to show
 						// the tooltip..
-						if($e.parents('.active:eq(0)').length > 0) {
+						if($e.hasClass('active') || $e.parents('.active:eq(0)').length > 0) {
 							return;
 						}
 						

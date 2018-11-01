@@ -1,0 +1,16 @@
+/**
+ * Slide
+ */
+/*.zm-slide {*/
+/*	position: relative;*/
+/*	z-index: 2;*/
+/*}*/
+.zm-slide.zm-slide-restricted {
+	overflow: hidden;
+}
+.zm-slide-animate {
+	transition: height 0.25s ease-out,
+				width 0.25s ease-out,
+				max-height 0.25s ease-out,
+				max-width 0.25s ease-out;
+}

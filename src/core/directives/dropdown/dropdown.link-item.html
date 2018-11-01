@@ -1,0 +1,11 @@
+<li ng-class="{ active: active }">
+	<a class="zm-flex-container zm-flex-nowrap zm-flex-align-center" ng-disabled="ngDisable" ng-href="{{ href }}">
+		<i ng-if="icon" class="fa fa-{{ ::icon }} zm-flex-minimal"></i>
+		<span ng-if="title">
+			{{ ::title }}
+		</span>
+		<small ng-if="shortcut && $device.isPrecise()" class="zm-shortcut-tip zm-flex-minimal">
+			{{ $shortcut.getKeysByName(shortcut, true) }}
+		</small>
+	</a>
+</li>

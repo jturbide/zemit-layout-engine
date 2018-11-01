@@ -15,38 +15,6 @@ msgstr ""
 msgid "core.directives.sidebar.tabs.modules"
 msgstr "Modules"
 
-msgid "core.directives.toolbar.clear"
-msgstr "Nettoyez"
-
-msgid "core.directives.toolbar.export"
-msgstr "Exporter"
-
-msgid "core.directives.toolbar.import"
-msgstr "Importer"
-
-msgid "core.directives.toolbar.notConnectedDataBrowser"
-msgstr ""
-"Vos données seront sauvegardés dans votre session de navigateur à moins que "
-"vous vous connectez."
-
-msgid "core.directives.toolbar.tooltip.clearDoc"
-msgstr "Nettoyer le document"
-
-msgid "core.directives.toolbar.tooltip.myAccount"
-msgstr "Mon compte"
-
-msgid "core.directives.toolbar.tooltip.redo"
-msgstr "Refaire"
-
-msgid "core.directives.toolbar.tooltip.settings"
-msgstr "Paramètres"
-
-msgid "core.directives.toolbar.tooltip.signIn"
-msgstr "Connectez-vous à votre compte"
-
-msgid "core.directives.toolbar.tooltip.undo"
-msgstr "Annuler"
-
 msgid "core.di.modal.btnCancel"
 msgstr "Annuler"
 

@@ -13,7 +13,7 @@
 	/**
 	 * Draggable directive
 	 */
-	Zemit.app.directive('zmDraggable', ['$device', '$debug', function($device, $debug) {
+	Zemit.app.directive('zmDraggable', ['$device', '$debug', '$rootScope', function($device, $debug, $rs) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -55,11 +55,8 @@
 							y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 						var $element = event.interaction.$element;
 						
-						// translate the element
-						$element.css({
-							top: y + 'px',
-							left: x + 'px'
-						});
+						// translate element
+						target.style.transform = 'translate(' + x + 'px, ' + y + 'px) scale(1)';
 					
 						// Update the position attributes
 						target.setAttribute('data-x', x);
@@ -81,23 +78,28 @@
 						
 						$debug.log('draggable', 'END', event);
 						
-						var target = event.interaction.$element[0];
+						var target = event.interaction.$element[0],
+							// keep the dragged position in the data-x/data-y attributes
+							x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+							y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 						var $element = event.interaction.$element;
-						
-						// Reset widget position
-						$element.css({
-							top: '',
-							left: '',
-							width: '',
-							height: ''
-						});
-						target.removeAttribute('data-x');
-						target.removeAttribute('data-y');
 						
 						$s.options.onEnd && $s.options.onEnd();
 						
-						event.interaction.$element.remove();
-						$element.remove();
+						$element.addClass('zm-transition-transform');
+						setTimeout(() => {
+							target.style.transform = 'translate(' + x + 'px, ' + y + 'px) scale(0)';
+							
+							setTimeout(() => {
+								$element.remove();
+							}, 250);
+						}, 100);
+						
+						$rs.$zemit.removeClass('zm-draggable-active');
+						
+						if($s.options.container) {
+							$s.options.container.removeClass('zm-draggable-container');
+						}
 					}
 				};
 				
@@ -109,17 +111,24 @@
 					event.interaction.dropState = {
 						position: null,
 						part: null,
-						widget: null
+						//widget: null
 					};
 					
 					var $clone = angular.element($e[0].cloneNode(true));
 					$clone.addClass('zm-draggable-dragged-item');
-					document.body.appendChild($clone[0]);
+					$rs.$zemit[0].appendChild($clone[0]);
+					
+					
+					$rs.$zemit.addClass('zm-draggable-active');
+					if($s.options.container) {
+						$s.options.container.addClass('zm-draggable-container');
+					}
+					
 					event.interaction.$element = $clone;
 					
-					// Set dragged widget
-					$clone[0].setAttribute('data-y', $e.offset().top);
-					$clone[0].setAttribute('data-x', $e.offset().left);
+					// Set dragged lement
+					$clone[0].setAttribute('data-original-y', $e.offset().top);
+					$clone[0].setAttribute('data-original-x', $e.offset().left);
 					$clone.css({
 						'top': $e.offset().top + 'px',
 						'left': $e.offset().left + 'px',
@@ -157,7 +166,7 @@
 					}
 				};
 				
-				var interactObj = interact($e[0]).origin("body").draggable(draggableOptions).styleCursor(false);
+				var interactObj = interact($e[0]).origin("zemit").draggable(draggableOptions).styleCursor(false);
 				
 				!$device.isTouch() && interactObj.on('move', manualStart);
 				$device.isTouch() && interactObj.on('hold', manualStart);

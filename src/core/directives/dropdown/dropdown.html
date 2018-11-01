@@ -1,0 +1,21 @@
+<div class="zm-dropdown zm-dropdown-style-{{ style }}">
+	<zm-btn zm-tooltip="{{ tooltip }}" ng-if="style === 'button'" class="zm-dropdown-handler zm-show-mobile" ng-class="{active: dropdown.visible}" ng-disabled="ngDisabled" ng-click="dropdown.toggle()">
+		<div class="zm-dropdown-toggle zm-h100" ng-transclude="toggle">
+			<toggle>
+				<i class="fa fa-bars"></i>
+			</toggle>
+		</div>
+	</zm-btn>
+	<span ng-if="style === 'flat'" class="zm-dropdown-handler zm-show-mobile" ng-class="{active: dropdown.visible}" ng-disabled="ngDisabled" ng-click="dropdown.toggle()">
+		<div class="zm-dropdown-toggle zm-h100" ng-transclude="toggle">
+			<toggle>
+				<i class="fa fa-bars"></i>
+			</toggle>
+		</div>
+	</span>
+	<div zm-slide-y="dropdown.visible" class="zm-dropdown-content">
+		<div class="zm-shadow-down" ng-transclude="content" ng-click="dropdown.clickInside()">
+			<!-- TRANSCLUDE HERE -->
+		</div>
+	</div>
+</div>

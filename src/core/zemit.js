@@ -11,6 +11,8 @@ var Zemit = {
 (function() {
 	
 	Zemit.app = angular.module('zemit', [
+		'ngAnimate',
+		'ngRoute',
 		'ngSanitize',
 		'oc.lazyLoad'
 	]);
@@ -23,11 +25,19 @@ var Zemit = {
 	/**
 	 * Dynamic directive loader
 	 */
-	Zemit.app.config(function($compileProvider, $provide) {
+	Zemit.app.config(['$compileProvider', '$provide', '$locationProvider', '$controllerProvider', '$routeProvider', function($compileProvider, $provide, $locationProvider, $controllerProvider, $routeProvider) {
+		
 		$compileProvider.debugInfoEnabled(false);
+		
 		Zemit.app.compileProvider = $compileProvider;
 		Zemit.app.provide = $provide;
-	});
+		Zemit.app.controllerProvider = $controllerProvider.register;
+		
+		$provide.factory('$routeProvider', function () {
+	        return $routeProvider;
+	    });
+		//$locationProvider.html5Mode(true);
+	}]);
 	
 	Zemit.app.run(['$rootScope', '$injector', '$hook', function($rs, $injector, $hook) {
 		
@@ -62,13 +72,7 @@ var Zemit = {
 				
 				$debug.init('core', $i18n.get('core.debugTitle'));
 				
-				var session = await $session.getAll();		
-				$session.prepare('settings', {
-					context: 'structure'
-				});
-				
 				$zm.setBaseScope($s);
-				$s.settings = session.settings;
 				$s.$device = $device;
 				$s.t = $i18n.get;
 				$s.$zemit = $e;
@@ -99,13 +103,11 @@ var Zemit = {
 				$hook.add('onAllModulesRan', () => {
 					
 					$hook.run('onReady');
-					
 					$debug.log('core', 'ONREADY');
 				});
 				
 				// Allow other stuff to execute before the final state
 				$hook.run('onBeforeReady');
-				
 				$debug.log('core', 'ONBEFOREREADY');
 			}
 		};

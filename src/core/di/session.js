@@ -4,6 +4,10 @@
  * 
  * Get and set configurations
  */
+class ZmSession extends ZmModel {
+	
+};
+ 
 (function() {
 	
 	Zemit.app.factory('$session', ['$database', '$hook', '$device', function($database, $hook, $device) {

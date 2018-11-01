@@ -1,0 +1,17 @@
+<zm-page type="stretch" align="center">
+	<div class="zm-text-center" style="max-width: 600px; display: inline-block;">
+		<h1>
+			<i class="fa fa-exclamation-triangle"></i>
+			{{ ::t('app.error.title') }}
+		</h1>
+		
+		<p>
+			{{ ::t('app.error.desc') }}
+		</p>
+		<hr />
+		<p>
+			{{ ::t('app.error.code') }}
+			<strong>{{ ::$routeParams.code }}</strong>
+		</p>
+	</div>
+</zm-page>

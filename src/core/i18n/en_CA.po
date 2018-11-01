@@ -15,38 +15,14 @@ msgstr ""
 msgid "core.directives.sidebar.tabs.modules"
 msgstr "Modules"
 
-msgid "core.directives.toolbar.clear"
-msgstr "Clear"
-
-msgid "core.directives.toolbar.export"
-msgstr "Export"
-
-msgid "core.directives.toolbar.import"
-msgstr "Import"
-
 msgid "core.directives.toolbar.notConnectedDataBrowser"
 msgstr "Data will be saved in your browser session unless you sign-in."
 
 msgid "core.directives.toolbar.tooltip.clearDoc"
 msgstr "Clear document"
 
-msgid "core.directives.toolbar.tooltip.myAccount"
-msgstr "My account"
-
-msgid "core.directives.toolbar.tooltip.redo"
-msgstr "Redo"
-
-msgid "core.directives.toolbar.tooltip.settings"
-msgstr "Settings"
-
-msgid "core.directives.toolbar.tooltip.signIn"
-msgstr "Sign-in to your account"
-
 msgid "core.directives.toolbar.tooltip.segment"
 msgstr "Manage current segment"
-
-msgid "core.directives.toolbar.tooltip.undo"
-msgstr "Undo"
 
 msgid "core.directives.toolbar.closeSegment"
 msgstr "Close"
@@ -180,3 +156,30 @@ msgstr "Dependencies:"
 
 #~ msgid "core.modules.core"
 #~ msgstr "Core"
+
+msgid "core.directives.sidebar.tabs.modules"
+msgstr "Modules"
+
+msgid "core.directives.sidebar.modules.applyTitle"
+msgstr "Apply changes"
+
+msgid "core.directives.sidebar.modules.applyContent"
+msgstr "Applying the changes will alter the behaviour and refresh the application. Do you wish to proceed?"
+
+msgid "core.directives.sidebar.modules.applyBtn"
+msgstr "Apply"
+
+msgid "core.directives.sidebar.modules.filterPlaceholder"
+msgstr "Filter modules..."
+
+msgid "core.directives.sidebar.modules.noticeIntro"
+msgstr "If you don't see your module here, make sure you added it in 'modules/settings.js'."
+
+msgid "core.directives.sidebar.modules.noModulesFound"
+msgstr "No module has been found based on your search query."
+
+msgid "core.directives.sidebar.modules.empty"
+msgstr "Sorry, no module available yet."
+
+msgid "core.directives.sidebar.modules.noModuleFound"
+msgstr "No module found based on your search query."

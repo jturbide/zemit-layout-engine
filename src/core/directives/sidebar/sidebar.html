@@ -1,18 +1,18 @@
-<div class="zm-sidebar" ng-if="$sidebar.tabs.length > 0" ng-class="{'zm-open': tabs.showContent && !tabs.hidden }">
+<div class="zm-sidebar zm-sidebar-direction-{{ direction }} zm-flex-minimal zm-flex-container-column" ng-if="$sidebar.tabs.length > 0" ng-class="{'zm-open': tabs.showContent && !tabs.hidden }">
 	<div class="zm-sidebar-inner zm-clearfix zm-flex-container">
-		<div zm-if="tabs.showContent" class="zm-sidebar-tab zm-flex-container">
+		<div class="zm-sidebar-tab zm-flex-container">
 			
 			<!-- DYNAMIC TABS CONTENT -->
-			<div class="zm-flex-container" ng-repeat="tab in $sidebar.tabs | orderBy: 'priority'" ng-if="settings.sidebar.tabs[tab.key].visible && tab.isVisible()" class="zm-sidebar-group zm-sidebar-{{ tab.key }}" zm-if-timeout="tabs.showContent ? 0 : 250" zm-if-keep>
+			<div class="zm-flex-container" ng-repeat="tab in $sidebar.tabs | orderBy: 'priority'" zm-show="settings.sidebar.tabs[tab.key].visible && tab.isVisible()" class="zm-sidebar-group zm-sidebar-{{ tab.key }}" zm-show-timeout="tabs.showContent ? 0 : 250">
 				<zm-directive name="tab.directive"></zm-directive>
 			</div>
 		</div>
 		<div class="zm-sidebar-tabs zm-flex-minimal zm-flex-container-column">
 			<div class="zm-sidebar-tabs-inner zm-flex-container-column">
-				<ul class="zm-tabs zm-tabs-vertical-right zm-flex-minimal">
+				<ul class="zm-dropdown zm-dropdown-vertical-right zm-flex-minimal">
 					
 					<!-- DYNAMIC TABS -->
-					<li ng-repeat="tab in $sidebar.tabs | orderBy: 'priority'" ng-if="tab.isVisible()" ng-disabled="!tab.canAccess()" ng-class="{'active': settings.sidebar.tabs[tab.key].visible}" ng-click="tabs.toggle(tab.key)" class="zm-tab-item zm-tab-item-{{ ::tab.key }} zm-transition-all">
+					<li ng-repeat="tab in $sidebar.tabs | orderBy: 'priority'" ng-if="tab.isVisible()" ng-disabled="!tab.canAccess()" ng-class="{'active': settings.sidebar.tabs[tab.key].visible}" ng-click="tabs.toggle(tab.key)" class="zm-dropdown-item zm-dropdown-item-{{ ::tab.key }} zm-transition-all">
 						{{ ::tab.title }}
 					</li>
 				</ul>

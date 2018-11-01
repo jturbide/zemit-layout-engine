@@ -54,10 +54,6 @@
   z-index: 1;
 }
 
-.zm-treeview-container .zm-badge.zm-empty {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
 .zm-treeview-group-title .fa {
   min-width: 1rem;
   text-align: center;

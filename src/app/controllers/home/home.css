@@ -1,0 +1,35 @@
+@media all and (min-width: 767px) {
+  .zm-page-home {
+    font-size: 1.25rem;
+  }
+}
+.zm-page-home hr {
+  margin: 2rem 0;
+}
+.app-home-links {
+  display: inline-block;
+}
+.app-home-links,
+.app-home-links > li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+@media all and (min-width: 768px) {
+  .app-home-links li {
+    float: left;
+  }
+  .app-home-links li + li {
+    margin-left: 1rem;
+    border-left: rgba(255, 255, 255, 0.5) solid 1px;
+    padding-left: 1rem;
+  }
+}
+@media all and (max-width: 768px) {
+  .app-home-links li {
+    display: block;
+  } 
+  .app-home-links li + li {
+    margin-top: 1rem;
+  }
+}

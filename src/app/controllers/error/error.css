@@ -1,0 +1,6 @@
+.zm-page-error hr {
+  margin: 2rem 0;
+}
+.zm-route-error {
+ 	background-color: orange;
+}

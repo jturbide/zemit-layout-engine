@@ -1,35 +1,23 @@
 (function() {
-	Zemit.app.directive('zmToolbar', ['$zm', '$modal', '$session', '$hook', '$device', '$toolbar', function($zm, $modal, $session, $hook, $device, $toolbar) {
+	
+	Zemit.app.run(['$object', function($object) {
+		$object.register('toolbar', 'zm-toolbar');
+		$object.register('sep', 'zm-separator');
+	}]);
+	
+	Zemit.app.directive('zmToolbar', [function() {
 		return {
 			restrict: 'E',
 			replace: true,
-			scope: true,
+			scope: {
+				object: '='
+			},
 			templateUrl: 'core/directives/toolbar/toolbar.html',
 			link: function ($s, $e, attrs) {
 				
-				// Set container scopes
-				var session = $session.getAll();
-				var settings = session.settings;
-				
-				$s.zm = $zm;
-				$s.$modal = $modal;
-				$s.session = session;
-				$s.$device = $device;
 				$s.sections = {
 					top: ['left', 'middle', 'right'],
 					bottom: ['left', 'right']
-				};
-				$s.$toolbar = $toolbar;
-				
-				$s.setTab = function(context) {
-					
-					var oldContext = settings.context;
-					
-					$zm.action(function() {
-						settings.context = context;
-					}, undefined, settings);
-					
-					$hook.run('onContextChange', context, oldContext);
 				};
 			}
 		};
